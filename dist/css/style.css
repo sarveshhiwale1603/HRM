@@ -1,0 +1,41 @@
+.card1{
+    border-radius: 5px;
+    font-size: 16px;
+}
+.card-header1{
+    padding:25px ;
+    border-bottom: 1px solid #f1f1f1;
+    width: 100%;
+}
+.card-body1{
+    padding:25px 
+}
+.tBackColor{
+background-color: #f4f6f9;
+}
+.card-title1{
+    font-size: 18px;
+}
+.card-footer1{
+    padding:25px ;
+    transition: box-shadow 0.2s ease-in-out;
+    border-top: 1px solid #f1f1f1;
+}
+.list-item{
+    color: #293240;
+    font-size: 1rem;
+    font-weight: 600;
+}
+.list-item:hover{
+    color: #007bff;
+}
+.active1{
+    color: #007bff;
+}
+.list-para{
+    color: #6c757d !important;
+    font-size: 80%;
+}
+.table1{
+    border: 1px solid #f1f1f1;
+}
