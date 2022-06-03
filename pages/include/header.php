@@ -66,25 +66,25 @@
             </a>
             <ol class="nav nav-treeview">
               <li class="nav-item">
-                <a href="Department.html" class="nav-link">
+                <a href="department.php" class="nav-link">
                   <i class="nav-icon fa fa-ellipsis"></i>
                   <p>Department</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="designation.html" class="nav-link">
+                <a href="designation.php" class="nav-link">
                   <i class="nav-icon fa fa-ellipsis"></i>
                   <p>Designation</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="policies.html" class="nav-link">
+                <a href="policies.php" class="nav-link">
                   <i class="nav-icon fa fa-ellipsis"></i>
                   <p>policies</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="announcement.html" class="nav-link">
+                <a href="announcement.php" class="nav-link">
                   <i class="nav-icon fa fa-astrick"></i>
                   <p>Make Announcement</p>
                 </a>

@@ -4,15 +4,15 @@ if(isset($_POST['submit'])){
  $title=$_POST['title'];
   $start_date=$_POST['start_date'];
   $end_date=$_POST['end_date'];
-  $department_id=$_POST['department_id'];
-  $instructor= implode(',',$department_id);
+  // $department_id=$_POST['department_id'];
+  $instructor= implode(',',$_POST['department_id']);
   $summary=$_POST['summary'];
   $description=$_POST['description'];
-  $sql = "INSERT INTO announcement (title, start_date, end_date, department_id, summary, description, date,status) VALUES ('$title', '$start_date','$end_date','$instructor','$summary','$description','1')";
+  $sql = mysqli_query($conn,"INSERT INTO announcement (title, start_date, end_date, department_id, summary, description,status) VALUES ('$title', '$start_date','$end_date','$instructor','$summary','$description','1')");
   if($sql==1){
     echo "<script>alert('Successfully Added')</script>";
   }
-  else{echo "<script>alert('Failed to Add')</script>";
+  else{echo "<script>alert('Failed to Add $title $start_date $instructor  $summary $description $end_date' )</script>";
     
   }
 }
@@ -36,11 +36,11 @@ if(isset($_POST['submit'])){
   <link rel="stylesheet" href="../../dist/css/style.css">
   <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-    <link rel="stylesheet" href="../../plugins/kendo/kendo.min.css">
-        <link rel="stylesheet" href="../../plugins/kendo/kendo.bootstrap.css">
-    <!-- include plugin -->
-    <script src="[folder where script is located]/[plugin script].js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+  <link rel="stylesheet" href="../../plugins/kendo/kendo.min.css">
+  <link rel="stylesheet" href="../../plugins/kendo/kendo.bootstrap.css">
+  <!-- include plugin -->
+  <script src="[folder where script is located]/[plugin script].js"></script>
 
 
 </head>
@@ -224,19 +224,22 @@ include("../include/header.php");
                             <table id="myTable" class="table1" >
                               <thead class="tBackColor">
                                <tr>
-                               <th>DESIGNATION </th>
+                               <th>TITLE</th>
                                <th><i class="fa fa-user" style="font-weight:300;font-size:small;">&nbsp;</i>DEPARTMENT </th>
-                               <th><i class="fa fa-calendar-alt" style="font-weight:300;font-size:small;">&nbsp;</i>CREATED AT</th>
+                               <th><i class="fa fa-calendar" style="font-weight:300;font-size:small;">&nbsp;</i>START DATE</th>
+                               <th><i class="fa fa-calendar" style="font-weight:300;font-size:small;">&nbsp;</i>END DATE</th>
                               </thead>
                               <tbody>
                               <?php
-                                $sql = mysqli_query($conn,"SELECT * FROM designation inner join department on designation.department_id = department.id");
+                                $sql = mysqli_query($conn,"SELECT * FROM announcement inner join department on announcement.department_id = department.id");
                                 while($arr=mysqli_fetch_array($sql)){
                                 ?>
                                 <tr>
-                                  <td><?php echo $arr['name']; ?></td>
-                                  <td><?php echo $arr['designation_name']; ?></td>
-                                  <td><?php echo $arr['created_date']; ?></td>
+                                  
+                                  <td><?php echo $arr['title']; ?></td>
+                                  <td><ul></li><?php echo $arr['name']; ?></li></ul></td>
+                                  <td><?php echo $arr['start_date']; ?></td>
+                                  <td><?php echo $arr['end_date']; ?></td>
                                 </tr>
                                 <?php } ?>
                               </tbody>

@@ -4,6 +4,7 @@ if(isset($_POST['submit'])){
   $department = $_POST['department'];
   $name = $_POST['name'];
   $description = $_POST['description'];
+  date_default_timezone_set('Asia/Kolkata');
   $date=date("Y.m.d");
   $sql = "INSERT INTO designation (department_id, designation_name, description,created_date,status) VALUES ('$department', '$name', '$description','$date','1')";
   $dnk = mysqli_query($conn, $sql);
@@ -144,12 +145,12 @@ include("../include/header.php");
                     <!-- /.input group -->
                   </div>
                   <div class="form-group">
-                    <label>Designation Name *</label>
+                    <label>Designation Name <span style="color:red">*</span></label>
                       <input type="text" name="name" class="form-control" placeholder="Name">
                     <!-- /.input group -->
                   </div>
                   <div class="form-group" >
-                    <label>Description *</label>
+                    <label>Description <span style="color:red">*</span></label>
                       <input type="text" name="description" class="form-control" placeholder="Department Head">
                     <!-- /.input group -->
                   </div>
