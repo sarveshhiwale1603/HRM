@@ -275,269 +275,91 @@
       <div class="container-fluid">
         <!-- Info boxes -->
         <div class="row">
-            <div class="col-md-3 grid-margin">
+      
+            <div class="col-md-6 grid-margin">
                 <div class="card-body">
-                  <a  href="employees.html">
-                  <div class="d-flex flex-row align-items-start hoverTitles">
-                  
-                    <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fas fa-user-friends"></i>
-                    <div class="ms-3">
-                        <p class="pb-0 mb-0" style="line-height:1;">Employees</p>
-                          <small class="text-muted small pt-0 mt-0">Set Up Employees</small>
-                      
-                    </div>
-                  
-                </div>
-              </a>
-                </div>
-            </div>
-            <!-- <p style="line-height:1;"><a href="department.html" target="_self" class="Department titles" style="font-weight:medium;">Department</a> <br> -->
-
-          <!-- /.col -->
-          <div class="col-md-3 grid-margin">
-            <div class="card-body">
-                  <a href="roles&privilages.html">
+                  <a href="employees-Exit.html">
                     <div class="d-flex flex-row align-items-start hoverTitles">
-                    
-                      <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fas fa-user-lock"></i>
+                      <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fa fa-bars"></i>
                       <div class="ms-3">
-                          <p class="pb-0 mb-0" style="line-height:1;">Roles & Privilages</p>
-                            <small class="text-muted small pt-0 mt-0">Set Roles</small>
-                        
+                          <p class="pb-0 mb-0" style="line-height:1;">Employees Exit</p>
+                            <small class="text-muted small pt-0 mt-0">Set up Employees Exit</small>
                       </div>
-                    
                   </div>
                 </a>
+                </div>
             </div>
-        </div>
-          <!-- /.col -->
 
-          <!-- fix for small devices only -->
           <div class="clearfix hidden-md-up"></div>
-
-          <div class="col-md-3 grid-margin">
+          <div class="col-md-6 grid-margin">
             <div class="card-body">
-              <a href="shift&scheduling.html">
+              <a href="Exit-Types.html">
                 <div class="d-flex flex-row align-items-start hoverTitles">
-                  <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg 	fas fa-sign-out-alt"></i>
+                  <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg 	fas fa-plus-square"></i>
                   <div class="ms-3">
-                      <p class="pb-0 mb-0" style="line-height:1;">Shift & Scheduling</p>
-                        <small class="text-muted small pt-0 mt-0">Manage Shifts</small>
+                      <p class="pb-0 mb-0" style="line-height:1;">Exit Type</p>
+                        <small class="text-muted small pt-0 mt-0">Set Up Exit Type</small>
                   </div>
               </div>
             </a>
             </div>
         </div>
-          <!-- /.col -->
-          <div class="col-md-3 grid-margin">
-            <div class="card-body">
-              <a href="employees-Exit.html">
-                <div class="d-flex flex-row align-items-start hoverTitles">
-                  <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fa fa-bars"></i>
-                  <div class="ms-3">
-                      <p class="pb-0 mb-0" style="line-height:1;">Employees Exit</p>
-                        <small class="text-muted small pt-0 mt-0">Set up Employees Exit</small>
-                  </div>
-              </div>
-            </a>
-            </div>
+       
         </div>
-          <!-- /.col -->
-        </div>
-        
-        <!-- /.row -->
         <div class="row">
-            
-            <!-- /.col (left) -->
             <div class="col-md-12">
-              <div class="collapse" id="collapseExample">
                 <div class="row my-3">
+                    <div class="col-md-4">
+                        <div class="card">
+                          <div class="card-header">
+                            <h5 class="card-title"> Add New Exit Type</h5>
+                          </div>
+                          <div class="card-body">
+                                <label>Exit Type<sup><b style="color:red;">*</b></sup></label>
+                                    <input type="text" class="form-control" placeholder="Exit Type">
+                             <div class="card-footer mt-3">
+                                <buttton type="button" id="submit" class="btn btn-primary" name="submit">Save</buttton>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
                   <div class="col-md-8">
                     <div class="card">
                       <div class="card-header">
-                        <h5 class="card-title">Add New Employee</h5>
-                        <div class="card-tools">
-                          <button type="button" class="btn btn-primary btn-sm"  data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                          <i class="fas fa-minus"></i> Hide</button>
-                        </button>
-                          </button>
-                        </div>
+                        <h5 class="card-title">List All Exit Type</h5>
                       </div>
                       <!-- /.card-header -->
                       <div class="card-body">
-                        <div class="row my-3">
-                          <div class="col-lg-6">
-                            <label>Employee to Exit <sup><b style="color:red;">*</b></sup></label>
-                            <div class="input-group">
-                              <select class="form-control select2" style="width: 100%;">
-                                <option selected="selected">VEDANT NAIDU</option>
-                              </select>
-                            </div>
-                            <!-- /input-group -->
-                          </div>
-                          <div class="col-lg-6">
-                            <label>Exit Date <sup><b style="color:red;">*</b></sup></label>
-                            <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                              <input type="text" class="form-control datetimepicker-input" placeholder="Exit Date" data-target="#reservationdate"/>
-                              <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                            <div class="row">
+                              <div class="col-sm-12">
+                                <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="example1_info">
+                                  <thead>
+                                   <tr>
+                                   <th><i class="fas fa-braille"></i> EXIT TYPE</th>
+                                   <th><i class="fas fa-calendar"></i> CREATED AT</th>
+                                  </thead>
+                                  <tbody>
+                                  </tbody>
+                                 <tfoot>
+    
+                                 </tfoot>
+                                </table>
                               </div>
-                          </div>
-                          </div>
-                        </div>
-
-                        
-                        <div class="row my-3">
-                          <div class="col-lg-4">
-                            <label>Exit Type<sup><b style="color:red;">*</b></sup></label>
-                            <select class="form-control select2" style="width: 100%;" placeholder="Office Shift">
-                              <option selected="selected" disabled>Type Of Exit</option>
-                              <option>Hospital Emergency</option>
-                              <option>Leave Half Day</option>
-                            </select>
-                            <!-- /input-group -->
-                          </div>
-                          <!-- /.col-lg-4 -->
-                          <div class="col-lg-4">
-                            <label>Exit Interview<sup><b style="color:red;">*</b></sup></label>
-                            <select class="form-control select2" style="width: 100%;" placeholder="Office Shift">
-                              <option selected="selected" disabled>Yes</option>
-                              <option>No</option>
-                            </select>
-                            <!-- /input-group -->
-                          </div>
-                          <div class="col-lg-4">
-                            <label>Disable Account<sup><b style="color:red;">*</b></sup></label>
-                            <div class="input-group">
-                              <select class="form-control select2" style="width: 100%;">
-                                <option selected="selected" disabled>Yes</option>
-                                <option>No</option>
-                              </select>
                             </div>
-                          </div>
-                        </div>
-                   
-
-                    <div class="row my-3">     
-                      <div class="col-lg-12">
-                          <label>Description<sup><b style="color:red;">*</b></sup></label>
-                          <div class="form-group">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description"></textarea>
-                          </div>
-                      </div>
-                      
-                    </div>      
-                        <div class="card-footer">
-                          <buttton type="button" id="reset" class="btn btn-default"  data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Reset</buttton>
-                          <buttton type="button" id="submit" class="btn btn-primary" name="Save">Save</buttton>
-                        </div>
+                         </div>
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-4">
-                    <div class="card">
-                      <div class="card-header">
-                        <h5 class="card-title">Profile Picture</h5>
-                      </div>
-                      <div class="card-body">
-                <label>Profile Picture<sup><b style="color:red;">*</b></sup></label>
-                        <div class="custom-file">
-                          <input type="file" class="custom-file-input" name="file">
-                          <label class="custom-file-label">Choose file...</label>
-                          <small class="text-muted">Upload files only: gif,png,jpg,jpeg</small>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                
                 </div>
-              </div>
-
-
-
-              <div class="card">
-                <div class="card-header">
-                  <h5 class="card-title">List All Employees</h5>
-                  <div class="card-tools">
-                   <a href="Exit-Types.html"> <button type="button" title="Grid view" class="btn btn-primary btn-sm">
-                      <i class="fas fa-plus"></i> Exit Type</button></a>
-                    
-                    <button type="button" class="btn btn-primary btn-sm"  data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                      <i class="fas fa-plus"></i> Add New</button>
-                    
-                  </div>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="example1_info">
-                              <thead>
-                               <tr>
-                               <th><i class="fas fa-user-alt"></i> EMPLOYEE TO EXIT</th>
-                               <th>EXIT TYPE</th>
-                               <th><i class="fas fa-calendar"></i> EXIT DATE</th>
-                               <th>EXIT INTERVIEW</th>
-                               <th>DISABLE ACCOUNT</th>
-                              </thead>
-                              <tbody>
-                              </tbody>
-                             <tfoot>
-
-                             </tfoot>
-                            </table>
-                          </div>
-                        </div>
-              <!-- <div class="row">
-                <div class="col-md-10">
-                  <div class="dataTables_info" id="example1_info" role="status">Showing 1 to 10 of 57 entries
-                  </div>
-                </div>
-                  <div class="col-md-2">
-                    <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
-                      <ul class="pagination">
-                        <li class="paginate_button page-item previous disabled" id="example1_previous">
-                          <a href="#"  class="page-link">Previous</a>
-                        </li>
-                          
-                            <li class="paginate_button" name="next" id="example1_next">
-                              <a href="#"class="page-link">Next</a>
-                            </li>
-                          </ul>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
-            </div>
-                <!-- /.card-body -->
-              </div>
-              <!-- /.card -->
-            </div>
-            <!-- /.col (right) -->
           </div>
-        
-        <!-- /.row -->
-
-        <!-- Main row -->
-       
-        <!-- /.row -->
-      </div><!--/. container-fluid -->
+      </div>
     </section>
-    <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
-
-  <!-- Control Sidebar -->
   <aside>
-    <!-- Control sidebar content goes here -->
   </aside>
-  <!-- /.control-sidebar -->
-
-  <!-- Main Footer -->
-  
 </div>
-<!-- ./wrapper -->
-
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
