@@ -272,13 +272,13 @@
         <div class="row">
             <div class="col-md-3 grid-margin">
                 <div class="card-body">
-                  <a  href="attendance.html">
+                  <a  href="employees.html">
                   <div class="d-flex flex-row align-items-start hoverTitles">
                   
-                    <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg far fa-clock"></i>
+                    <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fas fa-user-friends"></i>
                     <div class="ms-3">
-                        <p class="pb-0 mb-0" style="line-height:1;">Attendance</p>
-                          <small class="text-muted small pt-0 mt-0">View Attendance</small>
+                        <p class="pb-0 mb-0" style="line-height:1;">Employees</p>
+                          <small class="text-muted small pt-0 mt-0">Set Up Employees</small>
                       
                     </div>
                   
@@ -291,13 +291,13 @@
           <!-- /.col -->
           <div class="col-md-3 grid-margin">
             <div class="card-body">
-                  <a href="manual-attendance.html">
+                  <a href="roles&privilages.html">
                     <div class="d-flex flex-row align-items-start hoverTitles">
                     
-                      <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fas fa-edit"></i>
+                      <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fas fa-user-lock"></i>
                       <div class="ms-3">
-                          <p class="pb-0 mb-0" style="line-height:1;">Manual Attendance </p>
-                            <small class="text-muted small pt-0 mt-0">Add/Edit Attendance</small>
+                          <p class="pb-0 mb-0" style="line-height:1;">Roles & Privilages</p>
+                            <small class="text-muted small pt-0 mt-0">Set Roles</small>
                         
                       </div>
                     
@@ -312,12 +312,12 @@
 
           <div class="col-md-3 grid-margin">
             <div class="card-body">
-              <a href="monthly-Report.html">
+              <a href="shift&scheduling.html">
                 <div class="d-flex flex-row align-items-start hoverTitles">
-                  <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg 	far fa-calendar"></i>
+                  <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg 	fas fa-sign-out-alt"></i>
                   <div class="ms-3">
-                      <p class="pb-0 mb-0" style="line-height:1;">Monthly Report</p>
-                        <small class="text-muted small pt-0 mt-0">View Monthly Report</small>
+                      <p class="pb-0 mb-0" style="line-height:1;">Shift & Scheduling</p>
+                        <small class="text-muted small pt-0 mt-0">Manage Shifts</small>
                   </div>
               </div>
             </a>
@@ -326,12 +326,12 @@
           <!-- /.col -->
           <div class="col-md-3 grid-margin">
             <div class="card-body">
-              <a href="overtime-Request.html">
+              <a href="employees-Exit.html">
                 <div class="d-flex flex-row align-items-start hoverTitles">
                   <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fa fa-bars"></i>
                   <div class="ms-3">
-                      <p class="pb-0 mb-0" style="line-height:1;">Overtime Request</p>
-                        <small class="text-muted small pt-0 mt-0">Set up Overtime Request</small>
+                      <p class="pb-0 mb-0" style="line-height:1;">Employees Exit</p>
+                        <small class="text-muted small pt-0 mt-0">Set up Employees Exit</small>
                   </div>
               </div>
             </a>
@@ -347,12 +347,15 @@
             <div class="col-md-12">
               <div class="card">
                 <div class="card-header">
-                  <h5 class="card-title">Daily Attendance Report</h5>
-                  <!-- <div class="card-tools">
-                    <a href="addannouncement.html" button type="button" class="btn btn-primary btn-sm">
-                      <i class="fas fa-plus"></i> Add New</a>
-                    </button>
-                  </div> -->
+                  <h5 class="card-title">List All Employees</h5>
+                  <div class="card-tools">
+                    <button type="button" title="Grid view" class="btn btn-primary btn-sm">
+                      <i class="fas fa-plus"></i> Exit Type</button>
+                    
+                    <button type="button" class="btn btn-primary btn-sm">
+                      <i class="fas fa-plus"></i> Add New</button>
+                    
+                  </div>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -362,14 +365,11 @@
                             <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="example1_info">
                               <thead>
                                <tr>
-                               <th>Employee</th>
-                               <th>Date</th>
-                               <th>Status</th>
-                               <th>Clock In</th>
-                               <th>Clock Out</th>
-                               <th>Late</th>
-                               <th>Early Leaving</th>
-                               <th>Total Work</th>
+                               <th><i class="fas fa-user-alt"></i> EMPLOYEE TO EXIT</th>
+                               <th>EXIT TYPE</th>
+                               <th><i class="fas fa-calendar"></i> EXIT DATE</th>
+                               <th>EXIT INTERVIEW</th>
+                               <th>DISABLE ACCOUNT</th>
                               </thead>
                               <tbody>
                               </tbody>
