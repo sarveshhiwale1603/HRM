@@ -167,7 +167,7 @@ include("../include/header.php");
                   <div class="form-group" >
                     <label>Attachment <span style="color:red">*</span></label>
                       <input type="file" name="image[]" multiple>
-                      <p style="font-size:12px;margin-top:2px">Upload files only: gif,png,jpg,jpeg</p>
+                      <p style="font-size:12px;margin-top:2px">Upload pdf files only</p>
                     <!-- /.input group -->
                   </div>
                 </div>

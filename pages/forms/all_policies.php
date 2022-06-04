@@ -69,7 +69,7 @@ include("../include/header.php");
                   $dnk=$arr['title'];
                   $id=$arr['id'];
                   $count=mysqli_num_rows($sql);
-                  if($count==0){
+                  if($count==1){
                       echo "<li class='nav-item sss'><a href='#".$dnk."_".$id."' class=nav-link active data-toggle=tab><i class='fa fa-check-square-o' style='24px'>&nbsp;&nbsp;</i><span>".$dnk."</span></a></li>";
                   }
                   else{
