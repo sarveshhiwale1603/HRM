@@ -2087,8 +2087,8 @@
                                                                                  <tr>
                                                                                  <th>PROJECTS</th>
                                                                                  <th>CLIENT</th>
-                                                                                 <th><i class="fa fa-calendar"></i>START DATE</th>
-                                                                                 <th><i class="fa fa-calendar"></i>END DATE</th>
+                                                                                 <th><i class="fa fa-calendar"></i> START DATE</th>
+                                                                                 <th><i class="fa fa-calendar"></i> END DATE</th>
                                                                                  <th> <i class="fa fa-user"></i> TEAM </th>
                                                                                  <th>PRIORITY</th>
                                                                                  <th>PROGRESS</th>
@@ -2107,129 +2107,33 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="pills-tasks" role="tabpanel"
-                                                    aria-labelledby="pills-tasks-tab">
+
+                                                <!-- TASKS -->
+
+                                                <div class="tab-pane fade" id="pills-tasks" role="tabpanel"  aria-labelledby="pills-tasks-tab">
                                                     <div class="user-profile-list ">
-                                                        <div class="card-header">
-                                                            <h5>
-                                                                List All Tasks </h5>
-                                                        </div>
+                                                        <div class="card-header"> <h5>  List All Tasks </h5> </div>
                                                         <div class="m-t-20">
                                                             <div class="box-datatable table-responsive">
-                                                                <div id="xin_table_tasks_wrapper"
-                                                                    class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                                                    <div class="row">
-                                                                        <div class="col-sm-12 col-md-6">
-                                                                            <div class="dataTables_length"
-                                                                                id="xin_table_tasks_length"><label>Show
-                                                                                    <select
-                                                                                        name="xin_table_tasks_length"
-                                                                                        aria-controls="xin_table_tasks"
-                                                                                        class="custom-select custom-select-sm form-control form-control-sm">
-                                                                                        <option value="10">10</option>
-                                                                                        <option value="25">25</option>
-                                                                                        <option value="50">50</option>
-                                                                                        <option value="100">100</option>
-                                                                                    </select> entries</label></div>
-                                                                        </div>
-                                                                        <div class="col-sm-12 col-md-6">
-                                                                            <div id="xin_table_tasks_filter"
-                                                                                class="dataTables_filter">
-                                                                                <label>Search<input type="search"
-                                                                                        class="form-control form-control-sm"
-                                                                                        placeholder=""
-                                                                                        aria-controls="xin_table_tasks"></label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-sm-12">
-                                                                            <table
-                                                                                class="datatables-demo table table-striped table-bordered dataTable no-footer"
-                                                                                id="xin_table_tasks"
-                                                                                style="width: 100%;" role="grid"
-                                                                                aria-describedby="xin_table_tasks_info">
+                                                                <div id="xin_table_tasks_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                                    <div id="tasks_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-12">
+                                                                              <table id="tasks" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="tasks_info">
                                                                                 <thead>
-                                                                                    <tr role="row">
-                                                                                        <th class="sorting_asc"
-                                                                                            tabindex="0"
-                                                                                            aria-controls="xin_table_tasks"
-                                                                                            rowspan="1" colspan="1"
-                                                                                            aria-label="Title: activate to sort column descending"
-                                                                                            aria-sort="ascending"
-                                                                                            style="width: 0px;">Title
-                                                                                        </th>
-                                                                                        <th class="sorting" tabindex="0"
-                                                                                            aria-controls="xin_table_tasks"
-                                                                                            rowspan="1" colspan="1"
-                                                                                            aria-label=" Team: activate to sort column ascending"
-                                                                                            style="width: 0px;"><i
-                                                                                                class="fa fa-user"></i>
-                                                                                            Team</th>
-                                                                                        <th class="sorting" tabindex="0"
-                                                                                            aria-controls="xin_table_tasks"
-                                                                                            rowspan="1" colspan="1"
-                                                                                            aria-label=" Start Date: activate to sort column ascending"
-                                                                                            style="width: 0px;"><i
-                                                                                                class="fa fa-calendar"></i>
-                                                                                            Start Date</th>
-                                                                                        <th class="sorting" tabindex="0"
-                                                                                            aria-controls="xin_table_tasks"
-                                                                                            rowspan="1" colspan="1"
-                                                                                            aria-label=" End Date: activate to sort column ascending"
-                                                                                            style="width: 0px;"><i
-                                                                                                class="fa fa-calendar"></i>
-                                                                                            End Date</th>
-                                                                                        <th class="sorting" tabindex="0"
-                                                                                            aria-controls="xin_table_tasks"
-                                                                                            rowspan="1" colspan="1"
-                                                                                            aria-label="Status: activate to sort column ascending"
-                                                                                            style="width: 0px;">Status
-                                                                                        </th>
-                                                                                        <th class="sorting" tabindex="0"
-                                                                                            aria-controls="xin_table_tasks"
-                                                                                            rowspan="1" colspan="1"
-                                                                                            aria-label="
-                                              : activate to sort column ascending" style="width: 0px;">
-                                                                                        </th>
-                                                                                    </tr>
+                                                                                 <tr>
+                                                                                 <th>TITLE</th>
+                                                                                 <th> <i class="fa fa-user"></i> TEAM </th>
+                                                                                 <th><i class="fa fa-calendar"></i> START DATE</th>
+                                                                                 <th><i class="fa fa-calendar"></i> END DATE</th>
+                                                                                 <th>STATUS</th>
                                                                                 </thead>
                                                                                 <tbody>
-                                                                                    <tr class="odd">
-                                                                                        <td valign="top" colspan="6"
-                                                                                            class="dataTables_empty">No
-                                                                                            records available</td>
-                                                                                    </tr>
                                                                                 </tbody>
-                                                                            </table>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-sm-12 col-md-5">
-                                                                            <div class="dataTables_info"
-                                                                                id="xin_table_tasks_info" role="status"
-                                                                                aria-live="polite">No records available
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-sm-12 col-md-7">
-                                                                            <div class="dataTables_paginate paging_simple_numbers"
-                                                                                id="xin_table_tasks_paginate">
-                                                                                <ul class="pagination">
-                                                                                    <li class="paginate_button page-item previous disabled"
-                                                                                        id="xin_table_tasks_previous"><a
-                                                                                            href="#"
-                                                                                            aria-controls="xin_table_tasks"
-                                                                                            data-dt-idx="0" tabindex="0"
-                                                                                            class="page-link">Previous</a>
-                                                                                    </li>
-                                                                                    <li class="paginate_button page-item next disabled"
-                                                                                        id="xin_table_tasks_next"><a
-                                                                                            href="#"
-                                                                                            aria-controls="xin_table_tasks"
-                                                                                            data-dt-idx="1" tabindex="0"
-                                                                                            class="page-link">Next</a>
-                                                                                    </li>
-                                                                                </ul>
+                                                                               <tfoot>
+                                                  
+                                                                               </tfoot>
+                                                                              </table>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -2238,115 +2142,32 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="pills-payslip" role="tabpanel"
-                                                    aria-labelledby="pills-payslip-tab">
+
+                                                <!-- PAYSLIP HISTORY -->
+
+                                                <div class="tab-pane fade" id="pills-payslip" role="tabpanel"  aria-labelledby="pills-payslip-tab">
                                                     <div class="user-profile-list ">
-                                                        <div class="card-header">
-                                                            <h5>
-                                                                Payslip History </h5>
-                                                        </div>
+                                                        <div class="card-header"> <h5> Payslip History </h5>  </div>
                                                         <div class="m-t-20">
                                                             <div class="box-datatable table-responsive">
-                                                                <div id="xin_table_payslip_wrapper"
-                                                                    class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                                                    <div class="row">
-                                                                        <div class="col-sm-12 col-md-6">
-                                                                            <div class="dataTables_length"
-                                                                                id="xin_table_payslip_length">
-                                                                                <label>Show <select
-                                                                                        name="xin_table_payslip_length"
-                                                                                        aria-controls="xin_table_payslip"
-                                                                                        class="custom-select custom-select-sm form-control form-control-sm">
-                                                                                        <option value="10">10</option>
-                                                                                        <option value="25">25</option>
-                                                                                        <option value="50">50</option>
-                                                                                        <option value="100">100</option>
-                                                                                    </select> entries</label>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-sm-12 col-md-6">
-                                                                            <div id="xin_table_payslip_filter"
-                                                                                class="dataTables_filter">
-                                                                                <label>Search<input type="search"
-                                                                                        class="form-control form-control-sm"
-                                                                                        placeholder=""
-                                                                                        aria-controls="xin_table_payslip"></label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-sm-12">
-                                                                            <table
-                                                                                class="datatables-demo table table-striped table-bordered dataTable no-footer"
-                                                                                id="xin_table_payslip"
-                                                                                style="width: 100%;" role="grid"
-                                                                                aria-describedby="xin_table_payslip_info">
+                                                                <div id="xin_table_payslip_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                                    <div id="payslipHistory_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-12">
+                                                                              <table id="payslipHistory" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="payslipHistory_info">
                                                                                 <thead>
-                                                                                    <tr role="row">
-                                                                                        <th class="sorting_asc"
-                                                                                            tabindex="0"
-                                                                                            aria-controls="xin_table_payslip"
-                                                                                            rowspan="1" colspan="1"
-                                                                                            aria-label="Employee: activate to sort column descending"
-                                                                                            aria-sort="ascending"
-                                                                                            style="width: 0px;">Employee
-                                                                                        </th>
-                                                                                        <th class="sorting" tabindex="0"
-                                                                                            aria-controls="xin_table_payslip"
-                                                                                            rowspan="1" colspan="1"
-                                                                                            aria-label="Net Payable: activate to sort column ascending"
-                                                                                            style="width: 0px;">Net
-                                                                                            Payable</th>
-                                                                                        <th class="sorting" tabindex="0"
-                                                                                            aria-controls="xin_table_payslip"
-                                                                                            rowspan="1" colspan="1"
-                                                                                            aria-label="Salary Month: activate to sort column ascending"
-                                                                                            style="width: 0px;">Salary
-                                                                                            Month</th>
-                                                                                        <th class="sorting" tabindex="0"
-                                                                                            aria-controls="xin_table_payslip"
-                                                                                            rowspan="1" colspan="1"
-                                                                                            aria-label="Pay Date: activate to sort column ascending"
-                                                                                            style="width: 0px;">Pay Date
-                                                                                        </th>
-                                                                                    </tr>
+                                                                                 <tr>
+                                                                                 <th>EMPLOYEE</th>
+                                                                                 <th> NET PAYABLE </th>
+                                                                                 <th> SALARY MONTH</th>
+                                                                                 <th> PAY DATE</th>
                                                                                 </thead>
                                                                                 <tbody>
-                                                                                    <tr class="odd">
-                                                                                        <td valign="top" colspan="4"
-                                                                                            class="dataTables_empty">No
-                                                                                            records available</td>
-                                                                                    </tr>
                                                                                 </tbody>
-                                                                            </table>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="col-sm-12 col-md-5">
-                                                                            <div class="dataTables_info"
-                                                                                id="xin_table_payslip_info"
-                                                                                role="status" aria-live="polite">No
-                                                                                records available</div>
-                                                                        </div>
-                                                                        <div class="col-sm-12 col-md-7">
-                                                                            <div class="dataTables_paginate paging_simple_numbers"
-                                                                                id="xin_table_payslip_paginate">
-                                                                                <ul class="pagination">
-                                                                                    <li class="paginate_button page-item previous disabled"
-                                                                                        id="xin_table_payslip_previous">
-                                                                                        <a href="#"
-                                                                                            aria-controls="xin_table_payslip"
-                                                                                            data-dt-idx="0" tabindex="0"
-                                                                                            class="page-link">Previous</a>
-                                                                                    </li>
-                                                                                    <li class="paginate_button page-item next disabled"
-                                                                                        id="xin_table_payslip_next"><a
-                                                                                            href="#"
-                                                                                            aria-controls="xin_table_payslip"
-                                                                                            data-dt-idx="1" tabindex="0"
-                                                                                            class="page-link">Next</a>
-                                                                                    </li>
-                                                                                </ul>
+                                                                               <tfoot>
+                                                  
+                                                                               </tfoot>
+                                                                              </table>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -2413,7 +2234,9 @@
     <script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-    <script>
+   
+   
+   <script>
 
 // allowances
 
@@ -2651,12 +2474,13 @@
             });
         });
 
+// tasks
 
         $(function () {
-            $("#").DataTable({
+            $("#tasks").DataTable({
                 // "responsive": true, "lengthChange": false, "autoWidth": false,
                 // "buttons": [   "colvis"]
-            }).buttons().container().appendTo('#_wrapper .col-md-6:eq(0)');
+            }).buttons().container().appendTo('#tasks_wrapper .col-md-6:eq(0)');
             $('#example2').DataTable({
                 "paging": true,
                 "lengthChange": false,
@@ -2667,6 +2491,25 @@
                 "responsive": true,
             });
         });
+
+  // payslipHistory
+
+  $(function () {
+            $("#payslipHistory").DataTable({
+                // "responsive": true, "lengthChange": false, "autoWidth": false,
+                // "buttons": [   "colvis"]
+            }).buttons().container().appendTo('#payslipHistory_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+
     </script>
 
     <!-- Bootstrap 4 -->
