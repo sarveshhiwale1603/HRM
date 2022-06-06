@@ -4,28 +4,43 @@ if(isset($_POST['submit'])){
  $title=$_POST['title'];
   $start_date=$_POST['start_date'];
   $end_date=$_POST['end_date'];
-  // $department_id=$_POST['department_id'];
   $instructor= implode(',',$_POST['department_id']);
   $summary=$_POST['summary'];
-  $description=$_POST['description'];
-  $sql = mysqli_query($conn,"INSERT INTO announcement (title, start_date, end_date, department_id, summary, description,status) VALUES ('$title', '$start_date','$end_date','$instructor','$summary','$description','1')");
+  $description=mysqli_real_escape_string($conn,$_POST['description']);
+$sql=mysqli_query($conn,"update announcement set title='$title',
+start_date='$start_date',
+end_date='$end_date',
+department_id='$instructor',
+summary='$summary',
+description='$description' where id='$_GET[eid]'");
   if($sql==1){
-    echo "<script>alert('Successfully Added')</script>";
+    header("location:announcement.php");
   }
   else{echo "<script>alert('Failed to Add $title $start_date $instructor  $summary $description $end_date' )</script>";
     
   }
 }
 
-
-if(isset($_GET['delid'])){
-  $delid = $_GET['delid'];
-  $sql = mysqli_query($conn,"DELETE FROM announcement WHERE id = '$delid'");
-  if($sql){
-    header ("location:announcement.php"); 
-  }
-  else{ echo "<script>alert('Failed to Delete')</script>"; }
+$did="";
+$name="";
+$summary="";
+$end_date="";
+$start_date="";
+$title="";
+$description="";
+if(isset($_GET['eid'])){
+  $eid = $_GET['eid'];
+  $sql = mysqli_query($conn,"SELECT * from announcement where id = '$eid'");
+  $row = mysqli_fetch_assoc($sql);
+  $did=$row['id'];
+  $name=$row['department_id'];
+  $description=$row['description'];
+  $summary=$row['summary'];
+  $end_date=$row['end_date'];
+  $start_date=$row['start_date'];
+  $title=$row['title'];
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -135,12 +150,10 @@ include("../include/header.php");
         </div>
         
         <!-- /.row -->
-        <div id="add_form" class="collapse add-form" data-parent="#accordion" style="">
   <div class="card mb-2">
     <div id="accordion">
       <div class="card-header card-header1">
-        <h5 class="card-title card-title1">Add New Announcement </h5>
-        <a  data-toggle="collapse" href="#add_form" aria-expanded="false" class="collapsed btn btn-primary btn-sm float-right"> <i class="fa fa-minus">&nbsp;&nbsp;</i> Hide</a> 
+        <h5 class="card-title card-title1">Update Announcement </h5>
       </div>
                   <form  name="add_announcement" id="xin-form" autocomplete="off" method="post" accept-charset="utf-8">
       <div class="card-body">
@@ -160,7 +173,6 @@ include("../include/header.php");
                     </label>
                     <div class="input-group">
                       <input class="form-control date" placeholder="Start Date" name="start_date" type="date" value="<?php echo $start_date; ?>">
-                      <!-- <div class="input-group-append"><span class="input-group-text"><i class="fas fa-calendar-alt"></i></span></div> -->
                     </div>
                   </div>
                 </div>
@@ -181,7 +193,18 @@ include("../include/header.php");
                 <label for="department" class="control-label">
                   Department                </label>
                   <select id="choices-multiple-remove-button" name="department_id[]" multiple>
-                    <option value="<?php echo $did; ?>"><?php echo $name; ?></option>
+                  <option value="<?php echo $name; ?>" selected='selected' style="font-size:24px"><?php echo $name; ?></option>
+                  <?php 
+                //    if(isset($_GET['eid'])){ 
+                //   $links = array();
+                //                             $parts = explode(',', $arr['department_id']);
+                //                             foreach ($parts as $tag)
+                //                             {
+                //                                 $links[] = "<option value=".$tag." selected='selected'>".$name."</option>";
+                //                             }
+                //                             echo implode(" ", $links);
+                //                         }?>
+                    
                     <?php
                     $sql=mysqli_query($conn,"select * from department");
                     while($row=mysqli_fetch_array($sql)){
@@ -215,74 +238,13 @@ include("../include/header.php");
       </div>
       <div style="display:none"><label>Bot Will Fill This Field</label><input type="text" name="ciapp_check" value=""/></div></form>    </div>
   </div>
-</div>
             <!-- /.col (left) -->
-           <!-- collapse end -->
-
-                <div class="card user-profile-list">
-  <div class="card-header card-header1">
-    <h5 class="card-title card-title1"> List All Announcements</h5>
-        <a  data-toggle="collapse" href="#add_form" aria-expanded="false" class="collapsed btn btn-primary btn-sm float-right" > <i class="fa fa-plus">&nbsp;&nbsp;</i>Add New</a> </div>
-                <!-- /.card-header -->
-                <div class="card-body card-body1">
-                  <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                   
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <table id="myTable" class="table1" >
-                              <thead class="tBackColor">
-                               <tr>
-                               <th>TITLE</th>
-                               <th><i class="fa fa-user" style="font-weight:300;font-size:small;">&nbsp;</i>DEPARTMENT </th>
-                               <th><i class="fa fa-calendar" style="font-weight:300;font-size:small;">&nbsp;</i>START DATE</th>
-                               <th><i class="fa fa-calendar" style="font-weight:300;font-size:small;">&nbsp;</i>END DATE</th>
-                               <th>Action</th>
-                              </thead>
-                              <tbody>
-                              <?php
-                                $sql = mysqli_query($conn,"SELECT * from announcement");
-                                while($arr=mysqli_fetch_array($sql)){
-                                ?>
-                                <tr>
-                                  
-                                  <td><?php echo $arr['title']; ?></td>
-                                  <td><ul>
-                                  <?php $links = array();
-                                            $parts = explode(',', $arr['department_id']);
-                                            foreach ($parts as $tag)
-                                            {
-                                                $links[] = "<li>".$tag."</li>";
-                                            }
-                                            echo implode(" ", $links);
-                                            ;?>
-                                  </ul>
-                                  </td>
-                                  <td><?php echo $arr['start_date']; ?></td>
-                                  <td><?php echo $arr['end_date']; ?></td>
-                                  <td><a data-toggle="collapse" href="#add_form" aria-expanded="false" class="collapsed"><a href="edit_announcement.php?eid=<?php echo $arr['id']; ?>"><i class="fa fa-pen"></i></a></a>&nbsp;&nbsp;
-                                  <a href="announcement.php?delid=<?php echo $arr['id']; ?>"onclick="return confirm('Are you sure you want to delete this record')"><i class="fa fa-trash"></i></a></td>
-                                </tr>
-                                <?php } ?>
-                              </tbody>
-                            
-                            </table>
-                          </div>
-                        </div>
-              
-            </div>
-                <!-- /.card-body -->
-              </div>
-              <!-- /.card -->
-            </div>
-            <!-- /.col (right) -->
-          </div>
-        
-        <!-- /.row -->
+          
 
         <!-- Main row -->
        
         <!-- /.row -->
-      </div><!--/. container-fluid -->
+      </div><!--/. container-fluid --></div>
     </section>
     <!-- /.content -->
     <?php

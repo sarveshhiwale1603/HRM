@@ -5,14 +5,36 @@ if(isset($_POST['submit'])){
   $department_head = $_POST['department_head'];
   date_default_timezone_set('Asia/Kolkata');
   $date=date("Y-m-d H:i:s");
-  $sql = "INSERT INTO department (name, department_head, date,status) VALUES ('$name', '$department_head','$date','1')";
-  $result = mysqli_query($conn, $sql);
-  if($result){
+  if(isset($_GET['eid'])){
+   $eid=$_GET['eid'];
+    $sql = mysqli_query($conn,"UPDATE department SET name='$name',department_head='$department_head' WHERE id='$eid'");
+  }else{
+  $sql = mysqli_query($conn,"INSERT INTO department (name, department_head, date,status) VALUES ('$name', '$department_head','$date','1')");
+}
+  if($sql){
     header ("location: department.php");
   }
   else{
     echo "<script>alert('Failed to Add')</script>";
   }
+}
+
+$name="";
+$department_head="";
+if(isset($_GET['eid'])){
+  $eid = $_GET['eid'];
+  $sql = mysqli_query($conn,"SELECT * FROM department WHERE id = '$eid'");
+  $row = mysqli_fetch_assoc($sql);
+  $name=$row['name'];
+  $department_head=$row['department_head'];
+}
+
+if(isset($_GET['delid'])){
+  $delid = $_GET['delid'];
+  $sql = "DELETE FROM department WHERE id = '$delid'";
+  $result = mysqli_query($conn, $sql);
+  if($result){header ("location: department.php"); }
+  else{ echo "<script>alert('Failed to Delete')</script>"; }
 }
 ?>
 <!DOCTYPE html>
@@ -33,7 +55,7 @@ if(isset($_POST['submit'])){
   <link rel="stylesheet" href="../../dist/css/adminlte.css">
   <link rel="stylesheet" href="../../dist/css/style.css">
   <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
-
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </head>
 <body>
@@ -130,12 +152,12 @@ include("../include/header.php");
                   <form method="post">
                   <div class="form-group">
                     <label>Department Name <span style="color:red">*</span></label>
-                      <input type="text" name="name" class="form-control" placeholder="Name">
+                      <input type="text" name="name" value="<?php echo $name; ?>" class="form-control" placeholder="Name">
                     <!-- /.input group -->
                   </div>
                   <div class="form-group" >
                     <label>Department Head <span style="color:red">*</span></label>
-                      <input type="text" name="department_head" class="form-control" placeholder="Department Head">
+                      <input type="text" name="department_head" value="<?php echo $department_head; ?>" class="form-control" placeholder="Department Head">
                     <!-- /.input group -->
                   </div>
                 
@@ -162,12 +184,13 @@ include("../include/header.php");
                    
                         <div class="row">
                           <div class="col-sm-12">
-                            <table id="myTable" class="table1 table-bordered" aria-describedby="example1_info">
+                            <table id="myTable" class="table1" aria-describedby="example1_info">
                               <thead class="tBackColor">
                                <tr>
                                <th>Department Name</th>
                                <th><i class="fa fa-user" style="font-weight:300;font-size:small;">&nbsp;</i>Department Head</th>
                                <th><i class="fa fa-calendar-alt" style="font-weight:300;font-size:small;">&nbsp;</i>Created At</th>
+                               <th>Action</th>
                               </thead>
                               <tbody>
                               <?php
@@ -178,6 +201,8 @@ include("../include/header.php");
                                   <td><?php echo $arr['name']; ?></td>
                                   <td><?php echo $arr['department_head']; ?></td>
                                   <td><?php echo $arr['date']; ?></td>
+                                  <td><a href="department.php?eid=<?php echo $arr['id']; ?>"><i class="fa fa-pen"></i></a>&nbsp;&nbsp;
+                                  <a href="department.php?delid=<?php echo $arr['id']; ?>"onclick="return confirm('Are you sure you want to delete this record')"><i class="fa fa-trash"></i></a></td>
                                 </tr>
                                 <?php } ?>
                               </tbody>
