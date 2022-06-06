@@ -6,13 +6,40 @@ if(isset($_POST['submit'])){
   $description = $_POST['description'];
   date_default_timezone_set('Asia/Kolkata');
   $date=date("Y.m.d");
+  if(isset($_GET['eid'])){
+    $dnk=mysqli_query($conn,"update designation set department_id='$department',designation_name='$name',description='$description' where id='$_GET[eid]'");
+  }else{
   $sql = "INSERT INTO designation (department_id, designation_name, description,created_date,status) VALUES ('$department', '$name', '$description','$date','1')";
   $dnk = mysqli_query($conn, $sql);
+  }
   if($dnk){
     header("location:designation.php");
   }else{
     echo "<script>alert('something went wrong');</script>";
   }
+}
+
+$did="";
+$name="";
+$designation_name="";
+$description="";
+if(isset($_GET['eid'])){
+  $eid = $_GET['eid'];
+  $sql = mysqli_query($conn,"SELECT designation.department_id as did,designation.designation_name as designation_name,designation.description as description,department.name as name FROM designation inner join department on designation.department_id = department.id where designation.id = '$eid'");
+  $row = mysqli_fetch_assoc($sql);
+  $did=$row['did'];
+  $name=$row['name'];
+  $designation_name=$row['designation_name'];
+  $description=$row['description'];
+}
+
+if(isset($_GET['delid'])){
+  $delid = $_GET['delid'];
+  $sql = mysqli_query($conn,"DELETE FROM designation WHERE id = '$delid'");
+  if($sql){
+    header ("location:designation.php"); 
+  }
+  else{ echo "<script>alert('Failed to Delete')</script>"; }
 }
 ?>
 <!DOCTYPE html>
@@ -134,6 +161,9 @@ include("../include/header.php");
                     <label>Department *</label>
                       <select name="department" class="form-control" >
                         <option value="">Select Department</option>
+                        <?php if(isset($_GET['eid'])){ ?>
+                        <option value="<?php echo $did;?>" selected ><?php echo $name; ?></option>
+                        <?php } ?>
                         <?php
                           $sql = "SELECT * FROM department";
                           $result = mysqli_query($conn, $sql);
@@ -146,12 +176,12 @@ include("../include/header.php");
                   </div>
                   <div class="form-group">
                     <label>Designation Name <span style="color:red">*</span></label>
-                      <input type="text" name="name" class="form-control" placeholder="Name">
+                      <input type="text" name="name" value="<?php echo $designation_name ?>" class="form-control" placeholder="Name">
                     <!-- /.input group -->
                   </div>
                   <div class="form-group" >
                     <label>Description <span style="color:red">*</span></label>
-                      <input type="text" name="description" class="form-control" placeholder="Department Head">
+                      <input type="text" name="description" value="<?php echo $description ?>" class="form-control" placeholder="Department Head">
                     <!-- /.input group -->
                   </div>
                 </div>
@@ -183,16 +213,19 @@ include("../include/header.php");
                                <th>DESIGNATION </th>
                                <th><i class="fa fa-user" style="font-weight:300;font-size:small;">&nbsp;</i>DEPARTMENT </th>
                                <th><i class="fa fa-calendar-alt" style="font-weight:300;font-size:small;">&nbsp;</i>CREATED AT</th>
+                               <th>Action</th>
                               </thead>
                               <tbody>
                               <?php
-                                $sql = mysqli_query($conn,"SELECT * FROM designation inner join department on designation.department_id = department.id");
+                                $sql = mysqli_query($conn,"SELECT designation.id as id,designation.designation_name as designation_name,designation.created_date as created_date,department.name as name FROM designation inner join department on designation.department_id = department.id");
                                 while($arr=mysqli_fetch_array($sql)){
                                 ?>
                                 <tr>
                                   <td><?php echo $arr['name']; ?></td>
                                   <td><?php echo $arr['designation_name']; ?></td>
                                   <td><?php echo $arr['created_date']; ?></td>
+                                  <td><a href="designation.php?eid=<?php echo $arr['id']; ?>"><i class="fa fa-pen"></i></a>&nbsp;&nbsp;
+                                  <a href="designation.php?delid=<?php echo $arr['id']; ?>"onclick="return confirm('Are you sure you want to delete this record')"><i class="fa fa-trash"></i></a></td>
                                 </tr>
                                 <?php } ?>
                               </tbody>

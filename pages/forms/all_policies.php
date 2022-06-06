@@ -22,6 +22,39 @@ include("../include/config.php");
   <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <style>
+   .nav-pills-custom .nav-link {
+    color: #aaa;
+    background: #fff;
+    position: relative;
+}
+
+.nav-pills-custom .nav-link.active {
+    color: #45b649;
+    background: #fff;
+}
+
+
+/* Add indicator arrow for the active tab */
+@media (min-width: 992px) {
+    .nav-pills-custom .nav-link::before {
+        content: '';
+        display: block;
+        border-top: 8px solid transparent;
+        border-left: 10px solid #fff;
+        border-bottom: 8px solid transparent;
+        position: absolute;
+        top: 50%;
+        right: -10px;
+        transform: translateY(-50%);
+        opacity: 0;
+    }
+}
+
+.nav-pills-custom .nav-link.active::before {
+    opacity: 1;
+}
+  </style>
 
 </head>
 <body>
@@ -49,73 +82,84 @@ include("../include/header.php");
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content">
-    <div class="container-fluid flex-grow-1 container-p-y">
-  <h3 class="text-center font-weight-bold py-1 mb-2" >
-    View Policies </h3>
-    <a class="btn btn-primary rounded-pill d-block ml-5" href="policies.php" style="width:17%"><span class="ion ion-md-add"></span>&nbsp;Add New Policy</a>
-     
-  <hr class="container-m-nx border-light my-0">
-</div>
-<div class="row mt-4 pr-5 pl-5">
-  <div class="col-md-12">
-    <div class="pc-wizard-subtitle-vertical card" id="detailswizard2">
-      <div class="row">
-        <div class="col-md-4">
-          <ul class="nav flex-column card-body border-right px-0 nav-tabs nav-tabs1">
-              <?php
+    <section class="py-2 header">
+    <div class="container py-4">
+        <header class="text-center mb-5 text-white">
+            <h1 class="display-6" style="color:darkgrey"> View Policies</h1>
+            <a class="btn btn-primary rounded-pill d-block ml-4" href="policies.php" style="width:17%"><span class="ion ion-md-add"></span>&nbsp;Add New Policy</a>
+            <p class="font-italic">
+                <a class="text-white" href="">
+                    <u></u>
+                </a>
+            </p>
+        </header>
+
+
+        <div class="row pr-3 mr-3 pl-4">
+            <div class="col-md-3">
+                <!-- Tabs nav -->
+                <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <?php
               $sql=mysqli_query($conn,"SELECT * FROM `policies` group by title") ;
+              $count=0;
               while($arr=mysqli_fetch_array($sql)){
                   $dnk=$arr['title'];
                   $id=$arr['id'];
-                  $count=mysqli_num_rows($sql);
-                  if($count==1){
-                      echo "<li class='nav-item sss'><a href='#".$dnk."_".$id."' class=nav-link active data-toggle=tab><i class='fa fa-check-square-o' style='24px'>&nbsp;&nbsp;</i><span>".$dnk."</span></a></li>";
+                  
+                  if($count==0){
+                       echo' <a class="nav-link mb-3 p-3 shadow active" id="v-pills-home-tab" data-toggle="pill" href="#'.$dnk.'_'.$id.'" role="tab" aria-controls="v-pills-home" aria-selected="true">
+                      <i class="fa fa-user-circle-o mr-2"></i>
+                      <span class="font-weight-bold small text-uppercase">'.$dnk.'</span></a>';
                   }
                   else{
-                    echo "<li class='nav-item sss'><a href='#".$dnk."_".$id."' class=nav-link data-toggle=tab><i class='fa fa-check-square-o' style='24px;'>&nbsp;&nbsp;</i><span>".$dnk."</span></a></li>";
+                    echo' <a class="nav-link mb-3 p-3 shadow  id="v-pills-home-tab" data-toggle="pill" href="#'.$dnk.'_'.$id.'" role="tab" aria-controls="v-pills-home" aria-selected="true">
+                      <i class="fa fa-user-circle-o mr-2"></i>
+                      <span class="font-weight-bold small text-uppercase">'.$dnk.'</span></a>';
                   }
+                  $count++;
                   }
-                
               ?>
-                      </ul>
-        </div>
-        <div class="col-md-8">
-          <div class="card-body pb-0">
-            <div class="tab-content">
-            <?php
+                    </div>
+            </div>
+
+            <div class="col-md-9">
+                <!-- Tabs content -->
+                <div class="tab-content" id="v-pills-tabContent">
+                <?php
               $sql=mysqli_query($conn,"SELECT * FROM `policies` group by title") ;
+              $count=0;
               while($arr=mysqli_fetch_array($sql)){
                   $dnk=$arr['title'];
                   $id=$arr['id'];
                   $description=$arr['description'];
                   $image=$arr['image'];
-                  $count=mysqli_num_rows($sql);
-                  if($count==1){
+                  
+                  if($count==0){
               ?>
-                            <div class="tab-pane show active" id="<?php echo $dnk.'_'.$id ?>">
-                <h5 class="mt-3"><?php echo $dnk ?></h5>
-                <div><?php echo $description ?></div>
-                				                <span class="box-96 mr-0-5">
-                <img src="image/policy_image/<?php echo $image; ?>" alt="bond policy" class="d-block ui-w-50" width="100" height="100" title="bond policy" />                </span>
-                              </div>
-                            
-                            <?php } else {?>
-                				              
-                              <div class="tab-pane" id="<?php echo $dnk.'_'.$id ?>">
-                <h5 class="mt-3"><?php echo $dnk ?></h5>
-                <div><?php echo $description ?></div>
-                				                <span class="box-96 mr-0-5">
-                <img src="image/policy_image/<?php echo $image; ?>" alt="bond policy" class="d-block ui-w-50" width="100" height="100" title="bond policy" />                </span>
-                              </div><?php }  }?>
-                          </div>
-          </div>
+                    <div class="tab-pane fade shadow rounded bg-white show active p-5" id="<?php echo $dnk.'_'.$id ?>" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                        <h4 class="font-italic mb-4"><?php echo $dnk ?></h4>
+                        <p class="font-italic text-muted mb-2"><?php echo $description ?></p>
+                        <span class="box-96 mr-0-5">
+                        <iframe src="image/policy_image/<?php echo $image; ?>" width="90%" height="200px">
+</iframe>
+                              </span>
+                    </div>
+                    <?php }else{ ?>
+                        <div class="tab-pane fade shadow rounded bg-white p-5" id="<?php echo $dnk.'_'.$id ?>" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                        <h4 class="font-italic mb-4"><?php echo $dnk ?></h4>
+                        <p class="font-italic text-muted mb-2"><?php echo $description ?></p>
+                        <span class="box-96 mr-0-5">
+                        <iframe src="image/policy_image/<?php echo $image; ?>" width="90%" height="100px">
+</iframe>               </span>
+                    </div>
+                    <?php } $count++; } ?>
+                   
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-      </div><!--/. container-fluid -->
-    </section>
+</section>
+
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->

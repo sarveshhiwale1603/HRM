@@ -1,3 +1,9 @@
+body{
+    color:293240;
+}
+label{
+    font-weight: inherit !important;
+}
 .card1{
     border-radius: 5px;
     font-size: 16px;
@@ -38,6 +44,7 @@ background-color: #f4f6f9;
 }
 .table1{
     border: 1px solid #f1f1f1;
+    margin-top:6px;
 }
 .nav-tabs1{
     border:none;
@@ -45,4 +52,10 @@ background-color: #f4f6f9;
 }
 .sss{
     font-size: x-large;
+}
+.card .card-header h5 {
+    margin-bottom: 0;
+    color: #525f71;
+    font-size: 14px;
+    font-weight: 600;
 }
