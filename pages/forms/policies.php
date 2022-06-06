@@ -14,9 +14,23 @@ if(isset($_POST['submit'])){
   $loc="image/policy_image/";
   $added_by='Divya';
   
+  if(empty($file_tmp) && ($_POST['file_image']) && ($_GET['eid'])){
+    $img=$_POST['file_image'];
+    $sql=mysqli_query($conn,"UPDATE `policies` SET `title`='$title',`description`='$description',`image`='$img' WHERE `id`='$_GET[eid]'");
+  }
+  else if(!empty($file_tmp) && ($_POST['file_image']) || !empty($file_tmp) && (empty($_POST['file_image']) && ($_GET['eid']))){
+    move_uploaded_file($file_tmp,$loc.$file);
+    $sql=mysqli_query($conn,"UPDATE `policies` SET `title`='$title',`description`='$description',`image`='$file' WHERE `id`='$_GET[eid]'");
+  }else{
   move_uploaded_file($file_tmp,$loc.$file);
   $sql=mysqli_query($conn,"INSERT INTO `policies`(`title`, `description`, `create_date`, `added_by`, `image`, `status`) VALUES ('$title','$description','$date','$added_by','$file','$status')");
-
+  }
+  if($sql){
+    echo "<script>alert('Policy Added Successfully');window.location.href='policies.php';</script>";
+  }
+  else{
+    echo "<script>alert('Something went wrong');window.location.href='all_policies.php';</script>";
+  }
 }
 
 $title="";
@@ -157,16 +171,21 @@ include("../include/header.php");
                   
                   <div class="form-group">
                     <label>Title <span style="color:red">*</span></label>
-                      <input type="text" name="name" class="form-control" placeholder="Name">
+                      <input type="text" name="name" value="<?php echo $title; ?>" class="form-control" placeholder="Name">
                     <!-- /.input group -->
                   </div>
                   <div class="form-group" >
                     <label>Description <span style="color:red">*</span></label>
-                      <input type="text" name="description" class="form-control" placeholder="Department Head">
+                      <input type="text" name="description" value="<?php echo $description; ?>" class="form-control" placeholder="Department Head">
                     <!-- /.input group -->
                   </div>
                   <div class="form-group" >
                     <label>Attachment <span style="color:red">*</span></label>
+                    <?php
+                    if(isset($_GET['eid'])){ ?>
+                      <iframe src="image/policy_image/<?php echo $image; ?>" width="90%" height="200px"></iframe>
+                      <input type="hidden" name="file_image" value="<?php echo $image; ?>">
+                    <?php } ?>
                       <input type="file" name="image" id="pdf" accept="application/pdf">
                       <p style="font-size:12px;margin-top:2px">Upload pdf files only</p>
                     <!-- /.input group -->
