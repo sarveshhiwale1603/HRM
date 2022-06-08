@@ -49,7 +49,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="employees.php" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Employee
@@ -107,7 +107,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="manual-attendance.html" class="nav-link">
                 
                   <p>manul Attendance</p>
                 </a>

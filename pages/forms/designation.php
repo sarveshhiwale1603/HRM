@@ -1,5 +1,10 @@
 <?php
 include("../include/config.php");
+session_start();
+if(!isset($_SESSION['id'])){
+    header("location:index.php");
+
+}
 if(isset($_POST['submit'])){
   $department = $_POST['department'];
   $name = $_POST['name'];
@@ -60,6 +65,7 @@ if(isset($_GET['delid'])){
   <link rel="stylesheet" href="../../dist/css/adminlte.css">
   <link rel="stylesheet" href="../../dist/css/style.css">
   <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 </head>
@@ -76,12 +82,15 @@ include("../include/header.php");
     <div class="content-header">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-sm-12">
+          <div class="col-sm-8">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">Designation</li>
             </ol>
           </div><!-- /.col -->
+          <div class="col-sm-4">
+          <div class="text-md-right mr-5 d-flex float-right"> <a class="btn btn-smb btn-outline-primary rounded-pill" href="logout.php"><i class="fa fa-sign-out fa-spin fa-1x" aria-hidden="true"></i>
+            Logout            </a> </div></div>
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
@@ -159,7 +168,7 @@ include("../include/header.php");
                   <form method="post">
                   <div class="form-group">
                     <label>Department *</label>
-                      <select name="department" class="form-control" >
+                      <select name="department" class="form-control" required>
                         <option value="">Select Department</option>
                         <?php if(isset($_GET['eid'])){ ?>
                         <option value="<?php echo $did;?>" selected ><?php echo $name; ?></option>
@@ -176,12 +185,12 @@ include("../include/header.php");
                   </div>
                   <div class="form-group">
                     <label>Designation Name <span style="color:red">*</span></label>
-                      <input type="text" name="name" value="<?php echo $designation_name ?>" class="form-control" placeholder="Name">
+                      <input type="text" name="name" value="<?php echo $designation_name ?>" class="form-control" placeholder="Name" required>
                     <!-- /.input group -->
                   </div>
                   <div class="form-group" >
                     <label>Description <span style="color:red">*</span></label>
-                      <input type="text" name="description" value="<?php echo $description ?>" class="form-control" placeholder="Department Head">
+                      <input type="text" name="description" value="<?php echo $description ?>" class="form-control" placeholder="Department Head" required>
                     <!-- /.input group -->
                   </div>
                 </div>

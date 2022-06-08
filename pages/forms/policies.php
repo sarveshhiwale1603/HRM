@@ -1,5 +1,9 @@
 <?php
 include("../include/config.php");
+session_start();
+if(!isset($_SESSION['id'])){
+    header("location:index.php");
+}
 if(isset($_POST['submit'])){
   $title=$_POST['name'];
   $description=$_POST['description'];
@@ -12,7 +16,7 @@ if(isset($_POST['submit'])){
   $file_tmp =$_FILES['image']['tmp_name'];
   // $dnk=$_FILES['image']['tmp_name'][$key];
   $loc="image/policy_image/";
-  $added_by='Divya';
+  $added_by=$_SESSION['name'];
   
   if(empty($file_tmp) && ($_POST['file_image']) && ($_GET['eid'])){
     $img=$_POST['file_image'];
@@ -72,6 +76,7 @@ if(isset($_GET['delid'])){
   <link rel="stylesheet" href="../../dist/css/style.css">
   <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 <body>
@@ -87,12 +92,15 @@ include("../include/header.php");
     <div class="content-header">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-sm-12">
+          <div class="col-sm-8">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">Designation</li>
             </ol>
           </div><!-- /.col -->
+          <div class="col-sm-4">
+          <div class="text-md-right mr-5 d-flex float-right"> <a class="btn btn-smb btn-outline-primary rounded-pill" href="logout.php"><i class="fa fa-sign-out fa-spin fa-1x" aria-hidden="true"></i>
+            Logout </a> </div></div>
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
@@ -171,12 +179,12 @@ include("../include/header.php");
                   
                   <div class="form-group">
                     <label>Title <span style="color:red">*</span></label>
-                      <input type="text" name="name" value="<?php echo $title; ?>" class="form-control" placeholder="Name">
+                      <input type="text" name="name" value="<?php echo $title; ?>" class="form-control" placeholder="Title" required>
                     <!-- /.input group -->
                   </div>
                   <div class="form-group" >
                     <label>Description <span style="color:red">*</span></label>
-                      <input type="text" name="description" value="<?php echo $description; ?>" class="form-control" placeholder="Department Head">
+                      <input type="text" name="description" value="<?php echo $description; ?>" class="form-control" placeholder="Description" required>
                     <!-- /.input group -->
                   </div>
                   <div class="form-group" >
@@ -186,7 +194,7 @@ include("../include/header.php");
                       <iframe src="image/policy_image/<?php echo $image; ?>" width="90%" height="200px"></iframe>
                       <input type="hidden" name="file_image" value="<?php echo $image; ?>">
                     <?php } ?>
-                      <input type="file" name="image" id="pdf" accept="application/pdf">
+                      <input type="file" name="image" id="pdf" accept="application/pdf" required>
                       <p style="font-size:12px;margin-top:2px">Upload pdf files only</p>
                     <!-- /.input group -->
                   </div>
