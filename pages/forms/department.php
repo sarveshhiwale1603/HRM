@@ -1,5 +1,10 @@
 <?php
 include("../include/config.php");
+session_start();
+if(!isset($_SESSION['id'])){
+    header("location:index.php");
+
+}
 if(isset($_POST['submit'])){
   $name = $_POST['name'];
   $department_head = $_POST['department_head'];
@@ -157,12 +162,12 @@ include("../include/header.php");
                   <form method="post">
                   <div class="form-group">
                     <label>Department Name <span style="color:red">*</span></label>
-                      <input type="text" name="name" value="<?php echo $name; ?>" class="form-control" placeholder="Name">
+                      <input type="text" name="name" value="<?php echo $name; ?>" class="form-control" placeholder="Name" required>
                     <!-- /.input group -->
                   </div>
                   <div class="form-group" >
                     <label>Department Head <span style="color:red">*</span></label>
-                      <input type="text" name="department_head" value="<?php echo $department_head; ?>" class="form-control" placeholder="Department Head">
+                      <input type="text" name="department_head" value="<?php echo $department_head; ?>" class="form-control" placeholder="Department Head" required>
                     <!-- /.input group -->
                   </div>
                 

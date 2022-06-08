@@ -1,3 +1,12 @@
+<?php
+include("../include/config.php");
+session_start();
+if(!isset($_SESSION['id'])){
+    header("location:index.php");
+}
+$name=$_SESSION['name'];
+$id=$_SESSION['id'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +27,8 @@
   <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -32,17 +43,58 @@
           <div class="col-sm-6">
             <h1 class="m-0">Dashboard</h1>
           </div><!-- /.col -->
-          <div class="col-sm-6">
+          <div class="col-sm-2">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">Dashboard v1</li>
             </ol>
           </div><!-- /.col -->
+          <div class="col-sm-4">
+          <div class="text-md-right mr-5 d-flex float-right"> <a class="btn btn-smb btn-outline-primary rounded-pill" href="logout.php"><i class="fa fa-sign-out fa-spin fa-1x" aria-hidden="true"></i>
+            Logout </a> </div></div>
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
+  <?php if(isset($name)){ ?>
+    <div class="container">
+    <div class="row">
+      <div class="col-xl-6 col-md-6">
+        <div class="card proj-t-card ">
+          <div class="card-body">
+            <div class="row align-items-center m-b-30">
+              <div class="col-auto"> 
+              </div>
+              <div class="col p-l-0">
+                <h6 class="m-b-5"><b style="color:black;font-size:18px">Welcome <?php echo $name; ?></b></h6>
+                <h6 class="m-b-0 text-primary">My Shift: 08:17 am To 06:17 pm</h6>
+              </div>
+            </div>
+            			            <form id="hr_clocking" autocomplete="off" class="m-b-1" method="post" accept-charset="utf-8">
+                                <input type="hidden" value="clock_out" name="clock_state" id="clock_state">
+            <input type="hidden" value="<?php echo $id; ?>" name="time_id" id="time_id">
+            <input type="hidden" value="<?php echo $name; ?>" name="name" id="time_id">
+            <div class="row align-items-center text-center">
+              <div class="col">
+                <h6 class="m-b-0">                
+                  <button type="submit" id="clock_in" name="clock-in" class="btn waves-effect waves-light btn-sm btn-success">Clock IN <i class="fas fa-long-arrow-alt-right m-r-10"></i></button>
+                </h6>
+              </div>
+              <div class="col">
+                <h6 class="m-b-0">
+                  <button type="submit" id="clock_out" name="clock-out" class="btn waves-effect waves-light btn-sm btn-secondary" type="submit">Clock OUT <i class="fas fa-long-arrow-alt-down m-r-10"></i></button>
+                </h6>
+              </div>
+            </div>
+            			<div style="display:none"><label>Bot Will Fill This Field</label><input type="text" name="ciapp_check" value=""/></div></form>            <h6 class="pt-badge badge-light-success">MANAGER</h6>
+          </div>
+          <a href="attendance.php" class="btn btn-primary btn-sm btn-round">My Attendance <i class="fas fa-long-arrow-alt-right m-r-10"></i></a>
+        </div>
+      </div>
+    </div>
+                              </div>
 
+  <?php }  ?>
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
@@ -189,5 +241,30 @@
 <!-- AdminLTE for demo purposes -->
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../../dist/js/pages/dashboard2.js"></script>
+<script>
+                $(document).ready(function(){
+                  $("#clock_in").click(function(){
+                    $(this).prop('disabled',true);
+                  });
+                });
+              </script>
+<?php
+              if(isset($_POST['clock-in'])){
+                $emp_id=$_POST['time_id'];
+                 $emp_name=$_POST['name'];
+                date_default_timezone_set('Asia/Kolkata');
+                $date=date("Y.m.d");
+                $time=date("H:i:s");
+                $status=1;
+
+                $sql=mysqli_query($conn,"INSERT INTO `attendence`( `date`,`clock_in`, `employee_id`,`employee_name`,`status`) VALUES ('$date','$time','$emp_id','$emp_name','$status')");
+                if($sql){
+                  echo "<script>swal('Success','You have clocked in successfully','success');</script>";
+                }
+                else{
+                  echo "<script>swal('Error','Something went wrong. Please try again','error');</script>";
+                }
+              }
+              ?>
 </body>
 </html>

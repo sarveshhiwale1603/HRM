@@ -1,5 +1,9 @@
 <?php
 include("../include/config.php");
+session_start();
+if(!isset($_SESSION['id'])){
+    header("location:index.php");
+}
 if(isset($_POST['submit'])){
  $title=$_POST['title'];
   $start_date=$_POST['start_date'];
@@ -47,6 +51,8 @@ if(isset($_GET['delid'])){
   <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="../../plugins/kendo/kendo.min.css">
   <link rel="stylesheet" href="../../plugins/kendo/kendo.bootstrap.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   <!-- include plugin -->
 
 
@@ -64,12 +70,15 @@ include("../include/header.php");
     <div class="content-header">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-sm-12">
+          <div class="col-sm-8">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">Designation</li>
             </ol>
           </div><!-- /.col -->
+          <div class="col-sm-4">
+          <div class="text-md-right mr-5 d-flex float-right"> <a class="btn btn-smb btn-outline-primary rounded-pill" href="logout.php"><i class="fa fa-sign-out fa-spin fa-1x" aria-hidden="true"></i>
+            Logout            </a> </div></div>
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
@@ -150,7 +159,7 @@ include("../include/header.php");
                 <label for="title">
                   Title <span class="text-danger">*</span>
                 </label>
-                <input class="form-control" placeholder="Title" name="title" type="text" value="<?php echo $title; ?>">
+                <input class="form-control" placeholder="Title" name="title" type="text" value="<?php echo $title; ?>" required>
               </div>
               </div>
                 <div class="col-md-3">
@@ -159,8 +168,7 @@ include("../include/header.php");
                       Start Date <span class="text-danger">*</span>
                     </label>
                     <div class="input-group">
-                      <input class="form-control date" placeholder="Start Date" name="start_date" type="date" value="<?php echo $start_date; ?>">
-                      <!-- <div class="input-group-append"><span class="input-group-text"><i class="fas fa-calendar-alt"></i></span></div> -->
+                      <input class="form-control date" placeholder="Start Date" name="start_date" type="date" value="<?php echo $start_date; ?>" required>
                     </div>
                   </div>
                 </div>
@@ -170,8 +178,7 @@ include("../include/header.php");
                       End Date <span class="text-danger">*</span>
                     </label>
                     <div class="input-group">
-                      <input class="form-control date" placeholder="End Date" name="end_date" type="date" value="<?php echo $end_date; ?>">
-                      <!-- <div class="input-group-append"><span class="input-group-text"><i class="fas fa-calendar-alt"></i></span></div> -->
+                      <input class="form-control date" placeholder="End Date" name="end_date" type="date" value="<?php echo $end_date; ?>" required>
                     </div>
                   </div>
                 </div>
@@ -180,7 +187,7 @@ include("../include/header.php");
               <div class="form-group" id="department_ajax">
                 <label for="department" class="control-label">
                   Department                </label>
-                  <select id="choices-multiple-remove-button" name="department_id[]" multiple>
+                  <select id="choices-multiple-remove-button" name="department_id[]" multiple required>
                     <option value="<?php echo $did; ?>"><?php echo $name; ?></option>
                     <?php
                     $sql=mysqli_query($conn,"select * from department");
@@ -197,14 +204,14 @@ include("../include/header.php");
                 <label for="summary">
                   Summary <span class="text-danger">*</span>
                 </label>
-                <input type="text" class="form-control" value="<?php echo $summary; ?>" placeholder="Summary" name="summary" id="summary">
+                <input type="text" class="form-control" value="<?php echo $summary; ?>" placeholder="Summary" name="summary" id="summary" required>
               </div>
             </div>
             <div class="col-md-12">
                   <div class="form-group">
                     <label for="description">
                       Description                    </label>
-                    <textarea class="form-control editor" placeholder="Description" id="summernote" name="description" cols="8" rows="5" id="description"><?php echo $description; ?></textarea>
+                    <textarea class="form-control editor" placeholder="Description" id="summernote" name="description" cols="8" rows="5" id="description" required><?php echo $description; ?></textarea>
                   </div>
                 </div>
           </div>

@@ -36,7 +36,7 @@ background-color: #f4f6f9;
     color: #007bff;
 }
 .active1{
-    color: #007bff;
+    color: #007bff !important;
 }
 .list-para{
     color: #6c757d !important;
@@ -58,4 +58,23 @@ background-color: #f4f6f9;
     color: #525f71;
     font-size: 14px;
     font-weight: 600;
+}
+.proj-t-card .pt-badge {
+    margin-bottom: 0;
+    display: inline-block;
+    padding: 60px 50px 20px 20px;
+    border-radius: 50%;
+    position: absolute;
+    top: -45px;
+    right: -35px;
+    transition: all 0.3s ease-in-out;
+}
+.badge-light-success {
+    background: #daf6e7;
+    color: #17C666;
+    border-color: #daf6e7;
+    overflow:hidden
+}
+.proj-t-card{
+    overflow: hidden;
 }
