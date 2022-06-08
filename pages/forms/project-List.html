@@ -128,16 +128,138 @@ element.style {
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Home</a>
-                </li>
+              <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+              </li>
+              <li class="nav-item d-none d-sm-inline-block">
+                <a href="../index3.html" class="nav-link">Home</a>
+              </li>
+              <li class="nav-item d-none d-sm-inline-block">
+                <a href="#" class="nav-link">Contact</a>
+              </li>
             </ul>
-
+        
             <!-- Right navbar links -->
-        </nav>
+            <ul class="navbar-nav ml-auto">
+              <!-- Navbar Search -->
+              <li class="nav-item">
+                <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+                  <i class="fas fa-search"></i>
+                </a>
+                <div class="navbar-search-block">
+                  <form class="form-inline">
+                    <div class="input-group input-group-sm">
+                      <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                      <div class="input-group-append">
+                        <button class="btn btn-navbar" type="submit">
+                          <i class="fas fa-search"></i>
+                        </button>
+                        <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </li>
+        
+              <!-- Messages Dropdown Menu -->
+              <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                  <i class="far fa-comments"></i>
+                  <span class="badge badge-danger navbar-badge">3</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                  <a href="#" class="dropdown-item">
+                    <!-- Message Start -->
+                    <div class="media">
+                      <img src="../dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                      <div class="media-body">
+                        <h3 class="dropdown-item-title">
+                          Brad Diesel
+                          <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                        </h3>
+                        <p class="text-sm">Call me whenever you can...</p>
+                        <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                      </div>
+                    </div>
+                    <!-- Message End -->
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a href="#" class="dropdown-item">
+                    <!-- Message Start -->
+                    <div class="media">
+                      <img src="../dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                      <div class="media-body">
+                        <h3 class="dropdown-item-title">
+                          John Pierce
+                          <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                        </h3>
+                        <p class="text-sm">I got your message bro</p>
+                        <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                      </div>
+                    </div>
+                    <!-- Message End -->
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a href="#" class="dropdown-item">
+                    <!-- Message Start -->
+                    <div class="media">
+                      <img src="../dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                      <div class="media-body">
+                        <h3 class="dropdown-item-title">
+                          Nora Silvester
+                          <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                        </h3>
+                        <p class="text-sm">The subject goes here</p>
+                        <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                      </div>
+                    </div>
+                    <!-- Message End -->
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                </div>
+              </li>
+              <!-- Notifications Dropdown Menu -->
+              <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href="#">
+                  <i class="far fa-bell"></i>
+                  <span class="badge badge-warning navbar-badge">15</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                  <span class="dropdown-item dropdown-header">15 Notifications</span>
+                  <div class="dropdown-divider"></div>
+                  <a href="#" class="dropdown-item">
+                    <i class="fas fa-envelope mr-2"></i> 4 new messages
+                    <span class="float-right text-muted text-sm">3 mins</span>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a href="#" class="dropdown-item">
+                    <i class="fas fa-users mr-2"></i> 8 friend requests
+                    <span class="float-right text-muted text-sm">12 hours</span>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a href="#" class="dropdown-item">
+                    <i class="fas fa-file mr-2"></i> 3 new reports
+                    <span class="float-right text-muted text-sm">2 days</span>
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                  <i class="fas fa-expand-arrows-alt"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+                  <i class="fas fa-th-large"></i>
+                </a>
+              </li>
+            </ul>
+          </nav>
         <!-- /.navbar -->
 
         <!-- Content Wrapper. Contains page content -->
@@ -185,7 +307,7 @@ element.style {
                         <!-- /.col -->
                         <div class="col-md-4 grid-margin">
                             <div class="card-body">
-                                <a href="\pages\project-Calendar.html">
+                                <a href="/pages/project-Calendar.html">
                                     <div class="d-flex flex-row align-items-start hoverTitles">
                                         <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fas fa-user-calendar"></i>
                                         <div class="ms-3">
@@ -292,268 +414,204 @@ element.style {
                         
                       </div>
 
-                    <div class="row mt-3">
-                        <div class="col-lg-12 col-sm-12">
-                            <div class="card user-card user-card-1">
-                                <div class="card-body">
-                                    <div class="user-about-block text-center">
-                                        <div class="row align-items-end">
-                                            <div class="col text-left">
-                                                <h5 class="card-title">List All Employees</h5>
-                                            </div>
-                                            <div class="col text-right">
-                                                <div class="card-tools">
-                                                    <span class="mr-2">View Mode : </span>
-                                                    <a href="project-List.html"><button type="button"
-                                                            class="btn btn-primary btn-sm">
-                                                            <i class="fas fa-list-ul"></i>
-                                                        </button></a>
-                                                        <a href="projects.html"> <button type="button" title="Grid view" class="btn btn-primary btn-sm">
-                                                            <i class="fas fa-th-large"></i></button></a>
-                                                    <!-- <button type="button" class="btn btn-primary btn-sm">
-                                                            <i class="fas fa-th-large"></i></button> -->
-                                                    <button type="button" class="btn btn-primary btn-sm"
-                                                        data-bs-toggle="collapse" href="#collapseExample" role="button"
-                                                        aria-expanded="false" aria-controls="collapseExample">
-                                                        <i class="fas fa-plus"></i> Add New
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+
+
+    <!-- /.row -->
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+
+            <div class="collapse" id="collapseExample">
+
+                <div class="row my-3">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Add New Project</h5>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-primary btn-sm"
+                                        data-bs-toggle="collapse" href="#collapseExample" role="button"
+                                        aria-expanded="false" aria-controls="collapseExample">
+                                        <i class="fas fa-minus"></i> Hide</button>
+                                    </button>
+                                    </button>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="row my-3">
+                                    <div class="col-lg-4">
+                                        <label>Title<sup><b style="color:red;">*</b></sup></label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control"
+                                                placeholder="Title">
+                                        </div>
+                                        <!-- /input-group -->
+                                    </div>
+                                    <!-- /.col-lg-6 -->
+                                    <div class="col-lg-3">
+                                        <label>Client<sup><b style="color:red;">*</b></sup></label>
+                                        <div class="input-group">
+                                            <select class="form-control select2" style="width: 100%;">
+                                                <option selected="selected" >Client</option>
+                                                <option>Aniket Nangare</option>
+                                            </select>
+                                        </div>
+                                        <!-- /input-group -->
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <label>Estimated Hour</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control"
+                                                placeholder="Estimated Hour">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-clock"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <!-- /input-group -->
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label>Priority</label>
+                                        <div class="input-group">
+                                            <select class="form-control select2" style="width: 100%;">
+                                                <option selected="selected">Highest</option>
+                                                <option>High</option>
+                                                <option>Normal</option>
+                                                <option>Low</option>
+                                            </select>
+                                        </div>
+                                        <!-- /input-group -->
+                                    </div>
+                                   
+                                    <!-- /.col-lg-6 -->
+                                </div>
+                                <!-- /.row -->
 
-                    
-                    <!-- /.row -->
-                    <div class="row justify-content-center">
-                        <div class="col-md-12">
-
-                            <div class="collapse" id="collapseExample">
 
                                 <div class="row my-3">
-                                    <div class="col-md-12">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <h5 class="card-title">Add New Project</h5>
-                                                <div class="card-tools">
-                                                    <button type="button" class="btn btn-primary btn-sm"
-                                                        data-bs-toggle="collapse" href="#collapseExample" role="button"
-                                                        aria-expanded="false" aria-controls="collapseExample">
-                                                        <i class="fas fa-minus"></i> Hide</button>
-                                                    </button>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <!-- /.card-header -->
-                                            <div class="card-body">
-                                                <div class="row my-3">
-                                                    <div class="col-lg-4">
-                                                        <label>Title<sup><b style="color:red;">*</b></sup></label>
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control"
-                                                                placeholder="Title">
-                                                        </div>
-                                                        <!-- /input-group -->
-                                                    </div>
-                                                    <!-- /.col-lg-6 -->
-                                                    <div class="col-lg-3">
-                                                        <label>Client<sup><b style="color:red;">*</b></sup></label>
-                                                        <div class="input-group">
-                                                            <select class="form-control select2" style="width: 100%;">
-                                                                <option selected="selected" >Client</option>
-                                                                <option>Aniket Nangare</option>
-                                                            </select>
-                                                        </div>
-                                                        <!-- /input-group -->
-                                                    </div>
-                                                    <div class="col-lg-2">
-                                                        <label>Estimated Hour</label>
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control"
-                                                                placeholder="Estimated Hour">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text">
-                                                                    <i class="fas fa-clock"></i>
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <!-- /input-group -->
-                                                    </div>
-                                                    <div class="col-lg-3">
-                                                        <label>Priority</label>
-                                                        <div class="input-group">
-                                                            <select class="form-control select2" style="width: 100%;">
-                                                                <option selected="selected">Highest</option>
-                                                                <option>High</option>
-                                                                <option>Normal</option>
-                                                                <option>Low</option>
-                                                            </select>
-                                                        </div>
-                                                        <!-- /input-group -->
-                                                    </div>
-                                                   
-                                                    <!-- /.col-lg-6 -->
-                                                </div>
-                                                <!-- /.row -->
-
-
-                                                <div class="row my-3">
-                                                    <div class="col-lg-3">
-                                                        <label>Start Date<sup><b style="color:red;">*</b></sup></label>
-                                                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                                            <input type="text" class="form-control datetimepicker-input" placeholder="Date" data-target="#reservationdate"/>
-                                                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- /.col-lg-4 -->
-                                                    <div class="col-lg-3">
-                                                        <label>End Date<sup><b style="color:red;">*</b></sup></label>
-                                                        <div class="input-group date" id="endDate" data-target-input="nearest">
-                                                            <input type="text" class="form-control datetimepicker-input" placeholder="Date" data-target="#endDate"/>
-                                                            <div class="input-group-append" data-target="#endDate" data-toggle="datetimepicker">
-                                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <label>Summary<sup><b style="color:red;">*</b></sup></label>
-                                                        <div class="input-group">
-                                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" placeholder="Summary"></textarea>
-                                                        </div>
-                                                        <!-- /input-group -->
-                                                    </div>
-                                                    <!-- /.col-lg-4 -->
-                                                </div>
-                                                <!-- /.row -->
-
-
-                                                <div class="row my-3">
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group">
-                                                          <label>Team</label>
-                                                          <select class="select2" multiple="multiple" data-placeholder="Team" style="width: 100%;">
-                                                            <option>Vedant</option>
-                                                            <option>Naidu</option>
-                                                        
-                                                          </select>
-                                                        </div>
-                                                          </div>
-                                                   
-                                                </div>
-                                                <!-- /.row -->
-
-
-                                                <div class="row my-3">
-                                                    <div class="col-lg-12">
-                                                        <div class="form-group">
-                                                          <label>Description</label>
-                                                    <textarea id="summernote" class="form-control" rows="3">
-                                                        <!-- Place <em>some</em> <u>text</u> <strong>here</strong> -->
-                                                      </textarea>
-                                                      </div>
-                                                      </div>
-                                                </div>
-                                             
-
-                                                <div class="card-footer">
-                                                    <buttton type="button" id="reset" class="btn btn-default"
-                                                        name="reset" data-bs-toggle="collapse" href="#collapseExample"
-                                                        role="button" aria-expanded="false"
-                                                        aria-controls="collapseExample">Reset</buttton>
-                                                    <buttton type="button" id="submit" class="btn btn-primary"
-                                                        name="Save">Save</buttton>
-                                                </div>
+                                    <div class="col-lg-3">
+                                        <label>Start Date<sup><b style="color:red;">*</b></sup></label>
+                                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                            <input type="text" class="form-control datetimepicker-input" placeholder="Date" data-target="#reservationdate"/>
+                                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                             </div>
                                         </div>
                                     </div>
-                                  
+                                    <!-- /.col-lg-4 -->
+                                    <div class="col-lg-3">
+                                        <label>End Date<sup><b style="color:red;">*</b></sup></label>
+                                        <div class="input-group date" id="endDate" data-target-input="nearest">
+                                            <input type="text" class="form-control datetimepicker-input" placeholder="Date" data-target="#endDate"/>
+                                            <div class="input-group-append" data-target="#endDate" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <label>Summary<sup><b style="color:red;">*</b></sup></label>
+                                        <div class="input-group">
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" placeholder="Summary"></textarea>
+                                        </div>
+                                        <!-- /input-group -->
+                                    </div>
+                                    <!-- /.col-lg-4 -->
+                                </div>
+                                <!-- /.row -->
+
+
+                                <div class="row my-3">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                          <label>Team</label>
+                                          <select class="select2" multiple="multiple" data-placeholder="Team" style="width: 100%;">
+                                            <option>Vedant</option>
+                                            <option>Naidu</option>
+                                        
+                                          </select>
+                                        </div>
+                                          </div>
+                                   
+                                </div>
+                                <!-- /.row -->
+
+
+                                <div class="row my-3">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                          <label>Description</label>
+                                    <textarea id="summernote" class="form-control" rows="3">
+                                        <!-- Place <em>some</em> <u>text</u> <strong>here</strong> -->
+                                      </textarea>
+                                      </div>
+                                      </div>
+                                </div>
+                             
+
+                                <div class="card-footer">
+                                    <buttton type="button" id="reset" class="btn btn-default"
+                                        name="reset" data-bs-toggle="collapse" href="#collapseExample"
+                                        role="button" aria-expanded="false"
+                                        aria-controls="collapseExample">Reset</buttton>
+                                    <buttton type="button" id="submit" class="btn btn-primary"
+                                        name="Save">Save</buttton>
                                 </div>
                             </div>
                         </div>
                     </div>
                   
-                    <div class="row">
-                        <div class="col-md-4 col-sm-12">
-                            <div class="card card-border-c-blue">
-                                <div class="card-header"> <a
-                                        href="http://hrm.tectignis.in/erp/project-detail/WTgSGCdTUsln6QFa0YRAZCK_AjAMCE-AqDB_MScIasQ"
-                                        class="text-secondary">#
-                                        1 .
-                                        jhkjhkjhh </a> <span class="label label-primary float-right">
-                                        2022.06.04 </span> </div>
-                                <div class="card-body card-task">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <p class="task-detail">
-                                                mnkjnknkjn...</p>
-                                            <p class="task-due"><strong>
-                                                    Due : </strong><strong class="label label-primary">
-                                                    2022.06.10 </strong></p>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <div class="progress" style="height: 10px;">
-                                                <div class="progress-bar bg-danger" role="progressbar"
-                                                    style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
-                                                    aria-valuemax="100">
-                                                    0 %</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                        <div class="task-list-table">
-                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
-                                                title="" data-original-title="VEDANT NAIDU"><span class="mb-1"><img
-                                                        src="http://hrm.tectignis.in/public/uploads/users/thumb/logo.jpg"
-                                                        class="img-fluid img-radius mr-2"
-                                                        style=" border-radius: 50%; width: 50px; height: auto;"
-                                                        alt=""></span></a><a style="color:black;" href="#!"><i
-                                                    class="fas fa-plus"></i></a>
-                                        </div>
-                                    <div class="task-board d-flex flex-row bd-highlight my-3 m-0 p-0" style="float: inherit;">
-                                        <div class="dropdown-secondary dropdown mr-2 bd-highlight"> <a href="">
-                                                <button class="btn btn-sm p-1 alert alert-warning" 
-                                                    type="button">Not Started</button> </a> </div>
-                                        <div class="dropdown-secondary dropdown mr-2 bd-highlight"> <a href="">
-                                                <button
-                                                    class="btn waves-effect waves-light btn-primary btn-sm b-none txt-muted"
-                                                    type="button"><i data-toggle="tooltip" data-placement="top" title=""
-                                                        class="fas fa-eye m-0"
-                                                        data-original-title="View Project"></i></button>
-                                            </a> </div>
-                                        <div class="dropdown-secondary dropdown mr-2 bd-highlight">
-                                            <button
-                                                class="btn waves-effect waves-light btn-primary btn-sm dropdown-toggle b-none txt-muted"
-                                                type="button" id="dropdown3" data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false"><i class="fas fa-bars"></i></button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdown3"
-                                                data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                                <a class="dropdown-item" href=""> <i class="feather icon-eye"></i> View
-                                                    Project </a>
-                                                <a class="dropdown-item" href=""> <i class="feather icon-edit"></i> Edit
-                                                    Project </a>
-                                                <div class="dropdown-divider"></div>
-                                                <a href="#!" class="dropdown-item delete" data-toggle="modal"
-                                                    data-target=".delete-modal"
-                                                    data-record-id="tG8ojG-xuooWM25zk0dWhhSkyNvqEX2MB5osYN-NpvY"><i
-                                                        class="feather icon-trash-2"></i> Remove Project </a>
-                                            </div>
-                                        </div>
-                                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+                    <div class="row mt-3">
+                        <div class="col-lg-12 col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                  <h5 class="card-title">List All Employees</h5>
+                                  <div class="card-tools">
+                                  <a href="projects.html"> <button type="button" title="Grid view" class="btn btn-primary btn-sm">
+                                      <i class="fas fa-th-large"></i></button></a> 
+                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="collapse"
+                                      href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                      <i class="fas fa-plus"></i> Add New</button>
+                                  </div>
                                 </div>
-                            </div>
+                
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                  <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                    <div class="row">
+                                      <div class="col-sm-12">
+                                        <table id="example1" class="table table-bordered table-striped dataTable dtr-inline"
+                                          aria-describedby="example1_info">
+                                          <thead>
+                                            <tr>
+                                              <th>PROJECTS</th>
+                                              <th>CLIENT</th>
+                                              <th>STATUS</th>
+                                              <th><i class="fa fa-calendar"></i> START DATE</th>
+                                              <th><i class="fa fa-calendar"></i> END DATE</th>
+                                              <th><i class="fa fa-user"></i> TEAM</th>
+                                              <th>PRIORITY</th>
+                                              <th>PROGRESS</th>
+                                          </thead>
+                                          <tbody>
+                                          </tbody>
+                                          <tfoot>
+                                          </tfoot>
+                                        </table>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                         </div>
                     </div>
-                      <hr>
-                       <center> <button class="btn btn-sm btn-primary ">1</button></center>
-
-                       </div>
-            
-                    </section>
+            </section>
 
             <!-- /.content -->
         </div>
@@ -702,6 +760,7 @@ element.style {
     // endDate
     $('#endDate').datetimepicker({
         format: 'L'
+        
     });
 
     //Date and time picker
