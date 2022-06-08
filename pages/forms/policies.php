@@ -63,7 +63,6 @@ if(isset($_GET['delid'])){
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AdminLTE 3| Dashboard 2</title>
-
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="../../https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
@@ -240,7 +239,7 @@ include("../include/header.php");
                                   <td><?php echo $arr['title']; ?></td>
                                   <td><?php echo $arr['create_date']; ?></td>
                                   <td><?php echo $arr['added_by']; ?></td>
-                                  <td><a href="policies.php?eid=<?php echo $arr['id']; ?>"><i class="fa fa-pen"></i></a>&nbsp;&nbsp;
+                                  <td><a href="policies.php?eid=<?php echo $arr['id']; ?>"><i class="fas fa-pen"></i></a>&nbsp;&nbsp;
                                   <a href="policies.php?delid=<?php echo $arr['id']; ?>"onclick="return confirm('Are you sure you want to delete this record')"><i class="fa fa-trash"></i></a></td>
                                 </tr>
                                 <?php } ?>

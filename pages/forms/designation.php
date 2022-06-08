@@ -233,7 +233,7 @@ include("../include/header.php");
                                   <td><?php echo $arr['name']; ?></td>
                                   <td><?php echo $arr['designation_name']; ?></td>
                                   <td><?php echo $arr['created_date']; ?></td>
-                                  <td><a href="designation.php?eid=<?php echo $arr['id']; ?>"><i class="fa fa-pen"></i></a>&nbsp;&nbsp;
+                                  <td><a href="designation.php?eid=<?php echo $arr['id']; ?>"><i class="fas fa-pen"></i></a>&nbsp;&nbsp;
                                   <a href="designation.php?delid=<?php echo $arr['id']; ?>"onclick="return confirm('Are you sure you want to delete this record')"><i class="fa fa-trash"></i></a></td>
                                 </tr>
                                 <?php } ?>

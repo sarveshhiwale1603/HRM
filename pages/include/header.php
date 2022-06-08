@@ -101,7 +101,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="attendance.php" class="nav-link">
                   
                   <p>Attendance</p>
                 </a>
