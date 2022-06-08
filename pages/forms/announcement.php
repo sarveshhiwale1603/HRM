@@ -266,7 +266,7 @@ include("../include/header.php");
                                   </td>
                                   <td><?php echo $arr['start_date']; ?></td>
                                   <td><?php echo $arr['end_date']; ?></td>
-                                  <td><a data-toggle="collapse" href="#add_form" aria-expanded="false" class="collapsed"><a href="edit_announcement.php?eid=<?php echo $arr['id']; ?>"><i class="fa fa-pen"></i></a></a>&nbsp;&nbsp;
+                                  <td><a data-toggle="collapse" href="#add_form" aria-expanded="false" class="collapsed"><a href="edit_announcement.php?eid=<?php echo $arr['id']; ?>"><i class="fas fa-pen"></i></a></a>&nbsp;&nbsp;
                                   <a href="announcement.php?delid=<?php echo $arr['id']; ?>"onclick="return confirm('Are you sure you want to delete this record')"><i class="fa fa-trash"></i></a></td>
                                 </tr>
                                 <?php } ?>
