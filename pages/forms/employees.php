@@ -1,4 +1,10 @@
-<?php include("../include/config.php"); ?>
+<?php include("../include/config.php");
+session_start();
+if(!isset($_SESSION['id'])){
+    header("location:index.php");
+}
+$name=$_SESSION['name'];
+$id=$_SESSION['id']; ?>
 <!DOCTYPE html>
 <html lang="en">
 

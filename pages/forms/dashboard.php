@@ -6,6 +6,8 @@ if(!isset($_SESSION['id'])){
 }
 $name=$_SESSION['name'];
 $id=$_SESSION['id'];
+
+$query=mysqli_query($conn,"SELECT * FROM employee WHERE id='$id'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,7 +69,7 @@ $id=$_SESSION['id'];
               </div>
               <div class="col p-l-0">
                 <h6 class="m-b-5"><b style="color:black;font-size:18px">Welcome <?php echo $name; ?></b></h6>
-                <h6 class="m-b-0 text-primary">My Shift: 08:17 am To 06:17 pm</h6>
+                <h6 class="m-b-0 mt-2 text-primary">My Shift: 08:17 am To 06:17 pm</h6>
               </div>
             </div>
             			            <form id="hr_clocking" autocomplete="off" class="m-b-1" method="post" accept-charset="utf-8">
@@ -75,14 +77,14 @@ $id=$_SESSION['id'];
             <input type="hidden" value="<?php echo $id; ?>" name="time_id" id="time_id">
             <input type="hidden" value="<?php echo $name; ?>" name="name" id="time_id">
             <div class="row align-items-center text-center">
-              <div class="col">
+              <div class="col mt-4">
                 <h6 class="m-b-0">                
                   <button type="submit" id="clock_in" name="clock-in" class="btn waves-effect waves-light btn-sm btn-success">Clock IN <i class="fas fa-long-arrow-alt-right m-r-10"></i></button>
                 </h6>
               </div>
-              <div class="col">
+              <div class="col mt-4">
                 <h6 class="m-b-0">
-                  <button type="submit" id="clock_out" name="clock-out" class="btn waves-effect waves-light btn-sm btn-secondary" type="submit">Clock OUT <i class="fas fa-long-arrow-alt-down m-r-10"></i></button>
+                  <button type="submit" id="clock_out" name="clock-out" class="btn waves-effect waves-light btn-sm btn-secondary" type="submit" >Clock OUT <i class="fas fa-long-arrow-alt-down m-r-10"></i></button>
                 </h6>
               </div>
             </div>
@@ -242,12 +244,10 @@ $id=$_SESSION['id'];
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../../dist/js/pages/dashboard2.js"></script>
 <script>
-                $(document).ready(function(){
-                  $("#clock_in").click(function(){
-                    $(this).prop('disabled',true);
+                  $(document).ready(function(){
+                    $("#clock_out").prop('disabled',true);
                   });
-                });
-              </script>
+                  </script>
 <?php
               if(isset($_POST['clock-in'])){
                 $emp_id=$_POST['time_id'];
@@ -257,14 +257,57 @@ $id=$_SESSION['id'];
                 $time=date("H:i:s");
                 $status=1;
 
-                $sql=mysqli_query($conn,"INSERT INTO `attendence`( `date`,`clock_in`, `employee_id`,`employee_name`,`status`) VALUES ('$date','$time','$emp_id','$emp_name','$status')");
+                $query=mysqli_query($conn,"select * from attendance where date='$date'");
+                if(mysqli_num_rows($query)>0){
+                  echo "<script>alert('Attendence already submitted')</script>";
+              }else{
+                $sql=mysqli_query($conn,"INSERT INTO `attendance`( `date`,`clock_in`, `employee_id`,`employee_name`,`status`) VALUES ('$date','$time','$emp_id','$emp_name','$status')");
                 if($sql){
-                  echo "<script>swal('Success','You have clocked in successfully','success');</script>";
-                }
+                  echo "<script>swal('Success','You have clocked in successfully','success');</script>";?>
+                  <script>
+                  $(document).ready(function(){
+                    $("#clock_in").prop('disabled',true);
+                    $("#clock_out").prop('disabled',false);
+                  });
+                  </script>
+                <?php }
                 else{
-                  echo "<script>swal('Error','Something went wrong. Please try again','error');</script>";
-                }
+                  echo "<script>swal('Error','Something went wrong. Please try again','error');</script>";?>
+                  <script>
+                  $(document).ready(function(){
+                    $("#clock_in").prop('disabled',false);
+                    $("#clock_out").prop('disabled',true);
+                  });
+                  </script>
+              <?php  } }
               }
+
+              if(isset($_POST['clock-out'])){
+                date_default_timezone_set('Asia/Kolkata');
+                $date=date("Y.m.d");
+                $time=date("H:i:s");
+
+                $sql=mysqli_query($conn,"UPDATE `attendance` SET `clock_out`='$time' WHERE employee_name='$name' AND date='$date'");
+                if($sql){
+                  echo "<script>swal('Success','You have clocked out successfully','success');</script>";?>
+                <script>
+                  $(document).ready(function(){
+                    $("#clock_in").prop('disabled',false);
+                    $("#clock_out").prop('disabled',true);
+                  });
+                  </script>
+              <?php }
+                else{
+                  echo "<script>swal('Error','Something went wrong. Please try again','error');</script>";?>
+                  <script>
+                  $(document).ready(function(){
+                    $("#clock_in").prop('disabled',true);
+                    $("#clock_out").prop('disabled',false);
+                  });
+                  </script>
+               <?php }
+              }
+
               ?>
 </body>
 </html>

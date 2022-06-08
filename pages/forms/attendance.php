@@ -1,3 +1,9 @@
+<?php
+include("../include/config.php");
+session_start();
+if(!isset($_SESSION['id'])){
+    header("location:index.php");
+} ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +24,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <link rel="stylesheet" href="../../dist/css/adminlte.css">
+  <link rel="stylesheet" href="../../dist/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <style>
@@ -65,7 +72,7 @@
             <div class="col-md-3 grid-margin">
                 <div class="card-body">
                   <a  href="attendance.html">
-                  <div class="d-flex flex-row align-items-start hoverTitles">
+                  <div class="d-flex flex-row align-items-start hoverTitles active1">
                   
                     <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg far fa-clock"></i>
                     <div class="ms-3">
@@ -164,6 +171,18 @@
                                <th>Total Work</th>
                               </thead>
                               <tbody>
+                              <?php
+                             
+                                $sql = mysqli_query($conn,"SELECT employee.fname as fname,employee.lname as lname,employee.image as image,attendance.date as date,attendance.clock_in as cin,attendance.clock_out as cout,attendance.status as status FROM attendance left join employee on attendance.employee_id = employee.id where DATE(attendance.date) = DATE(NOW())");
+                                while($row = mysqli_fetch_array($sql)){
+                                ?>
+                                <tr>
+                                  <td><?php echo $row['employee_name']; ?></td>
+                                  <td><?php echo $row['date']; ?></td>
+                                  <td><?php if($row['status']==1){ echo "Present"; }else{ echo "Absent"; } ?></td>
+                                 
+                                </tr>
+                                <?php } ?>
                               </tbody>
                              <tfoot>
 
