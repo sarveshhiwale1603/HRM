@@ -135,7 +135,7 @@ if(isset($_POST['save_overtime'])){
   date_default_timezone_set('Asia/Kolkata');
   $date=date("Y-m-d H:i:s");
 
-  $sql=mysqli_query($conn,"INSERT INTO `overtime`(`name`, `in time`, `out time`, `reason`, `status`, `cur_date`) VALUES ('$emp_name','$in_time','$out_time','$reason','$status','$date')");
+  $sql=mysqli_query($conn,"INSERT INTO `overtime`(`name`, `in_time`, `out_time`, `reason`, `status`, `cur_date`) VALUES ('$emp_name','$in_time','$out_time','$reason','$status','$date')");
   if($sql){
     header("location:overtime-Request.php");
   }

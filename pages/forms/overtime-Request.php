@@ -166,9 +166,21 @@ if(!isset($_SESSION['id'])){
                                <th>Clock In</th>
                                <th>Clock Out</th>
                                <th>Total Work</th>
-                               <th>Status</th>
+                               <!-- <th>Status</th> -->
                               </thead>
                               <tbody>
+                                <?php
+                                $sql=mysqli_query($conn,"SELECT `name`,`in_time`, `out_time`,`reason`,`status`,`cur_date`,timediff(out_time,in_time) as total FROM `overtime`;");
+                                while($row=mysqli_fetch_array($sql)){
+                                ?>
+                                <tr>
+                                  <td><?php echo $row['name']; ?></td>
+                                  <td><?php echo $row['cur_date']; ?></td>
+                                  <td><?php echo $row['in_time']; ?></td>
+                                  <td><?php echo $row['out_time']; ?></td>
+                                  <td><?php echo $row['total']; ?></td>
+                                  <!-- <td><?php// echo $row['status']; ?></td> -->
+                                <?php } ?>
                               </tbody>
                              <tfoot>
 
@@ -228,7 +240,7 @@ if(!isset($_SESSION['id'])){
                     <?php
                     $sql=mysqli_query($conn,"SELECT * FROM employee");
                     while($dnk=mysqli_fetch_array($sql)){
-                      echo "<option value='".$dnk['fname']." ".$dnk['fname']."'>".$dnk['fname']." ".$dnk['fname']."</option>";
+                      echo "<option value='".$dnk['fname']." ".$dnk['lname']."'>".$dnk['fname']." ".$dnk['lname']."</option>";
                     }
                     ?>
                       
