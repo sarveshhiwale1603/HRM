@@ -154,7 +154,7 @@ include("../include/header.php");
             <div class="col-md-4">
               <div class="card card1">
                 <div class="card-header card-header1">
-                  <h6 class="card-title card-title"><b>Add New</b> Department</h6>
+                  <h6 class="card-title card-title1"><b>Add New</b> Department</h6>
                 </div>
                 
                 <div class="card-body card-body1">

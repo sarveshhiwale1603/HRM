@@ -53,12 +53,10 @@ if(!isset($_SESSION['id'])){
           <div class="col-sm-8">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Department</li>
+              <li class="breadcrumb-item active">Attendance</li>
             </ol>
           </div><!-- /.col -->
-          <div class="col-sm-4">
-          <div class="text-md-right mr-5 d-flex float-right"> <a class="btn btn-smb btn-outline-primary rounded-pill" href="logout.php"><i class="fa fa-sign-out fa-spin fa-1x" aria-hidden="true"></i>
-            Logout </a> </div></div>
+         
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
@@ -125,7 +123,7 @@ if(!isset($_SESSION['id'])){
           <!-- /.col -->
           <div class="col-md-3 grid-margin">
             <div class="card-body">
-              <a href="overtime-Request.html">
+              <a href="overtime-Request.php">
                 <div class="d-flex flex-row align-items-start hoverTitles">
                   <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fa fa-bars"></i>
                   <div class="ms-3">
@@ -172,15 +170,28 @@ if(!isset($_SESSION['id'])){
                               </thead>
                               <tbody>
                               <?php
-                             
-                                $sql = mysqli_query($conn,"SELECT employee.fname as fname,employee.lname as lname,employee.image as image,attendance.date as date,attendance.clock_in as cin,attendance.clock_out as cout,attendance.status as status FROM attendance left join employee on attendance.employee_id = employee.id where DATE(attendance.date) = DATE(NOW())");
+                             $date=date('Y-m-d');
+                                $sql = mysqli_query($conn,"SELECT employee.fname as fname,employee.lname as lname,shift_time.shift as shift,shift_time.monday_start_time as mon_in,shift_time.monday_end_time as mon_out,shift_time.tuesday_start_time as tue_in,shift_time.tuesday_end_time as tue_out,shift_time.wednesday_start_time as wed_in,shift_time.wednesday_end_time as wed_out,shift_time.thursday_start_time as thu_in,shift_time.thursday_end_time as thu_out,shift_time.friday_start_time as fri_in,shift_time.friday_end_time as fri_out,shift_time.saturday as sat_in,shift_time.saturday_end_time as sat_out,employee.image as image,attendance.date as date,attendance.clock_in as cin,attendance.clock_out as cout,timediff(attendance.clock_out,attendance.clock_in) as time_difference,attendance.status as status FROM attendance RIGHT join employee on attendance.employee_id = employee.id RIGHT join shift_time on employee.shift = shift_time.shift group by employee.fname order by attendance.date desc");
                                 while($row = mysqli_fetch_array($sql)){
                                 ?>
+                                
                                 <tr>
-                                  <td><?php echo $row['employee_name']; ?></td>
-                                  <td><?php echo $row['date']; ?></td>
-                                  <td><?php if($row['status']==1){ echo "Present"; }else{ echo "Absent"; } ?></td>
-                                 
+                                  <td><?php echo $row['fname']; ?></td>
+                                  <td><?php echo DATE("Y-m-d"); ?></td>
+                                  <td><?php if($row['date']==$date){ echo "Present"; }else{ echo "Absent"; } ?></td>
+                                 <td><?php if($row['cin']){echo $row['cin'];}else{ echo "00:00" ; } ?></td>
+                                  <td><?php if($row['cout']){ echo $row['cout'];}else{ echo "00:00" ; } ?></td>
+                                  <?php
+                                  $ff='';
+                                  $day=date('l');
+                                  if($day=='friday'){
+                                    $start_time=$row['mon_in'];
+                                    $cin=$row['cin'];
+                                    $ff=$start_time-$cin;}
+                                  ?>
+                                  <td><?php echo $ff; ?></td>
+                                  <td><?php if($row['cout']){ echo $row['cout'];}else{ echo "00:00" ; } ?></td>
+                                  <td><?php if($row['time_difference']){ echo $row['time_difference'];}else{ echo "00:00" ; } ?></td>
                                 </tr>
                                 <?php } ?>
                               </tbody>

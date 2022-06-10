@@ -1,3 +1,8 @@
+<?php include("../include/config.php");
+session_start();
+if(!isset($_SESSION['id'])){
+    header("location:index.php");
+}?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +23,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <link rel="stylesheet" href="../../dist/css/adminlte.css">
+  <link rel="stylesheet" href="../../dist/css/style.css">
     <!-- daterange picker -->
     <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
     <!-- iCheck for checkboxes and radio inputs -->
@@ -53,218 +59,7 @@
 <div class="wrapper">
 
   <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__wobble" src="../../dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
-
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Home</a>
-      </li>
-    </ul>
-
-    <!-- Right navbar links -->
-  </nav>
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="#" class="brand-link">
-      <span class="brand-text font-weight-light">AdminLTE 4</span>
-    </a>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user (optional) -->
-     
-
-      <!-- SidebarSearch Form -->
-      
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="tectignis.html" class="nav-link">
-              <i class="nav-icon fas fa-home"></i>
-              <p>
-                Home
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>
-                Employee
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-star"></i>
-              <p>
-                Core HR
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ol class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="Department.html" class="nav-link">
-                  <i class="nav-icon fa fa-ellipsis"></i>
-                  <p>Department</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="designation.html" class="nav-link">
-                  <i class="nav-icon fa fa-ellipsis"></i>
-                  <p>Designation</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="policies.html" class="nav-link">
-                  <i class="nav-icon fa fa-ellipsis"></i>
-                  <p>policies</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="announcement.html" class="nav-link">
-                  <i class="nav-icon fa fa-astrick"></i>
-                  <p>Make Announcement</p>
-                </a>
-              </li>
-            </ol>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-clock"></i>
-              <p>
-                Attendance
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <ol class="nav-item">
-                <a href="#" class="nav-link">
-                  
-                  <p>Attendance</p>
-                </a>
-              </ol>
-              <ol class="nav-item">
-                <a href="#" class="nav-link">
-                
-                  <p>manul Attendance</p>
-                </a>
-              </ol>
-              <ol class="nav-item">
-                <a href="#" class="nav-link">
-                  
-                  <p>monthly Report</p>
-                </a>
-              </ol>
-              <ol class="nav-item">
-                <a href="#" class="nav-link">
-                  <p>Overtime Request</p>
-                </a>
-              </ol>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-rupee-sign"></i>
-              <p>
-                Payroll
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-edit"></i>
-              <p>
-                Task
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-                Project
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-handshake"></i>
-              <p>
-                Manage Clients
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon 	fa fa-user-plus"></i>
-              <p>
-                Leads
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-question-circle"></i>
-              <p>
-                Helpdesk
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class='nav-icon fas fa-chart-pie'></i>
-              <p>
-                 Estimates
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class='nav-icon fas fa-plus-square'></i>
-              <p>
-                Leave Request
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon 	fa fa-laptop"></i>
-              <p>
-                Training Session
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-gavel"></i>
-              <p>
-                Disiplinary
-              </p>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
-
+ <?php include("../include/header.php") ?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -289,7 +84,7 @@
         <div class="row">
             <div class="col-md-3 grid-margin">
                 <div class="card-body">
-                  <a  href="employees.html">
+                  <a  href="employees.php">
                   <div class="d-flex flex-row align-items-start hoverTitles">
                   
                     <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fas fa-user-friends"></i>
@@ -329,8 +124,8 @@
 
           <div class="col-md-3 grid-margin">
             <div class="card-body">
-              <a href="shift&scheduling.html">
-                <div class="d-flex flex-row align-items-start hoverTitles">
+              <a href="shift&scheduling.php">
+                <div class="d-flex flex-row align-items-start hoverTitles active1">
                   <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg 	far fa-clock"></i>
                   <div class="ms-3">
                       <p class="pb-0 mb-0" style="line-height:1;">Shift & Scheduling</p>
@@ -343,7 +138,7 @@
           <!-- /.col -->
           <div class="col-md-3 grid-margin">
             <div class="card-body">
-              <a href="employees-Exit.html">
+              <a href="employees-Exit.php">
                 <div class="d-flex flex-row align-items-start hoverTitles">
                   <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fas fa-sign-out-alt"></i>
                   <div class="ms-3">
@@ -377,6 +172,7 @@
                         <i class="fas fa-minus"></i> Hide</button>
                     </div>
                   </div>
+                  <form method="post" action="api.php">
                   <div class="card-body">
                     <div class="row">
                       <div class="col-md-4">
@@ -395,7 +191,7 @@
                    
                           <div class="input-group" >
                             <div class="input-group date" id="mondayIn" data-target-input="nearest">
-                              <input type="text" placeholder="In Time"  class="form-control datetimepicker-input" data-target="#mondayIn"/>
+                              <input type="text" placeholder="In Time"  class="form-control datetimepicker-input" data-target="#mondayIn" name="monday_in"/>
                               <div class="input-group-append">
                                   <div class="input-group-text" data-target="#mondayIn" data-toggle="datetimepicker" ><i class="far fa-clock"></i></div>
                                   <div class="input-group-append clear-time" data-clear-id="1"><span class="input-group-text text-danger"><i class="fas fa-trash-alt"></i></span></div>
@@ -410,7 +206,7 @@
                             Monday Out Time                <span class="text-danger">*</span> </label>
                             <div class="input-group" >
                               <div class="input-group date" id="mondayOut" data-target-input="nearest">
-                                <input type="text" placeholder="Out Time"  class="form-control datetimepicker-input" data-target="#mondayOut"/>
+                                <input type="text" placeholder="Out Time"  class="form-control datetimepicker-input" data-target="#mondayOut" name="monday_out"/>
                                 <div class="input-group-append">
                                     <div class="input-group-text" data-target="#mondayOut" data-toggle="datetimepicker" ><i class="far fa-clock"></i></div>
                                     <div class="input-group-append clear-time" data-clear-id="1"><span class="input-group-text text-danger"><i class="fas fa-trash-alt"></i></span></div>
@@ -430,7 +226,7 @@
                    
                           <div class="input-group" >
                             <div class="input-group date" id="tuesdayIn" data-target-input="nearest">
-                              <input type="text" placeholder="In Time"  class="form-control datetimepicker-input" data-target="#tuesdayIn"/>
+                              <input type="text" placeholder="In Time"  class="form-control datetimepicker-input" data-target="#tuesdayIn" name="tuesday_in"/>
                               <div class="input-group-append">
                                   <div class="input-group-text" data-target="#tuesdayIn" data-toggle="datetimepicker" ><i class="far fa-clock"></i></div>
                                   <div class="input-group-append clear-time" data-clear-id="1"><span class="input-group-text text-danger"><i class="fas fa-trash-alt"></i></span></div>
@@ -445,7 +241,7 @@
                             Tuesday Out Time                <span class="text-danger">*</span> </label>
                             <div class="input-group" >
                               <div class="input-group date" id="tuesdayOut" data-target-input="nearest">
-                                <input type="text" placeholder="Out Time"  class="form-control datetimepicker-input" data-target="#tuesdayOut"/>
+                                <input type="text" placeholder="Out Time"  class="form-control datetimepicker-input" data-target="#tuesdayOut" name="tuesday_out"/>
                                 <div class="input-group-append">
                                     <div class="input-group-text" data-target="#tuesdayOut" data-toggle="datetimepicker" ><i class="far fa-clock"></i></div>
                                     <div class="input-group-append clear-time" data-clear-id="1"><span class="input-group-text text-danger"><i class="fas fa-trash-alt"></i></span></div>
@@ -465,7 +261,7 @@
                    
                           <div class="input-group" >
                             <div class="input-group date" id="wednesdayIn" data-target-input="nearest">
-                              <input type="text" placeholder="In Time"  class="form-control datetimepicker-input" data-target="#wednesdayIn"/>
+                              <input type="text" placeholder="In Time"  class="form-control datetimepicker-input" data-target="#wednesdayIn" name="wednesday_in"/>
                               <div class="input-group-append">
                                   <div class="input-group-text" data-target="#wednesdayIn" data-toggle="datetimepicker" ><i class="far fa-clock"></i></div>
                                   <div class="input-group-append clear-time" data-clear-id="1"><span class="input-group-text text-danger"><i class="fas fa-trash-alt"></i></span></div>
@@ -480,7 +276,7 @@
                             Wednesday Out Time                <span class="text-danger">*</span> </label>
                             <div class="input-group" >
                               <div class="input-group date" id="wednesdayOut" data-target-input="nearest">
-                                <input type="text" placeholder="Out Time"  class="form-control datetimepicker-input" data-target="#wednesdayOut"/>
+                                <input type="text" placeholder="Out Time"  class="form-control datetimepicker-input" data-target="#wednesdayOut" name="wednesday_out"/>
                                 <div class="input-group-append">
                                     <div class="input-group-text" data-target="#wednesdayOut" data-toggle="datetimepicker" ><i class="far fa-clock"></i></div>
                                     <div class="input-group-append clear-time" data-clear-id="1"><span class="input-group-text text-danger"><i class="fas fa-trash-alt"></i></span></div>
@@ -500,7 +296,7 @@
                    
                           <div class="input-group" >
                             <div class="input-group date" id="thursdayIn" data-target-input="nearest">
-                              <input type="text" placeholder="In Time"  class="form-control datetimepicker-input" data-target="#thursdayIn"/>
+                              <input type="text" placeholder="In Time"  class="form-control datetimepicker-input" data-target="#thursdayIn" name="thursday_in"/>
                               <div class="input-group-append">
                                   <div class="input-group-text" data-target="#thursdayIn" data-toggle="datetimepicker" ><i class="far fa-clock"></i></div>
                                   <div class="input-group-append clear-time" data-clear-id="1"><span class="input-group-text text-danger"><i class="fas fa-trash-alt"></i></span></div>
@@ -515,7 +311,7 @@
                             Thursday Out Time                <span class="text-danger">*</span> </label>
                             <div class="input-group" >
                               <div class="input-group date" id="thursdayOut" data-target-input="nearest">
-                                <input type="text" placeholder="Out Time"  class="form-control datetimepicker-input" data-target="#thursdayOut"/>
+                                <input type="text" placeholder="Out Time"  class="form-control datetimepicker-input" data-target="#thursdayOut" name="thursday_out"/>
                                 <div class="input-group-append">
                                     <div class="input-group-text" data-target="#thursdayOut" data-toggle="datetimepicker" ><i class="far fa-clock"></i></div>
                                     <div class="input-group-append clear-time" data-clear-id="1"><span class="input-group-text text-danger"><i class="fas fa-trash-alt"></i></span></div>
@@ -535,7 +331,7 @@
                    
                           <div class="input-group" >
                             <div class="input-group date" id="fridayIn" data-target-input="nearest">
-                              <input type="text" placeholder="In Time"  class="form-control datetimepicker-input" data-target="#fridayIn"/>
+                              <input type="text" placeholder="In Time"  class="form-control datetimepicker-input" data-target="#fridayIn" name="friday_in"/>
                               <div class="input-group-append">
                                   <div class="input-group-text" data-target="#fridayIn" data-toggle="datetimepicker" ><i class="far fa-clock"></i></div>
                                   <div class="input-group-append clear-time" data-clear-id="1"><span class="input-group-text text-danger"><i class="fas fa-trash-alt"></i></span></div>
@@ -550,7 +346,7 @@
                             Friday Out Time                <span class="text-danger">*</span> </label>
                             <div class="input-group" >
                               <div class="input-group date" id="fridayOut" data-target-input="nearest">
-                                <input type="text" placeholder="Out Time"  class="form-control datetimepicker-input" data-target="#fridayOut"/>
+                                <input type="text" placeholder="Out Time"  class="form-control datetimepicker-input" data-target="#fridayOut" name="friday_out"/>
                                 <div class="input-group-append">
                                     <div class="input-group-text" data-target="#fridayOut" data-toggle="datetimepicker" ><i class="far fa-clock"></i></div>
                                     <div class="input-group-append clear-time" data-clear-id="1"><span class="input-group-text text-danger"><i class="fas fa-trash-alt"></i></span></div>
@@ -571,7 +367,7 @@
                    
                           <div class="input-group" >
                             <div class="input-group date" id="saturdayIn" data-target-input="nearest">
-                              <input type="text" placeholder="In Time"  class="form-control datetimepicker-input" data-target="#saturdayIn"/>
+                              <input type="text" placeholder="In Time"  class="form-control datetimepicker-input" data-target="#saturdayIn" name="saturday_in"/>
                               <div class="input-group-append">
                                   <div class="input-group-text" data-target="#saturdayIn" data-toggle="datetimepicker" ><i class="far fa-clock"></i></div>
                                   <div class="input-group-append clear-time" data-clear-id="1"><span class="input-group-text text-danger"><i class="fas fa-trash-alt"></i></span></div>
@@ -586,7 +382,7 @@
                             Saturday Out Time                <span class="text-danger">*</span> </label>
                             <div class="input-group" >
                               <div class="input-group date" id="saturdayOut" data-target-input="nearest">
-                                <input type="text" placeholder="Out Time"  class="form-control datetimepicker-input" data-target="#saturdayOut"/>
+                                <input type="text" placeholder="Out Time"  class="form-control datetimepicker-input" data-target="#saturdayOut" name="saturday_out"/>
                                 <div class="input-group-append">
                                     <div class="input-group-text" data-target="#saturdayOut" data-toggle="datetimepicker" ><i class="far fa-clock"></i></div>
                                     <div class="input-group-append clear-time" data-clear-id="1"><span class="input-group-text text-danger"><i class="fas fa-trash-alt"></i></span></div>
@@ -598,7 +394,7 @@
                       </div>
                     </div>
 
-                    <div class="row">
+                    <!-- <div class="row">
                       <div class="col-md-4">
                         <div class="form-group">
                           <label for="shift_name">
@@ -631,16 +427,16 @@
                             </div>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
 
 
                     <div class="card-footer">
-                      <buttton type="button" id="reset" class="btn btn-default" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Reset</buttton>
-                      <buttton type="button" id="submit" class="btn btn-primary" name="Save">Save</buttton>
+                      <button type="button" id="reset" class="btn btn-default" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Reset</button>
+                      <button type="submit" id="submit" class="btn btn-primary" name="save_shift">Save</button>
                     </div>
                   </div>
                  
-             
+  </form>
                 </div>
               </div>
 
@@ -662,7 +458,7 @@
                   <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="row">
                           <div class="col-sm-12">
-                            <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="example1_info">
+                            <table id="example1" class="table table-striped dataTable dtr-inline table-responsive" aria-describedby="example1_info">
                               <thead>
                                <tr>
                                <th>SHIFT</th>
@@ -676,6 +472,20 @@
 
                               </thead>
                               <tbody>
+                             <?php $sql1=mysqli_query($conn,"SELECT * FROM shift_time ");
+                              while($arr=mysqli_fetch_array($sql1)){
+                                ?>
+                                <tr>
+                                  <td><?php echo $arr['shift']; ?></td>
+                                  <td><?php echo $arr['monday_start_time'].' To '.$arr['monday_end_time']; ?></td>
+                                  <td><?php echo $arr['tuesday_start_time'].' To '.$arr['tuesday_end_time']; ?></td>
+                                  <td><?php echo $arr['wednesday_start_time'].' To '.$arr['wednesday_end_time']; ?></td>
+                                  <td><?php echo $arr['thursday_start_time'].' To '.$arr['thursday_end_time']; ?></td>
+                                  <td><?php echo $arr['friday_start_time'].' To '.$arr['friday_end_time']; ?></td>
+                                  <td><?php echo $arr['saturday'].' To '.$arr['saturday_end_time']; ?></td>
+                                  <td><?php echo "Holiday" ?></td>
+                                </tr>
+                                <?php } ?>
                               </tbody>
                              <tfoot>
 
@@ -727,7 +537,7 @@
     <!-- Control sidebar content goes here -->
   </aside>
   <!-- /.control-sidebar -->
-
+  <?php include("../include/footer.php") ?>
   <!-- Main Footer -->
   
 </div>

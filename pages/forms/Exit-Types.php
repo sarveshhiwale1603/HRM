@@ -1,3 +1,22 @@
+<?php
+include("../include/config.php");
+session_start();
+if(!isset($_SESSION['id'])){
+    header("location:index.php");
+}
+if(isset($_POST['submit'])){
+    $exit_type = $_POST['type'];
+    date_default_timezone_set('Asia/Kolkata');
+    $date=date("Y-m-d H:i:s");
+    $status=1;
+    $sql = mysqli_query($conn,"INSERT INTO `exit_type`(`type`,`create_date`,`status`) VALUES ('$exit_type','$date','$status')");
+    if($sql){
+        header("location:Exit-Types.php");
+    }else{
+      echo "<script>alert('Something went wrong');</script>";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +40,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <link rel="stylesheet" href="../../dist/css/adminlte.css">
+  <link rel="stylesheet" href="../../dist/css/style.css">
   <!-- daterange picker -->
   <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
 
@@ -40,219 +60,7 @@
 <body>
 <div class="wrapper">
 
-  <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__wobble" src="../../dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
-
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Home</a>
-      </li>
-    </ul>
-
-    <!-- Right navbar links -->
-  </nav>
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="#" class="brand-link">
-      <span class="brand-text font-weight-light">AdminLTE 4</span>
-    </a>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user (optional) -->
-     
-
-      <!-- SidebarSearch Form -->
-      
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="tectignis.html" class="nav-link">
-              <i class="nav-icon fas fa-home"></i>
-              <p>
-                Home
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>
-                Employee
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-star"></i>
-              <p>
-                Core HR
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ol class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="Department.html" class="nav-link">
-                  <i class="nav-icon fa fa-ellipsis"></i>
-                  <p>Department</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="designation.html" class="nav-link">
-                  <i class="nav-icon fa fa-ellipsis"></i>
-                  <p>Designation</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="policies.html" class="nav-link">
-                  <i class="nav-icon fa fa-ellipsis"></i>
-                  <p>policies</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="announcement.html" class="nav-link">
-                  <i class="nav-icon fa fa-astrick"></i>
-                  <p>Make Announcement</p>
-                </a>
-              </li>
-            </ol>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-clock"></i>
-              <p>
-                Attendance
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <ol class="nav-item">
-                <a href="#" class="nav-link">
-                  
-                  <p>Attendance</p>
-                </a>
-              </ol>
-              <ol class="nav-item">
-                <a href="#" class="nav-link">
-                
-                  <p>manul Attendance</p>
-                </a>
-              </ol>
-              <ol class="nav-item">
-                <a href="#" class="nav-link">
-                  
-                  <p>monthly Report</p>
-                </a>
-              </ol>
-              <ol class="nav-item">
-                <a href="#" class="nav-link">
-                  <p>Overtime Request</p>
-                </a>
-              </ol>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-rupee-sign"></i>
-              <p>
-                Payroll
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-edit"></i>
-              <p>
-                Task
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-                Project
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-handshake"></i>
-              <p>
-                Manage Clients
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon 	fa fa-user-plus"></i>
-              <p>
-                Leads
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-question-circle"></i>
-              <p>
-                Helpdesk
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class='nav-icon fas fa-chart-pie'></i>
-              <p>
-                 Estimates
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class='nav-icon fas fa-plus-square'></i>
-              <p>
-                Leave Request
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon 	fa fa-laptop"></i>
-              <p>
-                Training Session
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-gavel"></i>
-              <p>
-                Disiplinary
-              </p>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
-
+ <?php include("../include/header.php"); ?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -262,7 +70,7 @@
           <div class="col-sm-12">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Department</li>
+              <li class="breadcrumb-item active">Exit Type</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -278,7 +86,7 @@
       
             <div class="col-md-6 grid-margin">
                 <div class="card-body">
-                  <a href="employees-Exit.html">
+                  <a href="employees-Exit.php">
                     <div class="d-flex flex-row align-items-start hoverTitles">
                       <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fa fa-bars"></i>
                       <div class="ms-3">
@@ -293,8 +101,8 @@
           <div class="clearfix hidden-md-up"></div>
           <div class="col-md-6 grid-margin">
             <div class="card-body">
-              <a href="Exit-Types.html">
-                <div class="d-flex flex-row align-items-start hoverTitles">
+              <a href="Exit-Types.php">
+                <div class="d-flex flex-row align-items-start hoverTitles  active1">
                   <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg 	fas fa-plus-square"></i>
                   <div class="ms-3">
                       <p class="pb-0 mb-0" style="line-height:1;">Exit Type</p>
@@ -311,25 +119,26 @@
                 <div class="row my-3">
                     <div class="col-md-4">
                         <div class="card">
-                          <div class="card-header">
-                            <h5 class="card-title"> Add New Exit Type</h5>
+                          <div class="card-header card-header1">
+                            <h5 class="card-title card-title1"> Add New Exit Type</h5>
                           </div>
-                          <div class="card-body">
+                          <div class="card-body card-body1">
+                            <form method="POST">
                                 <label>Exit Type<sup><b style="color:red;">*</b></sup></label>
-                                    <input type="text" class="form-control" placeholder="Exit Type">
+                                    <input type="text" class="form-control" name="type" placeholder="Exit Type">
                              <div class="card-footer mt-3">
-                                <buttton type="button" id="submit" class="btn btn-primary" name="submit">Save</buttton>
+                                <button type="submit" id="submit" class="btn btn-primary" name="submit">Save</button>
                               </div>
                           </div>
                         </div>
                       </div>
                   <div class="col-md-8">
-                    <div class="card">
-                      <div class="card-header">
-                        <h5 class="card-title">List All Exit Type</h5>
+                    <div class="card card1">
+                      <div class="card-header card-header1">
+                        <h5 class="card-title card-title1">List All Exit Type</h5>
                       </div>
                       <!-- /.card-header -->
-                      <div class="card-body">
+                      <div class="card-body card-body1">
                         <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                             <div class="row">
                               <div class="col-sm-12">
@@ -340,6 +149,14 @@
                                    <th><i class="fas fa-calendar"></i> CREATED AT</th>
                                   </thead>
                                   <tbody>
+                                    <?php
+                                    $sql=mysqli_query($conn,"select * from exit_type");
+                                    while($dnk=mysqli_fetch_array($sql)){?>
+                                      
+                                      <tr>
+                                      <td><?php echo $dnk['type']; ?></td>
+                                      <td><?php echo $dnk['create_date'] ?></td>
+                                      </tr>    <?php }  ?>
                                   </tbody>
                                  <tfoot>
     
@@ -380,7 +197,6 @@
 <script src="../../plugins/chart.js/Chart.min.js"></script>
 
 <!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../../dist/js/pages/dashboard2.js"></script>
 <!-- DataTables  & Plugins -->

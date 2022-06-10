@@ -1,3 +1,9 @@
+<?php
+include("../include/config.php");
+session_start();
+if(!isset($_SESSION['id'])){
+    header("location:index.php");
+} ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,6 +24,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <link rel="stylesheet" href="../../dist/css/adminlte.css">
+  <link rel="stylesheet" href="../../dist/css/style.css">
  <!-- Select2 -->
  <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
  <link rel="stylesheet" href="../../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
@@ -38,27 +45,7 @@
 <body>
 <div class="wrapper">
 
-  <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__wobble" src="../../dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
-
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Home</a>
-      </li>
-    </ul>
-
-    <!-- Right navbar links -->
-  </nav>
-  <!-- /.navbar -->
-
+  <?php include("../include/header.php") ?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -138,8 +125,8 @@
           <!-- /.col -->
           <div class="col-md-3 grid-margin">
             <div class="card-body">
-              <a href="overtime-Request.html">
-                <div class="d-flex flex-row align-items-start hoverTitles">
+              <a href="overtime-Request.php">
+                <div class="d-flex flex-row align-items-start hoverTitles active1">
                   <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fa fa-bars"></i>
                   <div class="ms-3">
                       <p class="pb-0 mb-0" style="line-height:1;">Overtime Request</p>
@@ -157,9 +144,9 @@
             
             <!-- /.col (left) -->
             <div class="col-md-12">
-              <div class="card">
-                <div class="card-header">
-                  <h5 class="card-title">List All Announcements</h5>
+              <div class="card card1">
+                <div class="card-header card-header1">
+                  <h5 class="card-title card-title1">List All Announcements</h5>
                   <div class="card-tools">
                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-default" >
                       <i class="fas fa-plus"></i> Add New
@@ -167,11 +154,11 @@
                   </div>
                 </div>
                 <!-- /.card-header -->
-                <div class="card-body">
+                <div class="card-body card-body1">
                   <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="row">
                           <div class="col-sm-12">
-                            <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="example1_info">
+                            <table id="example1" class="table table-striped dataTable dtr-inline" aria-describedby="example1_info">
                               <thead>
                                <tr>
                                <th>Employee</th>
@@ -232,11 +219,18 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+            <form method="post" action="check.php">
             <div class="modal-body">
                 <div class="form-group">
                     <label>Employee<sup><b style="color:red;">*</b></sup></label>
-                    <select class="form-control select2" style="width: 100%;">
-                      <option selected="selected">Vedant Naidu</option>
+                    <select class="form-control" style="width: 100%;" name="emp_name">
+                    <option selected="selected">choose employee name</option>
+                    <?php
+                    $sql=mysqli_query($conn,"SELECT * FROM employee");
+                    while($dnk=mysqli_fetch_array($sql)){
+                      echo "<option value='".$dnk['fname']." ".$dnk['fname']."'>".$dnk['fname']." ".$dnk['fname']."</option>";
+                    }
+                    ?>
                       
                     </select>
                     <!-- /.input group -->
@@ -244,7 +238,7 @@
                   <div class="form-group">
                     <label>Date<sup><b style="color:red;">*</b></sup></label>
                     <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                      <input type="text" class="form-control datetimepicker-input" placeholder="Date" data-target="#reservationdate"/>
+                      <input type="text" class="form-control datetimepicker-input" placeholder="Date" name="date" data-target="#reservationdate"/>
                       <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                       </div>
@@ -255,7 +249,7 @@
                         <label>In Time<sup><b style="color:red;">*</b></sup></label>
     
                         <div class="input-group date" id="timepicker" data-target-input="nearest">
-                          <input type="text" class="form-control datetimepicker-input" placeholder="In Time" data-target="#timepicker"/>
+                          <input type="text" class="form-control datetimepicker-input" placeholder="In Time" name="in_time" data-target="#timepicker"/>
                           <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
                               <div class="input-group-text"><i class="far fa-clock"></i></div>
                           </div>
@@ -266,7 +260,7 @@
                         <label>Out Time<sup><b style="color:red;">*</b></sup></label>
     
                         <div class="input-group date" id="timepicker" data-target-input="nearest">
-                          <input type="text" class="form-control datetimepicker-input" placeholder="Out Time" data-target="#timepicker"/>
+                          <input type="text" class="form-control datetimepicker-input" placeholder="Out Time" name="out_time" data-target="#timepicker"/>
                           <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
                               <div class="input-group-text"><i class="far fa-clock"></i></div>
                           </div>
@@ -276,13 +270,14 @@
                   </div>
                   <div class="form-group">
                     <label>Reason<sup><b style="color:red;">*</b></sup></label>
-                    <textarea class="form-control" rows="3" placeholder="Reason..."></textarea>
+                    <textarea class="form-control" rows="3" name="reason" placeholder="Reason..."></textarea>
                   </div>
             </div>
             <div class="modal-footer justify-content-end">
               <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary btn-lg">Save</button>
+              <button type="submit" class="btn btn-primary btn-lg" name="save_overtime">Save</button>
             </div>
+                  </form>
           </div>
           <!-- /.modal-content -->
         </div>
@@ -298,7 +293,7 @@
     <!-- Control sidebar content goes here -->
   </aside>
   <!-- /.control-sidebar -->
-
+  <?php include("../include/footer.php") ?>
   <!-- Main Footer -->
   
 </div>

@@ -79,12 +79,10 @@ include("../include/header.php");
           <div class="col-sm-8">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Designation</li>
+              <li class="breadcrumb-item active">Policies</li>
             </ol>
           </div><!-- /.col -->
           <div class="col-sm-4">
-          <div class="text-md-right mr-5 d-flex float-right"> <a class="btn btn-smb btn-outline-primary rounded-pill" href="logout.php"><i class="fa fa-sign-out fa-spin fa-1x" aria-hidden="true"></i>
-            Logout </a> </div></div>
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
@@ -92,9 +90,9 @@ include("../include/header.php");
 
     <!-- Main content -->
     <section class="py-2 header">
-    <div class="container py-4">
+    <div class="container ">
         <header class="text-center mb-5 text-white">
-            <h1 class="display-6" style="color:darkgrey"> View Policies</h1>
+            <h1 class="display-6" style="color:black;text-decoration:underline;"> View Policies</h1>
             <a class="btn btn-primary rounded-pill d-block ml-4" href="policies.php" style="width:17%"><span class="ion ion-md-add"></span>&nbsp;Add New Policy</a>
             <p class="font-italic">
                 <a class="text-white" href="">
@@ -180,10 +178,11 @@ include("../include/header.php");
   <!-- /.control-sidebar -->
 
   <!-- Main Footer -->
-  <?php
+ 
+</div>
+<?php
   include('../include/footer.php');
   ?>
-</div>
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->

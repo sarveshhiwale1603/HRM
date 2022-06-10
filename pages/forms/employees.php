@@ -70,12 +70,10 @@ $id=$_SESSION['id']; ?>
             <div class="col-sm-8">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">Department</li>
+                <li class="breadcrumb-item active">Employees</li>
               </ol>
             </div><!-- /.col -->
-            <div class="col-sm-4">
-          <div class="text-md-right mr-5 d-flex float-right"> <a class="btn btn-smb btn-outline-primary rounded-pill" href="logout.php"><i class="fa fa-sign-out fa-spin fa-1x" aria-hidden="true"></i>
-            Logout </a> </div></div>
+            
           </div><!-- /.row -->
         </div><!-- /.container-fluid -->
       </div>
@@ -128,7 +126,7 @@ $id=$_SESSION['id']; ?>
 
             <div class="col-md-3 grid-margin">
               <div class="card-body">
-                <a href="shift&scheduling.html">
+                <a href="shift&scheduling.php">
                   <div class="d-flex flex-row align-items-start hoverTitles">
                     <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg 	far fa-clock"></i>
                     <div class="ms-3">
@@ -142,7 +140,7 @@ $id=$_SESSION['id']; ?>
             <!-- /.col -->
             <div class="col-md-3 grid-margin">
               <div class="card-body">
-                <a href="employees-Exit.html">
+                <a href="employees-Exit.php">
                   <div class="d-flex flex-row align-items-start hoverTitles">
                     <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fas fa-sign-out-alt"></i>
                     <div class="ms-3">
@@ -286,7 +284,9 @@ $id=$_SESSION['id']; ?>
                             <label>Office Shift<sup><b style="color:red;">*</b></sup></label>
                             <select class="form-control select2" name="shift" style="width: 100%;" placeholder="Office Shift" required>
                               <option selected="selected" disabled>Office Shift</option>
-                              <option>Morning</option>
+                              <?php $sql=mysqli_query($conn,"select * from shift_time order by shift asc");
+                            while($row=mysqli_fetch_array($sql)){ ?>
+                            <option value="<?php echo $row['shift']; ?>"><?php echo $row['shift']; ?></option><?php } ?>
                             </select>
                             <!-- /input-group -->
                           </div>
@@ -402,7 +402,7 @@ $id=$_SESSION['id']; ?>
                   <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                     <div class="row">
                       <div class="col-sm-12">
-                        <table id="example1" class="table table-bordered table-striped dataTable dtr-inline"
+                        <table id="example1" class="table table-striped dataTable dtr-inline"
                           aria-describedby="example1_info">
                           <thead>
                           <tr>
@@ -490,7 +490,6 @@ $id=$_SESSION['id']; ?>
 <script src="../../plugins/chart.js/Chart.min.js"></script>
 
 <!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../../dist/js/pages/dashboard2.js"></script>
 <!-- DataTables  & Plugins -->

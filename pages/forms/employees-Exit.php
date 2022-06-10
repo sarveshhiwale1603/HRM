@@ -1,3 +1,9 @@
+<?php
+include("../include/config.php");
+session_start();
+if(!isset($_SESSION['id'])){
+    header("location:index.php");
+}?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +27,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <link rel="stylesheet" href="../../dist/css/adminlte.css">
+  <link rel="stylesheet" href="../../dist/css/style.css">
   <!-- daterange picker -->
   <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
 
@@ -40,219 +47,7 @@
 <body>
 <div class="wrapper">
 
-  <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__wobble" src="../../dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
-
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Home</a>
-      </li>
-    </ul>
-
-    <!-- Right navbar links -->
-  </nav>
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="#" class="brand-link">
-      <span class="brand-text font-weight-light">AdminLTE 4</span>
-    </a>
-
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user (optional) -->
-     
-
-      <!-- SidebarSearch Form -->
-      
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="tectignis.html" class="nav-link">
-              <i class="nav-icon fas fa-home"></i>
-              <p>
-                Home
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>
-                Employee
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-star"></i>
-              <p>
-                Core HR
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ol class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="Department.html" class="nav-link">
-                  <i class="nav-icon fa fa-ellipsis"></i>
-                  <p>Department</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="designation.html" class="nav-link">
-                  <i class="nav-icon fa fa-ellipsis"></i>
-                  <p>Designation</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="policies.html" class="nav-link">
-                  <i class="nav-icon fa fa-ellipsis"></i>
-                  <p>policies</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="announcement.html" class="nav-link">
-                  <i class="nav-icon fa fa-astrick"></i>
-                  <p>Make Announcement</p>
-                </a>
-              </li>
-            </ol>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-clock"></i>
-              <p>
-                Attendance
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <ol class="nav-item">
-                <a href="#" class="nav-link">
-                  
-                  <p>Attendance</p>
-                </a>
-              </ol>
-              <ol class="nav-item">
-                <a href="#" class="nav-link">
-                
-                  <p>manul Attendance</p>
-                </a>
-              </ol>
-              <ol class="nav-item">
-                <a href="#" class="nav-link">
-                  
-                  <p>monthly Report</p>
-                </a>
-              </ol>
-              <ol class="nav-item">
-                <a href="#" class="nav-link">
-                  <p>Overtime Request</p>
-                </a>
-              </ol>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-rupee-sign"></i>
-              <p>
-                Payroll
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-edit"></i>
-              <p>
-                Task
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-                Project
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-handshake"></i>
-              <p>
-                Manage Clients
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon 	fa fa-user-plus"></i>
-              <p>
-                Leads
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-question-circle"></i>
-              <p>
-                Helpdesk
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class='nav-icon fas fa-chart-pie'></i>
-              <p>
-                 Estimates
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class='nav-icon fas fa-plus-square'></i>
-              <p>
-                Leave Request
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon 	fa fa-laptop"></i>
-              <p>
-                Training Session
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-gavel"></i>
-              <p>
-                Disiplinary
-              </p>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
-    <!-- /.sidebar -->
-  </aside>
-
+ <?php include("../include/header.php"); ?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -262,7 +57,7 @@
           <div class="col-sm-12">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Department</li>
+              <li class="breadcrumb-item active">Employee Exit</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -277,7 +72,7 @@
         <div class="row">
             <div class="col-md-3 grid-margin">
                 <div class="card-body">
-                  <a  href="employees.html">
+                  <a  href="employees.php">
                   <div class="d-flex flex-row align-items-start hoverTitles">
                   
                     <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fas fa-user-friends"></i>
@@ -317,8 +112,8 @@
 
           <div class="col-md-3 grid-margin">
             <div class="card-body">
-              <a href="shift&scheduling.html">
-                <div class="d-flex flex-row align-items-start hoverTitles">
+              <a href="shift&scheduling.php">
+                <div class="d-flex flex-row align-items-start hoverTitles ">
                   <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg 	fas fa-sign-out-alt"></i>
                   <div class="ms-3">
                       <p class="pb-0 mb-0" style="line-height:1;">Shift & Scheduling</p>
@@ -331,8 +126,8 @@
           <!-- /.col -->
           <div class="col-md-3 grid-margin">
             <div class="card-body">
-              <a href="employees-Exit.html">
-                <div class="d-flex flex-row align-items-start hoverTitles">
+              <a href="employees-Exit.php">
+                <div class="d-flex flex-row align-items-start hoverTitles active1">
                   <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fa fa-bars"></i>
                   <div class="ms-3">
                       <p class="pb-0 mb-0" style="line-height:1;">Employees Exit</p>
@@ -351,10 +146,11 @@
             <!-- /.col (left) -->
             <div class="col-md-12">
               <div class="collapse" id="collapseExample">
+                <form method="post" enctype="multipart/form-data" action="api.php">
                 <div class="row my-3">
                   <div class="col-md-8">
-                    <div class="card">
-                      <div class="card-header">
+                    <div class="card card1">
+                      <div class="card-header card-header1">
                         <h5 class="card-title">Add New Employee</h5>
                         <div class="card-tools">
                           <button type="button" class="btn btn-primary btn-sm"  data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -369,8 +165,13 @@
                           <div class="col-lg-6">
                             <label>Employee to Exit <sup><b style="color:red;">*</b></sup></label>
                             <div class="input-group">
-                              <select class="form-control select2" style="width: 100%;">
-                                <option selected="selected">VEDANT NAIDU</option>
+                              <select class="form-control select2" name="emp_name" style="width: 100%;">
+                              <option>select employee name</option>
+                              <?php $sql=mysqli_query($conn,"select * from employee");
+                              while($dnk=mysqli_fetch_array($sql)){
+                              ?>
+                                <option value="<?php echo $dnk['fname']." ".$dnk['lname']; ?>"><?php echo $dnk['fname']." ".$dnk['lname']; ?></option>
+                              <?php } ?>
                               </select>
                             </div>
                             <!-- /input-group -->
@@ -378,10 +179,10 @@
                           <div class="col-lg-6">
                             <label>Exit Date <sup><b style="color:red;">*</b></sup></label>
                             <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                              <input type="text" class="form-control datetimepicker-input" placeholder="Exit Date" data-target="#reservationdate"/>
-                              <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                              <input type="date" class="form-control " name="exit_date" placeholder="Exit Date"/>
+                              <!-- <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                                   <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                              </div>
+                              </div> -->
                           </div>
                           </div>
                         </div>
@@ -390,18 +191,21 @@
                         <div class="row my-3">
                           <div class="col-lg-4">
                             <label>Exit Type<sup><b style="color:red;">*</b></sup></label>
-                            <select class="form-control select2" style="width: 100%;" placeholder="Office Shift">
+                            <select class="form-control select2" name="exit_type" style="width: 100%;" placeholder="Office Shift">
                               <option selected="selected" disabled>Type Of Exit</option>
-                              <option>Hospital Emergency</option>
-                              <option>Leave Half Day</option>
+                              <?php $sql=mysqli_query($conn,"select * from exit_type");
+                              while($dnk=mysqli_fetch_array($sql)){
+                              ?>
+                                <option value="<?php echo $dnk['id']; ?>"><?php echo $dnk['type']; ?></option>
+                              <?php } ?>
                             </select>
                             <!-- /input-group -->
                           </div>
                           <!-- /.col-lg-4 -->
                           <div class="col-lg-4">
                             <label>Exit Interview<sup><b style="color:red;">*</b></sup></label>
-                            <select class="form-control select2" style="width: 100%;" placeholder="Office Shift">
-                              <option selected="selected" disabled>Yes</option>
+                            <select class="form-control select2" name="exit_int" style="width: 100%;" placeholder="Office Shift">
+                              <option selected="selected">Yes</option>
                               <option>No</option>
                             </select>
                             <!-- /input-group -->
@@ -409,8 +213,8 @@
                           <div class="col-lg-4">
                             <label>Disable Account<sup><b style="color:red;">*</b></sup></label>
                             <div class="input-group">
-                              <select class="form-control select2" style="width: 100%;">
-                                <option selected="selected" disabled>Yes</option>
+                              <select class="form-control select2" name="disable_acc" style="width: 100%;">
+                                <option selected="selected">Yes</option>
                                 <option>No</option>
                               </select>
                             </div>
@@ -422,33 +226,34 @@
                       <div class="col-lg-12">
                           <label>Description<sup><b style="color:red;">*</b></sup></label>
                           <div class="form-group">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description"></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description" name="desc"></textarea>
                           </div>
                       </div>
                       
                     </div>      
                         <div class="card-footer">
-                          <buttton type="button" id="reset" class="btn btn-default"  data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Reset</buttton>
-                          <buttton type="button" id="submit" class="btn btn-primary" name="Save">Save</buttton>
+                          <button type="button" id="reset" class="btn btn-default"  data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Reset</button>
+                          <button type="submit" id="submit" class="btn btn-primary" name="exitSave">Save</button>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-4">
-                    <div class="card">
-                      <div class="card-header">
-                        <h5 class="card-title">Profile Picture</h5>
+                    <div class="card card1">
+                      <div class="card-header card-header1">
+                        <h5 class="card-title card-title1">Profile Picture</h5>
                       </div>
-                      <div class="card-body">
-                <label>Profile Picture<sup><b style="color:red;">*</b></sup></label>
+                      <div class="card-body card-body1">
+                       <label>Profile Picture<sup><b style="color:red;">*</b></sup></label>
                         <div class="custom-file">
-                          <input type="file" class="custom-file-input" name="file">
+                          <input type="file" class="custom-file-input" name="file" accept="image/png, image/jpeg, image/jpg">
                           <label class="custom-file-label">Choose file...</label>
                           <small class="text-muted">Upload files only: gif,png,jpg,jpeg</small>
                         </div>
                       </div>
                     </div>
                   </div>
+  </form>
                 </div>
               </div>
 
@@ -458,7 +263,7 @@
                 <div class="card-header">
                   <h5 class="card-title">List All Employees</h5>
                   <div class="card-tools">
-                   <a href="Exit-Types.html"> <button type="button" title="Grid view" class="btn btn-primary btn-sm">
+                   <a href="Exit-Types.php"> <button type="button" title="Grid view" class="btn btn-primary btn-sm">
                       <i class="fas fa-plus"></i> Exit Type</button></a>
                     
                     <button type="button" class="btn btn-primary btn-sm"  data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -479,8 +284,25 @@
                                <th><i class="fas fa-calendar"></i> EXIT DATE</th>
                                <th>EXIT INTERVIEW</th>
                                <th>DISABLE ACCOUNT</th>
+                               <th>ACTION</th>
                               </thead>
                               <tbody>
+                                <?php
+                                $query=mysqli_query($conn,"select * from exit_employee");
+                                while($row=mysqli_fetch_array($query)){
+                                  $id=$row['id'];?>
+                                <tr>
+                                  
+                                  <td><?php echo $row['name']; ?></td>
+                                  <td><?php echo $row['type']; ?></td>
+                                  <td><?php echo $row['date']; ?></td>
+                                  <td><?php echo $row['interview']; ?></td>
+                                  <td><?php echo $row['disable']; ?></td>
+                                  <td><button class="btn btn-sm btn-primary usereditid" data-id='<?php echo $row['id']; ?>'><i class="fas fa-pen"></i></a>
+                                  <button class="btn btn-sm btn-success userinfo ml-1" data-id='<?php echo $row['id']; ?>' ><i class="fa fa-eye"></i></button>
+                                  <a href="check.php?did=<?php echo $row['id']; ?>" class="btn btn-sm btn-info"><i class="fa fa-trash"></i></a></td>
+                                </tr>
+                                                      <?php } ?>
                               </tbody>
                              <tfoot>
 
@@ -488,26 +310,56 @@
                             </table>
                           </div>
                         </div>
-              <!-- <div class="row">
-                <div class="col-md-10">
-                  <div class="dataTables_info" id="example1_info" role="status">Showing 1 to 10 of 57 entries
-                  </div>
-                </div>
-                  <div class="col-md-2">
-                    <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
-                      <ul class="pagination">
-                        <li class="paginate_button page-item previous disabled" id="example1_previous">
-                          <a href="#"  class="page-link">Previous</a>
-                        </li>
-                          
-                            <li class="paginate_button" name="next" id="example1_next">
-                              <a href="#"class="page-link">Next</a>
-                            </li>
-                          </ul>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
+
+                      
+  <!-- edit modal -->
+  <div class="modal fade" id="dnkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document" style="max-width:800px">
+    
+  <div class="modal-content" style="width:max-content;margin:auto;">
+        <div class="modal-header">
+          <div>
+        <h6 class="modal-title">Edit Employee Exit Information</h6>
+        <p style="color:grey;">We need below required information to update this record.</p>
+                                </div>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <form method="post" action="check.php">
+        <div class="modal-body">
+        
+        </div>
+                                </form>
+      </div>
+      
+    </div>
+  </div>   
+  <!-- editmodal -->
+        
+    <!-- view modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+        <h4 class="modal-title">View Employee Exit Information</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+        
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>   
+  <!-- view modal  -->
+       
+  
             </div>
                 <!-- /.card-body -->
               </div>
@@ -532,9 +384,9 @@
     <!-- Control sidebar content goes here -->
   </aside>
   <!-- /.control-sidebar -->
-
+<?php include("../include/footer.php"); ?>
   <!-- Main Footer -->
-  
+  </div>
 </div>
 <!-- ./wrapper -->
 
@@ -558,7 +410,6 @@
 <script src="../../plugins/chart.js/Chart.min.js"></script>
 
 <!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../../dist/js/pages/dashboard2.js"></script>
 <!-- DataTables  & Plugins -->
@@ -616,7 +467,6 @@
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
 <!-- Page specific script -->
 <script>
   $(function () {
@@ -753,6 +603,41 @@
   // DropzoneJS Demo Code End
 </script>
 
+<script>
+$(document).ready(function(){
+$('.userinfo').click(function(){
+  var userid = $(this).data('id');
+
+  $.ajax({
+   url: 'check.php',
+   type: 'post',
+   data: {userid: userid},
+   success: function(response){ 
+     $('.modal-body').html(response);
+     $('#myModal').modal('show'); 
+   }
+ });
+});
+
+$('.usereditid').click(function(){
+  var usereditid = $(this).data('id');
+
+  $.ajax({
+   url: 'check.php',
+   type: 'post',
+   data: {usereditid: usereditid},
+   success: function(response1){ 
+     $('.modal-body').html(response1);
+     $('#dnkModal').modal('show'); 
+   }
+ });
+});
+
+$(".modal2").click(function(){
+  $(this).modal('hide');
+})
+});
+</script>
 
 </body>
 </html>

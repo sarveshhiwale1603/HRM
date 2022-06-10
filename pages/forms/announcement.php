@@ -159,7 +159,7 @@ include("../include/header.php");
                 <label for="title">
                   Title <span class="text-danger">*</span>
                 </label>
-                <input class="form-control" placeholder="Title" name="title" type="text" value="<?php echo $title; ?>" required>
+                <input class="form-control" placeholder="Title" name="title" type="text" value="" required>
               </div>
               </div>
                 <div class="col-md-3">
@@ -168,7 +168,7 @@ include("../include/header.php");
                       Start Date <span class="text-danger">*</span>
                     </label>
                     <div class="input-group">
-                      <input class="form-control date" placeholder="Start Date" name="start_date" type="date" value="<?php echo $start_date; ?>" required>
+                      <input class="form-control date" placeholder="Start Date" name="start_date" type="date" value="" required>
                     </div>
                   </div>
                 </div>
@@ -178,7 +178,7 @@ include("../include/header.php");
                       End Date <span class="text-danger">*</span>
                     </label>
                     <div class="input-group">
-                      <input class="form-control date" placeholder="End Date" name="end_date" type="date" value="<?php echo $end_date; ?>" required>
+                      <input class="form-control date" placeholder="End Date" name="end_date" type="date" value="" required>
                     </div>
                   </div>
                 </div>
@@ -188,7 +188,7 @@ include("../include/header.php");
                 <label for="department" class="control-label">
                   Department                </label>
                   <select id="choices-multiple-remove-button" name="department_id[]" multiple required>
-                    <option value="<?php echo $did; ?>"><?php echo $name; ?></option>
+                    <option value=""><?php echo $name; ?></option>
                     <?php
                     $sql=mysqli_query($conn,"select * from department");
                     while($row=mysqli_fetch_array($sql)){
@@ -204,14 +204,14 @@ include("../include/header.php");
                 <label for="summary">
                   Summary <span class="text-danger">*</span>
                 </label>
-                <input type="text" class="form-control" value="<?php echo $summary; ?>" placeholder="Summary" name="summary" id="summary" required>
+                <input type="text" class="form-control" value="" placeholder="Summary" name="summary" id="summary" required>
               </div>
             </div>
             <div class="col-md-12">
                   <div class="form-group">
                     <label for="description">
                       Description                    </label>
-                    <textarea class="form-control editor" placeholder="Description" id="summernote" name="description" cols="8" rows="5" id="description" required><?php echo $description; ?></textarea>
+                    <textarea class="form-control editor" placeholder="Description" id="summernote" name="description" cols="8" rows="5" id="description" required></textarea>
                   </div>
                 </div>
           </div>

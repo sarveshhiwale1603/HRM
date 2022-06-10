@@ -7,7 +7,13 @@ if(!isset($_SESSION['id'])){
 $name=$_SESSION['name'];
 $id=$_SESSION['id'];
 
-$query=mysqli_query($conn,"SELECT * FROM employee WHERE id='$id'");
+$query=mysqli_query($conn,"SELECT * FROM employee WHERE fname='$name'");
+$row=mysqli_fetch_array($query);
+$id1=$row['id'];
+$name1=$row['fname'];
+$last1=$row['lname'];
+$image=$row['image'];
+$emp_shift=$row['shift'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,9 +57,6 @@ $query=mysqli_query($conn,"SELECT * FROM employee WHERE id='$id'");
               <li class="breadcrumb-item active">Dashboard v1</li>
             </ol>
           </div><!-- /.col -->
-          <div class="col-sm-4">
-          <div class="text-md-right mr-5 d-flex float-right"> <a class="btn btn-smb btn-outline-primary rounded-pill" href="logout.php"><i class="fa fa-sign-out fa-spin fa-1x" aria-hidden="true"></i>
-            Logout </a> </div></div>
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
@@ -69,13 +72,34 @@ $query=mysqli_query($conn,"SELECT * FROM employee WHERE id='$id'");
               </div>
               <div class="col p-l-0">
                 <h6 class="m-b-5"><b style="color:black;font-size:18px">Welcome <?php echo $name; ?></b></h6>
-                <h6 class="m-b-0 mt-2 text-primary">My Shift: 08:17 am To 06:17 pm</h6>
+                <?php
+
+                $day=date("l");
+                $sql1=mysqli_query($conn,"SELECT * FROM shift_time WHERE shift='$emp_shift'");
+                $arr=mysqli_fetch_array($sql1);
+                if($day=="Monday"){
+                  echo '<h6 class="m-b-0 mt-2 text-primary">My Shift:&nbsp;'. $arr['monday_start_time'].' To '. $arr['monday_end_time'].'</h6>';
+                }else if($day=="Tuesday"){
+                  echo '<h6 class="m-b-0 mt-2 text-primary">My Shift:&nbsp;'. $arr['tuesday_start_time'].' To '. $arr['tuesday_end_time'].'</h6>';
+                }else if($day=="Wednesday"){
+                  echo '<h6 class="m-b-0 mt-2 text-primary">My Shift:&nbsp;'. $arr['wednesday_start_time'].' To '. $arr['wednesday_end_time'].'</h6>';
+                }else if($day=="Thursday"){
+                  echo '<h6 class="m-b-0 mt-2 text-primary">My Shift:&nbsp;'. $arr['thursday_start_time'].' To '. $arr['thursday_end_time'].'</h6>';
+                }else if($day=="Friday"){
+                  echo '<h6 class="m-b-0 mt-2 text-primary">My Shift:&nbsp;'. $arr['friday_start_time'].' To '. $arr['friday_end_time'].'</h6>';
+                }else if($day=="Saturday"){
+                  echo '<h6 class="m-b-0 mt-2 text-primary">My Shift:&nbsp;'. $arr['saturday_start_time'].' To '. $arr['saturday_end_time'].'</h6>';
+                }else if($day=="Sunday"){
+                  echo '<h6 class="m-b-0 mt-2 text-primary">Today: Holiday</h6>';
+                }
+                ?>
+                <!-- <h6 class="m-b-0 mt-2 text-primary">My Shift: <?php// echo $arr['']; ?> To 06:17 pm</h6> -->
               </div>
             </div>
             			            <form id="hr_clocking" autocomplete="off" class="m-b-1" method="post" accept-charset="utf-8">
                                 <input type="hidden" value="clock_out" name="clock_state" id="clock_state">
-            <input type="hidden" value="<?php echo $id; ?>" name="time_id" id="time_id">
-            <input type="hidden" value="<?php echo $name; ?>" name="name" id="time_id">
+            <input type="hidden" value="<?php echo $id1; ?>" name="time_id" id="time_id">
+            <input type="hidden" value="<?php echo $name1.' '.$last1; ?>" name="name" id="time_id">
             <div class="row align-items-center text-center">
               <div class="col mt-4">
                 <h6 class="m-b-0">                
@@ -243,10 +267,11 @@ $query=mysqli_query($conn,"SELECT * FROM employee WHERE id='$id'");
 <!-- AdminLTE for demo purposes -->
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../../dist/js/pages/dashboard2.js"></script>
-<script>
+<script> 
                   $(document).ready(function(){
                     $("#clock_out").prop('disabled',true);
                   });
+                 
                   </script>
 <?php
               if(isset($_POST['clock-in'])){
@@ -254,13 +279,20 @@ $query=mysqli_query($conn,"SELECT * FROM employee WHERE id='$id'");
                  $emp_name=$_POST['name'];
                 date_default_timezone_set('Asia/Kolkata');
                 $date=date("Y.m.d");
-                $time=date("H:i:s");
+                $time=date("H:i A");
                 $status=1;
 
-                $query=mysqli_query($conn,"select * from attendance where date='$date'");
+                $query=mysqli_query($conn,"select * from attendance where date='$date' and employee_name='$emp_name'");
                 if(mysqli_num_rows($query)>0){
-                  echo "<script>alert('Attendence already submitted')</script>";
-              }else{
+                  echo "<script>alert('Attendence already submitted')</script>";?>
+                   <script>
+                  $(document).ready(function(){
+                    $("#clock_in").prop('disabled',true);
+                    $("#clock_out").prop('disabled',false);
+                  });
+                  </script>
+
+              <?php }else{
                 $sql=mysqli_query($conn,"INSERT INTO `attendance`( `date`,`clock_in`, `employee_id`,`employee_name`,`status`) VALUES ('$date','$time','$emp_id','$emp_name','$status')");
                 if($sql){
                   echo "<script>swal('Success','You have clocked in successfully','success');</script>";?>
@@ -284,11 +316,12 @@ $query=mysqli_query($conn,"SELECT * FROM employee WHERE id='$id'");
 
               if(isset($_POST['clock-out'])){
                 date_default_timezone_set('Asia/Kolkata');
-                $date=date("Y.m.d");
-                $time=date("H:i:s");
-
-                $sql=mysqli_query($conn,"UPDATE `attendance` SET `clock_out`='$time' WHERE employee_name='$name' AND date='$date'");
-                if($sql){
+                $date=date("Y-m-d");
+                $time=date("H:i A");
+                $emp_name=$_POST['name'];
+                
+                $sql1=mysqli_query($conn,"UPDATE `attendance` SET `clock_out`='$time' WHERE employee_name='$emp_name' AND date='$date'");
+                if($sql1){
                   echo "<script>swal('Success','You have clocked out successfully','success');</script>";?>
                 <script>
                   $(document).ready(function(){

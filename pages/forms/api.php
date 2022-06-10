@@ -47,4 +47,46 @@ $staff="employee";
         echo "<script>alert('Something went wrong')</script>";
     }
 }
+
+if(isset($_POST['save_shift'])){
+    $shift_name=$_POST['shift_name'];
+    $monday_in=$_POST['monday_in'];
+    $monday_out=$_POST['monday_out'];
+    $tuesday_in=$_POST['tuesday_in'];
+    $tuesday_out=$_POST['tuesday_out'];
+    $wednesday_in=$_POST['wednesday_in'];
+    $wednesday_out=$_POST['wednesday_out'];
+    $thursday_in=$_POST['thursday_in'];
+    $thursday_out=$_POST['thursday_out'];
+    $friday_in=$_POST['friday_in'];
+    $friday_out=$_POST['friday_out'];
+    $saturday_in=$_POST['saturday_in'];
+    $saturday_out=$_POST['tuesday_out'];
+    $sunday_in="Holiday";
+   
+    $sql=mysqli_query($conn,"INSERT INTO `shift_time`( `shift`, `monday_start_time`, `monday_end_time`, `tuesday_start_time`, `tuesday_end_time`, `wednesday_start_time`, `wednesday_end_time`, `thursday_start_time`, `thursday_end_time`, `friday_start_time`, `friday_end_time`, `saturday`, `saturday_end_time`, `sunday`) VALUES ('$shift_name','$monday_in','$monday_out','$tuesday_in','$tuesday_out','$wednesday_in','$wednesday_out','$thursday_in','$thursday_out','$friday_in','$friday_out','$saturday_in','$saturday_out','$sunday_in')");
+    if($sql==1){
+        header("location:shift&scheduling.php");}else{ echo "<script>alert('Something went wrong');window.location.href='shift&scheduling.php'</script>";}
+}
+
+if(isset($_POST['exitSave'])){
+    $emp_name=$_POST['emp_name'];
+    $exit_date=$_POST['exit_date'];
+    $exit_type=$_POST['exit_type'];
+    $exit_int=$_POST['exit_int'];
+    $disable_acc=$_POST['disable_acc'];
+    $desc=$_POST['desc'];
+    $file=$_FILES['file']['name'];
+    $file_tmp=$_FILES['file']['tmp_name'];
+    $status=1;
+    $dnk="image/exit_employee/";
+    
+    date_default_timezone_set('Asia/Kolkata');
+  $date=date("Y-m-d H:i:s");
+  move_uploaded_file($file_tmp,$dnk.$file);
+
+    $sql=mysqli_query($conn,"INSERT INTO `exit_employee`(`name`, `date`, `type`, `interview`, `disable`, `desc`, `image`, `status`, `current_dates`) VALUES ('$emp_name','$exit_date','$exit_type','$exit_int','$disable_acc','$desc','$file','$status','$date')");
+    if($sql==1){
+        header("location:employees-Exit.php");}else{ echo "<script>alert('Something went wrong');window.location.href='exit_employee.php'</script>";}
+}
 ?>
