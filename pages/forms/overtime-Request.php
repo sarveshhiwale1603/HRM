@@ -3,7 +3,8 @@ include("../include/config.php");
 session_start();
 if(!isset($_SESSION['id'])){
     header("location:index.php");
-} ?>
+} 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,6 +20,8 @@ if(!isset($_SESSION['id'])){
   <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- DataTables -->
   <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
@@ -89,7 +92,6 @@ if(!isset($_SESSION['id'])){
               </a>
                 </div>
             </div>
-            <!-- <p style="line-height:1;"><a href="department.html" target="_self" class="Department titles" style="font-weight:medium;">Department</a> <br> -->
 
           <!-- /.col -->
           <div class="col-md-3 grid-margin">
@@ -115,7 +117,7 @@ if(!isset($_SESSION['id'])){
 
           <div class="col-md-3 grid-margin">
             <div class="card-body">
-              <a href="monthly-Report.php">
+              <a href="monthly_reports.php">
                 <div class="d-flex flex-row align-items-start hoverTitles">
                   <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg 	far fa-calendar"></i>
                   <div class="ms-3">
@@ -170,11 +172,12 @@ if(!isset($_SESSION['id'])){
                                <th>Clock In</th>
                                <th>Clock Out</th>
                                <th>Total Work</th>
-                               <!-- <th>Status</th> -->
+                               <th>Status</th>
+                               <th>Action</th>
                               </thead>
                               <tbody>
                                 <?php
-                                $sql=mysqli_query($conn,"SELECT `name`,`in_time`, `out_time`,`reason`,`status`,`cur_date`,timediff(out_time,in_time) as total FROM `overtime`;");
+                                $sql=mysqli_query($conn,"SELECT `id`, `name`,`in_time`, `out_time`,`reason`,`status`,`cur_date`,timediff(out_time,in_time) as total FROM `overtime`;");
                                 while($row=mysqli_fetch_array($sql)){
                                 ?>
                                 <tr>
@@ -183,7 +186,9 @@ if(!isset($_SESSION['id'])){
                                   <td><?php echo $row['in_time']; ?></td>
                                   <td><?php echo $row['out_time']; ?></td>
                                   <td><?php echo $row['total']; ?></td>
-                                  <!-- <td><?php// echo $row['status']; ?></td> -->
+                                  <td><?php echo $row['status']; ?></td>
+                                  <td><button class="btn btn-sm btn-primary usereditid" data-id='<?php echo $row['id']; ?>'><i class="fas fa-pen"></i></button>&nbsp;&nbsp;
+                                  <a href="check.php?deleteid=<?php echo $row['id']; ?>"onclick="return confirm('Are you sure you want to delete this record')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a></td>
                                 <?php } ?>
                               </tbody>
                              <tfoot>
@@ -192,26 +197,31 @@ if(!isset($_SESSION['id'])){
                             </table>
                           </div>
                         </div>
-              <!-- <div class="row">
-                <div class="col-md-10">
-                  <div class="dataTables_info" id="example1_info" role="status">Showing 1 to 10 of 57 entries
-                  </div>
-                </div>
-                  <div class="col-md-2">
-                    <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
-                      <ul class="pagination">
-                        <li class="paginate_button page-item previous disabled" id="example1_previous">
-                          <a href="#"  class="page-link">Previous</a>
-                        </li>
-                          
-                            <li class="paginate_button" name="next" id="example1_next">
-                              <a href="#"class="page-link">Next</a>
-                            </li>
-                          </ul>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
+
+                         <!-- edit modal -->
+  <div class="modal fade" id="dnkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document" style="max-width:800px">
+    
+  <div class="modal-content" style="width:max-content;margin:auto;">
+        <div class="modal-header">
+          <div>
+        <h6 class="modal-title">Edit Overtime Request Information</h6>
+        <p style="color:grey;">We need below required information to update this record.</p>
+                                </div>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <form method="post" action="check.php">
+        <div class="modal-body">
+        
+        </div>
+                                </form>
+      </div>
+      
+    </div>
+  </div>   
+  <!-- editmodal -->
             </div>
                 <!-- /.card-body -->
               </div>
@@ -396,7 +406,6 @@ if(!isset($_SESSION['id'])){
 <!-- AdminLTE App -->
 <!-- <script src="../../dist/js/adminlte.min.js"></script> -->
 <!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
 <script>
     $(function () {
       //Initialize Select2 Elements
@@ -532,23 +541,23 @@ if(!isset($_SESSION['id'])){
     // DropzoneJS Demo Code End
   </script>
   
-  
+  <script>
+$(document).ready(function(){
+$('.usereditid').click(function(){
+  let overtimeeditid = $(this).data('id');
+
+  $.ajax({
+   url: 'check.php',
+   type: 'post',
+   data: {overtimeeditid: overtimeeditid},
+   success: function(response1){ 
+     $('.modal-body').html(response1);
+     $('#dnkModal').modal('show'); 
+   }
+ });
+});
+});
+</script>
+ 
 </body>
 </html>
-<!-- <script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
-</script> -->

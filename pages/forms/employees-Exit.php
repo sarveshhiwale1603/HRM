@@ -302,7 +302,7 @@ if(!isset($_SESSION['id'])){
                                   <td><?php echo $row['date']; ?></td>
                                   <td><?php echo $row['interview']; ?></td>
                                   <td><?php echo $row['disable']; ?></td>
-                                  <td><button class="btn btn-sm btn-primary usereditid" data-id='<?php echo $row['id']; ?>'><i class="fas fa-pen"></i></a>
+                                  <td><button class="btn btn-sm btn-primary usereditid" data-id='<?php echo $row['id']; ?>'><i class="fas fa-pen"></i></button>
                                   <button class="btn btn-sm btn-success userinfo ml-1" data-id='<?php echo $row['id']; ?>' ><i class="fa fa-eye"></i></button>
                                   <a href="check.php?did=<?php echo $row['id']; ?>" class="btn btn-sm btn-info"><i class="fa fa-trash"></i></a></td>
                                 </tr>
@@ -610,7 +610,7 @@ if(!isset($_SESSION['id'])){
 <script>
 $(document).ready(function(){
 $('.userinfo').click(function(){
-  var userid = $(this).data('id');
+  let userid = $(this).data('id');
 
   $.ajax({
    url: 'check.php',
@@ -624,7 +624,7 @@ $('.userinfo').click(function(){
 });
 
 $('.usereditid').click(function(){
-  var usereditid = $(this).data('id');
+  let usereditid = $(this).data('id');
 
   $.ajax({
    url: 'check.php',

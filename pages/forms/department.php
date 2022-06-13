@@ -81,9 +81,6 @@ include("../include/header.php");
               <li class="breadcrumb-item active">Department</li>
             </ol>
           </div>
-          <div class="col-sm-4">
-          <div class="text-md-right mr-5 d-flex float-right"> <a class="btn btn-smb btn-outline-primary rounded-pill" href="logout.php"><i class="fa fa-sign-out fa-spin fa-1x" aria-hidden="true"></i>
-            Logout            </a> </div></div>
           <!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->

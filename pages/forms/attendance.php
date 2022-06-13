@@ -188,12 +188,12 @@ if(!isset($_SESSION['id'])){
                                   <?php
                                   $ff='';
                                   $day=date('l');
-                                  if($day=='friday'){
+                                  if($day=='Monday'){
                                     $start_time=$row['mon_in'];
                                     $cin=$row['cin'];
-                                    $ff=$start_time-$cin;}
+                                    echo "<td>".$start_time."</td>";}
                                   ?>
-                                  <td><?php echo $ff; ?></td>
+                                  <!-- <td><?php //echo $ff; ?></td> -->
                                   <td><?php if($row['cout']){ echo $row['cout'];}else{ echo "00:00" ; } ?></td>
                                   <td><?php if($row['time_difference']){ echo $row['time_difference'];}else{ echo "00:00" ; } ?></td>
                                 </tr>
@@ -205,27 +205,8 @@ if(!isset($_SESSION['id'])){
                             </table>
                           </div>
                         </div>
-              <!-- <div class="row">
-                <div class="col-md-10">
-                  <div class="dataTables_info" id="example1_info" role="status">Showing 1 to 10 of 57 entries
-                  </div>
-                </div>
-                  <div class="col-md-2">
-                    <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
-                      <ul class="pagination">
-                        <li class="paginate_button page-item previous disabled" id="example1_previous">
-                          <a href="#"  class="page-link">Previous</a>
-                        </li>
-                          
-                            <li class="paginate_button" name="next" id="example1_next">
-                              <a href="#"class="page-link">Next</a>
-                            </li>
-                          </ul>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
-            </div>
+                      
+                      </div>
                 <!-- /.card-body -->
               </div>
               <!-- /.card -->
