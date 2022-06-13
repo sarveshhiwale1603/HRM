@@ -9,7 +9,10 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Home</a>
+        <a href="dashboard-Admin.php" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a class="btn btn-smb btn-light"  href="system-Reports.php" class="nav-link"><i class="far fa-clock" style="font-size:20px;"></i></a>
       </li>
     </ul>
     <div class="text-md-right mr-5 d-flex float-right" style="width:100%;justify-content:right"> <a class="btn btn-smb btn-outline-primary rounded-pill" href="logout.php"><i class="fa fa-sign-out fa-spin fa-1x" aria-hidden="true"></i>
@@ -22,8 +25,8 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link">
-      <span class="brand-text font-weight-light">AdminLTE 4</span>
+    <a href="dashboard-Admin.php" class="brand-link">
+      <span class="brand-text font-weight-light">Tectignis IT Solutions</span>
     </a>
 
     <!-- Sidebar -->
@@ -40,7 +43,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="dashboard.php" class="nav-link">
+            <a href="dashboard-Admin.php" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Home
@@ -106,19 +109,19 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="manual-attendance.html" class="nav-link">
+                <a href="manual-attendance.php" class="nav-link">
                 
                   <p>manul Attendance</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="monthly-Report.php" class="nav-link">
                   
                   <p>monthly Report</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="overtime-Request.php" class="nav-link">
                   <p>Overtime Request</p>
                 </a>
               </li>
@@ -141,7 +144,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="projects.php" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Project
@@ -157,7 +160,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="leads.php" class="nav-link">
               <i class="nav-icon 	fa fa-user-plus"></i>
               <p>
                 Leads
@@ -197,7 +200,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="disciplinaryCases.php" class="nav-link">
               <i class="nav-icon fa fa-gavel"></i>
               <p>
                 Disiplinary

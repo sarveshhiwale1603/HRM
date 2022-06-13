@@ -25,11 +25,9 @@ if(!isset($_SESSION['id'])){
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <link rel="stylesheet" href="../../dist/css/adminlte.css">
   <link rel="stylesheet" href="../../dist/css/style.css">
- <!-- Select2 -->
- <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
- <link rel="stylesheet" href="../../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
- <style>
+  <style>
     .hoverTitles{
       color: black;
       cursor: pointer;
@@ -394,7 +392,7 @@ if(!isset($_SESSION['id'])){
 <!-- dropzonejs -->
 <script src="../../plugins/dropzone/min/dropzone.min.js"></script>
 <!-- AdminLTE App -->
-<!-- <script src="../../dist/js/adminlte.min.js"></script> -->
+<script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <script>

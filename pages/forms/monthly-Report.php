@@ -1,3 +1,9 @@
+<?php
+include("../include/config.php");
+session_start();
+if(!isset($_SESSION['id'])){
+    header("location:index.php");
+} ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +17,6 @@
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-  <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- DataTables -->
   <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -22,49 +27,29 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <link rel="stylesheet" href="../../dist/css/adminlte.css">
-  <!-- daterange picker -->
-  <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
 
   <style>
     .hoverTitles{
       color: black;
       cursor: pointer;
       font-weight: 500;
-      font-size: small;
+      /* font-size: small; */
 
     }
-    .hoverTitles:hover{
-      color: blueviolet !important;
+    .active1{
+      cursor: pointer;
+      font-weight: 500;
+    }
+      .hoverTitles:hover{
+      color: #007bff !important;
     }
   </style>
 </head>
 <body>
 <div class="wrapper">
 
-  <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__wobble" src="../../dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
+<?php include("../include/header.php") ?>
 
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Home</a>
-      </li>
-    </ul>
-
-    <!-- Right navbar links -->
-  </nav>
-  <!-- /.navbar -->
-
-
-
-  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -86,147 +71,131 @@
       <div class="container-fluid">
         <!-- Info boxes -->
         <div class="row">
-          <div class="col-md-3 grid-margin">
-              <div class="card-body">
-                <a href="attendance.html">
-                <div class="d-flex flex-row align-items-start hoverTitles">
-                
-                  <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg far fa-clock"></i>
-                  <div class="ms-3">
-                      <p class="pb-0 mb-0" style="line-height:1;">Attendance</p>
-                        <small class="text-muted small pt-0 mt-0">View Attendance</small>
-                    
-                  </div>
-                
-              </div>
-            </a>
-              </div>
-          </div>
-          <!-- <p style="line-height:1;"><a href="department.html" target="_self" class="Department titles" style="font-weight:medium;">Department</a> <br> -->
-
-        <!-- /.col -->
-        <div class="col-md-3 grid-margin">
-          <div class="card-body">
-                <a href="manual-attendance.html">
+            <div class="col-md-3 grid-margin">
+                <div class="card-body">
+                  <a href="attendance.php">
                   <div class="d-flex flex-row align-items-start hoverTitles">
                   
-                    <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fas fa-edit"></i>
+                    <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg far fa-clock"></i>
                     <div class="ms-3">
-                        <p class="pb-0 mb-0" style="line-height:1;">Manual Attendance </p>
-                          <small class="text-muted small pt-0 mt-0">Add/Edit Attendance</small>
+                        <p class="pb-0 mb-0" style="line-height:1;">Attendance</p>
+                          <small class="text-muted small pt-0 mt-0">View Attendance</small>
                       
                     </div>
                   
                 </div>
               </a>
-          </div>
-      </div>
-        <!-- /.col -->
-
-        <!-- fix for small devices only -->
-        <div class="clearfix hidden-md-up"></div>
-
-        <div class="col-md-3 grid-margin">
-          <div class="card-body">
-            <a href="monthly-Report.html">
-              <div class="d-flex flex-row align-items-start hoverTitles">
-                <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg 	far fa-calendar"></i>
-                <div class="ms-3">
-                    <p class="pb-0 mb-0" style="line-height:1;">Monthly Report</p>
-                      <small class="text-muted small pt-0 mt-0">View Monthly Report</small>
                 </div>
             </div>
-          </a>
-          </div>
-      </div>
-        <!-- /.col -->
-        <div class="col-md-3 grid-margin">
-          <div class="card-body">
-            <a href="overtime-Request.html">
-              <div class="d-flex flex-row align-items-start hoverTitles">
-                <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fa fa-bars"></i>
-                <div class="ms-3">
-                    <p class="pb-0 mb-0" style="line-height:1;">Overtime Request</p>
-                      <small class="text-muted small pt-0 mt-0">Set up Overtime Request</small>
-                </div>
+            <!-- <p style="line-height:1;"><a href="department.html" target="_self" class="Department titles" style="font-weight:medium;">Department</a> <br> -->
+
+          <!-- /.col -->
+          <div class="col-md-3 grid-margin">
+            <div class="card-body">
+                  <a href="manual-attendance.php">
+                    <div class="d-flex flex-row align-items-start hoverTitles">
+                    
+                      <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fas fa-edit"></i>
+                      <div class="ms-3">
+                          <p class="pb-0 mb-0" style="line-height:1;">Manual Attendance </p>
+                            <small class="text-muted small pt-0 mt-0">Add/Edit Attendance</small>
+                        
+                      </div>
+                    
+                  </div>
+                </a>
             </div>
-          </a>
-          </div>
-      </div>
-        <!-- /.col -->
-      </div>
-      
+        </div>
+          <!-- /.col -->
+
+          <!-- fix for small devices only -->
+          <div class="clearfix hidden-md-up"></div>
+
+          <div class="col-md-3 grid-margin">
+            <div class="card-body">
+              <a href="monthly-Report.php">
+                <div class="d-flex flex-row align-items-start active1">
+                  <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg 	far fa-calendar"></i>
+                  <div class="ms-3">
+                      <p class="pb-0 mb-0" style="line-height:1;">Monthly Report</p>
+                        <small class="text-muted small pt-0 mt-0">View Monthly Report</small>
+                  </div>
+              </div>
+            </a>
+            </div>
+        </div>
+          <!-- /.col -->
+          <div class="col-md-3 grid-margin">
+            <div class="card-body">
+              <a href="overtime-Request.php">
+                <div class="d-flex flex-row align-items-start hoverTitles">
+                  <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fa fa-bars"></i>
+                  <div class="ms-3">
+                      <p class="pb-0 mb-0" style="line-height:1;">Overtime Request</p>
+                        <small class="text-muted small pt-0 mt-0">Set up Overtime Request</small>
+                  </div>
+              </div>
+            </a>
+            </div>
+        </div>
+          <!-- /.col -->
+        </div>
         
         <!-- /.row -->
         <div class="row">
-            <div class="col-md-4">
-              <div class="card">
-                <div class="card-header">
-                  <h5 class="card-title">Filter Attendance</h5>
-                </div>
-                <div class="card-body">
-                  <!-- Date dd/mm/yyyy -->
-                  <div class="form-group">
-                    <label>Date</label>
-                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                      <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate"/>
-                      <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                      </div>
-                  </div>
-                    <!-- /.input group -->
-                  </div>
-                  <div class="form-group">
-                    <label>Designation Name *</label>
-                    <select class="form-control select2" style="width: 100%;">
-                      <option selected="selected" disabled>Designation Name</option>
-                      
-                    </select>
-                    <!-- /.input group -->
-                  </div>
-                  <div class="card-footer">
-                    <buttton type="button" id="submit" class="btn btn-primary btn-lg" name="submit">Filter</buttton>
-                  </div>
-                </div>
-                <!-- /.card-body -->
-              </div>
-              <!-- /.card -->
-              <!-- /.card -->
-            </div>
+            
             <!-- /.col (left) -->
-            <div class="col-md-8">
+            <div class="col-md-12">
               <div class="card">
-                <div class="card-header">
-                  <h5 class="card-title">List All Announcements</h5>
-                  <div class="card-tools">
-                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-default" >
-                      <i class="fas fa-plus"></i> Add New</button>
-                    </button>
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row">
+                          <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Designation Name *</label>
+                                <select class="form-control select2" style="width: 100%;">
+                                  <option selected="selected">Alabama</option>
+                                  
+                                </select>
+                                <!-- /.input group -->
+                              </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Date</label>
+                                <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                  <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                                  <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                  </div>
+                              </div>
+                        </div>
+                    </div>
+                        <div class="col-sm-4">
+                            <button class="btn btn-lg btn-primary mt-4"><i class="fa fa-search"></i></button>
+                        </div>
+                        </div>
+              <!-- <div class="row">
+                <div class="col-md-10">
+                  <div class="dataTables_info" id="example1_info" role="status">Showing 1 to 10 of 57 entries
                   </div>
                 </div>
-                <!-- /.card-header -->
-            <div class="card-body">
-                <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="example1_info">
-                              <thead>
-                               <tr>
-                               <th>Employee</th>
-                               <th>Date</th>
-                               <th>In Time</th>
-                               <th>Out Time</th>
-                               <th>Total Work</th>
-                              </thead>
-                              <tbody>
-                              </tbody>
-                             <tfoot>
-
-                             </tfoot>
-                            </table>
-                          </div>
-                        </div>
+                  <div class="col-md-2">
+                    <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                      <ul class="pagination">
+                        <li class="paginate_button page-item previous disabled" id="example1_previous">
+                          <a href="#"  class="page-link">Previous</a>
+                        </li>
+                          
+                            <li class="paginate_button" name="next" id="example1_next">
+                              <a href="#"class="page-link">Next</a>
+                            </li>
+                          </ul>
+                    </div>
+                  </div>
                 </div>
+              </div> -->
             </div>
                 <!-- /.card-body -->
               </div>
@@ -241,88 +210,12 @@
        
         <!-- /.row -->
       </div><!--/. container-fluid -->
-
-      <div class="modal fade" id="modal-default">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-             <div><h5 class="modal-title">Add Overtime Request Information</h5><small class="small text-muted">We need below required information to add this record.</small></div> 
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label>Employee<sup><b style="color:red;">*</b></sup></label>
-                    <select class="form-control select2" style="width: 100%;">
-                      <option selected="selected">Vedant Naidu</option>
-                      
-                    </select>
-                    <!-- /.input group -->
-                  </div>
-                  <div class="form-group">
-                    <label>Date<sup><b style="color:red;">*</b></sup></label>
-                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                      <input type="text" class="form-control datetimepicker-input" placeholder="Date" data-target="#reservationdate"/>
-                      <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                      </div>
-                  </div>
-                  </div>
-                  <div class="row">
-                     <div class="form-group col-6">
-                        <label>In Time<sup><b style="color:red;">*</b></sup></label>
-    
-                        <div class="input-group date" id="timepicker" data-target-input="nearest">
-                          <input type="text" class="form-control datetimepicker-input" placeholder="In Time" data-target="#timepicker"/>
-                          <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
-                              <div class="input-group-text"><i class="far fa-clock"></i></div>
-                          </div>
-                          </div>
-                        <!-- /.input group -->
-                      </div>
-                      <div class="form-group col-6">
-                        <label>Out Time<sup><b style="color:red;">*</b></sup></label>
-    
-                        <div class="input-group date" id="timepicker" data-target-input="nearest">
-                          <input type="text" class="form-control datetimepicker-input" placeholder="Out Time" data-target="#timepicker"/>
-                          <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
-                              <div class="input-group-text"><i class="far fa-clock"></i></div>
-                          </div>
-                          </div>
-                        <!-- /.input group -->
-                      </div>
-                  </div>
-                 
-            </div>
-            <div class="modal-footer justify-content-end">
-              <button type="button" class="btn btn-default btn-lg" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary btn-lg">Save</button>
-            </div>
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
     </section>
     <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
-
-  <!-- Control Sidebar -->
-  <aside>
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-
-  <!-- Main Footer -->
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.2.0
-    </div>
-  </footer>
+ 
+  <?php include("../include/footer.php") ?>
+  
 </div>
 <!-- ./wrapper -->
 
@@ -402,7 +295,7 @@
 <!-- dropzonejs -->
 <script src="../../plugins/dropzone/min/dropzone.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
+<!-- <script src="../../dist/js/adminlte.min.js"></script> -->
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- Page specific script -->
@@ -544,3 +437,20 @@
 
 </body>
 </html>
+<!-- <script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script> -->

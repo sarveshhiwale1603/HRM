@@ -1,3 +1,9 @@
+<?php
+include("../include/config.php");
+session_start();
+if(!isset($_SESSION['id'])){
+    header("location:index.php");
+} ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -62,27 +68,8 @@
 <body>
     <div class="wrapper">
 
-        <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__wobble" src="../../dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60"
-                width="60">
-        </div>
-
-        <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Home</a>
-                </li>
-            </ul>
-
-            <!-- Right navbar links -->
-        </nav>
-        <!-- /.navbar -->
+  <?php include("../include/header.php") ?>
+      
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -222,7 +209,7 @@
                                             </div>
                                         </div>
                                         <div class="card-footer text-right">
-                                          <a href="../System-Report-Template/attendance-Template.html">  <button type="button" class="btn btn-primary btn-lg ladda-button"
+                                          <a href="../System-Report-Template/attendance-Template.php">  <button type="button" class="btn btn-primary btn-lg ladda-button"
                                                 data-style="expand-right"><span class="ladda-label"> Save </span><span
                                                     class="ladda-spinner"></span></button></a>
                                         </div>
@@ -269,7 +256,7 @@
                                             </div>
                                         </div>
                                         <div class="card-footer text-right">
-                                            <a href="../System-Report-Template/payroll.html">  <button type="button" class="btn btn-primary btn-lg ladda-button"
+                                            <a href="../System-Report-Template/payroll.php">  <button type="button" class="btn btn-primary btn-lg ladda-button"
                                                   data-style="expand-right"><span class="ladda-label"> Save </span><span
                                                       class="ladda-spinner"></span></button></a>
                                           </div>
@@ -311,7 +298,7 @@
                                             </div>
                                         </div>
                                         <div class="card-footer text-right">
-                                            <a href="../System-Report-Template/project.html">  <button type="button" class="btn btn-primary btn-lg ladda-button"
+                                            <a href="../System-Report-Template/project.php">  <button type="button" class="btn btn-primary btn-lg ladda-button"
                                                   data-style="expand-right"><span class="ladda-label"> Save </span><span
                                                       class="ladda-spinner"></span></button></a>
                                           </div>
@@ -354,7 +341,7 @@
                                             </div>
                                         </div>
                                         <div class="card-footer text-right">
-                                            <a href="../System-Report-Template/Task-Report.html">  <button type="button" class="btn btn-primary btn-lg ladda-button"
+                                            <a href="../System-Report-Template/Task-Report.php">  <button type="button" class="btn btn-primary btn-lg ladda-button"
                                                   data-style="expand-right"><span class="ladda-label"> Save </span><span
                                                       class="ladda-spinner"></span></button></a>
                                           </div>
@@ -423,7 +410,7 @@
                                             </div>
                                         </div>
                                         <div class="card-footer text-right">
-                                            <a href="../System-Report-Template/invoice-report.html">  <button type="button" class="btn btn-primary btn-lg ladda-button"
+                                            <a href="../System-Report-Template/invoice-report.php">  <button type="button" class="btn btn-primary btn-lg ladda-button"
                                                   data-style="expand-right"><span class="ladda-label"> Save </span><span
                                                       class="ladda-spinner"></span></button></a>
                                           </div>
@@ -493,7 +480,7 @@
                                             </div>
                                         </div>
                                         <div class="card-footer text-right">
-                                            <a href="../System-Report-Template/leave-report.html">  <button type="button" class="btn btn-primary btn-lg ladda-button"
+                                            <a href="../System-Report-Template/leave-report.php">  <button type="button" class="btn btn-primary btn-lg ladda-button"
                                                   data-style="expand-right"><span class="ladda-label"> Save </span><span
                                                       class="ladda-spinner"></span></button></a>
                                           </div>
@@ -560,7 +547,7 @@
                                             </div>
                                         </div>
                                         <div class="card-footer text-right">
-                                            <a href="../System-Report-Template/training-report.html">  <button type="button" class="btn btn-primary btn-lg ladda-button"
+                                            <a href="../System-Report-Template/training-report.php">  <button type="button" class="btn btn-primary btn-lg ladda-button"
                                                   data-style="expand-right"><span class="ladda-label"> Save </span><span
                                                       class="ladda-spinner"></span></button></a>
                                           </div>
@@ -627,7 +614,7 @@
                                             </div>
                                         </div>
                                         <div class="card-footer text-right">
-                                            <a href="../System-Report-Template/account-statement-report.html">  <button type="button" class="btn btn-primary btn-lg ladda-button"
+                                            <a href="../System-Report-Template/account-statement-report.php">  <button type="button" class="btn btn-primary btn-lg ladda-button"
                                                   data-style="expand-right"><span class="ladda-label"> Save </span><span
                                                       class="ladda-spinner"></span></button></a>
                                           </div>
@@ -647,6 +634,7 @@
             </div>
         </div>
 
+        <?php include("../include/footer.php") ?>
 
     </div>
     <!-- ./wrapper -->
@@ -659,7 +647,7 @@
     <!-- overlayScrollbars -->
     <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="../../dist/js/adminlte.js"></script>
+    <!-- <script src="../../dist/js/adminlte.js"></script> -->
 
     <!-- PAGE PLUGINS -->
     <!-- jQuery Mapael -->

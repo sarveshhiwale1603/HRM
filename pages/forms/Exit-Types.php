@@ -176,6 +176,8 @@ if(isset($_POST['submit'])){
   </div>
   <aside>
   </aside>
+  <?php include("../include/footer.php") ?>
+
 </div>
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
