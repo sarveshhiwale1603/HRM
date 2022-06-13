@@ -1,6 +1,8 @@
 
   <!-- Preloader -->
-  
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__wobble" src="../../dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+  </div>
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -12,8 +14,8 @@
         <a href="#" class="nav-link">Home</a>
       </li>
     </ul>
-    <div class="text-md-right mr-5 d-flex float-right" style="width:100%;justify-content:right"> <a class="btn btn-smb btn-outline-primary rounded-pill" href="logout.php"><i class="fa fa-sign-out fa-spin fa-1x" aria-hidden="true"></i>
-            Logout </a> </div></div>
+    <div class="text-md-right mr-5 d-flex float-right" style="width:100%;justify-content:right"> <a class="btn btn-smb btn-outline-primary rounded-pill" href="logout.php"><i class="fas fa-sign-out fa-spin fa-1x" aria-hidden="true"></i>
+            Logout </a> </div>
 
     <!-- Right navbar links -->
   </nav>
@@ -106,19 +108,19 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="manual-attendance.html" class="nav-link">
+                <a href="manual-attendance.php" class="nav-link">
                 
                   <p>manul Attendance</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="monthly_reports.php" class="nav-link">
                   
                   <p>monthly Report</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="overtime-Request.php" class="nav-link">
                   <p>Overtime Request</p>
                 </a>
               </li>
@@ -149,7 +151,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="manage.php" class="nav-link">
               <i class="nav-icon fas fa-handshake"></i>
               <p>
                 Manage Clients

@@ -69,7 +69,7 @@ if(!isset($_SESSION['id'])){
         <div class="row">
             <div class="col-md-3 grid-margin">
                 <div class="card-body">
-                  <a  href="attendance.html">
+                  <a  href="attendance.php">
                   <div class="d-flex flex-row align-items-start hoverTitles active1">
                   
                     <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg far fa-clock"></i>
@@ -88,7 +88,7 @@ if(!isset($_SESSION['id'])){
           <!-- /.col -->
           <div class="col-md-3 grid-margin">
             <div class="card-body">
-                  <a href="manual-attendance.html">
+                  <a href="manual-attendance.php">
                     <div class="d-flex flex-row align-items-start hoverTitles">
                     
                       <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fas fa-edit"></i>
@@ -109,7 +109,7 @@ if(!isset($_SESSION['id'])){
 
           <div class="col-md-3 grid-margin">
             <div class="card-body">
-              <a href="monthly-Report.html">
+              <a href="monthly-Report.php">
                 <div class="d-flex flex-row align-items-start hoverTitles">
                   <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg 	far fa-calendar"></i>
                   <div class="ms-3">
@@ -184,12 +184,12 @@ if(!isset($_SESSION['id'])){
                                   <?php
                                   $ff='';
                                   $day=date('l');
-                                  if($day=='friday'){
+                                  if($day=='Monday'){
                                     $start_time=$row['mon_in'];
                                     $cin=$row['cin'];
-                                    $ff=$start_time-$cin;}
+                                    echo "<td>".$start_time."</td>";}
                                   ?>
-                                  <td><?php echo $ff; ?></td>
+                                  <!-- <td><?php //echo $ff; ?></td> -->
                                   <td><?php if($row['cout']){ echo $row['cout'];}else{ echo "00:00" ; } ?></td>
                                   <td><?php if($row['time_difference']){ echo $row['time_difference'];}else{ echo "00:00" ; } ?></td>
                                 </tr>
@@ -201,27 +201,8 @@ if(!isset($_SESSION['id'])){
                             </table>
                           </div>
                         </div>
-              <!-- <div class="row">
-                <div class="col-md-10">
-                  <div class="dataTables_info" id="example1_info" role="status">Showing 1 to 10 of 57 entries
-                  </div>
-                </div>
-                  <div class="col-md-2">
-                    <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
-                      <ul class="pagination">
-                        <li class="paginate_button page-item previous disabled" id="example1_previous">
-                          <a href="#"  class="page-link">Previous</a>
-                        </li>
-                          
-                            <li class="paginate_button" name="next" id="example1_next">
-                              <a href="#"class="page-link">Next</a>
-                            </li>
-                          </ul>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
-            </div>
+                      
+                      </div>
                 <!-- /.card-body -->
               </div>
               <!-- /.card -->
