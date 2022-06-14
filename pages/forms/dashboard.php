@@ -268,6 +268,19 @@ $emp_shift=$row['shift'];
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../../dist/js/pages/dashboard2.js"></script>
 <script> 
+
+<?php
+$query=mysqli_query($conn,"select * from attendance where date='$date' and employee_name='$emp_name'");
+if(mysqli_num_rows($query)>0){
+  echo "<script>alert('Attendence already submitted')</script>";?>
+   <script>
+  $(document).ready(function(){
+    $("#clock_in").prop('disabled',true);
+    $("#clock_out").prop('disabled',false);
+  });
+  </script>
+  <?php }
+?>
                   $(document).ready(function(){
                     $("#clock_out").prop('disabled',true);
                   });
