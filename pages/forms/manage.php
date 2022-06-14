@@ -18,6 +18,7 @@ if(!isset($_SESSION['id'])){
         $username = $_POST['username'];
         $image=$_FILES['profile']['name'];
         $status="Active";
+        date_default_timezone_set;
 
         $extension=substr($image,strlen($image)-4,strlen($image));
 $all_extension = array(".jpg","jpeg",".png",".gif");
@@ -32,6 +33,8 @@ $all_extension = array(".jpg","jpeg",".png",".gif");
           move_uploaded_file($dnk,$loc);
 
           $sql="INSERT INTO `manage_client`(`first_name`,`last_name`,`password`,`contact`,`gender`,`email`,`username`,`profile`,`status`)VALUES ('$first_name','$last_name','$password','$contact','$gender','$email','$username','$upload_marksheet','$status')";
+
+          $sql="INSERT INTO `login`(`name`,`lname`, `email`, `staff`, `password`, `status`, `create_date`) VALUES ('$first_name','$last_name','$email','client','$password','1','[value-7]')";
           if (mysqli_query($conn, $sql)){
             echo "<script> alert ('New record has been added successfully !');</script>";
          } else {
@@ -187,9 +190,9 @@ $all_extension = array(".jpg","jpeg",".png",".gif");
                             <label for="gender" class="control-label">
                               Gender                  </label>
                             <select class="form-control" name="gender" data-plugin="select_hrm" data-placeholder="Gender">
-                              <option value="M">
+                              <option value="Male">
                               Male                    </option>
-                              <option value="F">
+                              <option value="Female">
                               Female                    </option>
                             </select>
                           </div>

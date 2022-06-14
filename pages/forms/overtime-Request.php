@@ -209,7 +209,7 @@ if(!isset($_SESSION['id'])){
         </button>
         </div>
         <form method="post" action="check.php">
-        <div class="modal-body">
+        <div class="modal-body ggg">
         
         </div>
                                 </form>
@@ -547,7 +547,7 @@ $('.usereditid').click(function(){
    type: 'post',
    data: {overtimeeditid: overtimeeditid},
    success: function(response1){ 
-     $('.modal-body').html(response1);
+     $('.ggg').html(response1);
      $('#dnkModal').modal('show'); 
    }
  });

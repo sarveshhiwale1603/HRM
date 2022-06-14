@@ -89,4 +89,7 @@ if(isset($_POST['exitSave'])){
     if($sql==1){
         header("location:employees-Exit.php");}else{ echo "<script>alert('Something went wrong');window.location.href='exit_employee.php'</script>";}
 }
+
+
+
 ?>
