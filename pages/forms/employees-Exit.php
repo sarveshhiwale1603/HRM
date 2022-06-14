@@ -36,11 +36,15 @@ if(!isset($_SESSION['id'])){
       color: black;
       cursor: pointer;
       font-weight: 500;
-      font-size: small;
+      /* font-size: small; */
 
     }
-    .hoverTitles:hover{
-      color: blueviolet !important;
+    .active1{
+      cursor: pointer;
+      font-weight: 500;
+    }
+      .hoverTitles:hover{
+      color: #007bff !important;
     }
   </style>
 </head>
@@ -91,7 +95,7 @@ if(!isset($_SESSION['id'])){
           <!-- /.col -->
           <div class="col-md-3 grid-margin">
             <div class="card-body">
-                  <a href="roles&privilages.html">
+                  <a href="roles&privilages.php">
                     <div class="d-flex flex-row align-items-start hoverTitles">
                     
                       <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fas fa-user-lock"></i>

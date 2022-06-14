@@ -1,3 +1,9 @@
+<?php
+include("../include/config.php");
+session_start();
+if(!isset($_SESSION['id'])){
+    header("location:index.php");
+} ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,20 +41,22 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-
     <style>
-        .hoverTitles {
-            color: black;
-            cursor: pointer;
-            font-weight: 500;
-            font-size: small;
+    .hoverTitles{
+      color: black;
+      cursor: pointer;
+      font-weight: 500;
+      /* font-size: small; */
 
-        }
-
-        .hoverTitles:hover {
-            color: blueviolet !important;
-        }
-    </style>
+    }
+    .active1{
+      cursor: pointer;
+      font-weight: 500;
+    }
+      .hoverTitles:hover{
+      color: #007bff !important;
+    }
+  </style>
 
 
     <style>
@@ -68,27 +76,8 @@
 <body>
     <div class="wrapper">
 
-        <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__wobble" src="../../dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60"
-                width="60">
-        </div>
+    <?php include("../include/header.php"); ?>
 
-        <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Home</a>
-                </li>
-            </ul>
-
-            <!-- Right navbar links -->
-        </nav>
-        <!-- /.navbar -->
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -2181,6 +2170,7 @@
             </div>
         </div>
 
+        <?php include("../include/footer.php") ?>
 
     </div>
     <!-- ./wrapper -->

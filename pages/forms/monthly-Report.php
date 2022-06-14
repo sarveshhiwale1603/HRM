@@ -3,32 +3,19 @@ include("../include/config.php");
 session_start();
 if(!isset($_SESSION['id'])){
     header("location:index.php");
-}
-if(isset($_POST['submit'])){
-    $exit_type = $_POST['type'];
-    date_default_timezone_set('Asia/Kolkata');
-    $date=date("Y-m-d H:i:s");
-    $status=1;
-    $sql = mysqli_query($conn,"INSERT INTO `exit_type`(`type`,`create_date`,`status`) VALUES ('$exit_type','$date','$status')");
-    if($sql){
-        header("location:Exit-Types.php");
-    }else{
-      echo "<script>alert('Something went wrong');</script>";
-    }
-}
-?>
+} ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AdminLTE 3| Dashboard 2</title>
+
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="../../https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- DataTables -->
   <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
@@ -40,28 +27,29 @@ if(isset($_POST['submit'])){
   <!-- Theme style -->
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <link rel="stylesheet" href="../../dist/css/adminlte.css">
-  <link rel="stylesheet" href="../../dist/css/style.css">
-  <!-- daterange picker -->
-  <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
 
   <style>
     .hoverTitles{
       color: black;
       cursor: pointer;
       font-weight: 500;
-      font-size: small;
+      /* font-size: small; */
 
     }
-    .hoverTitles:hover{
-      color: blueviolet !important;
+    .active1{
+      cursor: pointer;
+      font-weight: 500;
+    }
+      .hoverTitles:hover{
+      color: #007bff !important;
     }
   </style>
 </head>
 <body>
 <div class="wrapper">
 
- <?php include("../include/header.php"); ?>
-  <!-- Content Wrapper. Contains page content -->
+<?php include("../include/header.php") ?>
+
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -70,7 +58,7 @@ if(isset($_POST['submit'])){
           <div class="col-sm-12">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Exit Type</li>
+              <li class="breadcrumb-item active">Department</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -83,102 +71,154 @@ if(isset($_POST['submit'])){
       <div class="container-fluid">
         <!-- Info boxes -->
         <div class="row">
-      
-            <div class="col-md-6 grid-margin">
+            <div class="col-md-3 grid-margin">
                 <div class="card-body">
-                  <a href="employees-Exit.php">
-                    <div class="d-flex flex-row align-items-start hoverTitles">
-                      <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fa fa-bars"></i>
-                      <div class="ms-3">
-                          <p class="pb-0 mb-0" style="line-height:1;">Employees Exit</p>
-                            <small class="text-muted small pt-0 mt-0">Set up Employees Exit</small>
-                      </div>
-                  </div>
-                </a>
+                  <a href="attendance.php">
+                  <div class="d-flex flex-row align-items-start hoverTitles">
+                  
+                    <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg far fa-clock"></i>
+                    <div class="ms-3">
+                        <p class="pb-0 mb-0" style="line-height:1;">Attendance</p>
+                          <small class="text-muted small pt-0 mt-0">View Attendance</small>
+                      
+                    </div>
+                  
+                </div>
+              </a>
                 </div>
             </div>
+            <!-- <p style="line-height:1;"><a href="department.html" target="_self" class="Department titles" style="font-weight:medium;">Department</a> <br> -->
 
-          <div class="clearfix hidden-md-up"></div>
-          <div class="col-md-6 grid-margin">
+          <!-- /.col -->
+          <div class="col-md-3 grid-margin">
             <div class="card-body">
-              <a href="Exit-Types.php">
-                <div class="d-flex flex-row align-items-start hoverTitles  active1">
-                  <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg 	fas fa-plus-square"></i>
+                  <a href="manual-attendance.php">
+                    <div class="d-flex flex-row align-items-start hoverTitles">
+                    
+                      <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fas fa-edit"></i>
+                      <div class="ms-3">
+                          <p class="pb-0 mb-0" style="line-height:1;">Manual Attendance </p>
+                            <small class="text-muted small pt-0 mt-0">Add/Edit Attendance</small>
+                        
+                      </div>
+                    
+                  </div>
+                </a>
+            </div>
+        </div>
+          <!-- /.col -->
+
+          <!-- fix for small devices only -->
+          <div class="clearfix hidden-md-up"></div>
+
+          <div class="col-md-3 grid-margin">
+            <div class="card-body">
+              <a href="monthly-Reports.php">
+                <div class="d-flex flex-row align-items-start active1">
+                  <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg 	far fa-calendar"></i>
                   <div class="ms-3">
-                      <p class="pb-0 mb-0" style="line-height:1;">Exit Type</p>
-                        <small class="text-muted small pt-0 mt-0">Set Up Exit Type</small>
+                      <p class="pb-0 mb-0" style="line-height:1;">Monthly Report</p>
+                        <small class="text-muted small pt-0 mt-0">View Monthly Report</small>
                   </div>
               </div>
             </a>
             </div>
         </div>
-       
+          <!-- /.col -->
+          <div class="col-md-3 grid-margin">
+            <div class="card-body">
+              <a href="overtime-Request.php">
+                <div class="d-flex flex-row align-items-start hoverTitles">
+                  <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fa fa-bars"></i>
+                  <div class="ms-3">
+                      <p class="pb-0 mb-0" style="line-height:1;">Overtime Request</p>
+                        <small class="text-muted small pt-0 mt-0">Set up Overtime Request</small>
+                  </div>
+              </div>
+            </a>
+            </div>
         </div>
+          <!-- /.col -->
+        </div>
+        
+        <!-- /.row -->
         <div class="row">
+            
+            <!-- /.col (left) -->
             <div class="col-md-12">
-                <div class="row my-3">
-                    <div class="col-md-4">
-                        <div class="card">
-                          <div class="card-header card-header1">
-                            <h5 class="card-title card-title1"> Add New Exit Type</h5>
-                          </div>
-                          <div class="card-body card-body1">
-                            <form method="POST">
-                                <label>Exit Type<sup><b style="color:red;">*</b></sup></label>
-                                    <input type="text" class="form-control" name="type" placeholder="Exit Type">
-                             <div class="card-footer mt-3">
-                                <button type="submit" id="submit" class="btn btn-primary" name="submit">Save</button>
+              <div class="card">
+                <!-- /.card-header -->
+                <div class="card-body">
+                  <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row">
+                          <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Designation Name *</label>
+                                <select class="form-control select2" style="width: 100%;">
+                                  <option selected="selected">Alabama</option>
+                                  
+                                </select>
+                                <!-- /.input group -->
                               </div>
                           </div>
+                          <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Date</label>
+                                <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                  <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate"/>
+                                  <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                  </div>
+                              </div>
                         </div>
-                      </div>
-                  <div class="col-md-8">
-                    <div class="card card1">
-                      <div class="card-header card-header1">
-                        <h5 class="card-title card-title1">List All Exit Type</h5>
-                      </div>
-                      <!-- /.card-header -->
-                      <div class="card-body card-body1">
-                        <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                            <div class="row">
-                              <div class="col-sm-12">
-                                <table id="example1" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="example1_info">
-                                  <thead>
-                                   <tr>
-                                   <th><i class="fas fa-braille"></i> EXIT TYPE</th>
-                                   <th><i class="fas fa-calendar"></i> CREATED AT</th>
-                                  </thead>
-                                  <tbody>
-                                    <?php
-                                    $sql=mysqli_query($conn,"select * from exit_type");
-                                    while($dnk=mysqli_fetch_array($sql)){?>
-                                      
-                                      <tr>
-                                      <td><?php echo $dnk['type']; ?></td>
-                                      <td><?php echo $dnk['create_date'] ?></td>
-                                      </tr>    <?php }  ?>
-                                  </tbody>
-                                 <tfoot>
-    
-                                 </tfoot>
-                                </table>
-                              </div>
-                            </div>
-                         </div>
-                      </div>
+                    </div>
+                        <div class="col-sm-4">
+                            <button class="btn btn-lg btn-primary mt-4"><i class="fa fa-search"></i></button>
+                        </div>
+                        </div>
+              <!-- <div class="row">
+                <div class="col-md-10">
+                  <div class="dataTables_info" id="example1_info" role="status">Showing 1 to 10 of 57 entries
+                  </div>
+                </div>
+                  <div class="col-md-2">
+                    <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                      <ul class="pagination">
+                        <li class="paginate_button page-item previous disabled" id="example1_previous">
+                          <a href="#"  class="page-link">Previous</a>
+                        </li>
+                          
+                            <li class="paginate_button" name="next" id="example1_next">
+                              <a href="#"class="page-link">Next</a>
+                            </li>
+                          </ul>
                     </div>
                   </div>
-                
                 </div>
+              </div> -->
+            </div>
+                <!-- /.card-body -->
+              </div>
+              <!-- /.card -->
+            </div>
+            <!-- /.col (right) -->
           </div>
-      </div>
-    </section>
-  </div>
-  <aside>
-  </aside>
-  <?php include("../include/footer.php") ?>
+        
+        <!-- /.row -->
 
+        <!-- Main row -->
+       
+        <!-- /.row -->
+      </div><!--/. container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+ 
+  <?php include("../include/footer.php") ?>
+  
 </div>
+<!-- ./wrapper -->
+
 <!-- REQUIRED SCRIPTS -->
 <!-- jQuery -->
 <script src="../../plugins/jquery/jquery.min.js"></script>
@@ -199,6 +239,7 @@ if(isset($_POST['submit'])){
 <script src="../../plugins/chart.js/Chart.min.js"></script>
 
 <!-- AdminLTE for demo purposes -->
+<script src="../../dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../../dist/js/pages/dashboard2.js"></script>
 <!-- DataTables  & Plugins -->
@@ -254,7 +295,7 @@ if(isset($_POST['submit'])){
 <!-- dropzonejs -->
 <script src="../../plugins/dropzone/min/dropzone.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
+<!-- <script src="../../dist/js/adminlte.min.js"></script> -->
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- Page specific script -->
@@ -396,3 +437,20 @@ if(isset($_POST['submit'])){
 
 </body>
 </html>
+<!-- <script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script> -->

@@ -40,18 +40,20 @@ $id=$_SESSION['id']; ?>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
-
-  <style>
-    .hoverTitles {
+    <style>
+    .hoverTitles{
       color: black;
       cursor: pointer;
       font-weight: 500;
-      font-size: small;
+      /* font-size: small; */
 
     }
-
-    .hoverTitles:hover {
-      color: blueviolet !important;
+    .active1{
+      cursor: pointer;
+      font-weight: 500;
+    }
+      .hoverTitles:hover{
+      color: #007bff !important;
     }
   </style>
 </head>
@@ -86,8 +88,8 @@ $id=$_SESSION['id']; ?>
           <div class="row">
             <div class="col-md-3 grid-margin">
               <div class="card-body">
-                <a href="employees.html">
-                  <div class="d-flex flex-row align-items-start hoverTitles active1">
+                <a href="employees.php">
+                  <div class="d-flex flex-row align-items-start active1">
 
                     <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fas fa-user-friends "></i>
                     <div class="ms-3">
@@ -105,7 +107,7 @@ $id=$_SESSION['id']; ?>
             <!-- /.col -->
             <div class="col-md-3 grid-margin">
               <div class="card-body">
-                <a href="roles&privilages.html">
+                <a href="roles&privilages.php">
                   <div class="d-flex flex-row align-items-start hoverTitles">
 
                     <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fas fa-user-lock"></i>
@@ -545,7 +547,7 @@ $id=$_SESSION['id']; ?>
 <!-- dropzonejs -->
 <script src="../../plugins/dropzone/min/dropzone.min.js"></script>
 <!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
+<!-- <script src="../../dist/js/adminlte.min.js"></script> -->
 <!-- AdminLTE for demo purposes -->
 <!-- Page specific script -->
 <script>

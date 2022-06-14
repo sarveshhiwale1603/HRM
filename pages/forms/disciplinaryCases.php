@@ -1,3 +1,9 @@
+<?php
+include("../include/config.php");
+session_start();
+if(!isset($_SESSION['id'])){
+    header("location:index.php");
+} ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -97,17 +103,21 @@
     ></script>
 
     <style>
-      .hoverTitles {
-        color: black;
-        cursor: pointer;
-        font-weight: 500;
-        font-size: small;
-      }
+    .hoverTitles{
+      color: black;
+      cursor: pointer;
+      font-weight: 500 !important;
+      /* font-size: small; */
 
-      .hoverTitles:hover {
-        color: blueviolet !important;
-      }
-    </style>
+    }
+    .active1{
+      cursor: pointer;
+      font-weight: 500 !important;
+    }
+      .hoverTitles:hover{
+      color: #007bff !important;
+    }
+  </style>
     <style>
       .feed-card .card-body .border-feed i {
         position: absolute;
@@ -180,37 +190,8 @@
 
   <body>
     <div class="wrapper">
-      <!-- Preloader -->
-      <div
-        class="preloader flex-column justify-content-center align-items-center"
-      >
-        <img
-          class="animation__wobble"
-          src="../../dist/img/AdminLTELogo.png"
-          alt="AdminLTELogo"
-          height="60"
-          width="60"
-        />
-      </div>
-
-      <!-- Navbar -->
-      <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-        <!-- Left navbar links -->
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" data-widget="pushmenu" href="#" role="button"
-              ><i class="fas fa-bars"></i
-            ></a>
-          </li>
-          <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link">Home</a>
-          </li>
-        </ul>
-
-        <!-- Right navbar links -->
-      </nav>
-      <!-- /.navbar -->
-
+  <?php include("../include/header.php") ?>
+     
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -238,8 +219,8 @@
             <div class="row">
               <div class="col-md-6 grid-margin">
                 <div class="card-body">
-                  <a href="disciplinaryCases.html">
-                    <div class="d-flex flex-row align-items-start hoverTitles">
+                  <a href="disciplinaryCases.php">
+                    <div class="d-flex flex-row align-items-start active1">
                       <i
                         class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fa fa-exclamation-circle"
                       ></i>
@@ -260,7 +241,7 @@
               <!-- /.col -->
               <div class="col-md-6 grid-margin">
                 <div class="card-body">
-                  <a href="case-Type.html">
+                  <a href="case-Type.php">
                     <div class="d-flex flex-row align-items-start hoverTitles">
                       <i
                         class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fa fa-server"
@@ -454,6 +435,8 @@
       <!-- /.control-sidebar -->
 
       <!-- Main Footer -->
+  <?php include("../include/footer.php") ?>
+
     </div>
     <!-- ./wrapper -->
 
@@ -465,7 +448,7 @@
     <!-- overlayScrollbars -->
     <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
-    <script src="../../dist/js/adminlte.js"></script>
+    <!-- <script src="../../dist/js/adminlte.js"></script> -->
 
     <!-- PAGE PLUGINS -->
     <!-- jQuery Mapael -->
