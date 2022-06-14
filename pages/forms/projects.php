@@ -155,27 +155,7 @@ element.style {
 
 <body>
     <div class="wrapper">
-        <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__wobble" src="../../dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60"
-                width="60" />
-        </div>
-
-        <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Home</a>
-                </li>
-            </ul>
-
-            <!-- Right navbar links -->
-        </nav>
-        <!-- /.navbar -->
+     <?php include("../include/header.php") ?>
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -341,14 +321,12 @@ element.style {
                                             <div class="col text-right">
                                                 <div class="card-tools">
                                                     <span class="mr-2">View Mode : </span>
-                                                    <a href="project-List.html"><button type="button"
+                                                    <a href="project-List.php"><button type="button"
                                                             class="btn btn-primary btn-sm">
                                                             <i class="fas fa-list-ul"></i>
                                                         </button></a>
-                                                        <a href="projects.html"> <button type="button" title="Grid view" class="btn btn-primary btn-sm">
-                                                            <i class="fas fa-th-large"></i></button></a>
-                                                    <!-- <button type="button" class="btn btn-primary btn-sm">
-                                                            <i class="fas fa-th-large"></i></button> -->
+                                                        <a href="projects.php" title="Grid view" class="btn btn-primary btn-sm">
+                                                            <i class="fas fa-th-large"></i></a>
                                                     <button type="button" class="btn btn-primary btn-sm"
                                                         data-bs-toggle="collapse" href="#collapseExample" role="button"
                                                         aria-expanded="false" aria-controls="collapseExample">
@@ -645,7 +623,7 @@ element.style {
             <!-- Control sidebar content goes here -->
         </aside>
         <!-- /.control-sidebar -->
-
+        <?php include("../include/footer.php") ?>
         <!-- Main Footer -->
 
     </div>

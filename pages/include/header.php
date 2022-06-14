@@ -138,7 +138,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="task.php" class="nav-link">
               <i class="nav-icon fa fa-edit"></i>
               <p>
                 Task
@@ -170,7 +170,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="" class="nav-link">
               <i class="nav-icon fa fa-question-circle"></i>
               <p>
                 Helpdesk
