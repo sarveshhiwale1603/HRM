@@ -351,7 +351,30 @@ $id=$_SESSION['id']; ?>
                             </select>
                           </div>
                         </div>
-                    </div>      
+                    </div>     
+                    
+                    <div class="row my-3">
+                     <div class="col-lg-6">
+                          <label>Employement Type<sup><b style="color:red;">*</b></sup></label>
+                          <div class="input-group">
+                            <select class="form-control select2" name="slip" style="width: 100%;" required>
+                              <option selected="selected" disabled >Employement Type</option>
+                              <option>Internship</option>
+                              <option>Payroll</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-lg-6">
+                          <label>Pan No.<sup><b style="color:red;">*</b></sup></label>
+                          <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="far fa-credit-card"></i></span>
+                          </div>
+                          <input type="text" class="form-control" name="Pancard" placeholder="Pan No" required>
+                        </div>
+                      </div>
+                    </div>
+
                         <div class="card-footer">
                           <button type="button" id="reset" class="btn btn-default" name="reset" data-bs-toggle="collapse"
                           href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Reset</button>

@@ -280,7 +280,7 @@ if(!isset($_SESSION['id'])){
 
                        <!-- #rd Row Payroll monthly report  -->
                        <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                           <div class="card">
                             <div class="card-header">
                               <h5>
@@ -325,6 +325,10 @@ if(!isset($_SESSION['id'])){
                       </svg></div><div class="apexcharts-menu-icon" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"></path><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg></div><div class="apexcharts-menu"><div class="apexcharts-menu-item exportSVG" title="Download SVG">Download SVG</div><div class="apexcharts-menu-item exportPNG" title="Download PNG">Download PNG</div><div class="apexcharts-menu-item exportCSV" title="Download CSV">Download CSV</div></div></div></div></div>
                             <div class="resize-triggers"><div class="expand-trigger"><div style="width: 476px; height: 503px;"></div></div><div class="contract-trigger"></div></div></div>
                           </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          Tectignis It Solution
                         </div>
                        </div>
 
