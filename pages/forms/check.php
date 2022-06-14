@@ -369,5 +369,23 @@ if(isset($_POST['client_detail_update1'])){
     echo "Record not updated";
   }
   }
+
+  if(isset($_POST['changepassword'])){
+    $cur_id=$_POST['cur_id'];
+    $cur_pass=$_POST['cur_pass'];
+    $new_pass=$_POST['new_pass'];
+
+    $sql=mysqli_query($conn,"select * from manage_client where id='$cur_id'");
+    $row=mysqli_fetch_array($sql);
+    $cur_password=$row['password'];
+
+    if(password_verify($cur_pass, $cur_password)){
+      $new_password=password_hash($new_pass, PASSWORD_BCRYPT);
+      $sql2=mysqli_query($conn,"UPDATE `manage_client` SET `password`='$new_password' WHERE id='$cur_id'");
+    }
+    else{
+      echo "<script>alert('Current password is incorrect');</script>";
+    }
+  }
 ?>
   

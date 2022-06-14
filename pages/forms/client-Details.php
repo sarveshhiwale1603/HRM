@@ -5,7 +5,7 @@ if(!isset($_SESSION['id'])){
     header("location:index.php");
 } 
 $id=$_GET['manageid'];
-$sql=mysqli_query($conn,"select * from manage_client where id='$id'");
+$sql=mysqli_query($conn,"select * from manage_client  where id='$id'");
 $row=mysqli_fetch_array($sql);
 ?>
 <!DOCTYPE html>
@@ -317,29 +317,32 @@ $row=mysqli_fetch_array($sql);
                                         </div>
                                         <div class="card-body pb-2">
                                             <div class="box-body">
-                                                <form action="" name="edit_user_photo" id="edit_user_photo" autocomplete="off" method="post" accept-charset="utf-8">
+                                                <form action="api.php"  id="edit_user_photo" autocomplete="off" method="post"enctype="multipart/form-data">
                                                     <input type="hidden" name="csrf_token" value="53a234476ba3b824da743d5aeaa31e04">
                                                     <input type="hidden" name="token" value="vx26WfVlb_M1fWrFzCPYekQi1KECygUtBMb5BV7fnAw"style="display:none;">
                                                     <div class="form-body">
                                                         <div class="row">
                                                             <div class="col-md-12">
-                                                                <div class="form-group">
+                                                                <div style="text-align: center;">
+                                                                    <img src="image/manage_image/<?php echo $row['profile']; ?>" style="width: 250px;height:250px;border-radius: 50%;">
+                                                            </div>
+                                                                <div class="form-group mt-3">
                                                                     <label for="logo">  Profile Picture <span class="text-danger">*</span> </label>
                                                                     <div class="custom-file">
-                                                                        <input type="file" class="custom-file-input"  name="file">
-                                                                        <label class="custom-file-label"> Choose file... </label>
-                                                                        <small> Upload files only: gif,png,jpg,jpeg </small>
+                                                                    <input type="hidden" id="client_id" name="client_id" value="<?php echo $row['id']; ?>">
+                                                                        <input type="file" name="file" accept="image/png, image/gif, image/jpeg, image/jpg">
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </form>
+                                               
                                             </div>
                                         </div>
                                         <div class="card-footer text-right">
-                                            <button type="submit" class="btn btn-primary ladda-button" data-style="expand-right"><span class="ladda-label"> Update Picture </span><span class="ladda-spinner"></span></button>
+                                            <button type="submit" class="btn btn-primary ladda-button" data-style="expand-right" name="client_profile" ><span class="ladda-label"> Update Picture </span><span class="ladda-spinner"></span></button>
                                         </div>
+                                        </form>
                                         <div style="display:none"><label>Bot Will Fill This Field</label>
                                             <input  type="text" name="ciapp_check" value=""></div>
                                     </div>
@@ -364,7 +367,7 @@ $row=mysqli_fetch_array($sql);
                                                 <div id="PROJECT_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                                     <div class="row">
                                                       <div class="col-sm-12">
-                                                        <table id="PROJECT" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="PROJECT__info">
+                                                        <table id="PROJECT" class="table table-bordered table-responsive table-striped dataTable dtr-inline" aria-describedby="PROJECT__info">
                                                           <thead>
                                                            <tr>
                                                            <th>PROJECT</th>
@@ -374,10 +377,31 @@ $row=mysqli_fetch_array($sql);
                                                            <th>END DATE</th>
 
                                                            <th>PROGRESS</th>
-
+                                                           <th>ACTION</th>
                                                           
                                                           </thead>
                                                           <tbody>
+                                                            <?php
+                                                            $result_project=mysqli_query($conn,"SELECT * FROM project inner join manage_client on project.client=manage_client.id left join employee on employee.employee_code=project.team WHERE project.client='$id';");
+                                                            while($row_project = mysqli_fetch_array($result_project)){
+                                                                ?>
+                                                                <tr>
+                                                                    <td><?php echo $row_project['title']; ?></td>
+                                                                    <td><?php echo $row_project['priority']; ?></td>
+                                                                    <td><?php echo $row_project['fname'].' '.$row_project['lname']; ?></td>
+                                                                    <td><?php echo $row_project['start_date']; ?></td>
+                                                                    <td><?php echo $row_project['end_date']; ?></td>
+                                                                    <td>
+                                                                    <div class="progress">
+    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $row_project['progress']; ?>">
+    <?php echo $row_project['progress']; ?>
+    </div>
+  </div>    
+                                                                    </td>
+                                                                    <td><a href="project-Details.php"><i class="fa fa-location-arrow"></i></a></td>
+                                                            </tr>
+                                                            <?php }
+                                                            ?>
                                                           </tbody>
                                                          <tfoot>
                             
@@ -494,7 +518,7 @@ $row=mysqli_fetch_array($sql);
                                                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                                                 </svg><span class="p-l-5"> Change Password </span></h5>
                                         </div>
-                                        <form action="" name="change_password" id="change_password" autocomplete="off" method="post" accept-charset="utf-8">
+                                        <form name="change_password" id="change_password" autocomplete="off" method="post" accept-charset="utf-8">
                                             <input type="hidden" name="csrf_token" value="53a234476ba3b824da743d5aeaa31e04">
                                             <input type="hidden" name="token" value="vx26WfVlb_M1fWrFzCPYekQi1KECygUtBMb5BV7fnAw" style="display:none;">
                                             <div class="card-body">
@@ -503,8 +527,10 @@ $row=mysqli_fetch_array($sql);
                                                         <div class="form-group">
                                                             <label>  Current password </label>
                                                             <div class="input-group">
+                                                            <input type="hidden" name="cur_id" id="cur_id" value="<?php echo $row['id']; ?>">
                                                                 <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-eye"></i></span></div>
-                                                                <input type="password" readonly="readonly" class="form-control" name="pass"  placeholder="Current password" value="********">
+                                                               
+                                                                <input type="password"  class="form-control" name="pass" id="cur_pass">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -515,7 +541,7 @@ $row=mysqli_fetch_array($sql);
                                                             <label> New password <span class="text-danger">*</span></label>
                                                             <div class="input-group">
                                                                 <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-eye"></i></span></div>
-                                                                <input type="password" class="form-control" name="new_password" placeholder="New password">
+                                                                <input type="password" class="form-control" name="new_pass" id="new_pass"  placeholder="New password">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -524,16 +550,15 @@ $row=mysqli_fetch_array($sql);
                                                             <label>  Repeat new password <span class="text-danger">*</span></label>
                                                             <div class="input-group">
                                                                 <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-eye"></i></span></div>
-                                                                <input type="password" class="form-control" name="confirm_password"  placeholder="Repeat new password">
+                                                                <input type="password" class="form-control" name="con_pass" id="con_pass" placeholder="Repeat new password">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="card-footer text-right">
-                                                <button type="submit" class="btn btn-danger ladda-button"  data-style="expand-right"><span class="ladda-label">  Change Password </span><span  class="ladda-spinner"></span></button>
+                                                <button type="button" class="btn btn-danger ladda-button" id="changepassword" data-style="expand-right"><span class="ladda-label">  Change Password </span><span  class="ladda-spinner"></span></button>
                                             </div>
-                                            <div style="display:none"><label>Bot Will Fill This Field</label><input  type="text" name="ciapp_check" value=""></div>
                                         </form>
                                     </div>
                                 </div>

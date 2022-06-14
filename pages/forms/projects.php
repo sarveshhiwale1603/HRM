@@ -3,7 +3,38 @@ include("../include/config.php");
 session_start();
 if(!isset($_SESSION['id'])){
     header("location:index.php");
-} ?>
+} 
+
+
+    if(isset($_POST['submit']))
+    {
+        $title = $_POST['title'];
+        $estimated_hr	 = $_POST['estimated_hr'];
+        $start_date	 = $_POST['start_date'];
+        $end_date	 = $_POST['end_date'];
+        $summary = $_POST['summary'];
+        $priority = $_POST['priority'];
+        $team = $_POST['team'];
+        $description= $_POST['description'];
+        $client	 = $_POST['client'];
+        $employee_code = $team;
+        $sql="INSERT INTO `project`(`title`,`estimated_hr`,`priority`,`start_date`,`end_date`,`summary`,`team`,`description`,`client`,`employee_code`)VALUES ('$title','$estimated_hr','$priority','$start_date','$end_date','$summary','$team','$description','$client','$employee_code')";
+        if (mysqli_query($conn, $sql)){
+          echo "<script> alert ('New record has been added successfully !');</script>";
+       } else {
+          echo "<script> alert ('connection failed !');</script>";
+       }
+      
+   // }
+    // if(isset($_GET['delid'])){
+    //   $id=mysqli_real_escape_string($conn,$_GET['delid']);
+    //   $sql=mysqli_query($conn,"delete from attendance where id='$id'");
+    //   if($sql=1){
+    //       header("location:manual-attendance.php");
+      //}
+      }
+  ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,25 +89,20 @@ if(!isset($_SESSION['id'])){
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-        
 
 
-        <style>
-    .hoverTitles{
-      color: black;
-      cursor: pointer;
-      font-weight: 500 !important;
-      /* font-size: small; */
+    <style>
+        .hoverTitles {
+            color: black;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: small;
+        }
 
-    }
-    .active1{
-      cursor: pointer;
-      font-weight: 500 !important;
-    }
-      .hoverTitles:hover{
-      color: #007bff !important;
-    }
-  </style>
+        .hoverTitles:hover {
+            color: blueviolet !important;
+        }
+    </style>
      <style>
         .feed-card .card-body .border-feed i {
     position: absolute;
@@ -129,8 +155,27 @@ element.style {
 
 <body>
     <div class="wrapper">
-    <?php include("../include/header.php") ?>
-  
+        <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__wobble" src="../../dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60"
+                width="60" />
+        </div>
+
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="#" class="nav-link">Home</a>
+                </li>
+            </ul>
+
+            <!-- Right navbar links -->
+        </nav>
+        <!-- /.navbar -->
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -159,8 +204,8 @@ element.style {
                     <div class="row">
                         <div class="col-md-4 grid-margin">
                             <div class="card-body">
-                                <a href="projects.php">
-                                    <div class="d-flex flex-row align-items-start active1">
+                                <a href="projects.html">
+                                    <div class="d-flex flex-row align-items-start hoverTitles">
                                         <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fas fa-user-friends"></i>
                                         <div class="ms-3">
                                             <p class="pb-0 mb-0" style="line-height: 1">
@@ -177,9 +222,9 @@ element.style {
                         <!-- /.col -->
                         <div class="col-md-4 grid-margin">
                             <div class="card-body">
-                                <a href="project-Calendar.php">
+                                <a href="\pages\project-Calendar.html">
                                     <div class="d-flex flex-row align-items-start hoverTitles">
-                                        <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fa fa-calendar-alt"></i>
+                                        <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fas fa-user-calendar"></i>
                                         <div class="ms-3">
                                             <p class="pb-0 mb-0" style="line-height: 1">
                                                 Calendar
@@ -197,7 +242,7 @@ element.style {
 
                         <div class="col-md-4 grid-margin">
                             <div class="card-body">
-                                <a href="project-Kanban-Board.php">
+                                <a href="project-Kanban-Board.html">
                                     <div class="d-flex flex-row align-items-start hoverTitles">
                                         <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg far fa-clock"></i>
                                         <div class="ms-3">
@@ -300,7 +345,7 @@ element.style {
                                                             class="btn btn-primary btn-sm">
                                                             <i class="fas fa-list-ul"></i>
                                                         </button></a>
-                                                        <a href="projects.php"> <button type="button" title="Grid view" class="btn btn-primary btn-sm">
+                                                        <a href="projects.html"> <button type="button" title="Grid view" class="btn btn-primary btn-sm">
                                                             <i class="fas fa-th-large"></i></button></a>
                                                     <!-- <button type="button" class="btn btn-primary btn-sm">
                                                             <i class="fas fa-th-large"></i></button> -->
@@ -324,7 +369,7 @@ element.style {
                         <div class="col-md-12">
 
                             <div class="collapse" id="collapseExample">
-
+                              <form method="POST" >
                                 <div class="row my-3">
                                     <div class="col-md-12">
                                         <div class="card">
@@ -345,7 +390,7 @@ element.style {
                                                     <div class="col-lg-4">
                                                         <label>Title<sup><b style="color:red;">*</b></sup></label>
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control"
+                                                            <input type="text" class="form-control" name="title"
                                                                 placeholder="Title">
                                                         </div>
                                                         <!-- /input-group -->
@@ -354,17 +399,28 @@ element.style {
                                                     <div class="col-lg-3">
                                                         <label>Client<sup><b style="color:red;">*</b></sup></label>
                                                         <div class="input-group">
-                                                            <select class="form-control select2" style="width: 100%;">
-                                                                <option selected="selected" >Client</option>
-                                                                <option>Aniket Nangare</option>
-                                                            </select>
+                                                        <?php 
+                                                            $query=mysqli_query($conn,"select * from manage_client");
+                                                            ?>
+
+
+                                                                <select class="form-control select2" name="client" style="width: 100%;">
+                                                                  <option selected="selected">select</option>
+                                                                  <?php
+                                                            while($sql=mysqli_fetch_array($query))
+                                                            {
+                                                              ?>
+
+                                                                  <option value="<?php echo $sql['id'] ?>"> <?php echo $sql['first_name']; ?></option>
+                                                                  <?php } ?>
+                                                                </select>
                                                         </div>
                                                         <!-- /input-group -->
                                                     </div>
                                                     <div class="col-lg-2">
                                                         <label>Estimated Hour</label>
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control"
+                                                            <input type="text" class="form-control" name="estimated_hr"
                                                                 placeholder="Estimated Hour">
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text">
@@ -376,8 +432,8 @@ element.style {
                                                     </div>
                                                     <div class="col-lg-3">
                                                         <label>Priority</label>
-                                                        <div class="input-group">
-                                                            <select class="form-control select2" style="width: 100%;">
+                                                        <div class="input-group" >
+                                                            <select class="form-control select2" style="width: 100%;" name="priority">
                                                                 <option selected="selected">Highest</option>
                                                                 <option>High</option>
                                                                 <option>Normal</option>
@@ -390,32 +446,24 @@ element.style {
                                                     <!-- /.col-lg-6 -->
                                                 </div>
                                                 <!-- /.row -->
-
-
                                                 <div class="row my-3">
-                                                    <div class="col-lg-3">
-                                                        <label>Start Date<sup><b style="color:red;">*</b></sup></label>
-                                                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                                            <input type="text" class="form-control datetimepicker-input" placeholder="Date" data-target="#reservationdate"/>
-                                                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- /.col-lg-4 -->
-                                                    <div class="col-lg-3">
-                                                        <label>End Date<sup><b style="color:red;">*</b></sup></label>
-                                                        <div class="input-group date" id="endDate" data-target-input="nearest">
-                                                            <input type="text" class="form-control datetimepicker-input" placeholder="Date" data-target="#endDate"/>
-                                                            <div class="input-group-append" data-target="#endDate" data-toggle="datetimepicker">
-                                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                            <div class="col-lg-3">
+                              <label>Start Date<sup><b style="color:red;">*</b></sup></label>
+                              <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                <input type="date" name="start_date" class="form-control" placeholder="Date"/>
+                              
+                              </div>
+                            </div>
+                            <!-- /.col-lg-4 -->
+                            <div class="col-lg-3">
+                              <label>End Date<sup><b style="color:red;">*</b></sup></label>
+                                <input type="date" name="end_date" class="form-control" placeholder="Date"/>
+                              
+                            </div>
                                                     <div class="col-lg-6">
                                                         <label>Summary<sup><b style="color:red;">*</b></sup></label>
                                                         <div class="input-group">
-                                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" placeholder="Summary"></textarea>
+                                                            <textarea class="form-control" name="summary" id="exampleFormControlTextarea1" rows="1" placeholder="Summary"></textarea>
                                                         </div>
                                                         <!-- /input-group -->
                                                     </div>
@@ -428,11 +476,18 @@ element.style {
                                                     <div class="col-lg-12">
                                                         <div class="form-group">
                                                           <label>Team</label>
-                                                          <select class="select2" multiple="multiple" data-placeholder="Team" style="width: 100%;">
-                                                            <option>Vedant</option>
-                                                            <option>Naidu</option>
-                                                        
-                                                          </select>
+                                                          <select class="form-control select2" name="team" style="width: 100%;">
+                                                          <option selected="selected">select</option>
+                                                        <?php
+                                                   $query=mysqli_query($conn,"select * from employee");
+                                                            while($sql=mysqli_fetch_array($query))
+                                                            {
+                                                              ?>
+
+                                                        <option value="<?php echo $sql['employee_code'] ?>">
+                                                            <?php echo $sql['fname'].' '.$sql['lname']; ?></option>
+                                                        <?php }  ?>
+                                                    </select>
                                                         </div>
                                                           </div>
                                                    
@@ -444,7 +499,7 @@ element.style {
                                                     <div class="col-lg-12">
                                                         <div class="form-group">
                                                           <label>Description</label>
-                                                    <textarea id="summernote" class="form-control" rows="3">
+                                                    <textarea id="summernote" name="description" class="form-control" rows="3">
                                                         <!-- Place <em>some</em> <u>text</u> <strong>here</strong> -->
                                                       </textarea>
                                                       </div>
@@ -457,9 +512,12 @@ element.style {
                                                         name="reset" data-bs-toggle="collapse" href="#collapseExample"
                                                         role="button" aria-expanded="false"
                                                         aria-controls="collapseExample">Reset</buttton>
-                                                    <buttton type="button" id="submit" class="btn btn-primary"
-                                                        name="Save">Save</buttton>
+                                                    <button type="submit" name=submit id="submit" class="btn btn-primary"
+                                                        name="Save">Save</button>
+                                                      
+
                                                 </div>
+</form>
                                             </div>
                                         </div>
                                     </div>
@@ -468,24 +526,29 @@ element.style {
                             </div>
                         </div>
                     </div>
-                  
                     <div class="row">
+
+                    <?php
+ $query=mysqli_query($conn,"select project.title , project.start_date,project.end_date,project.start_date,project.summary,employee.image from employee inner join project on project.employee_code=employee.employee_code");
+                     while($sql=mysqli_fetch_array($query))
+                    {
+                      ?>
+                  
                         <div class="col-md-4 col-sm-12">
                             <div class="card card-border-c-blue">
                                 <div class="card-header"> <a
                                         href="http://hrm.tectignis.in/erp/project-detail/WTgSGCdTUsln6QFa0YRAZCK_AjAMCE-AqDB_MScIasQ"
                                         class="text-secondary">#
-                                        1 .
-                                        jhkjhkjhh </a> <span class="label label-primary float-right">
-                                        2022.06.04 </span> </div>
+                                       <?php echo $sql['title'] ?></a> <span class="label label-primary float-right">
+                                       <?php echo $sql['start_date'] ?></span> </div>
                                 <div class="card-body card-task">
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <p class="task-detail">
-                                                mnkjnknkjn...</p>
+                                            <?php echo $sql['summary']?></p>
                                             <p class="task-due"><strong>
                                                     Due : </strong><strong class="label label-primary">
-                                                    2022.06.10 </strong></p>
+                                                    <?php echo $sql['start_date'] ?></strong></p>
                                         </div>
                                         <div class="col-sm-12">
                                             <div class="progress" style="height: 10px;">
@@ -497,10 +560,12 @@ element.style {
                                         </div>
                                     </div>
                                     <hr>
+                                    
                                         <div class="task-list-table">
+                                          
                                             <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
                                                 title="" data-original-title="VEDANT NAIDU"><span class="mb-1"><img
-                                                        src="http://hrm.tectignis.in/public/uploads/users/thumb/logo.jpg"
+                                                        src="employee_image/employee_image/<?php echo $sql['image']; ?>"
                                                         class="img-fluid img-radius mr-2"
                                                         style=" border-radius: 50%; width: 50px; height: auto;"
                                                         alt=""></span></a><a style="color:black;" href="#!"><i
@@ -539,6 +604,8 @@ element.style {
                                 </div>
                             </div>
                         </div>
+
+                       <?php } ?>
                     </div>
                       <hr>
                        <center> <button class="btn btn-sm btn-primary ">1</button></center>
@@ -580,7 +647,6 @@ element.style {
         <!-- /.control-sidebar -->
 
         <!-- Main Footer -->
-        <?php include("../include/footer.php") ?>
 
     </div>
     <!-- ./wrapper -->
@@ -663,12 +729,10 @@ element.style {
 <!-- dropzonejs -->
 <script src="../../plugins/dropzone/min/dropzone.min.js"></script>
 <!-- AdminLTE App -->
-<!-- <script src="../../dist/js/adminlte.min.js"></script> -->
+<script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- Page specific script -->
-<script src="../../plugins/jquery-ui/jquery-ui.min.js"></script>
-
 
 <!-- Summernote -->
 <script src="../../plugins/summernote/summernote-bs4.min.js"></script>

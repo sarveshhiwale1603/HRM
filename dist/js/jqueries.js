@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    //client details
 $("#client_detail_update1").click(function(){
     let user_id = $("#user_id").val();
     let first_name = $("#first_name").val();
@@ -41,4 +42,29 @@ success: function(data) {
 }
 });
 });
+
+//change password cur_pass
+$("#changepassword").click(function(){
+    let cur_id = $("#cur_id").val();
+    let cur_pass = $("#cur_pass").val();
+    let new_pass = $("#new_pass").val();
+    let con_pass = $("#con_pass").val();
+    let changepassword = $("#changepassword").val();
+
+    $.ajax({
+        url:'check.php',
+        type:'POST',
+        data:{
+            cur_id:cur_id,
+            cur_pass:cur_pass,
+            new_pass:new_pass,
+            changepassword:changepassword
+        },
+        cache: false,
+        success: function(data) {
+            alert(data);
+        }
+        });
+});
+
 });
