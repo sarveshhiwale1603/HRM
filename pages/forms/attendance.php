@@ -193,7 +193,7 @@ if(!isset($_SESSION['id'])){
                                     $cin=$row['cin'];
                                     echo "<td>".$start_time."</td>";}
                                   ?>
-                                  <!-- <td><?php //echo $ff; ?></td> -->
+                                  <td><?php echo $ff; ?></td>
                                   <td><?php if($row['cout']){ echo $row['cout'];}else{ echo "00:00" ; } ?></td>
                                   <td><?php if($row['time_difference']){ echo $row['time_difference'];}else{ echo "00:00" ; } ?></td>
                                 </tr>
