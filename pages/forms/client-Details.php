@@ -1,3 +1,13 @@
+<?php
+include("../include/config.php");
+session_start();
+if(!isset($_SESSION['id'])){
+    header("location:index.php");
+} 
+$id=$_GET['manageid'];
+$sql=mysqli_query($conn,"select * from manage_client  where id='$id'");
+$row=mysqli_fetch_array($sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,217 +78,7 @@
 <body>
     <div class="wrapper">
 
-        <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__wobble" src="../../dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60"
-                width="60">
-        </div>
-
-        <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Home</a>
-                </li>
-            </ul>
-
-            <!-- Right navbar links -->
-        </nav>
-        <!-- /.navbar -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <!-- Brand Logo -->
-            <a href="#" class="brand-link">
-              <span class="brand-text font-weight-light">AdminLTE 4</span>
-            </a>
-        
-            <!-- Sidebar -->
-            <div class="sidebar">
-              <!-- Sidebar user (optional) -->
-             
-        
-              <!-- SidebarSearch Form -->
-              
-        
-              <!-- Sidebar Menu -->
-              <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                  <!-- Add icons to the links using the .nav-icon class
-                       with font-awesome or any other icon font library -->
-                  <li class="nav-item">
-                    <a href="tectignis.html" class="nav-link">
-                      <i class="nav-icon fas fa-home"></i>
-                      <p>
-                        Home
-                      </p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon fas fa-users"></i>
-                      <p>
-                        Employee
-                      </p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon fas fa-star"></i>
-                      <p>
-                        Core HR
-                        <i class="right fas fa-angle-left"></i>
-                      </p>
-                    </a>
-                    <ol class="nav nav-treeview">
-                      <li class="nav-item">
-                        <a href="Department.html" class="nav-link">
-                          <i class="nav-icon fa fa-ellipsis"></i>
-                          <p>Department</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="designation.html" class="nav-link">
-                          <i class="nav-icon fa fa-ellipsis"></i>
-                          <p>Designation</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="policies.html" class="nav-link">
-                          <i class="nav-icon fa fa-ellipsis"></i>
-                          <p>policies</p>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a href="announcement.html" class="nav-link">
-                          <i class="nav-icon fa fa-astrick"></i>
-                          <p>Make Announcement</p>
-                        </a>
-                      </li>
-                    </ol>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon fas fa-clock"></i>
-                      <p>
-                        Attendance
-                        <i class="right fas fa-angle-left"></i>
-                      </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                      <ol class="nav-item">
-                        <a href="#" class="nav-link">
-                          
-                          <p>Attendance</p>
-                        </a>
-                      </ol>
-                      <ol class="nav-item">
-                        <a href="#" class="nav-link">
-                        
-                          <p>manul Attendance</p>
-                        </a>
-                      </ol>
-                      <ol class="nav-item">
-                        <a href="#" class="nav-link">
-                          
-                          <p>monthly Report</p>
-                        </a>
-                      </ol>
-                      <ol class="nav-item">
-                        <a href="#" class="nav-link">
-                          <p>Overtime Request</p>
-                        </a>
-                      </ol>
-                    </ul>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon fas fa-rupee-sign"></i>
-                      <p>
-                        Payroll
-                      </p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon fa fa-edit"></i>
-                      <p>
-                        Task
-                      </p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon fas fa-book"></i>
-                      <p>
-                        Project
-                      </p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon fas fa-handshake"></i>
-                      <p>
-                        Manage Clients
-                      </p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon 	fa fa-user-plus"></i>
-                      <p>
-                        Leads
-                      </p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon fa fa-question-circle"></i>
-                      <p>
-                        Helpdesk
-                      </p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class='nav-icon fas fa-chart-pie'></i>
-                      <p>
-                         Estimates
-                      </p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class='nav-icon fas fa-plus-square'></i>
-                      <p>
-                        Leave Request
-                      </p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon 	fa fa-laptop"></i>
-                      <p>
-                        Training Session
-                      </p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon fa fa-gavel"></i>
-                      <p>
-                        Disiplinary
-                      </p>
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-              <!-- /.sidebar-menu -->
-            </div>
-            <!-- /.sidebar -->
-          </aside>
+    <?php include("../include/header.php"); ?>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -377,13 +177,8 @@
 
 
                         <!-- FORMS -->
-
-                        <input type="hidden" id="user_id" value="6">
                         <div class="col-lg-8" data-select2-id="668">
                             <div class="tab-content" id="user-set-tabContent" data-select2-id="user-set-tabContent">
-
-
-
                                 <!-- Personal Information -->
 
                                 <div class="tab-pane fade active show" id="user-set-information" role="tabpanel" aria-labelledby="user-set-information-tab">
@@ -395,23 +190,25 @@
                                                 </svg><span class="p-l-5"> Personal Information </span></h5>
                                         </div>
                                         <div class="card-body">
+                                            <form method="post">
                                  <div class="row">
                                             <div class="col-md-4">
                                                 <div class="form-group">
+                                                <input type="hidden" id="user_id" name="user_id" value="<?php echo $row['id']; ?>">
                                                     <label for="first_name">First Name <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name" >
+                                        <input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo $row['first_name']; ?>" placeholder="First Name" >
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="last_name">Last Name  <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name"  >
+                                                    <input type="text" class="form-control" id="last_name" value="<?php echo $row['last_name']; ?>" name="last_name" placeholder="Last Name"  >
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="last_name">Email  <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Email " >
+                                                    <label for="email">Email  <span class="text-danger">*</span></label>
+                                                    <input type="email" class="form-control" id="email" value="<?php echo $row['email']; ?>" name="email" placeholder="Email " >
                                                 </div>
                                             </div>
                                  </div>  
@@ -419,555 +216,61 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="Username">Username  <span class="text-danger">*</span> </label>
-                                            <input type="text" class="form-control" id="Username" name="Username" placeholder="username">
+                                            <input type="text" class="form-control" id="Username" value="<?php echo $row['username']; ?>" name="Username" placeholder="username">
                                         </div>
                                     </div>
                                    
                                       <div class="col-md-4">
-                                                                <div class="form-group">
-                                                                    <label for="status" class="control-label"> Status   <span class="text-danger">*</span></label>
-                                                                    <select class="form-control select2" style="width: 100%;">
-                                                                        <option selected="selected">  Active  </option>
-                                                                        <option > Banned </option>
-                                                                    </select> 
-                                                                </div>
-                                                            </div>
+                                        <div class="form-group">
+                                        <label for="status" class="control-label"> Status   <span class="text-danger">*</span></label>
+                                        <select class="form-control" id="status" name="status" style="width: 100%;">
+                                        <option value="<?php echo $row['status']; ?>" selected ><?php echo $row['status']; ?> </option>
+                                        <option value="Active"> Active </option>
+                                        <option value="Banned"> Banned </option>
+                                        </select> 
+                                        </div>
+                                        </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="last_name">Contact Number <span class="text-danger">*</span></label>
-                                            <input type="number" class="form-control" id="Contact" name="contact" placeholder="Contact Number">
+                                            <input type="number" value="<?php echo $row['contact']; ?>" class="form-control" id="contact" name="contact" placeholder="Contact Number">
                                         </div>
                                     </div>
-
-
-
                          </div>  
                          <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="gender" class="control-label"> Gender  </label>
-                                    <select class="form-control select2" style="width: 100%;">
-                                        <option  selected="selected">  Male  </option>
-                                        <option> Female </option>
+                                    <select class="form-control select2" id="gender" name="gender" style="width: 100%;">
+                                        <option  selected="selected" value="<?php echo $row['gender']; ?>"> <?php echo $row['gender']; ?> </option>
+                                        <option value="Female"> Female </option>
+                                        <option value="Male">Male</option>
                                     </select> 
                                 </div>
                             </div>
                            
                               <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label for="country" class="control-label"> Country  <span class="text-danger">*</span> </label>
-                                                            <select class="form-control select2" style="width: 100%;">
-                                                                <option value="">
-                                                                    Select One                    </option>
-                                                                                        <option value="1" >
-                                                                    Afghanistan                    </option>
-                                                                                        <option value="2" >
-                                                                    Albania                    </option>
-                                                                                        <option value="3" >
-                                                                    Algeria                    </option>
-                                                                                        <option value="4" >
-                                                                    American Samoa                    </option>
-                                                                                        <option value="5" >
-                                                                    Andorra                    </option>
-                                                                                        <option value="6" >
-                                                                    Angola                    </option>
-                                                                                        <option value="7" >
-                                                                    Anguilla                    </option>
-                                                                                        <option value="8" >
-                                                                    Antarctica                    </option>
-                                                                                        <option value="9" >
-                                                                    Antigua and Barbuda                    </option>
-                                                                                        <option value="10" >
-                                                                    Argentina                    </option>
-                                                                                        <option value="11" >
-                                                                    Armenia                    </option>
-                                                                                        <option value="12" >
-                                                                    Aruba                    </option>
-                                                                                        <option value="13" >
-                                                                    Australia                    </option>
-                                                                                        <option value="14" >
-                                                                    Austria                    </option>
-                                                                                        <option value="15" >
-                                                                    Azerbaijan                    </option>
-                                                                                        <option value="16" >
-                                                                    Bahamas                    </option>
-                                                                                        <option value="17" >
-                                                                    Bahrain                    </option>
-                                                                                        <option value="18" >
-                                                                    Bangladesh                    </option>
-                                                                                        <option value="19" >
-                                                                    Barbados                    </option>
-                                                                                        <option value="20" >
-                                                                    Belarus                    </option>
-                                                                                        <option value="21" >
-                                                                    Belgium                    </option>
-                                                                                        <option value="22" >
-                                                                    Belize                    </option>
-                                                                                        <option value="23" >
-                                                                    Benin                    </option>
-                                                                                        <option value="24" >
-                                                                    Bermuda                    </option>
-                                                                                        <option value="25" >
-                                                                    Bhutan                    </option>
-                                                                                        <option value="26" >
-                                                                    Bolivia                    </option>
-                                                                                        <option value="27" >
-                                                                    Bosnia and Herzegovina                    </option>
-                                                                                        <option value="28" >
-                                                                    Botswana                    </option>
-                                                                                        <option value="29" >
-                                                                    Bouvet Island                    </option>
-                                                                                        <option value="30" >
-                                                                    Brazil                    </option>
-                                                                                        <option value="31" >
-                                                                    British Indian Ocean Territory                    </option>
-                                                                                        <option value="32" >
-                                                                    Brunei Darussalam                    </option>
-                                                                                        <option value="33" >
-                                                                    Bulgaria                    </option>
-                                                                                        <option value="34" >
-                                                                    Burkina Faso                    </option>
-                                                                                        <option value="35" >
-                                                                    Burundi                    </option>
-                                                                                        <option value="36" >
-                                                                    Cambodia                    </option>
-                                                                                        <option value="37" >
-                                                                    Cameroon                    </option>
-                                                                                        <option value="38" >
-                                                                    Canada                    </option>
-                                                                                        <option value="39" >
-                                                                    Cape Verde                    </option>
-                                                                                        <option value="40" >
-                                                                    Cayman Islands                    </option>
-                                                                                        <option value="41" >
-                                                                    Central African Republic                    </option>
-                                                                                        <option value="42" >
-                                                                    Chad                    </option>
-                                                                                        <option value="43" >
-                                                                    Chile                    </option>
-                                                                                        <option value="44" >
-                                                                    China                    </option>
-                                                                                        <option value="45" >
-                                                                    Christmas Island                    </option>
-                                                                                        <option value="46" >
-                                                                    Cocos (Keeling) Islands                    </option>
-                                                                                        <option value="47" >
-                                                                    Colombia                    </option>
-                                                                                        <option value="48" >
-                                                                    Comoros                    </option>
-                                                                                        <option value="49" >
-                                                                    Congo                    </option>
-                                                                                        <option value="50" >
-                                                                    Cook Islands                    </option>
-                                                                                        <option value="51" >
-                                                                    Costa Rica                    </option>
-                                                                                        <option value="52" >
-                                                                    Croatia (Hrvatska)                    </option>
-                                                                                        <option value="53" >
-                                                                    Cuba                    </option>
-                                                                                        <option value="54" >
-                                                                    Cyprus                    </option>
-                                                                                        <option value="55" >
-                                                                    Czech Republic                    </option>
-                                                                                        <option value="56" >
-                                                                    Denmark                    </option>
-                                                                                        <option value="57" >
-                                                                    Djibouti                    </option>
-                                                                                        <option value="58" >
-                                                                    Dominica                    </option>
-                                                                                        <option value="59" >
-                                                                    Dominican Republic                    </option>
-                                                                                        <option value="60" >
-                                                                    East Timor                    </option>
-                                                                                        <option value="61" >
-                                                                    Ecuador                    </option>
-                                                                                        <option value="62" >
-                                                                    Egypt                    </option>
-                                                                                        <option value="63" >
-                                                                    El Salvador                    </option>
-                                                                                        <option value="64" >
-                                                                    Equatorial Guinea                    </option>
-                                                                                        <option value="65" >
-                                                                    Eritrea                    </option>
-                                                                                        <option value="66" >
-                                                                    Estonia                    </option>
-                                                                                        <option value="67" >
-                                                                    Ethiopia                    </option>
-                                                                                        <option value="68" >
-                                                                    Falkland Islands (Malvinas)                    </option>
-                                                                                        <option value="69" >
-                                                                    Faroe Islands                    </option>
-                                                                                        <option value="70" >
-                                                                    Fiji                    </option>
-                                                                                        <option value="71" >
-                                                                    Finland                    </option>
-                                                                                        <option value="72" >
-                                                                    France                    </option>
-                                                                                        <option value="73" >
-                                                                    France, Metropolitan                    </option>
-                                                                                        <option value="74" >
-                                                                    French Guiana                    </option>
-                                                                                        <option value="75" >
-                                                                    French Polynesia                    </option>
-                                                                                        <option value="76" >
-                                                                    French Southern Territories                    </option>
-                                                                                        <option value="77" >
-                                                                    Gabon                    </option>
-                                                                                        <option value="78" >
-                                                                    Gambia                    </option>
-                                                                                        <option value="79" >
-                                                                    Georgia                    </option>
-                                                                                        <option value="80" >
-                                                                    Germany                    </option>
-                                                                                        <option value="81" >
-                                                                    Ghana                    </option>
-                                                                                        <option value="82" >
-                                                                    Gibraltar                    </option>
-                                                                                        <option value="83" >
-                                                                    Guernsey                    </option>
-                                                                                        <option value="84" >
-                                                                    Greece                    </option>
-                                                                                        <option value="85" >
-                                                                    Greenland                    </option>
-                                                                                        <option value="86" >
-                                                                    Grenada                    </option>
-                                                                                        <option value="87" >
-                                                                    Guadeloupe                    </option>
-                                                                                        <option value="88" >
-                                                                    Guam                    </option>
-                                                                                        <option value="89" >
-                                                                    Guatemala                    </option>
-                                                                                        <option value="90" >
-                                                                    Guinea                    </option>
-                                                                                        <option value="91" >
-                                                                    Guinea-Bissau                    </option>
-                                                                                        <option value="92" >
-                                                                    Guyana                    </option>
-                                                                                        <option value="93" >
-                                                                    Haiti                    </option>
-                                                                                        <option value="94" >
-                                                                    Heard and Mc Donald Islands                    </option>
-                                                                                        <option value="95" >
-                                                                    Honduras                    </option>
-                                                                                        <option value="96" >
-                                                                    Hong Kong                    </option>
-                                                                                        <option value="97" >
-                                                                    Hungary                    </option>
-                                                                                        <option value="98" >
-                                                                    Iceland                    </option>
-                                                                                        <option value="99" >
-                                                                    India                    </option>
-                                                                                        <option value="100" >
-                                                                    Isle of Man                    </option>
-                                                                                        <option value="101" >
-                                                                    Indonesia                    </option>
-                                                                                        <option value="102" >
-                                                                    Iran (Islamic Republic of)                    </option>
-                                                                                        <option value="103" >
-                                                                    Iraq                    </option>
-                                                                                        <option value="104" >
-                                                                    Ireland                    </option>
-                                                                                        <option value="105" >
-                                                                    Israel                    </option>
-                                                                                        <option value="106" >
-                                                                    Italy                    </option>
-                                                                                        <option value="107" >
-                                                                    Ivory Coast                    </option>
-                                                                                        <option value="108" >
-                                                                    Jersey                    </option>
-                                                                                        <option value="109" >
-                                                                    Jamaica                    </option>
-                                                                                        <option value="110" >
-                                                                    Japan                    </option>
-                                                                                        <option value="111" >
-                                                                    Jordan                    </option>
-                                                                                        <option value="112" >
-                                                                    Kazakhstan                    </option>
-                                                                                        <option value="113" >
-                                                                    Kenya                    </option>
-                                                                                        <option value="114" >
-                                                                    Kiribati                    </option>
-                                                                                        <option value="115" >
-                                                                    Korea, Democratic People's Republic of                    </option>
-                                                                                        <option value="116" >
-                                                                    Korea, Republic of                    </option>
-                                                                                        <option value="117" >
-                                                                    Kosovo                    </option>
-                                                                                        <option value="118" >
-                                                                    Kuwait                    </option>
-                                                                                        <option value="119" >
-                                                                    Kyrgyzstan                    </option>
-                                                                                        <option value="120" >
-                                                                    Lao People's Democratic Republic                    </option>
-                                                                                        <option value="121" >
-                                                                    Latvia                    </option>
-                                                                                        <option value="122" >
-                                                                    Lebanon                    </option>
-                                                                                        <option value="123" >
-                                                                    Lesotho                    </option>
-                                                                                        <option value="124" >
-                                                                    Liberia                    </option>
-                                                                                        <option value="125" >
-                                                                    Libyan Arab Jamahiriya                    </option>
-                                                                                        <option value="126" >
-                                                                    Liechtenstein                    </option>
-                                                                                        <option value="127" >
-                                                                    Lithuania                    </option>
-                                                                                        <option value="128" >
-                                                                    Luxembourg                    </option>
-                                                                                        <option value="129" >
-                                                                    Macau                    </option>
-                                                                                        <option value="130" >
-                                                                    Macedonia                    </option>
-                                                                                        <option value="131" >
-                                                                    Madagascar                    </option>
-                                                                                        <option value="132" >
-                                                                    Malawi                    </option>
-                                                                                        <option value="133" >
-                                                                    Malaysia                    </option>
-                                                                                        <option value="134" >
-                                                                    Maldives                    </option>
-                                                                                        <option value="135" >
-                                                                    Mali                    </option>
-                                                                                        <option value="136" >
-                                                                    Malta                    </option>
-                                                                                        <option value="137" >
-                                                                    Marshall Islands                    </option>
-                                                                                        <option value="138" >
-                                                                    Martinique                    </option>
-                                                                                        <option value="139" >
-                                                                    Mauritania                    </option>
-                                                                                        <option value="140" >
-                                                                    Mauritius                    </option>
-                                                                                        <option value="141" >
-                                                                    Mayotte                    </option>
-                                                                                        <option value="142" >
-                                                                    Mexico                    </option>
-                                                                                        <option value="143" >
-                                                                    Micronesia, Federated States of                    </option>
-                                                                                        <option value="144" >
-                                                                    Moldova, Republic of                    </option>
-                                                                                        <option value="145" >
-                                                                    Monaco                    </option>
-                                                                                        <option value="146" >
-                                                                    Mongolia                    </option>
-                                                                                        <option value="147" >
-                                                                    Montenegro                    </option>
-                                                                                        <option value="148" >
-                                                                    Montserrat                    </option>
-                                                                                        <option value="149" >
-                                                                    Morocco                    </option>
-                                                                                        <option value="150" >
-                                                                    Mozambique                    </option>
-                                                                                        <option value="151" >
-                                                                    Myanmar                    </option>
-                                                                                        <option value="152" >
-                                                                    Namibia                    </option>
-                                                                                        <option value="153" >
-                                                                    Nauru                    </option>
-                                                                                        <option value="154" >
-                                                                    Nepal                    </option>
-                                                                                        <option value="155" >
-                                                                    Netherlands                    </option>
-                                                                                        <option value="156" >
-                                                                    Netherlands Antilles                    </option>
-                                                                                        <option value="157" >
-                                                                    New Caledonia                    </option>
-                                                                                        <option value="158" >
-                                                                    New Zealand                    </option>
-                                                                                        <option value="159" >
-                                                                    Nicaragua                    </option>
-                                                                                        <option value="160" >
-                                                                    Niger                    </option>
-                                                                                        <option value="161" >
-                                                                    Nigeria                    </option>
-                                                                                        <option value="162" >
-                                                                    Niue                    </option>
-                                                                                        <option value="163" >
-                                                                    Norfolk Island                    </option>
-                                                                                        <option value="164" >
-                                                                    Northern Mariana Islands                    </option>
-                                                                                        <option value="165" >
-                                                                    Norway                    </option>
-                                                                                        <option value="166" >
-                                                                    Oman                    </option>
-                                                                                        <option value="167" >
-                                                                    Pakistan                    </option>
-                                                                                        <option value="168" >
-                                                                    Palau                    </option>
-                                                                                        <option value="169" >
-                                                                    Palestine                    </option>
-                                                                                        <option value="170" >
-                                                                    Panama                    </option>
-                                                                                        <option value="171" >
-                                                                    Papua New Guinea                    </option>
-                                                                                        <option value="172" >
-                                                                    Paraguay                    </option>
-                                                                                        <option value="173" >
-                                                                    Peru                    </option>
-                                                                                        <option value="174" >
-                                                                    Philippines                    </option>
-                                                                                        <option value="175" >
-                                                                    Pitcairn                    </option>
-                                                                                        <option value="176" >
-                                                                    Poland                    </option>
-                                                                                        <option value="177" >
-                                                                    Portugal                    </option>
-                                                                                        <option value="178" >
-                                                                    Puerto Rico                    </option>
-                                                                                        <option value="179" >
-                                                                    Qatar                    </option>
-                                                                                        <option value="180" >
-                                                                    Reunion                    </option>
-                                                                                        <option value="181" >
-                                                                    Romania                    </option>
-                                                                                        <option value="182" >
-                                                                    Russian Federation                    </option>
-                                                                                        <option value="183" >
-                                                                    Rwanda                    </option>
-                                                                                        <option value="184" >
-                                                                    Saint Kitts and Nevis                    </option>
-                                                                                        <option value="185" >
-                                                                    Saint Lucia                    </option>
-                                                                                        <option value="186" >
-                                                                    Saint Vincent and the Grenadines                    </option>
-                                                                                        <option value="187" >
-                                                                    Samoa                    </option>
-                                                                                        <option value="188" >
-                                                                    San Marino                    </option>
-                                                                                        <option value="189" >
-                                                                    Sao Tome and Principe                    </option>
-                                                                                        <option value="190" >
-                                                                    Saudi Arabia                    </option>
-                                                                                        <option value="191" >
-                                                                    Senegal                    </option>
-                                                                                        <option value="192" >
-                                                                    Serbia                    </option>
-                                                                                        <option value="193" >
-                                                                    Seychelles                    </option>
-                                                                                        <option value="194" >
-                                                                    Sierra Leone                    </option>
-                                                                                        <option value="195" >
-                                                                    Singapore                    </option>
-                                                                                        <option value="196" >
-                                                                    Slovakia                    </option>
-                                                                                        <option value="197" >
-                                                                    Slovenia                    </option>
-                                                                                        <option value="198" >
-                                                                    Solomon Islands                    </option>
-                                                                                        <option value="199" >
-                                                                    Somalia                    </option>
-                                                                                        <option value="200" >
-                                                                    South Africa                    </option>
-                                                                                        <option value="201" >
-                                                                    South Georgia South Sandwich Islands                    </option>
-                                                                                        <option value="202" >
-                                                                    Spain                    </option>
-                                                                                        <option value="203" >
-                                                                    Sri Lanka                    </option>
-                                                                                        <option value="204" >
-                                                                    St. Helena                    </option>
-                                                                                        <option value="205" >
-                                                                    St. Pierre and Miquelon                    </option>
-                                                                                        <option value="206" >
-                                                                    Sudan                    </option>
-                                                                                        <option value="207" >
-                                                                    Suriname                    </option>
-                                                                                        <option value="208" >
-                                                                    Svalbard and Jan Mayen Islands                    </option>
-                                                                                        <option value="209" >
-                                                                    Swaziland                    </option>
-                                                                                        <option value="210" >
-                                                                    Sweden                    </option>
-                                                                                        <option value="211" >
-                                                                    Switzerland                    </option>
-                                                                                        <option value="212" >
-                                                                    Syrian Arab Republic                    </option>
-                                                                                        <option value="213" >
-                                                                    Taiwan                    </option>
-                                                                                        <option value="214" >
-                                                                    Tajikistan                    </option>
-                                                                                        <option value="215" >
-                                                                    Tanzania, United Republic of                    </option>
-                                                                                        <option value="216" >
-                                                                    Thailand                    </option>
-                                                                                        <option value="217" >
-                                                                    Togo                    </option>
-                                                                                        <option value="218" >
-                                                                    Tokelau                    </option>
-                                                                                        <option value="219" >
-                                                                    Tonga                    </option>
-                                                                                        <option value="220" >
-                                                                    Trinidad and Tobago                    </option>
-                                                                                        <option value="221" >
-                                                                    Tunisia                    </option>
-                                                                                        <option value="222" >
-                                                                    Turkey                    </option>
-                                                                                        <option value="223" >
-                                                                    Turkmenistan                    </option>
-                                                                                        <option value="224" >
-                                                                    Turks and Caicos Islands                    </option>
-                                                                                        <option value="225" >
-                                                                    Tuvalu                    </option>
-                                                                                        <option value="226" >
-                                                                    Uganda                    </option>
-                                                                                        <option value="227" >
-                                                                    Ukraine                    </option>
-                                                                                        <option value="228" >
-                                                                    United Arab Emirates                    </option>
-                                                                                        <option value="229" >
-                                                                    United Kingdom                    </option>
-                                                                                        <option value="230" >
-                                                                    United States                    </option>
-                                                                                        <option value="231" >
-                                                                    United States minor outlying islands                    </option>
-                                                                                        <option value="232" >
-                                                                    Uruguay                    </option>
-                                                                                        <option value="233" >
-                                                                    Uzbekistan                    </option>
-                                                                                        <option value="234" >
-                                                                    Vanuatu                    </option>
-                                                                                        <option value="235" >
-                                                                    Vatican City State                    </option>
-                                                                                        <option value="236" >
-                                                                    Venezuela                    </option>
-                                                                                        <option value="237" >
-                                                                    Vietnam                    </option>
-                                                                                        <option value="238" >
-                                                                    Virgin Islands (British)                    </option>
-                                                                                        <option value="239" >
-                                                                    Virgin Islands (U.S.)                    </option>
-                                                                                        <option value="240" >
-                                                                    Wallis and Futuna Islands                    </option>
-                                                                                        <option value="241" >
-                                                                    Western Sahara                    </option>
-                                                                                        <option value="242" >
-                                                                    Yemen                    </option>
-                                                                                        <option value="243" >
-                                                                    Zaire                    </option>
-                                                                                        <option value="244" >
-                                                                    Zambia                    </option>
-                                                                                        <option value="245" >
-                                                                    Zimbabwe                    </option>
+                                 <div class="form-group">
+                                   <label for="country" class="control-label"> Country  <span class="text-danger">*</span> </label>
+                                    <select class="form-control select2" id="country" name="country" style="width: 100%;">
+                                    <option  selected="selected" value="<?php echo $row['country']; ?>"> <?php echo $row['country']; ?> </option>
+                                    <option value="India">India</option>
                                                                                       </select> 
                                                         </div>
-                                                    </div>
-                          
-
-                            
+                                                    </div>                            
                  </div>     
                  <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="first_name">Address</label>
-                            <input type="text" class="form-control" id="Address" name="Address" placeholder="Address" >
+                            <input type="text" class="form-control" value="<?php echo $row['address']; ?>" id="Address" name="Address" placeholder="Address" >
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="Address2"> &nbsp; </label>
                             
-                            <input type="text" class="form-control" id="Address" name="Address" placeholder="Address line 2" >
+                            <input type="text" class="form-control" value="<?php echo $row['address2']; ?>" id="Address2" name="Address2" placeholder="Address line 2" >
                         </div>
                     </div>
                     
@@ -976,26 +279,27 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="first_name">City</label>
-                    <input type="text" class="form-control" id="City" name="City" placeholder="City">
+                    <input type="text" class="form-control" id="City" value="<?php echo $row['city']; ?>" name="City" placeholder="City">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="last_name">State / Province</label>
-                    <input type="text" class="form-control" id="State" name="state" placeholder="State / Province" >
+                    <input type="text" class="form-control" id="state" value="<?php echo $row['state']; ?>" name="state" placeholder="State / Province" >
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="last_name">Zip Code / Postal Code</label>
-                    <input type="text" class="form-control" id="zip" name="zip" placeholder="Zip Code / Postal Code">
+                    <input type="text" class="form-control" value="<?php echo $row['zip_code']; ?>" id="zip" name="zip" placeholder="Zip Code / Postal Code">
                 </div>
             </div>
  </div>   
- <button type="submit" class="btn btn-primary" style="float: right;">Save</button>  
+ <button type="button" class="btn btn-primary" id="client_detail_update1" name="client_detail_update1" style="float: right;">Save</button>  
     <!-- PERSONAL INFORMATION -->
                                           
                                         </div>
+    </form>
                                     </div>
                                 </div>
 
@@ -1013,29 +317,32 @@
                                         </div>
                                         <div class="card-body pb-2">
                                             <div class="box-body">
-                                                <form action="" name="edit_user_photo" id="edit_user_photo" autocomplete="off" method="post" accept-charset="utf-8">
+                                                <form action="api.php"  id="edit_user_photo" autocomplete="off" method="post"enctype="multipart/form-data">
                                                     <input type="hidden" name="csrf_token" value="53a234476ba3b824da743d5aeaa31e04">
                                                     <input type="hidden" name="token" value="vx26WfVlb_M1fWrFzCPYekQi1KECygUtBMb5BV7fnAw"style="display:none;">
                                                     <div class="form-body">
                                                         <div class="row">
                                                             <div class="col-md-12">
-                                                                <div class="form-group">
+                                                                <div style="text-align: center;">
+                                                                    <img src="image/manage_image/<?php echo $row['profile']; ?>" style="width: 250px;height:250px;border-radius: 50%;">
+                                                            </div>
+                                                                <div class="form-group mt-3">
                                                                     <label for="logo">  Profile Picture <span class="text-danger">*</span> </label>
                                                                     <div class="custom-file">
-                                                                        <input type="file" class="custom-file-input"  name="file">
-                                                                        <label class="custom-file-label"> Choose file... </label>
-                                                                        <small> Upload files only: gif,png,jpg,jpeg </small>
+                                                                    <input type="hidden" id="client_id" name="client_id" value="<?php echo $row['id']; ?>">
+                                                                        <input type="file" name="file" accept="image/png, image/gif, image/jpeg, image/jpg">
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </form>
+                                               
                                             </div>
                                         </div>
                                         <div class="card-footer text-right">
-                                            <button type="submit" class="btn btn-primary ladda-button" data-style="expand-right"><span class="ladda-label"> Update Picture </span><span class="ladda-spinner"></span></button>
+                                            <button type="submit" class="btn btn-primary ladda-button" data-style="expand-right" name="client_profile" ><span class="ladda-label"> Update Picture </span><span class="ladda-spinner"></span></button>
                                         </div>
+                                        </form>
                                         <div style="display:none"><label>Bot Will Fill This Field</label>
                                             <input  type="text" name="ciapp_check" value=""></div>
                                     </div>
@@ -1060,7 +367,7 @@
                                                 <div id="PROJECT_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                                     <div class="row">
                                                       <div class="col-sm-12">
-                                                        <table id="PROJECT" class="table table-bordered table-striped dataTable dtr-inline" aria-describedby="PROJECT__info">
+                                                        <table id="PROJECT" class="table table-bordered table-responsive table-striped dataTable dtr-inline" aria-describedby="PROJECT__info">
                                                           <thead>
                                                            <tr>
                                                            <th>PROJECT</th>
@@ -1070,10 +377,31 @@
                                                            <th>END DATE</th>
 
                                                            <th>PROGRESS</th>
-
+                                                           <th>ACTION</th>
                                                           
                                                           </thead>
                                                           <tbody>
+                                                            <?php
+                                                            $result_project=mysqli_query($conn,"SELECT * FROM project inner join manage_client on project.client=manage_client.id left join employee on employee.employee_code=project.team WHERE project.client='$id';");
+                                                            while($row_project = mysqli_fetch_array($result_project)){
+                                                                ?>
+                                                                <tr>
+                                                                    <td><?php echo $row_project['title']; ?></td>
+                                                                    <td><?php echo $row_project['priority']; ?></td>
+                                                                    <td><?php echo $row_project['fname'].' '.$row_project['lname']; ?></td>
+                                                                    <td><?php echo $row_project['start_date']; ?></td>
+                                                                    <td><?php echo $row_project['end_date']; ?></td>
+                                                                    <td>
+                                                                    <div class="progress">
+    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $row_project['progress']; ?>">
+    <?php echo $row_project['progress']; ?>
+    </div>
+  </div>    
+                                                                    </td>
+                                                                    <td><a href="project-Details.php"><i class="fa fa-location-arrow"></i></a></td>
+                                                            </tr>
+                                                            <?php }
+                                                            ?>
                                                           </tbody>
                                                          <tfoot>
                             
@@ -1190,7 +518,7 @@
                                                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                                                 </svg><span class="p-l-5"> Change Password </span></h5>
                                         </div>
-                                        <form action="" name="change_password" id="change_password" autocomplete="off" method="post" accept-charset="utf-8">
+                                        <form name="change_password" id="change_password" autocomplete="off" method="post" accept-charset="utf-8">
                                             <input type="hidden" name="csrf_token" value="53a234476ba3b824da743d5aeaa31e04">
                                             <input type="hidden" name="token" value="vx26WfVlb_M1fWrFzCPYekQi1KECygUtBMb5BV7fnAw" style="display:none;">
                                             <div class="card-body">
@@ -1199,8 +527,10 @@
                                                         <div class="form-group">
                                                             <label>  Current password </label>
                                                             <div class="input-group">
+                                                            <input type="hidden" name="cur_id" id="cur_id" value="<?php echo $row['id']; ?>">
                                                                 <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-eye"></i></span></div>
-                                                                <input type="password" readonly="readonly" class="form-control" name="pass"  placeholder="Current password" value="********">
+                                                               
+                                                                <input type="password"  class="form-control" name="pass" id="cur_pass">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1211,7 +541,7 @@
                                                             <label> New password <span class="text-danger">*</span></label>
                                                             <div class="input-group">
                                                                 <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-eye"></i></span></div>
-                                                                <input type="password" class="form-control" name="new_password" placeholder="New password">
+                                                                <input type="password" class="form-control" name="new_pass" id="new_pass"  placeholder="New password">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1220,16 +550,15 @@
                                                             <label>  Repeat new password <span class="text-danger">*</span></label>
                                                             <div class="input-group">
                                                                 <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-eye"></i></span></div>
-                                                                <input type="password" class="form-control" name="confirm_password"  placeholder="Repeat new password">
+                                                                <input type="password" class="form-control" name="con_pass" id="con_pass" placeholder="Repeat new password">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="card-footer text-right">
-                                                <button type="submit" class="btn btn-danger ladda-button"  data-style="expand-right"><span class="ladda-label">  Change Password </span><span  class="ladda-spinner"></span></button>
+                                                <button type="button" class="btn btn-danger ladda-button" id="changepassword" data-style="expand-right"><span class="ladda-label">  Change Password </span><span  class="ladda-spinner"></span></button>
                                             </div>
-                                            <div style="display:none"><label>Bot Will Fill This Field</label><input  type="text" name="ciapp_check" value=""></div>
                                         </form>
                                     </div>
                                 </div>
@@ -1248,7 +577,7 @@
             </div>
         </div>
 
-
+        <?php include("../include/footer.php"); ?>
     </div>
     <!-- ./wrapper -->
 
@@ -1272,7 +601,6 @@
     <script src="../../plugins/chart.js/Chart.min.js"></script>
 
     <!-- AdminLTE for demo purposes -->
-    <script src="../../dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="../../dist/js/pages/dashboard2.js"></script>
     <!-- DataTables  & Plugins -->
@@ -1367,8 +695,8 @@
     <script src="../../plugins/dropzone/min/dropzone.min.js"></script>
     <!-- AdminLTE App -->
     <script src="../../dist/js/adminlte.min.js"></script>
+    <script src="../../dist/js/jqueries.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="../../dist/js/demo.js"></script>
     <!-- Page specific script -->
     <script>
         $(function () {
@@ -1519,6 +847,6 @@
         }
   // DropzoneJS Demo Code End
     </script>
-
+<script></script>
 </body>
 </html>

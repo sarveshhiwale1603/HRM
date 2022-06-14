@@ -4,7 +4,46 @@ include("../include/config.php");
 session_start();
 if(!isset($_SESSION['id'])){
     header("location:index.php");
-} ?>
+} 
+
+
+if(isset($_POST['submit']))
+{
+    $first_name = $_POST['first_name'];
+    $last_name	 = $_POST['last_name'];
+    $contact = $_POST['contact'];
+    $gender = $_POST['gender'];
+    $email = $_POST['email'];
+    $image=$_FILES['image']['name'];
+    $status="Active";
+
+
+    $extension=substr($image,strlen($image)-4,strlen($image));
+    $all_extension = array(".jpg",".jpeg",".png",".gif");
+    
+            if(!in_array($extension,$all_extension)){
+              $msg="Invalid File Format. Only .jpg,jpeg,.png,.gif,.PNG format allowed";
+              echo "<script type='text/javascript'>alert('$msg');</script>";
+          }else{
+              $upload=md5($image).$extension;
+              $dnk=$_FILES['image']['tmp_name'];
+              $loc="leads_image/".$upload;
+              move_uploaded_file($dnk,$loc);
+
+
+    $sql="INSERT INTO `leads`(`first_name`,`last_name`,`contact`,`gender`,`email`,`image`,`status`))VALUES ('$first_name','$last_name','$contact','$gender','$email','$upload','$status')";
+    if (mysqli_query($conn, $sql)){
+      echo "<script> alert ('New record has been added successfully !');</script>";
+   } else {
+      echo "<script> alert ('connection failed !');</script>";
+   }
+}
+
+}
+ 
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -186,9 +225,8 @@ if(!isset($_SESSION['id'])){
   </head>
 
   <body>
-    <div class="wrapper">
-  <?php include("../include/header.php") ?>
-    
+  <div class="wrapper">
+<?php include("../include/header.php"); ?>
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -217,6 +255,7 @@ if(!isset($_SESSION['id'])){
               <div class="col-lg-12 col-sm-12">
 
                 <div class="collapse" id="collapseExample">
+                <form method="POST" enctype="multipart/form-data" >                <!-- /.card-header -->
 
                     <div class="row my-3">
                         <div class="col-md-8">
@@ -243,7 +282,7 @@ if(!isset($_SESSION['id'])){
                                                         <i class="fas fa-user"></i>
                                                     </span>
                                                 </div>
-                                                <input type="text" class="form-control"
+                                                <input type="text" class="form-control" name="first_name"
                                                 placeholder="First Name">
                                             </div>
                                         </div>
@@ -256,7 +295,7 @@ if(!isset($_SESSION['id'])){
                                                         <i class="fas fa-user"></i>
                                                     </span>
                                                 </div>
-                                                <input type="text" class="form-control"
+                                                <input type="text" class="form-control" name="last_name"
                                                 placeholder="Last Name">
                                             </div>
                                         </div>
@@ -264,7 +303,8 @@ if(!isset($_SESSION['id'])){
                                         <div class="col-lg-4">
                                             <label>Gender<sup><b style="color:red;">*</b></sup></label>
                                             <div class="input-group">
-                                                <select class="form-control select2" data-placeholder="Select a State" style="width: 100%;">
+                                                <select class="form-control select2" data-placeholder="Select a State" 
+                                                name="gender" style="width: 100%;">
                                                     <option selected="selected" disabled >Gender</option>
                                                     <option>Male</option>
                                                     <option>Female</option>
@@ -278,7 +318,7 @@ if(!isset($_SESSION['id'])){
                                             <label>Contact Number<sup><b style="color:red;">*</b></sup></label>
                                             <div class="input-group">
                                                 <input type="number" class="form-control"
-                                                    placeholder="Contact Number">
+                                                    placeholder="Contact Number" name="contact">
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -289,7 +329,7 @@ if(!isset($_SESSION['id'])){
                                                         <i class="fas fa-envelope"></i>
                                                     </span>
                                                 </div>
-                                                <input type="text" class="form-control"
+                                                <input type="email" class="form-control" name="email"
                                                 placeholder="Email">
                                             </div>
                                         </div>
@@ -300,13 +340,14 @@ if(!isset($_SESSION['id'])){
                                             name="reset" data-bs-toggle="collapse" href="#collapseExample"
                                             role="button" aria-expanded="false"
                                             aria-controls="collapseExample">Reset</buttton>
-                                        <buttton type="button" id="submit" class="btn btn-primary"
-                                            name="Save">Save</buttton>
+                                            <button type="submit" name="submit" class="btn btn-primary">Save</button>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
+
                             <div class="card">
                               <div class="card-header">
                                 <h5> Profile Picture</h5>
@@ -317,7 +358,7 @@ if(!isset($_SESSION['id'])){
                                     <div class="form-group">
                                       <label for="logo"> Attachment  <span class="text-danger">*</span> </label>
                                       <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="attachment">
+                                        <input type="file" class="custom-file-input" name="image">
                                         <label class="custom-file-label">
                                           Choose file...  </label>
                                         <small> Upload files only: gif,png,jpg,jpeg </small> </div>
@@ -328,6 +369,8 @@ if(!isset($_SESSION['id'])){
                             </div>
                           </div>
                     </div>
+                </form>
+                    <!-- /.row -->
                 </div>
                 <div class="card">
                     <div class="card-header">
@@ -355,12 +398,30 @@ if(!isset($_SESSION['id'])){
                                    <th>COUNTRY</th>
                                    <th>STATUS</th>
                                   </thead>
-                                  <tbody>
-                                  </tbody>
-                                 <tfoot>
-    
-                                 </tfoot>
-                                </table>
+
+                                   <tbody>
+                        <?php 
+                        
+                        $sql=mysqli_query($conn,"select * from leads");
+                         while($arr=mysqli_fetch_array($sql)){
+                        ?>
+                          <tr>
+                            
+                          <td><img src="leads_image/<?php echo $arr['image'] ?>" width="50px" height="50px" border-radius="30%"> <?php echo $arr['first_name'];?> <?php echo $arr['last_name'];?></td>
+                          </td>
+                            <td> <?php echo $arr['contact'];?></td>
+                            <td> <?php echo $arr['gender'];?> </td>
+                                <td> </td>
+                                <td> <?php echo $arr['status'];?>  </td>                         
+                          </tr>
+                          <?php } ?>
+                        </tbody>
+                        
+                    </table>
+                  <tfoot>
+                 
+                  </tfoot>
+                </table>
                               </div>
                             </div>
                
@@ -385,8 +446,7 @@ if(!isset($_SESSION['id'])){
       <!-- /.control-sidebar -->
 
       <!-- Main Footer -->
-  <?php include("../include/footer.php") ?>
-
+<?php include("../include/footer.php") ?>
     </div>
     <!-- ./wrapper -->
 

@@ -18,6 +18,9 @@ if(!isset($_SESSION['id'])){
         $username = $_POST['username'];
         $image=$_FILES['profile']['name'];
         $status="Active";
+        date_default_timezone_set('Asia/Kolkata');
+        $date1=date("Y-m-d H:i:s");
+        $dnkpassword=password_hash($password,PASSWORD_BCRYPT);
 
         $extension=substr($image,strlen($image)-4,strlen($image));
 $all_extension = array(".jpg","jpeg",".png",".gif");
@@ -31,8 +34,10 @@ $all_extension = array(".jpg","jpeg",".png",".gif");
           $loc="image/manage_image/".$upload_marksheet;
           move_uploaded_file($dnk,$loc);
 
-          $sql="INSERT INTO `manage_client`(`first_name`,`last_name`,`password`,`contact`,`gender`,`email`,`username`,`profile`,`status`)VALUES ('$first_name','$last_name','$password','$contact','$gender','$email','$username','$upload_marksheet','$status')";
-          if (mysqli_query($conn, $sql)){
+          $sql=mysqli_query($conn,"INSERT INTO `manage_client`(`first_name`,`last_name`,`password`,`contact`,`gender`,`email`,`username`,`profile`,`status`)VALUES ('$first_name','$last_name','$dnkpassword','$contact','$gender','$email','$username','$upload_marksheet','$status')");
+
+          $sql=mysqli_query($conn,"INSERT INTO `login`(`name`,`lname`, `email`, `staff`, `password`, `status`, `create_date`) VALUES ('$first_name','$last_name','$email','client','$dnkpassword','1','$date1')");
+          if ($sql){
             echo "<script> alert ('New record has been added successfully !');</script>";
          } else {
             echo "<script> alert ('connection failed !');</script>";
@@ -187,9 +192,9 @@ $all_extension = array(".jpg","jpeg",".png",".gif");
                             <label for="gender" class="control-label">
                               Gender                  </label>
                             <select class="form-control" name="gender" data-plugin="select_hrm" data-placeholder="Gender">
-                              <option value="M">
+                              <option value="Male">
                               Male                    </option>
-                              <option value="F">
+                              <option value="Female">
                               Female                    </option>
                             </select>
                           </div>
@@ -304,7 +309,7 @@ $all_extension = array(".jpg","jpeg",".png",".gif");
                             <td> <?php echo $arr['username'];?></td>
                             <td> <?php echo $arr['contact'];?></td>
                             <td> <?php echo $arr['gender'];?> </td>
-                                <td> </td>
+                                <td>  <?php echo $arr['country'];?> </td>
                                 <td> <?php echo $arr['status'];?>  </td>  
                                 <td><a href="client-Details.php?manageid=<?php echo $arr['id'] ?>" title="view details"><i class="fa fa-location-arrow"></i></a>&nbsp;
                                 <a href="check.php?managedelid=<?php echo $arr['id'] ?>" title="Delete" onclick="return confirm('Are you sure you want to delete this record')"><i class="fa fa-trash"></i></a></td>                       

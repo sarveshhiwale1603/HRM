@@ -1,4 +1,3 @@
-<body>
 <?php
 include("../include/config.php");
 session_start();
@@ -345,6 +344,48 @@ if(isset($_GET['managedelid'])){
       echo "<script>alert('Record not deleted');</script>";
     }
 }
+
+if(isset($_POST['client_detail_update1'])){
+  $user_id=$_POST['user_id'];
+  $first_name=$_POST['first_name'];
+  $last_name=$_POST['last_name'];
+  $email=$_POST['email'];
+  $Username=$_POST['Username'];
+  $status=$_POST['status'];
+  $contact=$_POST['contact'];
+  $gender=$_POST['gender'];
+  $country=$_POST['country'];
+  $Address=$_POST['Address'];
+  $Address2=$_POST['Address2'];
+  $City=$_POST['City'];
+  $state=$_POST['state'];
+  $zip=$_POST['zip'];
+  
+  $sql2=mysqli_query($conn,"UPDATE `manage_client` SET `first_name`='$first_name',`last_name`='$last_name',`contact`='$contact',`gender`='$gender',`email`='$email',`username`='$Username',`status`='$status',`country`='$country',`address`='$Address',`address2`='$Address2',`city`='$City',`state`='$state',`zip_code`='$zip' WHERE id='$user_id'");
+  if($sql2){
+    echo "Record updated";
+  }
+  else{
+    echo "Record not updated";
+  }
+  }
+
+  if(isset($_POST['changepassword'])){
+    $cur_id=$_POST['cur_id'];
+    $cur_pass=$_POST['cur_pass'];
+    $new_pass=$_POST['new_pass'];
+
+    $sql=mysqli_query($conn,"select * from manage_client where id='$cur_id'");
+    $row=mysqli_fetch_array($sql);
+    $cur_password=$row['password'];
+
+    if(password_verify($cur_pass, $cur_password)){
+      $new_password=password_hash($new_pass, PASSWORD_BCRYPT);
+      $sql2=mysqli_query($conn,"UPDATE `manage_client` SET `password`='$new_password' WHERE id='$cur_id'");
+    }
+    else{
+      echo "<script>alert('Current password is incorrect');</script>";
+    }
+  }
 ?>
-</body>
   
