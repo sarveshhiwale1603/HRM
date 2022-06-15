@@ -92,4 +92,38 @@ $("#project_details").click(function(){
         });
 });
 
+//project status progress
+$("#updateeditproject").click(function(){
+    let editid = $("#editid").val();
+    let title = $("#title").val();
+    let editclient = $("#editclient").val();
+    let budget_hours = $("#budget_hours").val();
+    let starteditdate = $("#starteditdate").val();
+    let endeditDate = $("#endeditDate").val();
+    let editsummary = $("#editsummary").val();
+    let editteam = $("#editteam").val();
+    let editdesc=$(".editdesc").val();
+    let updateeditproject=$("#updateeditproject").val();
+
+    $.ajax({
+        url:'check.php',
+        type:'POST',
+        data:{
+            editid:editid,
+            title:title,
+            editclient:editclient,
+            budget_hours:budget_hours,
+            starteditdate:starteditdate,
+            endeditDate:endeditDate,
+            editsummary:editsummary,
+            editteam:editteam,
+            editdesc:editdesc,
+            updateeditproject:updateeditproject
+        },
+        cache: false,
+        success: function(data) {
+            alert(data);
+        }
+        });
+});
 });
