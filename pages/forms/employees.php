@@ -220,7 +220,7 @@ $id=$_SESSION['id']; ?>
                             <label>Employee ID<sup><b style="color:red;">*</b></sup></label>
                             <div class="input-group">
                               <?php $empid=rand(100000,1000000) ?>
-                              <input type="text" class="form-control" name="empid" value="<?php echo $empid; ?>" required>
+                              <input type="text" readonly class="form-control" name="empid" value="<?php echo $empid; ?>" required>
                             </div>
                             <!-- /input-group -->
                           </div>
@@ -607,7 +607,7 @@ $("#spanname").hide();
    }
  }
 
- $("#sub").click(function(){
+ $("#submit").click(function(){
    txt_err = true;
          txt_check();
 
@@ -639,7 +639,7 @@ $("#lname").hide();
    }
  }
 
- $("#sub").click(function(){
+ $("#submit").click(function(){
    txt_err = true;
          txt_check1();
 

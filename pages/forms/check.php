@@ -575,9 +575,26 @@ if(isset($_POST['client_detail_update1'])){
    }
   }
   
+  
+  if(isset($_POST['updateeditproject'])){
+    $editid=$_POST['editid'];
+    $title=$_POST['title'];
+    $editclient=$_POST['editclient'];
+    $budget_hours=$_POST['budget_hours'];
+    $starteditdate=$_POST['starteditdate'];
+    $endeditDate=$_POST['endeditDate'];
+    $editsummary=$_POST['editsummary'];
+    $editteam=$_POST['editteam'];
+    $editdesc=$_POST['editdesc'];
 
+    $sql=mysqli_query($conn,"UPDATE `project` SET `title`='$title',`estimated_hr`='$budget_hours',`start_date`='$starteditdate',`end_date`='$endeditDate',`summary`='$editsummary',`team`='$editteam',`description`='$editdesc',`client`='$editclient',`employee_code`='$editteam' WHERE id='$editid'");
 
-
+    if($sql==1){
+      echo "record updated";
+    }else{
+      echo "record not updated";
+    }
+  }
 
 
 
