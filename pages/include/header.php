@@ -179,16 +179,16 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class='nav-icon fas fa-chart-pie'></i>
               <p>
                  Estimates
               </p>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="leave_request.php" class="nav-link">
               <i class='nav-icon fas fa-plus-square'></i>
               <p>
                 Leave Request
@@ -203,14 +203,14 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="disciplinaryCases.php" class="nav-link">
               <i class="nav-icon fa fa-gavel"></i>
               <p>
                 Disiplinary
               </p>
             </a>
-          </li>
+          </li> -->
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

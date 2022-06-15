@@ -1,3 +1,13 @@
+<?php
+include("../include/config.php");
+session_start();
+if(!isset($_SESSION['id'])){
+    header("location:index.php");
+} 
+$id=$_GET['projectListId'];
+$sql=mysqli_query($conn,"select * from project  where id='$id'");
+$row=mysqli_fetch_array($sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -176,28 +186,7 @@
 
 <body>
     <div class="wrapper">
-        <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__wobble" src="../../dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60"
-                width="60" />
-        </div>
-
-        <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Home</a>
-                </li>
-            </ul>
-
-            <!-- Right navbar links -->
-        </nav>
-        <!-- /.navbar -->
-
+      <?php include("../include/header.php") ?>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -230,15 +219,12 @@
                                     <h5 class="card-title">Project Details</h5>
                                     <div class="card-tools">
                                         <a href="" data-toggle="tab" aria-expanded="false" class="">
-                                            <button type="button" class="btn btn-shadow btn-secondary btn-sm"><i class="mr-2 fa fa-edit"></i>Add Project</button>
+                                            <a href="projects.php" class="btn btn-shadow btn-secondary btn-sm"><i class="mr-2 fa fa-edit"></i>Add Project</a>
                                         </a>
                                     </div>
                                 </div>
-                                <input type="hidden" value="Wq0jv-0vl4DUZItXe7Cq7Dn-N_uGlF0Y1syost3-QiU"
-                                    id="project_id">
-                                <form action="" name="update_project_progress" id="update_project_progress" autocomplete="off" method="post" accept-charset="utf-8">
-                                    <input type="hidden" name="csrf_token" value="151caa943adbea74b586dda6935a66a3">
-                                    <input type="hidden" name="token"  value="Wq0jv-0vl4DUZItXe7Cq7Dn-N_uGlF0Y1syost3-QiU" style="display:none;">
+                                <form  autocomplete="off" method="post" >
+                                
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-12">
@@ -246,7 +232,8 @@
                                                     <label for="progress"> Progress </label>
                                                     <div class="row margin">
                                                         <div class="col-sm-12">
-                                                            <input id="range_5" type="text" name="range_5" value="" />
+                                                            <input type="hidden" value="<?php echo $id; ?>" id="progressid">
+                                                            <input id="range_5" type="text" name="range_5" value="<?php echo $row['progress'] ?>" />
                                                         </div>
                                                       </div>
                                                 </div>
@@ -256,16 +243,18 @@
                                                     <label for="status">
                                                       Status <span class="text-danger">*</span>
                                                     </label>
-                                                    <div class="br-wrapper br-theme-bars-movie"><select class="form-control demo-movie" name="status" style="display: none;">
+                                                    <div class="br-wrapper br-theme-bars-movie"><select class="form-control demo-movie" name="status" id="project_status" style="display: none;">
+                                                    <option value="<?php echo $row['status'] ?>" >
+                                                    <?php echo $row['status'] ?>               </option>
                                                       <option value="0" selected="">
                                                       Not Started                </option>
                                                       <option value="1">
                                                       In Progress                </option>
-                                                      <option value="3">
-                                                      Cancelled                </option>
-                                                      <option value="4">
-                                                      On Hold                </option>
                                                       <option value="2">
+                                                      Cancelled                </option>
+                                                      <option value="3">
+                                                      On Hold                </option>
+                                                      <option value="4">
                                                       Completed                </option>
                                                     </select>
                                                    </div>
@@ -276,8 +265,9 @@
                                                     <label for="status">
                                                         Priority <span class="text-danger">*</span>
                                                     </label>
-                                                    <select class="form-control select2" style="width: 100%;">
-                                                        <option selected="selected" >Highest</option>
+                                                    <select class="form-control select2" style="width: 100%;" id="project_pro">
+                                                    <option selected="selected" value="<?php echo $row['priority'] ?>" ><?php echo $row['priority'] ?></option>
+                                                        <option >Highest</option>
                                                         <option>High</option>
                                                         <option>Normal</option>
                                                         <option>Low</option>
@@ -287,12 +277,10 @@
                                         </div>
                                     </div>
                                     <div class="card-footer text-right">
-                                        <button type="submit" class="btn btn-primary ladda-button"
-                                            data-style="expand-right"><span class="ladda-label">
+                                        <button type="button" class="btn btn-primary ladda-button" id="project_details" ><span class="ladda-label">
                                                 Update Status </span><span class="ladda-spinner"></span></button>
                                     </div>
-                                    <div style="display:none"><label>Bot Will Fill This Field</label><input type="text"
-                                            name="ciapp_check" value=""></div>
+                                   
                                 </form>
                             </div>
                         </div>
@@ -300,7 +288,7 @@
                             <div class="bg-light card mb-2">
                                 <div class="card-body">
                                     <ul class="nav nav-pills" id="pills-tab" role="tablist">
-                                        <li class="nav-item"> <a class="nav-link" id="pills-overview-tab"
+                                        <li class="nav-item"> <a class="nav-link  active" id="pills-overview-tab"
                                                 data-toggle="pill" href="#pills-overview" role="tab"
                                                 aria-controls="pills-overview" aria-selected="false">
                                                 Overview </a> </li>
@@ -312,7 +300,7 @@
                                                 data-toggle="pill" href="#pills-discussion" role="tab"
                                                 aria-controls="pills-discussion" aria-selected="false">
                                                 Discussion </a> </li>
-                                        <li class="nav-item"> <a class="nav-link active" id="pills-timelogs-tab"
+                                        <li class="nav-item"> <a class="nav-link" id="pills-timelogs-tab"
                                                 data-toggle="pill" href="#pills-timelogs" role="tab"
                                                 aria-controls="pills-timelogs" aria-selected="true">
                                                 Time Logs </a> </li>
@@ -338,54 +326,55 @@
                             <div class="card">
                                 <div class="card-header">
                                     <h5><i class="feather icon-lock mr-1"></i>Project :
-                                        jhkjhkjhh </h5>
+                                    <?php echo $row['title']; ?></h5>
                                 </div>
                                 <div class="tab-content" id="pills-tabContent">
-                                    <div class="tab-pane fade" id="pills-overview" role="tabpanel" aria-labelledby="pills-overview-tab">
+                                    <div class="tab-pane fade  active show" id="pills-overview" role="tabpanel" aria-labelledby="pills-overview-tab">
                                         <div class="card-body">
                                             <div class="table-responsive">
                                                 <table class="table m-b-0 f-14 b-solid requid-table">
                                                     <tbody class="text-muted">
                                                         <tr>
                                                             <td>Title</td>
-                                                            <td>jhkjhkjhh</td>
+                                                            <td><?php echo $row['title']; ?></td>
                                                         </tr>
                                                         <tr>
                                                             <td>Client</td>
-                                                            <td> aniket nangare </td>
+                                                            <td><?php echo $row['client']; ?></td>
                                                         </tr>
                                                         <tr>
                                                             <td>Estimated Hour</td>
-                                                            <td>10</td>
+                                                            <td><?php echo $row['estimated_hr']; ?></td>
                                                         </tr>
                                                         <tr>
                                                             <td>Priority</td>
-                                                            <td> Highest </td>
+                                                            <td> <?php echo $row['priority']; ?> </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Start Date</td>
                                                             <td><i class="far fa-calendar-alt"></i>&nbsp;
-                                                                2022-06-04</td>
+                                                            <?php echo $row['start_date']; ?></td>
                                                         </tr>
                                                         <tr>
                                                             <td>End Date</td>
                                                             <td><i class="far fa-calendar-alt"></i>&nbsp;
-                                                                2022-06-10</td>
+                                                            <?php echo $row['end_date']; ?></td>
                                                         </tr>
                                                         <tr>
                                                             <td>Team</td>
-                                                            <td><a href="javascript:void(0);" data-toggle="tooltip"
-                                                                    data-placement="top" title=""
-                                                                    data-original-title="VEDANT NAIDU"><span
-                                                                        class="mb-1"><img
-                                                                            src="http://hrm.tectignis.in/public/uploads/users/thumb/logo.jpg"
-                                                                            class="img-fluid img-radius wid-30 mr-1" style="width:30px; border-radius: 50%;"
-                                                                            alt=""></span></a></td>
+                                                            <?php
+                                                            $emp_code=$row['team'];
+                                                            $result_project=mysqli_query($conn,"SELECT * FROM  project left join employee on employee.employee_code=project.team WHERE project.team='$emp_code';");
+                                                            while($row_project = mysqli_fetch_array($result_project)){
+                                                                echo "<td><img src='image/employee_image/".$row_project['image']."' class='rounded' style='width:50px;height:50px'></td>";
+                                                            }
+                                                            ?>
+                                                            
                                                         </tr>
-                                                        <tr>
+                                                        <!-- <tr>
                                                             <td>Total Hours</td>
-                                                            <td>00:00</td>
-                                                        </tr>
+                                                            <td><?php// echo $row['']; ?></td>
+                                                        </tr> -->
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -402,12 +391,12 @@
                                             <div class="mb-3">
                                                 <h6 class="my-0">Summary</h6>
                                                 <hr>
-                                                mnkjnknkjn
+                                                <?php echo $row['summary']; ?>
                                             </div>
                                             <div class="mb-3">
                                                 <h6 class="my-0">Description</h6>
                                                 <hr>
-                                                hbjhbjbjhbjbhjbjhb
+                                                <?php echo $row['description']; ?>
                                             </div>
                                         </div>
                                     </div>
@@ -418,22 +407,26 @@
                                         aria-labelledby="pills-overview-tab">
                                         <form action=""
                                             name="update_project" id="update_project" autocomplete="off" method="post"  accept-charset="utf-8">
-                                            <input type="hidden" name="csrf_token"  value="151caa943adbea74b586dda6935a66a3">
-                                            <input type="hidden" name="token" value="Wq0jv-0vl4DUZItXe7Cq7Dn-N_uGlF0Y1syost3-QiU" style="display:none;">
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label for="title">Title <span class="text-danger">*</span></label>
-                                                            <input class="form-control" placeholder="Title" name="title" type="text" value="jhkjhkjhh">
+                                                            <input class="form-control" placeholder="Title" name="title" type="text" value="<?php echo $row['title'] ?>">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label for="client_id">Client <span class="text-danger">*</span></label>
                                                             <select class="form-control select2" style="width: 100%;">
-                                                                <option selected="selected" disabled >Client</option>
-                                                                <option>Aniket Nangare</option>
+                                                            <?php
+                                                             $sql=mysqli_query($conn,"SELECT * FROM manage_client");
+                                                             while($dnk=mysqli_fetch_array($sql)){
+                                                               echo "<option value='".$dnk['first_name']." ".$dnk['last_name']."'>".$dnk['first_name']." ".$dnk['last_name']."</option>";
+                                                             }
+                                                            ?>
+                                                                <option value="<?php echo $row['client'] ?>" selected="selected" disabled ><?php echo $row['client'] ?></option>
+                                                               
                                                             </select>
                                                         </div>
                                                     </div>
@@ -442,7 +435,7 @@
                                                         <div class="form-group">
                                                             <label for="budget_hours">Estimated Hour</label>
                                                             <div class="input-group">
-                                                                <input class="form-control" placeholder="Estimated Hour" name="budget_hours" type="text" value="10">
+                                                                <input class="form-control" placeholder="Estimated Hour" name="budget_hours" type="text" value="<?php echo $row['estimated_hr'] ?>">
                                                                 <div class="input-group-append"><span  class="input-group-text"><i  class="fas fa-clock"></i></span></div>
                                                             </div>
                                                         </div>
@@ -450,11 +443,9 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="start_date">Start Date <span class="text-danger">*</span></label>
-                                                            <div class="input-group date" id="editStartDate" data-target-input="nearest">
-                                                                <input type="text" class="form-control datetimepicker-input" placeholder="Date" data-target="#editStartDate"/>
-                                                                <div class="input-group-append" data-target="#editStartDate" data-toggle="datetimepicker">
-                                                                    <div class="input-group-text"><i class="fa fa-calendar-alt"></i></div>
-                                                                </div>
+                                                            <div class="input-group " >
+                                                            <input class="form-control applied_on" placeholder="Applied On " name="startDate" type="date" value="<?php echo $row['start_date']; ?>" data-dtp="dtp_dl6pL">
+                                                                
                                                             </div>
                                                         </div>
                                                     </div>
@@ -540,10 +531,9 @@
                                     <!-- TIME LOG -->
 
 
-                                    <div class="tab-pane fade active show" id="pills-timelogs" role="tabpanel"  aria-labelledby="pills-timelogs-tab">
+                                    <div class="tab-pane fade" id="pills-timelogs" role="tabpanel"  aria-labelledby="pills-timelogs-tab">
                                         <form action=""  name="add_timelogs" id="add_timelogs" autocomplete="off" method="post" accept-charset="utf-8">
-                                            <input type="hidden" name="csrf_token" value="151caa943adbea74b586dda6935a66a3">
-                                            <input type="hidden" name="token" value="Wq0jv-0vl4DUZItXe7Cq7Dn-N_uGlF0Y1syost3-QiU" style="display:none;">
+                                        
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-md-4">
@@ -691,8 +681,7 @@
                                                                 </div>
                                                             </div>
                                                             <form action="" name="add_task" id="add_task" autocomplete="off" method="post" accept-charset="utf-8">
-                                                                <input type="hidden" name="csrf_token" value="151caa943adbea74b586dda6935a66a3">
-                                                                <input type="hidden" name="token"  value="Wq0jv-0vl4DUZItXe7Cq7Dn-N_uGlF0Y1syost3-QiU" style="display:none;">
+                                                               
                                                                 <div class="card-body">
                                                                     <div class="row">
                                                                         <div class="col-md-4">
@@ -880,7 +869,7 @@
             <!-- Control sidebar content goes here -->
         </aside>
         <!-- /.control-sidebar -->
-
+        <?php include("../include/footer.php") ?>
         <!-- Main Footer -->
 
     </div>
@@ -907,9 +896,6 @@
     <!-- ChartJS -->
     <script src="../../plugins/chart.js/Chart.min.js"></script>
 
-    <!-- AdminLTE for demo purposes -->
-    <script src="../../dist/js/demo.js"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="../../dist/js/pages/dashboard2.js"></script>
       <!-- jQuery -->
       <script src="../../plugins/jquery/jquery.min.js"></script>
@@ -951,8 +937,7 @@
       <script src="../../plugins/dropzone/min/dropzone.min.js"></script>
       <!-- AdminLTE App -->
       <script src="../../dist/js/adminlte.min.js"></script>
-      <!-- AdminLTE for demo purposes -->
-      <script src="../../dist/js/demo.js"></script>
+      <script src="../../dist/js/jqueries.js"></script>
       <!-- Bootstrap slider -->
       <script src="../../plugins/bootstrap-slider/bootstrap-slider.min.js"></script>
   

@@ -17,8 +17,10 @@ if(!isset($_SESSION['id'])){
         $team = $_POST['team'];
         $description= $_POST['description'];
         $client	 = $_POST['client'];
+        date_default_timezone_set('Asia/Kolkata');
+        $date=date("Y-m-d H:i:s");
         $employee_code = $team;
-        $sql="INSERT INTO `project`(`title`,`estimated_hr`,`priority`,`start_date`,`end_date`,`summary`,`team`,`description`,`client`,`employee_code`)VALUES ('$title','$estimated_hr','$priority','$start_date','$end_date','$summary','$team','$description','$client','$employee_code')";
+        $sql="INSERT INTO `project`(`title`,`estimated_hr`,`priority`,`start_date`,`end_date`,`summary`,`team`,`description`,`client`,`employee_code`,`date`)VALUES ('$title','$estimated_hr','$priority','$start_date','$end_date','$summary','$team','$description','$client','$employee_code','$date')";
         if (mysqli_query($conn, $sql)){
           echo "<script> alert ('New record has been added successfully !');</script>";
        } else {
@@ -389,7 +391,7 @@ element.style {
                                                             {
                                                               ?>
 
-                                                                  <option value="<?php echo $sql['id'] ?>"> <?php echo $sql['first_name']; ?></option>
+                                                                  <option value="<?php echo $sql['id'] ?>"> <?php echo $sql['first_name'].' '.$sql['last_name']; ?></option>
                                                                   <?php } ?>
                                                                 </select>
                                                         </div>

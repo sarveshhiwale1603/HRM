@@ -38,7 +38,7 @@ echo '<table class="table table-striped" style="border-top:none;">
 
 //edit
 if(isset($_POST['usereditid'])){
-    $query=mysqli_query($conn,"select * from exit_employee inner join exit_type on exit_employee.type=exit_type.id where exit_employee.id='".$_POST['usereditid']."'");
+    $query=mysqli_query($conn,"select * from exit_employee inner join exit_type on exit_employee.type=exit_type.type where exit_employee.id='".$_POST['usereditid']."'");
 $row=mysqli_fetch_array($query);
        echo '<div class="modal-body">';
        echo '<div class="row">';

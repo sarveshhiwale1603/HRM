@@ -67,4 +67,29 @@ $("#changepassword").click(function(){
         });
 });
 
+//project status progress
+$("#project_details").click(function(){
+    let progressid = $("#progressid").val();
+    let range_5 = $("#range_5").val();
+    let project_status = $("#project_status").val();
+    let project_pro = $("#project_pro").val();
+    let project_details = $("#project_details").val();
+
+    $.ajax({
+        url:'api.php',
+        type:'POST',
+        data:{
+            progressid:progressid,
+            range_5:range_5,
+            project_status:project_status,
+            project_pro:project_pro,
+            project_details:project_details
+        },
+        cache: false,
+        success: function(data) {
+            alert(data);
+        }
+        });
+});
+
 });

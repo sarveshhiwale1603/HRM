@@ -1,6 +1,10 @@
 
 <?php 
 include("../include/config.php");
+session_start();
+if(!isset($_SESSION['id'])){
+    header("location:index.php");
+} 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,13 +53,10 @@ include("../include/config.php");
   <link rel="stylesheet" href="../../plugins/codemirror/theme/monokai.css">
   <!-- SimpleMDE -->
   <link rel="stylesheet" href="../../plugins/simplemde/simplemde.min.css">
-  <!-- bootstrap -->
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+        ></script>
 
 
         <style>
@@ -127,7 +128,7 @@ element.style {
 <body>
     <div class="wrapper">
 
-
+<?php include("../include/header.php"); ?>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -315,6 +316,7 @@ element.style {
                                               <th><i class="fa fa-user"></i> TEAM</th>
                                               <th>PRIORITY</th>
                                               <th>PROGRESS</th>
+                                              <th>ACTION</th>
                                           </thead>
                                           <?php 
                         
@@ -334,7 +336,9 @@ element.style {
                                 
                                 <td><div class="progress">
   <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">55%</div>
-</div> </td>                         
+</div> </td>   
+<td><a href="project-Details.php?projectListId=<?php echo $arr['id']; ?>" class="btn btn-success"><i class="fa fa-arrow-right"></i></a>
+<a href="api.php?projectdeleteId=<?php echo $arr['id']; ?>" class="btn btn-primary"><i class="fa fa-trash" onclick="return confirm('Are you sure you want to delete this record')"></i></a></td>                      
 
                           </tr>
                           <?php } ?>
@@ -362,7 +366,7 @@ element.style {
         <!-- /.control-sidebar -->
 
         <!-- Main Footer -->
-
+<?php include("../include/footer.php"); ?>
     </div>
     <!-- ./wrapper -->
 
