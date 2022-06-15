@@ -156,8 +156,11 @@ $all_extension = array(".jpg","jpeg",".png",".gif");
                               First Name                    <span class="text-danger">*</span> </label>
                             <div class="input-group">
                               <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user"></i></span></div>
-                              <input class="form-control" placeholder="First Name" name="first_name" type="text">
+                              <input class="form-control" placeholder="First Name" id="fstname" name="first_name" type="text" required>
+
                             </div>
+                            <span id="fname"></span>
+
                           </div>
                         </div>
                         <div class="col-md-6">
@@ -166,8 +169,11 @@ $all_extension = array(".jpg","jpeg",".png",".gif");
                               Last Name                    <span class="text-danger">*</span></label>
                             <div class="input-group">
                               <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user"></i></span></div>
-                              <input class="form-control" placeholder="Last Name" name="last_name" type="text">
+                              <input class="form-control" placeholder="Last Name" id="lstname" name="last_name" type="text" required>
+
                             </div>
+                            <span id="lname"></span>
+
                           </div>
                         </div>
                         <div class="col-md-4">
@@ -176,7 +182,7 @@ $all_extension = array(".jpg","jpeg",".png",".gif");
                               Password                    <span class="text-danger">*</span></label>
                             <div class="input-group">
                               <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-eye-slash"></i></span></div>
-                              <input class="form-control" placeholder="Password" name="password" type="text">
+                              <input class="form-control" placeholder="Password" name="password" type="text" required>
                             </div>
                           </div>
                         </div>
@@ -184,14 +190,13 @@ $all_extension = array(".jpg","jpeg",".png",".gif");
                           <div class="form-group">
                             <label for="contact_number">
                               Contact Number                    <span class="text-danger">*</span></label>
-                            <input class="form-control" placeholder="Contact Number" name="contact" type="number">
-                          </div>
+<input type="text" class="form-control" mainlength="10" maxlength="10" name="contact" placeholder="Contact Number" required>                          </div>
                         </div>
                         <div class="col-md-4">
                           <div class="form-group">
                             <label for="gender" class="control-label">
                               Gender                  </label>
-                            <select class="form-control" name="gender" data-plugin="select_hrm" data-placeholder="Gender">
+                            <select class="form-control" name="gender" data-plugin="select_hrm" data-placeholder="Gender" required>
                               <option value="Male">
                               Male                    </option>
                               <option value="Female">
@@ -205,7 +210,7 @@ $all_extension = array(".jpg","jpeg",".png",".gif");
                               Email                    <span class="text-danger">*</span> </label>
                             <div class="input-group">
                               <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-envelope"></i></span></div>
-                              <input class="form-control" placeholder="Email" name="email" type="text">
+                              <input class="form-control" placeholder="Email" name="email" type="email" required>
                             </div>
                           </div>
                         </div>
@@ -215,7 +220,7 @@ $all_extension = array(".jpg","jpeg",".png",".gif");
                               Username                    <span class="text-danger">*</span></label>
                             <div class="input-group">
                               <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user"></i></span></div>
-                              <input class="form-control" placeholder="Username" name="username" type="text">
+                              <input class="form-control" placeholder="Username" name="username" type="text" required>
                             </div>
                           </div>
                         </div>
@@ -378,6 +383,69 @@ $all_extension = array(".jpg","jpeg",".png",".gif");
 <script src="../../dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../../dist/js/pages/dashboard2.js"></script>
+<script>
+
+//TEXT VALIDATION
+$("#fname").hide();
+  $("#fstname").keyup(function(){
+   txt_check();
+ });
+ function txt_check(){
+   let txt=$("#fstname").val();
+   let vali =/^[A-Za-z ]+$/;
+   if(!vali.test(txt)){
+    $("#fname").show().html("Enter Alphabets only").css("color","red").focus();
+    txt_err=false;
+    return false;
+   }
+   else{
+       $("#fname").hide();
+
+   }
+ }
+
+ $("#sub").click(function(){
+   txt_err = true;
+         txt_check();
+
+     if((txt_err==true)){
+        return true;
+     }
+     else{return false;}
+  });
+
+</script>
+<script>
+
+//TEXT VALIDATION
+$("#lname").hide();
+  $("#lstname").keyup(function(){
+   txt_check1();
+ });
+ function txt_check1(){
+   let txt=$("#lstname").val();
+   let vali =/^[A-Za-z ]+$/;
+   if(!vali.test(txt)){
+    $("#lname").show().html("Enter Alphabets only").css("color","red").focus();
+    txt_err=false;
+    return false;
+   }
+   else{
+       $("#lname").hide();
+
+   }
+ }
+
+ $("#sub").click(function(){
+   txt_err = true;
+         txt_check1();
+
+     if((txt_err==true)){
+        return true;
+     }
+     else{return false;}
+  });
+</script>
 <script>
     $(function () {
       $("#example1").DataTable({

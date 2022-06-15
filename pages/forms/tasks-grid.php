@@ -1,5 +1,5 @@
 <?php 
-include('configure.php');
+include("../include/config.php");
 
 
     if(isset($_POST['submit']))
@@ -463,14 +463,14 @@ include('configure.php');
                                     <div class="col-md-3">
                                       <div class="form-group">
                                         <label for="task_name">Title <span class="text-danger">*</span></label>
-                                        <input class="form-control" placeholder="Title" name="title" type="text" value="">
+                                        <input class="form-control" placeholder="Title" name="title" type="text" value="" required>
                                       </div>
                                     </div>
                                     <div class="col-md-3">
                                       <div class="form-group">
                                         <label for="start_date">Start Date <span class="text-danger">*</span></label>
                                         <div class="input-group">
-                                          <input type="date" class="form-control date"  placeholder="Start Date" name="start_date" type="text" value="">
+                                          <input type="date" class="form-control date"  placeholder="Start Date" name="start_date" type="text" value="" required>
                                          
                                         </div>
                                       </div>
@@ -479,7 +479,7 @@ include('configure.php');
                                       <div class="form-group">
                                         <label for="end_date">End Date <span class="text-danger">*</span></label>
                                         <div class="input-group">
-                                          <input type="date" class="form-control date" placeholder="End Date" name="end_date" type="text" value="">
+                                          <input type="date" class="form-control date" placeholder="End Date" name="end_date" type="text" value="" required>
                                           
                                         </div>
                                       </div>
@@ -488,14 +488,14 @@ include('configure.php');
                                       <div class="form-group">
                                         <label for="task_hour" class="control-label">Estimated Hour</label>
                                         <div class="input-group">
-                                          <input type="time"  class="form-control" placeholder="Estimated Hour" name="estimated_hrs" value="">
+                                          <input type="time"  class="form-control" placeholder="Estimated Hour" name="estimated_hrs" value="" required>
                                          
                                         </div>
                                       </div>
                                     </div>
                                     <div class="col-md-6">
                                       <div class="form-group" id="project_ajax">
-                                        <label for="project_ajax" class="control-label">Project <span class="text-danger">*</span></label>
+                                        <label for="project_ajax" class="control-label">Project <span class="text-danger" required>*</span></label>
 
 
                                         <?php 
@@ -524,7 +524,7 @@ include('configure.php');
                                     <div class="col-md-6">
                                       <div class="form-group">
                                         <label for="summary">Summary <span class="text-danger">*</span></label>
-                                        <textarea class="form-control" placeholder="Summary" name="summary" cols="30" rows="1" id="summary"></textarea>
+                                        <textarea class="form-control" placeholder="Summary" name="summary" cols="30" rows="1" id="summary" required></textarea>
                                       </div>
                                     </div>
                                     <div class="col-md-12">

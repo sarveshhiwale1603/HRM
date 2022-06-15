@@ -371,7 +371,7 @@ element.style {
                                                         <label>Title<sup><b style="color:red;">*</b></sup></label>
                                                         <div class="input-group">
                                                             <input type="text" class="form-control" name="title"
-                                                                placeholder="Title">
+                                                                placeholder="Title" required>
                                                         </div>
                                                         <!-- /input-group -->
                                                     </div>
@@ -384,7 +384,7 @@ element.style {
                                                             ?>
 
 
-                                                                <select class="form-control select2" name="client" style="width: 100%;">
+                                                                <select class="form-control select2" name="client" style="width: 100%;" required>
                                                                   <option selected="selected">select</option>
                                                                   <?php
                                                             while($sql=mysqli_fetch_array($query))
@@ -401,7 +401,7 @@ element.style {
                                                         <label>Estimated Hour</label>
                                                         <div class="input-group">
                                                             <input type="text" class="form-control" name="estimated_hr"
-                                                                placeholder="Estimated Hour">
+                                                                placeholder="Estimated Hour" required>
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text">
                                                                     <i class="fas fa-clock"></i>
@@ -413,7 +413,7 @@ element.style {
                                                     <div class="col-lg-3">
                                                         <label>Priority</label>
                                                         <div class="input-group" >
-                                                            <select class="form-control select2" style="width: 100%;" name="priority">
+                                                            <select class="form-control select2" style="width: 100%;" name="priority" required>
                                                                 <option selected="selected">Highest</option>
                                                                 <option>High</option>
                                                                 <option>Normal</option>
@@ -430,20 +430,20 @@ element.style {
                             <div class="col-lg-3">
                               <label>Start Date<sup><b style="color:red;">*</b></sup></label>
                               <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                <input type="date" name="start_date" class="form-control" placeholder="Date"/>
+                                <input type="date" name="start_date" class="form-control" placeholder="Date" required/>
                               
                               </div>
                             </div>
                             <!-- /.col-lg-4 -->
                             <div class="col-lg-3">
                               <label>End Date<sup><b style="color:red;">*</b></sup></label>
-                                <input type="date" name="end_date" class="form-control" placeholder="Date"/>
+                                <input type="date" name="end_date" class="form-control" placeholder="Date" required/>
                               
                             </div>
                                                     <div class="col-lg-6">
                                                         <label>Summary<sup><b style="color:red;">*</b></sup></label>
                                                         <div class="input-group">
-                                                            <textarea class="form-control" name="summary" id="exampleFormControlTextarea1" rows="1" placeholder="Summary"></textarea>
+                                                            <textarea class="form-control" name="summary" id="exampleFormControlTextarea1" rows="1" placeholder="Summary" required></textarea>
                                                         </div>
                                                         <!-- /input-group -->
                                                     </div>
@@ -456,7 +456,7 @@ element.style {
                                                     <div class="col-lg-12">
                                                         <div class="form-group">
                                                           <label>Team</label>
-                                                          <select class="form-control select2" name="team" style="width: 100%;">
+                                                          <select class="form-control select2" name="team" style="width: 100%;" required>
                                                           <option selected="selected">select</option>
                                                         <?php
                                                    $query=mysqli_query($conn,"select * from employee");
