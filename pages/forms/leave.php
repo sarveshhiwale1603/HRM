@@ -17,6 +17,14 @@ include('../include/config.php');
        }
       
     }
+    if(isset($_GET['delid'])){
+      $id=mysqli_real_escape_string($conn,$_GET['delid']);
+      $sql=mysqli_query($conn,"delete from leave_type where id='$id'");
+      if($sql=1){
+          header("location:leave.php");
+      }
+      }
+  
 ?>  
   <!DOCTYPE html>
 <html lang="en">
@@ -420,8 +428,9 @@ include('../include/config.php');
                         <td><?php echo $row['leave_type']; ?></td>
                         <td><?php echo $row['days_per_year']; ?></td>
                         <td><?php echo $row['requires_approval']; ?></td>
-                        <td><button class="btn btn-sm btn-primary usereditid" data-id='<?php echo $row['id']; ?>'><i class="fas fa-pen"></i></button>&nbsp;&nbsp;
-                                  <a href="check.php?deleteid=<?php echo $row['id']; ?>"onclick="return confirm('Are you sure you want to delete this record')" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a></td>       
+                        <td><button class="btn btn-sm btn-primary button2" data-id='<?php echo $row['id']; ?>'><i class="fas fa-pen"></i></button>&nbsp;&nbsp;
+                        
+                        <a href="leave.php?delid=<?php echo $row['id']; ?>"><button type="button" class="btn btn-danger btn-rounded btn-icon"  style="color: aliceblue"> <i class="fas fa-trash"></i> </button></a></td>       
                       </tr>
                       <?php } ?>
 
@@ -453,28 +462,29 @@ include('../include/config.php');
                     </div>
                   </div> </div>
             
-        <div class="modal notification-modal fade" id="notification-modal" tabindex="-1" role="dialog" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">
-                  Notifications          <br>
-                  <small class="text-muted">
-                  Mark all as read          </small> </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
-              </div>
-              <div class="modal-body">
-                <div class="tab-pane fade show active" id="pc-noti-home" role="tabpanel" aria-labelledby="pc-noti-home-tab">
-                  <ul class="list-unstyled task-list">
-                                                    </ul>
-                  <!--<div class="text-center"> <a href="#!" class="b-b-primary text-primary">View Friend List</a> </div>-->
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-light-danger btn-sm" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
+       <!-- ################################################ -->
+             
+       <div class="modal fade closemaual" id="dnkModall" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="post" action="check.php">
+      <div class="modal-body bodyy">
+      </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary" name="leavetypeEdit">Save changes</button>
+    </div>
+                                                            </form>
+  </div>
+  </div>
+</div>
+
+<!-- ################################################ -->
        
         
         <!-- /.row -->
@@ -549,6 +559,26 @@ window.print();
       "responsive": true,
     });
   });
+</script>
+
+<script>
+$(document).ready(function(){
+$('.button2').click(function(){
+  let dnk1 = $(this).data('id');
+
+  $.ajax({
+   url: 'check.php',
+   type: 'post',
+   data: {dnk1: dnk1},
+   success: function(response3){ 
+     $('.bodyy').html(response3);
+     $('#dnkModall').modal('show'); 
+   }
+ });
+});
+
+
+});
 </script>
 </body>
 </html>
