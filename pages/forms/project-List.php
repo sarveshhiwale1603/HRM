@@ -332,7 +332,9 @@ element.style {
 
                                 <td> <?php echo $arr['priority'];?>  </td> 
                                 
-                                <td> <div class="progress-bar bg-success progress-bar-striped" role="progressbar" style="width: 68%;" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100">78%</div> </td>                         
+                                <td><div class="progress">
+  <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">55%</div>
+</div> </td>                         
 
                           </tr>
                           <?php } ?>
