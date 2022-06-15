@@ -296,10 +296,10 @@ $row=mysqli_fetch_array($sql);
                                                 href="#pills-edit" role="tab" aria-controls="pills-edit"
                                                 aria-selected="false">
                                                 Edit </a> </li>
-                                        <li class="nav-item"> <a class="nav-link" id="pills-discussion-tab"
+                                        <!-- <li class="nav-item"> <a class="nav-link" id="pills-discussion-tab"
                                                 data-toggle="pill" href="#pills-discussion" role="tab"
                                                 aria-controls="pills-discussion" aria-selected="false">
-                                                Discussion </a> </li>
+                                                Discussion </a> </li> -->
                                         <li class="nav-item"> <a class="nav-link" id="pills-timelogs-tab"
                                                 data-toggle="pill" href="#pills-timelogs" role="tab"
                                                 aria-controls="pills-timelogs" aria-selected="true">
@@ -518,7 +518,7 @@ $row=mysqli_fetch_array($sql);
                                     </div>
 
                                     <!-- DISCUSSION -->
-
+<!-- 
 
                                     <div class="tab-pane fade" id="pills-discussion" role="tabpanel"  aria-labelledby="pills-discussion-tab">
                                         <div class="card-body task-comment">
@@ -539,7 +539,7 @@ $row=mysqli_fetch_array($sql);
                                                 <div style="display:none"><label>Bot Will Fill This Field</label><input type="text" name="ciapp_check" value=""></div>
                                             </form>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <!-- TIME LOG -->
 
@@ -552,9 +552,15 @@ $row=mysqli_fetch_array($sql);
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label for="employee">Employee</label>
-                                                            <select class="form-control select2" style="width: 100%;">
-                                                                <option selected="selected" >Vedant Naidu</option>
-                                                                <!-- <option>Aniket Nangare</option> -->
+                                                            <input type="hidden" value="<?php echo $id; ?>" id="timeproid">
+                                                            <select class="form-control select2" id="employee_time_bugs_name" style="width: 100%;">
+                                                            <?php
+                                                            $sql=mysqli_query($conn,"SELECT * FROM employee");
+                                                            while($dnk=mysqli_fetch_array($sql)){
+                                                                echo "<option value='".$dnk['fname']." ".$dnk['lname']."'>".$dnk['fname']." ".$dnk['lname']."</option>";
+                                                            }
+                                                            ?>
+                                                              
                                                             </select>
                                                         </div>
                                                     </div>
@@ -563,7 +569,7 @@ $row=mysqli_fetch_array($sql);
                                                             <label>Start Time</label>
                                         
                                                             <div class="input-group date" id="timeLogsStartTime" data-target-input="nearest">
-                                                              <input type="text" class="form-control datetimepicker-input" data-target="#timeLogsStartTime" placeholder="Start Time">
+                                                              <input type="text" class="form-control datetimepicker-input" id="startpro" data-target="#timeLogsStartTime" placeholder="Start Time">
                                                               <div class="input-group-append" data-target="#timeLogsStartTime" data-toggle="datetimepicker">
                                                                   <div class="input-group-text"><i class="far fa-clock"></i></div>
                                                               </div>
@@ -576,7 +582,7 @@ $row=mysqli_fetch_array($sql);
                                                             <label>End Time</label>
                                         
                                                             <div class="input-group date" id="timeLogsEndTime" data-target-input="nearest">
-                                                              <input type="text" class="form-control datetimepicker-input" data-target="#timeLogsEndTime" placeholder="End Time">
+                                                              <input type="text" class="form-control datetimepicker-input" id="endpro" data-target="#timeLogsEndTime" placeholder="End Time">
                                                               <div class="input-group-append" data-target="#timeLogsEndTime" data-toggle="datetimepicker">
                                                                   <div class="input-group-text"><i class="far fa-clock"></i></div>
                                                               </div>
@@ -587,36 +593,32 @@ $row=mysqli_fetch_array($sql);
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="start_date">Start Date <span class="text-danger">*</span></label>
-                                                            <div class="input-group date" id="timeLogsStartDate" data-target-input="nearest">
-                                                                <input type="text" class="form-control datetimepicker-input" placeholder="Start Date" data-target="#timeLogsStartDate"/>
-                                                                <div class="input-group-append" data-target="#timeLogsStartDate" data-toggle="datetimepicker">
-                                                                    <div class="input-group-text"><i class="fa fa-calendar-alt"></i></div>
-                                                                </div>
+                                                            <div class="input-group "  >
+                                                                <input type="date" class="form-control " id="timeLogsStartDate"/>
+                                                               
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="start_date">Start Date <span class="text-danger">*</span></label>
-                                                            <div class="input-group date" id="timeLogsEndDate" data-target-input="nearest">
-                                                                <input type="text" class="form-control datetimepicker-input" placeholder="End Date" data-target="#timeLogsEndDate"/>
-                                                                <div class="input-group-append" data-target="#timeLogsEndDate" data-toggle="datetimepicker">
-                                                                    <div class="input-group-text"><i class="fa fa-calendar-alt"></i></div>
-                                                                </div>
+                                                            <label for="start_date">End Date <span class="text-danger">*</span></label>
+                                                            <div class="input-group " >
+                                                                <input type="date" class="form-control " id="timeLogsEndDate" />
+                                                               
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label for="summary">Memo <span class="text-danger">*</span></label>
-                                                            <textarea class="form-control" placeholder="Memo" name="memo" cols="30" rows="2"></textarea>
+                                                            <textarea class="form-control" placeholder="Memo" id="memo" name="memo" cols="30" rows="2"></textarea>
                                                         </div>
                                                     </div>
 
                                                 </div>
                                             </div>
                                             <div class="card-footer text-right">
-                                                <button type="submit" class="btn btn-primary ladda-button"  data-style="expand-right"><span class="ladda-label">  Add Timelog </span><span class="ladda-spinner"></span></button>
+                                                <button type="button" class="btn btn-primary ladda-button"  data-style="expand-right" id="time_log_id"><span class="ladda-label">  Add Timelog </span><span class="ladda-spinner"></span></button>
                                             </div>
                                             <div style="display:none"><label>Bot Will Fill This Field</label><input type="text" name="ciapp_check" value=""></div>
                                         </form>
@@ -628,21 +630,8 @@ $row=mysqli_fetch_array($sql);
                                             <div class="card-body">
                                                 <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
                                                   <div class="row">
-                                                    <div class="col-sm-12">
-                                                      <table id="example1" class="table table-bordered table-striped dataTable dtr-inline"
-                                                        aria-describedby="example1_info">
-                                                        <thead>
-                                                          <tr>
-                                                            <th>EMPLOYEE</th>
-                                                            <th>START DATE</th>
-                                                            <th>END DATE</th>
-                                                            <th>TOTAL HOURS</th>
-                                                        </thead>
-                                                        <tbody>
-                                                        </tbody>
-                                                        <tfoot>
-                                                        </tfoot>
-                                                      </table>
+                                                    <div class="col-sm-12" id="display_timelog">
+                                                      
                                                     </div>
                                                   </div>
                                                 </div>
@@ -659,8 +648,6 @@ $row=mysqli_fetch_array($sql);
                                             <ul class="media-list p-0">
                                             </ul>
                                             <form action="" name="add_discussion" id="add_discussion" autocomplete="off"  method="post" accept-charset="utf-8">
-                                                <input type="hidden" name="csrf_token" value="151caa943adbea74b586dda6935a66a3">
-                                                <input type="hidden" name="token"  value="Wq0jv-0vl4DUZItXe7Cq7Dn-N_uGlF0Y1syost3-QiU" style="display:none;">
                                                 <div class="input-group mb-3">
                                                     <textarea id="summernote2">
                                                         Place <em>some</em> <u>text</u> <strong>here</strong>
