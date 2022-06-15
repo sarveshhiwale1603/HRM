@@ -1,3 +1,8 @@
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,16 +33,19 @@
    .select2-container {
   box-sizing: border-box;
   display: inline-block;
-  margin: 0;
+
   position: relative;
-  vertical-align: middle; }
+  vertical-align: middle; 
+}
   .select2-container .select2-selection--single {
     box-sizing: border-box;
     cursor: pointer;
     display: block;
     height: 28px;
     user-select: none;
-    -webkit-user-select: none; }
+    -webkit-user-select: none; 
+
+  }
 
 
 

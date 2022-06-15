@@ -336,6 +336,9 @@ if(isset($_POST['manualAttendanceEdit'])){
  }
 }
 
+
+
+
 if(isset($_GET['managedelid'])){
   $query=mysqli_query($conn,"delete from manage_client where id='".$_GET['managedelid']."'");
   if($query){
@@ -387,5 +390,196 @@ if(isset($_POST['client_detail_update1'])){
       echo "<script>alert('Current password is incorrect');</script>";
     }
   }
+
+
+
+
+
+
+
+
+
+
+  if(isset($_POST['dnkk'])){
+    $query=mysqli_query($conn,"select * from leave_request where id='".$_POST['dnkk']."'");
+    $row=mysqli_fetch_array($query);
+    echo '  <div class="row">
+    <div class="col-md-12">
+                  <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="first_name">
+              Employee <span class="text-danger">*</span>
+            </label>
+            <input type="hidden" name="leaveid" value="'.$row['id'].'">
+            <input type="hidden" name="leaveemplid" value="'.$row['employee_id'].'">';
+            
+          echo'  <select class="form-control select2-hidden-accessible" name="employee_name2" data-plugin="select_hrm" data-placeholder="Employee" tabindex="-1" aria-hidden="true" data-select2-id="44">';
+          echo'  <option value="'.$row['employee'].'" selected>'.$row['employee'].'</option>';
+            $query=mysqli_query($conn,"select * from employee");
+                    while($sql=mysqli_fetch_array($query))
+                    { echo "<option value='".$sql['fname']." ".$sql['lname']."'>".$sql['fname']." ".$sql['lname']."</option>";
+                         } 
+                         echo' </select>
+          </div>
+        </div>
+      </div>
+            <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="date">
+              Leave Type <span class="text-danger">*</span>
+            </label>
+            <div class="input-group">
+              <input class="form-control leave_type" placeholder="Leave Type" name="leave_type" type="text" value="'.$row['leave_type'].'" data-dtp="dtp_dl6pL">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="date">
+           Applied On <span class="text-danger">*</span>
+          </label>
+          <div class="input-group">
+            <input class="form-control applied_on" placeholder="Applied On " name="applied_on" type="date" value="'.$row['date'].'" data-dtp="dtp_dl6pL">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label for="date">
+         Start Date <span class="text-danger">*</span>
+        </label>
+        <div class="input-group">
+          <input class="form-control start_date" placeholder="Applied On " name="start_date" type="date" value="'.$row['start_date'].'" data-dtp="dtp_dl6pL">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+      <div class="row">
+                <div class="col-md-12">
+          <div class="form-group">
+            <label for="clock_in">
+             End date <span class="text-danger">*</span>
+            </label>
+            <div class="input-group">
+              <input class="form-control end_date" placeholder="leave duration" name="end_date" type="date" value="'.$row['end_date'].'"  data-dtp="dtp_qHHzf">
+              
+            </div>
+          </div>
+        </div>
+                
+      </div>
+
+    </div>
+  </div>
+  ';
+  }
+  
+  if(isset($_POST['leaveEdit'])){
+    $id=$_POST['leaveid'];
+    $emp_id=$_POST['leaveemplid'];
+    $employee = $_POST['employee_name2'];
+    $leave_type = $_POST['leave_type'];
+    $applied_on = $_POST['applied_on'];
+    $start_date = $_POST['start_date'];
+    $end_date = $_POST['end_date'];
+   
+    $sql="UPDATE `leave_request` SET `leave_type`='$leave_type',`start_date`='$start_date',`end_date`='$end_date',`employee_id`='$emp_id',`employee`='$employee' WHERE id='$id
+    .'";
+    if (mysqli_query($conn, $sql)){
+      header("location:leave_request.php");
+   } else {
+      echo "<script> alert ('connection failed !');window.location.href='leave_request.php'</script>";
+   }
+  }
+  
+
+
+
+  if(isset($_POST['dnk1'])){
+    $query=mysqli_query($conn,"select * from leave_type where id='".$_POST['dnk1']."'");
+    $row=mysqli_fetch_array($query);
+    echo '  <div class="row">
+    <div class="col-md-12">
+    <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label for="date">
+        Leave Type <span class="text-danger">*</span>
+        </label>
+        <div class="input-group">
+        <input type="hidden" name="leaveid" value="'.$row['id'].'">
+            <input type="hidden" name="leaveemplid" value="'.$row['employee_id'].'">
+          <input class="form-control Leave_type" placeholder="Applied On " name="leave_type" type="text" value="'.$row['leave_type'].'" data-dtp="dtp_dl6pL">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+      <div class="row">
+                <div class="col-md-12">
+          <div class="form-group">
+            <label for="clock_in">
+            Days per year <span class="text-danger">*</span>
+            </label>
+            <div class="input-group">
+              <input class="form-control end_date" placeholder="leave duration" name="days_per_year" type="text" value="'.$row['days_per_year'].'"  data-dtp="dtp_qHHzf">
+              
+            </div>
+          </div>
+        </div>
+                
+      </div>
+      <div class="col-md-12">
+      <div class="form-group">
+        <label for="date">
+       Requires Approval<span class="text-danger">*</span>
+        </label>
+        <div class="input-group">
+          <input class="form-control requires_approval" placeholder="requires approval " name="requires_approval" type="text" value="'.$row['requires_approval'].'" data-dtp="dtp_dl6pL">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+  </div>
+  ';
+  }
+  
+  if(isset($_POST['leavetypeEdit'])){
+    $id=$_POST['leaveid'];
+    $emp_id=$_POST['leaveemplid'];
+    
+    $leave_type = $_POST['leave_type'];
+    $days_per_year = $_POST['days_per_year'];
+    $requires_approval = $_POST['requires_approval'];
+   
+   
+    $sql="UPDATE `leave_type` SET `leave_type`='$leave_type',`days_per_year`='$days_per_year',`requires_approval`='$requires_approval',`employee_id`='$emp_id' WHERE id='$id
+    .'";
+    if (mysqli_query($conn, $sql)){
+      header("location:leave.php");
+   } else {
+      echo "<script> alert ('connection failed !');window.location.href='leave.php'</script>";
+   }
+  }
+  
+
+
+
+
+
+
 ?>
   
