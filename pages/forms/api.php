@@ -106,4 +106,27 @@ if(isset($_POST['client_profile'])){
       }
 
 }
+
+if(isset($_GET['projectdeleteId'])){
+$sql=mysqli_query($conn,"DELETE FROM `project` WHERE `id`='$_GET[projectdeleteId]'");
+if($sql==1){
+    header("location:project-List.php");
+}else{
+    echo "<script>alert('Something went wrong')</script>";
+}
+}
+
+if(isset($_POST['project_details'])){
+$progressid=$_POST['progressid'];
+$range_5=$_POST['range_5'];
+$project_status=$_POST['project_status'];
+$project_pro=$_POST['project_pro'];
+
+    $sql=mysqli_query($conn,"UPDATE `project` SET `priority`='$project_pro',`progress`='$range_5',`status`='$project_status' WHERE id='$progressid'");
+    if($sql==1){
+      echo "updated successfully";
+    }else{
+        echo "Something went wrong";
+    }
+}
 ?>

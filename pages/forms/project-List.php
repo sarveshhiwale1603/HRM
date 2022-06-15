@@ -1,9 +1,11 @@
-<?php
+
+<?php 
 include("../include/config.php");
 session_start();
 if(!isset($_SESSION['id'])){
     header("location:index.php");
-} ?>
+} 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,13 +53,10 @@ if(!isset($_SESSION['id'])){
   <link rel="stylesheet" href="../../plugins/codemirror/theme/monokai.css">
   <!-- SimpleMDE -->
   <link rel="stylesheet" href="../../plugins/simplemde/simplemde.min.css">
-  <!-- bootstrap -->
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+        ></script>
 
 
         <style>
@@ -128,9 +127,8 @@ element.style {
 
 <body>
     <div class="wrapper">
-    <?php include("../include/header.php") ?>
 
-
+<?php include("../include/header.php"); ?>
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -286,154 +284,7 @@ element.style {
 
 
     <!-- /.row -->
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-
-            <div class="collapse" id="collapseExample">
-
-                <div class="row my-3">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5 class="card-title">Add New Project</h5>
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-primary btn-sm"
-                                        data-bs-toggle="collapse" href="#collapseExample" role="button"
-                                        aria-expanded="false" aria-controls="collapseExample">
-                                        <i class="fas fa-minus"></i> Hide</button>
-                                    </button>
-                                    </button>
-                                </div>
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <div class="row my-3">
-                                    <div class="col-lg-4">
-                                        <label>Title<sup><b style="color:red;">*</b></sup></label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control"
-                                                placeholder="Title">
-                                        </div>
-                                        <!-- /input-group -->
-                                    </div>
-                                    <!-- /.col-lg-6 -->
-                                    <div class="col-lg-3">
-                                        <label>Client<sup><b style="color:red;">*</b></sup></label>
-                                        <div class="input-group">
-                                            <select class="form-control select2" style="width: 100%;">
-                                                <option selected="selected" >Client</option>
-                                                <option>Aniket Nangare</option>
-                                            </select>
-                                        </div>
-                                        <!-- /input-group -->
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <label>Estimated Hour</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control"
-                                                placeholder="Estimated Hour">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <i class="fas fa-clock"></i>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <!-- /input-group -->
-                                    </div>
-                                    <div class="col-lg-3">
-                                        <label>Priority</label>
-                                        <div class="input-group">
-                                            <select class="form-control select2" style="width: 100%;">
-                                                <option selected="selected">Highest</option>
-                                                <option>High</option>
-                                                <option>Normal</option>
-                                                <option>Low</option>
-                                            </select>
-                                        </div>
-                                        <!-- /input-group -->
-                                    </div>
-                                   
-                                    <!-- /.col-lg-6 -->
-                                </div>
-                                <!-- /.row -->
-
-
-                                <div class="row my-3">
-                                    <div class="col-lg-3">
-                                        <label>Start Date<sup><b style="color:red;">*</b></sup></label>
-                                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" placeholder="Date" data-target="#reservationdate"/>
-                                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.col-lg-4 -->
-                                    <div class="col-lg-3">
-                                        <label>End Date<sup><b style="color:red;">*</b></sup></label>
-                                        <div class="input-group date" id="endDate" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" placeholder="Date" data-target="#endDate"/>
-                                            <div class="input-group-append" data-target="#endDate" data-toggle="datetimepicker">
-                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <label>Summary<sup><b style="color:red;">*</b></sup></label>
-                                        <div class="input-group">
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="1" placeholder="Summary"></textarea>
-                                        </div>
-                                        <!-- /input-group -->
-                                    </div>
-                                    <!-- /.col-lg-4 -->
-                                </div>
-                                <!-- /.row -->
-
-
-                                <div class="row my-3">
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                          <label>Team</label>
-                                          <select class="select2" multiple="multiple" data-placeholder="Team" style="width: 100%;">
-                                            <option>Vedant</option>
-                                            <option>Naidu</option>
-                                        
-                                          </select>
-                                        </div>
-                                          </div>
-                                   
-                                </div>
-                                <!-- /.row -->
-
-
-                                <div class="row my-3">
-                                    <div class="col-lg-12">
-                                        <div class="form-group">
-                                          <label>Description</label>
-                                    <textarea id="summernote" class="form-control" rows="3">
-                                        <!-- Place <em>some</em> <u>text</u> <strong>here</strong> -->
-                                      </textarea>
-                                      </div>
-                                      </div>
-                                </div>
-                             
-
-                                <div class="card-footer">
-                                    <buttton type="button" id="reset" class="btn btn-default"
-                                        name="reset" data-bs-toggle="collapse" href="#collapseExample"
-                                        role="button" aria-expanded="false"
-                                        aria-controls="collapseExample">Reset</buttton>
-                                    <buttton type="button" id="submit" class="btn btn-primary"
-                                        name="Save">Save</buttton>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                  
-                </div>
-            </div>
-        </div>
-    </div>
+   
 
 
                     <div class="row mt-3">
@@ -444,9 +295,7 @@ element.style {
                                   <div class="card-tools">
                                   <a href="projects.php"> <button type="button" title="Grid view" class="btn btn-primary btn-sm">
                                       <i class="fas fa-th-large"></i></button></a> 
-                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="collapse"
-                                      href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                      <i class="fas fa-plus"></i> Add New</button>
+                                   
                                   </div>
                                 </div>
                 
@@ -467,9 +316,33 @@ element.style {
                                               <th><i class="fa fa-user"></i> TEAM</th>
                                               <th>PRIORITY</th>
                                               <th>PROGRESS</th>
+                                              <th>ACTION</th>
                                           </thead>
-                                          <tbody>
-                                          </tbody>
+                                          <?php 
+                        
+                        $sql=mysqli_query($conn,"select * from project");
+                         while($arr=mysqli_fetch_array($sql)){
+                        ?>
+ <tr>
+                            
+                            <td><?php echo $arr['title']; ?></td>
+                            <td> <?php echo $arr['client'];?></td>
+                            <td> </td>
+                            <td> <?php echo $arr['start_date'];?> </td>
+                                <td> <?php echo $arr['end_date'];?>  </td> 
+                                <td> <?php echo $arr['team'];?>  </td>                         
+
+                                <td> <?php echo $arr['priority'];?>  </td> 
+                                
+                                <td><div class="progress">
+  <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">55%</div>
+</div> </td>   
+<td><a href="project-Details.php?projectListId=<?php echo $arr['id']; ?>" class="btn btn-success"><i class="fa fa-arrow-right"></i></a>
+<a href="api.php?projectdeleteId=<?php echo $arr['id']; ?>" class="btn btn-primary"><i class="fa fa-trash" onclick="return confirm('Are you sure you want to delete this record')"></i></a></td>                      
+
+                          </tr>
+                          <?php } ?>
+                        </tbody>
                                           <tfoot>
                                           </tfoot>
                                         </table>
@@ -493,8 +366,7 @@ element.style {
         <!-- /.control-sidebar -->
 
         <!-- Main Footer -->
-        <?php include("../include/footer.php") ?>
-
+<?php include("../include/footer.php"); ?>
     </div>
     <!-- ./wrapper -->
 
@@ -535,6 +407,8 @@ element.style {
 <script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+
 <script>
   $(function () {
     $("#example1").DataTable({
@@ -747,6 +621,7 @@ element.style {
   }
   // DropzoneJS Demo Code End
 </script>
+
 
 
 </body>

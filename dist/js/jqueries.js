@@ -67,4 +67,93 @@ $("#changepassword").click(function(){
         });
 });
 
+//project status progress
+$("#project_details").click(function(){
+    let progressid = $("#progressid").val();
+    let range_5 = $("#range_5").val();
+    let project_status = $("#project_status").val();
+    let project_pro = $("#project_pro").val();
+    let project_details = $("#project_details").val();
+
+    $.ajax({
+        url:'api.php',
+        type:'POST',
+        data:{
+            progressid:progressid,
+            range_5:range_5,
+            project_status:project_status,
+            project_pro:project_pro,
+            project_details:project_details
+        },
+        cache: false,
+        success: function(data) {
+            alert(data);
+        }
+        });
+});
+
+//project status progress   
+$("#updateeditproject").click(function(){
+    let editid = $("#editid").val();
+    let title = $("#title").val();
+    let editclient = $("#editclient").val();
+    let budget_hours = $("#budget_hours").val();
+    let starteditdate = $("#starteditdate").val();
+    let endeditDate = $("#endeditDate").val();
+    let editsummary = $("#editsummary").val();
+    let editteam = $("#editteam").val();
+    let editdesc=$(".editdesc").val();
+    let updateeditproject=$("#updateeditproject").val();
+
+    $.ajax({
+        url:'check.php',
+        type:'POST',
+        data:{
+            editid:editid,
+            title:title,
+            editclient:editclient,
+            budget_hours:budget_hours,
+            starteditdate:starteditdate,
+            endeditDate:endeditDate,
+            editsummary:editsummary,
+            editteam:editteam,
+            editdesc:editdesc,
+            updateeditproject:updateeditproject
+        },
+        cache: false,
+        success: function(data) {
+            alert(data);
+        }
+        });
+});
+
+//time log
+$("#time_log_id").click(function(){
+    let timeproid = $("#timeproid").val();
+    let employee_time_bugs_name = $("#employee_time_bugs_name").val();
+    let startpro = $("#startpro").val();
+    let endpro = $("#endpro").val();
+    let timeLogsStartDate = $("#timeLogsStartDate").val();
+    let timeLogsEndDate = $("#timeLogsEndDate").val();
+    let memo = $("#memo").val();
+    let time_log_id = $("#time_log_id").val();
+    $.ajax({
+        url:'check.php',
+        type:'POST',
+        data:{
+            timeproid:timeproid,
+            employee_time_bugs_name:employee_time_bugs_name,
+            startpro:startpro,
+            endpro:endpro,
+            timeLogsStartDate:timeLogsStartDate,
+            timeLogsEndDate:timeLogsEndDate,
+            memo:memo,
+            time_log_id:time_log_id
+        },
+        cache: false,
+        success: function(data) {
+            $("#display_timelog").html(data);
+        }
+        });
+});
 });

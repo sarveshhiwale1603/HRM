@@ -110,16 +110,16 @@ $row=mysqli_fetch_array($sql);
                                             </div>
                                         </div>
                                         <div class="media-body ml-3">
-                                            <h6 class="mb-1"> ANIKET NANGARE </h6>
-                                            <p class="mb-0 text-muted"> @aniketnangare </p>
+                                            <h6 class="mb-1"><?php echo $row['first_name'] ?></h6>
+                                            <p class="mb-0 text-muted"><?php echo $row['username'] ?> </p>
                                         </div>
                                     </div>
                                 </div>
                                 <ul class="list-group list-group-flush mb-3">
                                    
-                                    <li class="list-group-item border-bottom-0"> <span class="f-w-500"><i class="fa fa-envelope m-r-10"></i> Email  </span>  <span class="float-right" > aniket@gmail.com</span>
+                                    <li class="list-group-item border-bottom-0"> <span class="f-w-500"><i class="fa fa-envelope m-r-10"></i> Email  </span>  <span class="float-right" > <?php echo $row['email'] ?></span>
                                     </li>
-                                    <li class="list-group-item"> <span class="f-w-500"><i class="fa fa-user m-r-10"></i>  Contact No </span> <a href="#"  class="float-right text-body">  4847473636 </a> </li>
+                                    <li class="list-group-item"> <span class="f-w-500"><i class="fa fa-user m-r-10"></i>  Contact No </span> <a href="#"  class="float-right text-body"> <?php echo $row['contact'] ?></a> </li>
                                 </ul>
 
                                 <div class="nav flex-column nav-pills list-group list-group-flush list-pills"  id="user-set-tab" role="tablist" aria-orientation="vertical">

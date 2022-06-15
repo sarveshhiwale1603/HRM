@@ -452,17 +452,16 @@ if(!isset($_SESSION['id'])){
                     <div class="row my-3">
                         <div class="col-md-8">
                             <div class="card">
-                                <div class="card-header">
-                                    <h5 class="card-title">Add Leave</h5>
-                                    <div class="card-tools">
-                                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="collapse"
-                                            href="#collapseExample" role="button" aria-expanded="false"
-                                            aria-controls="collapseExample">
-                                            <i class="fas fa-minus"></i> Hide</button>
-                                        </button>
-                                        </button>
-                                    </div>
-                                </div>
+                            <div class="card-header">
+                    <h5 class="card-title">Add Leave</h5>
+                    <div class="card-tools">
+                      <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="collapse"
+                      href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                      <i class="fas fa-minus"></i> Hide</button>
+                    </button>
+                      </button>
+                    </div>
+                  </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
                                     <form method="post" enctype="multipart/form-data">
@@ -475,7 +474,7 @@ if(!isset($_SESSION['id'])){
                                                     <select class="form-control select2-hidden-accessible"
                                                         name="employee_name" data-plugin="select_hrm"
                                                         data-placeholder="Employee" tabindex="-1" aria-hidden="true"
-                                                        data-select2-id="44">
+                                                        data-select2-id="44" required>
                                                         <option selected="selected">select</option>
                                                         <?php
                                                    $query=mysqli_query($conn,"select * from employee");
@@ -499,7 +498,7 @@ if(!isset($_SESSION['id'])){
                                                         </span>
                                                     </div>
                                                     <input type="text" name="leave_type" class="form-control"
-                                                        placeholder="Leave Type">
+                                                        placeholder="Leave Type" required>
                                                 </div>
                                                 <!-- /input-group -->
                                             </div>
@@ -509,7 +508,7 @@ if(!isset($_SESSION['id'])){
                                             <div class="col-lg-6">
                                                 <label>Start Date<sup><b style="color:red;">*</b></sup></label>
                                                 <input type="date" value="Date" name="start_date" class="form-control"
-                                                    placeholder="Start Date">
+                                                    placeholder="Start Date" required>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <!-- <i class="fas fa-user-alt"></i> -->
@@ -527,7 +526,7 @@ if(!isset($_SESSION['id'])){
                                                     <div class="input-group">
                                                         <input class="form-control date" type="date"
                                                             placeholder="End Date" name="end_date" type="text"
-                                                            value="date">
+                                                            value="date" required>
                                                       
                                                     </div>
                                                 </div>
@@ -538,7 +537,7 @@ if(!isset($_SESSION['id'])){
                                             <div class="form-group">
                                                 <div class="custom-control custom-switch">
                                                     <input type="checkbox" class="custom-control-input input-primary"
-                                                        name="leave_half_day" id="leave_half_day" value="1">
+                                                        name="leave_half_day" id="leave_half_day" value="1" required >
                                                     <label class="custom-control-label" for="leave_half_day">
                                                         Half Day </label>
                                                 </div>
@@ -549,7 +548,7 @@ if(!isset($_SESSION['id'])){
                                                 <label for="description">
                                                     Remarks </label>
                                                 <textarea class="form-control textarea" placeholder="Remarks"
-                                                    name="remarks" rows="2"></textarea>
+                                                    name="remarks" rows="2" required></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
@@ -571,7 +570,7 @@ if(!isset($_SESSION['id'])){
 
                                 </div>
                             </div>
-                   
+                            </div>
                         </div>
                         <div class="col-md-4">
                             <div class="card">
@@ -595,6 +594,10 @@ if(!isset($_SESSION['id'])){
 
                 </form>
 
+             
+
+              
+             
                 <div class="row">
 
                     <!-- /.col (left) -->
@@ -613,6 +616,31 @@ if(!isset($_SESSION['id'])){
                                 </button>
 
                             </div>
+                            </div>
+
+ <!-- ################################################ -->
+             
+                            <div class="modal fade closemaual" id="dnkModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="post" action="check.php">
+      <div class="modal-body body2">
+      </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary" name="leaveEdit">Save changes</button>
+    </div>
+                                                            </form>
+  </div>
+  </div>
+</div>
+
+<!-- ################################################ -->
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
@@ -682,10 +710,15 @@ if(!isset($_SESSION['id'])){
                                             <?php echo $arr['status'];?>
                                             </td>
                                             <td>
-              <a href="leave_request.php?delid=<?php echo $arr['id']; ?>"><button type="button" class="btn btn-danger btn-rounded btn-icon" onclick="ConfirmDelete()" style="color: aliceblue"> <i class="fas fa-trash"></i> </button></a>
-             <button  type="button" class="btn btn-warning btn-rounded btn-icon usereditid" data-toggle="modal" data-id='<?php echo $arr['id']; ?>'
-                                style="color: aliceblue"> <i class="fas fa-pen"></i>
-                                      </button>
+                                            <a href="leave_request.php?delid=<?php echo $arr['id']; ?>"><button type="button" class="btn btn-danger btn-rounded btn-icon"  style="color: aliceblue"> <i class="fas fa-trash"></i> </button></a>
+
+                                            <button type="button"  class="btn btn-primary button1" data-id='<?php echo $arr['id']; ?>' data-toggle="modal"
+                                           >
+                          <i class="fa fa-pen" ></i>
+                    </button>
+
+                  
+                                               
                                                                  
                   
                   
@@ -698,6 +731,7 @@ if(!isset($_SESSION['id'])){
                                             </table>
                                         </div>
                                     </div>
+                                   
                                     <div class="row">
                                         <div class="col-md-9">
                                             <div class="dataTables_info" id="example1_info" role="status"> 
@@ -777,27 +811,64 @@ function mouseOut() {
   document.getElementById("demo").style.color = "black";
 }
 </script>
+
+
+
     <script src="../../plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- overlayScrollbars -->
-    <script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="../../dist/js/adminlte.js"></script>
+<!-- Bootstrap -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.js"></script>
+<!-- DataTables  & Plugins -->
+<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="../../plugins/jszip/jszip.min.js"></script>
+<script src="../../plugins/pdfmake/pdfmake.min.js"></script>
+<script src="../../plugins/pdfmake/vfs_fonts.js"></script>
+<script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
-    <!-- PAGE PLUGINS -->
-    <!-- jQuery Mapael -->
-    <script src="../../plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-    <script src="../../plugins/raphael/raphael.min.js"></script>
-    <script src="../../plugins/jquery-mapael/jquery.mapael.min.js"></script>
-    <script src="../../plugins/jquery-mapael/maps/usa_states.min.js"></script>
-    <!-- ChartJS -->
-    <script src="../../plugins/chart.js/Chart.min.js"></script>
+<!-- PAGE PLUGINS -->
+<!-- jQuery Mapael -->
+<script src="../../plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+<script src="../../plugins/raphael/raphael.min.js"></script>
+<script src="../../plugins/jquery-mapael/jquery.mapael.min.js"></script>
+<script src="../../plugins/jquery-mapael/maps/usa_states.min.js"></script>
+<!-- ChartJS -->
+<script src="../../plugins/chart.js/Chart.min.js"></script>
+<script type="text/javascript">var dt_infoFiltered = '(filtered from _MAX_ total records)';</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- AdminLTE for demo purposes -->
-    <script src="../../dist/js/demo.js"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="../../dist/js/pages/dashboard2.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script>
+$(document).ready(function(){
+$('.button1').click(function(){
+  let dnkk = $(this).data('id');
+
+  $.ajax({
+   url: 'check.php',
+   type: 'post',
+   data: {dnkk: dnkk},
+   success: function(response2){ 
+     $('.body2').html(response2);
+     $('#dnkModal1').modal('show'); 
+   }
+ });
+});
+
+
+});
+</script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="../../dist/js/pages/dashboard2.js"></script>
+
 </body>
 
 </html>

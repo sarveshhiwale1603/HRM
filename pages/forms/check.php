@@ -38,7 +38,7 @@ echo '<table class="table table-striped" style="border-top:none;">
 
 //edit
 if(isset($_POST['usereditid'])){
-    $query=mysqli_query($conn,"select * from exit_employee inner join exit_type on exit_employee.type=exit_type.id where exit_employee.id='".$_POST['usereditid']."'");
+    $query=mysqli_query($conn,"select * from exit_employee inner join exit_type on exit_employee.type=exit_type.type where exit_employee.id='".$_POST['usereditid']."'");
 $row=mysqli_fetch_array($query);
        echo '<div class="modal-body">';
        echo '<div class="row">';
@@ -182,7 +182,7 @@ if(isset($_POST['overtimeeditid'])){
                
                <div class="input-group">
                <input type="hidden" name="overtimeeditid" value="'.$row['id'].'">
-                     <input class="form-control "placeholder="Date" readonly="true" name="attendance_date_m" id="datepicker" type="text" value="'.$row['date'].'" data-dtp="dtp_oiUDD">
+                     <input class="form-control "placeholder="Date" name="attendance_date_m" id="datepicker" type="text" value="'.$row['date'].'" readonly>
                      <div class="input-group-append"><span class="input-group-text"><i class="fas fa-calendar-alt"></i></span></div>
                  </div>
              </div>
@@ -202,10 +202,10 @@ if(isset($_POST['overtimeeditid'])){
              <div class="row">
                       <div class="col-md-6">
                  <div class="form-group">
-                   <label for="clock_in">Out Time <span class="text-danger">*</span></label>
-                   <div class="input-group">
-                    <input class="form-control timepicker" placeholder="In Time" readonly="true" name="clock_in_m" type="text" value="'.$row['in_time'].'" data-dtp="dtp_0Kjpk">
-                     <div class="input-group-append"><span class="input-group-text"><i class="fas fa-clock"></i></span></div>
+                   <label for="clock_in">In Time <span class="text-danger">*</span></label>
+                   <div class="input-group" id="timepicker2">
+                    <input class="form-control datetimepicker-input" placeholder="In Time"  name="clock_in_m" type="text" value="'.$row['in_time'].'" data-target="#timepicker2" readonly>
+                     <div class="input-group-append" data-target="#timepicker2" data-toggle="datetimepicker"><span class="input-group-text"><i class="fas fa-clock"></i></span></div>
                  </div>
                  </div>
                </div>
@@ -213,7 +213,7 @@ if(isset($_POST['overtimeeditid'])){
                  <div class="form-group">
                    <label for="clock_out">Out Time <span class="text-danger">*</span></label>
                    <div class="input-group">
-                    <input class="form-control timepicker" placeholder="Out Time" readonly="true" name="clock_out_m" type="text" value="'.$row['out_time'].'" data-dtp="dtp_lbLY4">
+                    <input class="form-control timepicker" placeholder="Out Time" name="clock_out_m" type="text" value="'.$row['out_time'].'" data-dtp="dtp_lbLY4" readonly>
                      <div class="input-group-append"><span class="input-group-text"><i class="fas fa-clock"></i></span></div>
                  </div>
                  </div>
@@ -336,6 +336,9 @@ if(isset($_POST['manualAttendanceEdit'])){
  }
 }
 
+
+
+
 if(isset($_GET['managedelid'])){
   $query=mysqli_query($conn,"delete from manage_client where id='".$_GET['managedelid']."'");
   if($query){
@@ -387,5 +390,249 @@ if(isset($_POST['client_detail_update1'])){
       echo "<script>alert('Current password is incorrect');</script>";
     }
   }
+
+
+
+
+
+
+
+
+
+
+  if(isset($_POST['dnkk'])){
+    $query=mysqli_query($conn,"select * from leave_request where id='".$_POST['dnkk']."'");
+    $row=mysqli_fetch_array($query);
+    echo '  <div class="row">
+    <div class="col-md-12">
+                  <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="first_name">
+              Employee <span class="text-danger">*</span>
+            </label>
+            <input type="hidden" name="leaveid" value="'.$row['id'].'">
+            <input type="hidden" name="leaveemplid" value="'.$row['employee_id'].'">';
+            
+          echo'  <select class="form-control select2-hidden-accessible" name="employee_name2" data-plugin="select_hrm" data-placeholder="Employee" tabindex="-1" aria-hidden="true" data-select2-id="44">';
+          echo'  <option value="'.$row['employee'].'" selected>'.$row['employee'].'</option>';
+            $query=mysqli_query($conn,"select * from employee");
+                    while($sql=mysqli_fetch_array($query))
+                    { echo "<option value='".$sql['fname']." ".$sql['lname']."'>".$sql['fname']." ".$sql['lname']."</option>";
+                         } 
+                         echo' </select>
+          </div>
+        </div>
+      </div>
+            <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="date">
+              Leave Type <span class="text-danger">*</span>
+            </label>
+            <div class="input-group">
+              <input class="form-control leave_type" placeholder="Leave Type" name="leave_type" type="text" value="'.$row['leave_type'].'" data-dtp="dtp_dl6pL">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="date">
+           Applied On <span class="text-danger">*</span>
+          </label>
+          <div class="input-group">
+            <input class="form-control applied_on" placeholder="Applied On " name="applied_on" type="date" value="'.$row['date'].'" data-dtp="dtp_dl6pL">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label for="date">
+         Start Date <span class="text-danger">*</span>
+        </label>
+        <div class="input-group">
+          <input class="form-control start_date" placeholder="Applied On " name="start_date" type="date" value="'.$row['start_date'].'" data-dtp="dtp_dl6pL">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+      <div class="row">
+                <div class="col-md-12">
+          <div class="form-group">
+            <label for="clock_in">
+             End date <span class="text-danger">*</span>
+            </label>
+            <div class="input-group">
+              <input class="form-control end_date" placeholder="leave duration" name="end_date" type="date" value="'.$row['end_date'].'"  data-dtp="dtp_qHHzf">
+              
+            </div>
+          </div>
+        </div>
+                
+      </div>
+
+    </div>
+  </div>
+  ';
+  }
+  
+  if(isset($_POST['leaveEdit'])){
+    $id=$_POST['leaveid'];
+    $emp_id=$_POST['leaveemplid'];
+    $employee = $_POST['employee_name2'];
+    $leave_type = $_POST['leave_type'];
+    $applied_on = $_POST['applied_on'];
+    $start_date = $_POST['start_date'];
+    $end_date = $_POST['end_date'];
+   
+    $sql="UPDATE `leave_request` SET `leave_type`='$leave_type',`start_date`='$start_date',`end_date`='$end_date',`employee_id`='$emp_id',`employee`='$employee' WHERE id='$id
+    .'";
+    if (mysqli_query($conn, $sql)){
+      header("location:leave_request.php");
+   } else {
+      echo "<script> alert ('connection failed !');window.location.href='leave_request.php'</script>";
+   }
+  }
+  
+
+
+
+  if(isset($_POST['dnk1'])){
+    $query=mysqli_query($conn,"select * from leave_type where id='".$_POST['dnk1']."'");
+    $row=mysqli_fetch_array($query);
+    echo '  <div class="row">
+    <div class="col-md-12">
+    <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label for="date">
+        Leave Type <span class="text-danger">*</span>
+        </label>
+        <div class="input-group">
+        <input type="hidden" name="leaveid" value="'.$row['id'].'">
+            <input type="hidden" name="leaveemplid" value="'.$row['employee_id'].'">
+          <input class="form-control Leave_type" placeholder="Applied On " name="leave_type" type="text" value="'.$row['leave_type'].'" data-dtp="dtp_dl6pL">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+      <div class="row">
+                <div class="col-md-12">
+          <div class="form-group">
+            <label for="clock_in">
+            Days per year <span class="text-danger">*</span>
+            </label>
+            <div class="input-group">
+              <input class="form-control end_date" placeholder="leave duration" name="days_per_year" type="text" value="'.$row['days_per_year'].'"  data-dtp="dtp_qHHzf">
+              
+            </div>
+          </div>
+        </div>
+                
+      </div>
+      <div class="col-md-12">
+      <div class="form-group">
+        <label for="date">
+       Requires Approval<span class="text-danger">*</span>
+        </label>
+        <div class="input-group">
+          <input class="form-control requires_approval" placeholder="requires approval " name="requires_approval" type="text" value="'.$row['requires_approval'].'" data-dtp="dtp_dl6pL">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+  </div>
+  ';
+  }
+  
+  if(isset($_POST['leavetypeEdit'])){
+    $id=$_POST['leaveid'];
+    $emp_id=$_POST['leaveemplid'];
+    
+    $leave_type = $_POST['leave_type'];
+    $days_per_year = $_POST['days_per_year'];
+    $requires_approval = $_POST['requires_approval'];
+   
+   
+    $sql="UPDATE `leave_type` SET `leave_type`='$leave_type',`days_per_year`='$days_per_year',`requires_approval`='$requires_approval',`employee_id`='$emp_id' WHERE id='$id
+    .'";
+    if (mysqli_query($conn, $sql)){
+      header("location:leave.php");
+   } else {
+      echo "<script> alert ('connection failed !');window.location.href='leave.php'</script>";
+   }
+  }
+  
+  
+  if(isset($_POST['updateeditproject'])){
+    $editid=$_POST['editid'];
+    $title=$_POST['title'];
+    $editclient=$_POST['editclient'];
+    $budget_hours=$_POST['budget_hours'];
+    $starteditdate=$_POST['starteditdate'];
+    $endeditDate=$_POST['endeditDate'];
+    $editsummary=$_POST['editsummary'];
+    $editteam=$_POST['editteam'];
+    $editdesc=$_POST['editdesc'];
+
+    $sql=mysqli_query($conn,"UPDATE `project` SET `title`='$title',`estimated_hr`='$budget_hours',`start_date`='$starteditdate',`end_date`='$endeditDate',`summary`='$editsummary',`team`='$editteam',`description`='$editdesc',`client`='$editclient',`employee_code`='$editteam' WHERE id='$editid'");
+
+    if($sql==1){
+      echo "record updated";
+    }else{
+      echo "record not updated";
+    }
+  }
+
+if(isset($_POST['time_log_id'])){
+  $timeproid=$_POST['timeproid'];
+  $employee_time_bugs_name=$_POST['employee_time_bugs_name'];
+  $startpro=$_POST['startpro'];
+  $endpro=$_POST['endpro'];
+  $timeLogsStartDate=$_POST['timeLogsStartDate'];
+  $timeLogsEndDate=$_POST['timeLogsEndDate'];
+  $memo=$_POST['memo'];
+  date_default_timezone_set('Asia/Kolkata');
+  $date=date('Y-m-d');
+  $sql=mysqli_query($conn,"INSERT INTO `time_log`(`employee_name`, `start_time`, `end_time`, `start_date`, `end_date`, `memo`, `cur_date`) VALUES ('$employee_time_bugs_name','$startpro','$endpro','$timeLogsStartDate','$timeLogsEndDate','$memo','$date')");
+
+}
+
+if(isset($_POST['time_log_id'])){
+  $employee_time_bugs_name=$_POST['employee_time_bugs_name'];
+  $query=mysqli_query($conn,"SELECT `employee_name`, `start_time`, timediff(start_time,end_time) as time,`end_time`, `start_date`, `end_date`, `memo`, `cur_date` FROM `time_log` where employee_name='".$employee_time_bugs_name."'");
+  echo '<table id="example1" class="table table-bordered table-striped dataTable dtr-inline"
+  aria-describedby="example1_info">
+  <thead>
+    <tr>
+      <th>EMPLOYEE</th>
+      <th>START DATE</th>
+      <th>END DATE</th>
+      <th>TOTAL HOURS</th>
+  </thead>
+  <tbody>';
+while($res=mysqli_fetch_array($query)){
+  echo '<tr>
+  <td>'.$res['employee_name'].'</td>
+  <td>'.$res['start_date'].'</td>
+  <td>'.$res['end_date'].'</td>
+  <td>'.$res['time'].'</td>';}
+ echo' </tbody>
+  <tfoot>
+  </tfoot>
+</table>';
+}
 ?>
   
