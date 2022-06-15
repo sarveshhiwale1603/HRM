@@ -596,7 +596,43 @@ if(isset($_POST['client_detail_update1'])){
     }
   }
 
+if(isset($_POST['time_log_id'])){
+  $timeproid=$_POST['timeproid'];
+  $employee_time_bugs_name=$_POST['employee_time_bugs_name'];
+  $startpro=$_POST['startpro'];
+  $endpro=$_POST['endpro'];
+  $timeLogsStartDate=$_POST['timeLogsStartDate'];
+  $timeLogsEndDate=$_POST['timeLogsEndDate'];
+  $memo=$_POST['memo'];
+  date_default_timezone_set('Asia/Kolkata');
+  $date=date('Y-m-d');
+  $sql=mysqli_query($conn,"INSERT INTO `time_log`(`employee_name`, `start_time`, `end_time`, `start_date`, `end_date`, `memo`, `cur_date`) VALUES ('$employee_time_bugs_name','$startpro','$endpro','$timeLogsStartDate','$timeLogsEndDate','$memo','$date')");
 
+}
 
+if(isset($_POST['time_log_id'])){
+  $employee_time_bugs_name=$_POST['employee_time_bugs_name'];
+  $query=mysqli_query($conn,"SELECT `employee_name`, `start_time`, timediff(start_time,end_time) as time,`end_time`, `start_date`, `end_date`, `memo`, `cur_date` FROM `time_log` where employee_name='".$employee_time_bugs_name."'");
+  echo '<table id="example1" class="table table-bordered table-striped dataTable dtr-inline"
+  aria-describedby="example1_info">
+  <thead>
+    <tr>
+      <th>EMPLOYEE</th>
+      <th>START DATE</th>
+      <th>END DATE</th>
+      <th>TOTAL HOURS</th>
+  </thead>
+  <tbody>';
+while($res=mysqli_fetch_array($query)){
+  echo '<tr>
+  <td>'.$res['employee_name'].'</td>
+  <td>'.$res['start_date'].'</td>
+  <td>'.$res['end_date'].'</td>
+  <td>'.$res['time'].'</td>';}
+ echo' </tbody>
+  <tfoot>
+  </tfoot>
+</table>';
+}
 ?>
   

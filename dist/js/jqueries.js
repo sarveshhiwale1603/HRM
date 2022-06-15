@@ -92,7 +92,7 @@ $("#project_details").click(function(){
         });
 });
 
-//project status progress
+//project status progress   
 $("#updateeditproject").click(function(){
     let editid = $("#editid").val();
     let title = $("#title").val();
@@ -123,6 +123,36 @@ $("#updateeditproject").click(function(){
         cache: false,
         success: function(data) {
             alert(data);
+        }
+        });
+});
+
+//time log
+$("#time_log_id").click(function(){
+    let timeproid = $("#timeproid").val();
+    let employee_time_bugs_name = $("#employee_time_bugs_name").val();
+    let startpro = $("#startpro").val();
+    let endpro = $("#endpro").val();
+    let timeLogsStartDate = $("#timeLogsStartDate").val();
+    let timeLogsEndDate = $("#timeLogsEndDate").val();
+    let memo = $("#memo").val();
+    let time_log_id = $("#time_log_id").val();
+    $.ajax({
+        url:'check.php',
+        type:'POST',
+        data:{
+            timeproid:timeproid,
+            employee_time_bugs_name:employee_time_bugs_name,
+            startpro:startpro,
+            endpro:endpro,
+            timeLogsStartDate:timeLogsStartDate,
+            timeLogsEndDate:timeLogsEndDate,
+            memo:memo,
+            time_log_id:time_log_id
+        },
+        cache: false,
+        success: function(data) {
+            $("#display_timelog").html(data);
         }
         });
 });
