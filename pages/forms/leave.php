@@ -316,7 +316,7 @@ include('../include/config.php');
                 <div class="d-flex flex-row align-items-start">
                     <i class="nav-link	fa fa-calendar"></i>
                     <div class="ms-3">
-                      <h6 ><a href="calendar2.php" target="_self" style="text-decoration:none">Calendar</a></h6>
+                      <h6 ><a href="calendar2.php" target="_self" style="text-decoration:none" required>Calendar</a></h6>
                       <p>Leave Calendar</p>
                     </div>
                 </div>
@@ -337,18 +337,18 @@ include('../include/config.php');
               <div class="card-body">
      <form   method="post">
         <input type="hidden"  value="" />
-        <input type="hidden" name="user_id" value="0" style="display:none;" />
+        <input type="hidden" name="user_id" value="0" style="display:none;" required/>
                 <div class="form-group">
                   <label for="name">
                     Leave Type          
                       <span class="text-danger">*</span> </label>
-                  <input type="text" class="form-control" name="leave_type" placeholder="Leave Type">
+                  <input type="text" class="form-control" name="leave_type" placeholder="Leave Type" required>
                 </div>
                 <div class="form-group">
                   <label for="name">
                     Days per year       
                          <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" name="days_per_year" placeholder="Days per year">
+                  <input type="text" class="form-control" name="days_per_year" placeholder="Days per year" required>
                 </div>
                 <div class="form-group">
                   <label for="gender" class="control-label">

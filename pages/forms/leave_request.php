@@ -475,7 +475,7 @@ if(!isset($_SESSION['id'])){
                                                     <select class="form-control select2-hidden-accessible"
                                                         name="employee_name" data-plugin="select_hrm"
                                                         data-placeholder="Employee" tabindex="-1" aria-hidden="true"
-                                                        data-select2-id="44">
+                                                        data-select2-id="44" required>
                                                         <option selected="selected">select</option>
                                                         <?php
                                                    $query=mysqli_query($conn,"select * from employee");
@@ -499,7 +499,7 @@ if(!isset($_SESSION['id'])){
                                                         </span>
                                                     </div>
                                                     <input type="text" name="leave_type" class="form-control"
-                                                        placeholder="Leave Type">
+                                                        placeholder="Leave Type" required>
                                                 </div>
                                                 <!-- /input-group -->
                                             </div>
@@ -509,7 +509,7 @@ if(!isset($_SESSION['id'])){
                                             <div class="col-lg-6">
                                                 <label>Start Date<sup><b style="color:red;">*</b></sup></label>
                                                 <input type="date" value="Date" name="start_date" class="form-control"
-                                                    placeholder="Start Date">
+                                                    placeholder="Start Date" required>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <!-- <i class="fas fa-user-alt"></i> -->
@@ -527,7 +527,7 @@ if(!isset($_SESSION['id'])){
                                                     <div class="input-group">
                                                         <input class="form-control date" type="date"
                                                             placeholder="End Date" name="end_date" type="text"
-                                                            value="date">
+                                                            value="date" required>
                                                       
                                                     </div>
                                                 </div>
@@ -538,7 +538,7 @@ if(!isset($_SESSION['id'])){
                                             <div class="form-group">
                                                 <div class="custom-control custom-switch">
                                                     <input type="checkbox" class="custom-control-input input-primary"
-                                                        name="leave_half_day" id="leave_half_day" value="1">
+                                                        name="leave_half_day" id="leave_half_day" value="1" required >
                                                     <label class="custom-control-label" for="leave_half_day">
                                                         Half Day </label>
                                                 </div>
@@ -549,7 +549,7 @@ if(!isset($_SESSION['id'])){
                                                 <label for="description">
                                                     Remarks </label>
                                                 <textarea class="form-control textarea" placeholder="Remarks"
-                                                    name="remarks" rows="2"></textarea>
+                                                    name="remarks" rows="2" required></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-12">

@@ -189,8 +189,11 @@ $id=$_SESSION['id']; ?>
                                   <i class="fas fa-user-alt"></i>
                                 </span>
                               </div>
-                              <input type="text" class="form-control" name="fname" placeholder="First Name" required>
+                              <input type="text" class="form-control" name="fname" id="txtname" placeholder="First Name" required>
+
                             </div>
+                            <span id="spanname"></span>
+
                             <!-- /input-group -->
                           </div>
                           <!-- /.col-lg-6 -->
@@ -200,8 +203,11 @@ $id=$_SESSION['id']; ?>
                               <div class="input-group-prepend">
                                 <span class="input-group-text"> <i class="fas fa-user-alt"></i></span>
                               </div>
-                              <input type="text" class="form-control" name="lname" placeholder="Last Name" required>
+                              <input type="text" class="form-control" name="lname" id="lstname" placeholder="Last Name" required>
+
                             </div>
+                            <span id="lname"></span>
+
                             <!-- /input-group -->
                           </div>
                           <!-- /.col-lg-6 -->
@@ -346,7 +352,7 @@ $id=$_SESSION['id']; ?>
                         <div class="col-lg-6">
                           <label>Payslip Type<sup><b style="color:red;">*</b></sup></label>
                           <div class="input-group">
-                            <select class="form-control select2" name="slip" style="width: 100%;" required>
+                            <select class="form-control select2" name="slip" style="width: 100%;"required >
                               <option selected="selected" >Per Month</option>
                             </select>
                           </div>
@@ -548,6 +554,9 @@ $id=$_SESSION['id']; ?>
   });
 </script>
 
+
+
+
 <!-- Bootstrap 4 -->
 <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Select2 -->
@@ -573,6 +582,72 @@ $id=$_SESSION['id']; ?>
 <!-- <script src="../../dist/js/adminlte.min.js"></script> -->
 <!-- AdminLTE for demo purposes -->
 <!-- Page specific script -->
+
+
+<script>
+
+//TEXT VALIDATION
+$("#spanname").hide();
+  $("#txtname").keyup(function(){
+   txt_check();
+ });
+ function txt_check(){
+   let txt=$("#txtname").val();
+   let vali =/^[A-Za-z ]+$/;
+   if(!vali.test(txt)){
+    $("#spanname").show().html("Enter Alphabets only").css("color","red").focus();
+    txt_err=false;
+    return false;
+   }
+   else{
+       $("#spanname").hide();
+
+   }
+ }
+
+ $("#sub").click(function(){
+   txt_err = true;
+         txt_check();
+
+     if((txt_err==true)){
+        return true;
+     }
+     else{return false;}
+  });
+
+</script>
+<script>
+
+//TEXT VALIDATION
+$("#lname").hide();
+  $("#lstname").keyup(function(){
+   txt_check1();
+ });
+ function txt_check1(){
+   let txt=$("#lstname").val();
+   let vali =/^[A-Za-z ]+$/;
+   if(!vali.test(txt)){
+    $("#lname").show().html("Enter Alphabets only").css("color","red").focus();
+    txt_err=false;
+    return false;
+   }
+   else{
+       $("#lname").hide();
+
+   }
+ }
+
+ $("#sub").click(function(){
+   txt_err = true;
+         txt_check1();
+
+     if((txt_err==true)){
+        return true;
+     }
+     else{return false;}
+  });
+
+</script>
 <script>
   $(function () {
     //Initialize Select2 Elements
@@ -720,6 +795,7 @@ $.ajax({
 });
   }
 </script>
+
 
 </body>
 </html>

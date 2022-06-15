@@ -159,7 +159,7 @@ include("../include/header.php");
                   <form method="post">
                   <div class="form-group">
                     <label>Department Name <span style="color:red">*</span></label>
-                      <input type="text" name="name" value="<?php echo $name; ?>" class="form-control" placeholder="Name" required>
+                      <input type="text" name="name" id="" value="<?php echo $name; ?>" class="form-control" placeholder="Name" required>
                     <!-- /.input group -->
                   </div>
                   <div class="form-group" >
@@ -250,6 +250,7 @@ include("../include/header.php");
   include('../include/footer.php');
   ?>
 </div>
+
 <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
@@ -278,5 +279,6 @@ include("../include/header.php");
 <script>$(document).ready( function () {
     $('#myTable').DataTable();
 } );</script>
+
 </body>
 </html>

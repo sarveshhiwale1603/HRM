@@ -176,11 +176,11 @@ if(!isset($_SESSION['id'])){
      <form   method="post">
         <input type="hidden"  value="" />
         <input type="hidden" name="user_id" value="0" style="display:none;" />
-                <div class="form-group">
+                <div class="form-group" >
                   <label for="name">
                    Date         
                       </label>
-                  <input type="Date" class="form-control" name="name" placeholder="Leave Type">
+                  <input type="Date" class="form-control" name="name" placeholder="Leave Type" required>
                 </div>
 
                 <div class="form-group">
@@ -191,7 +191,7 @@ if(!isset($_SESSION['id'])){
                    $query=mysqli_query($conn,"select * from employee");
                    ?>
  
-                       <select class="form-control select2" name="employee_name" style="width: 100%;">
+                       <select class="form-control select2" name="employee_name" style="width: 100%;" required>
                          <option selected="selected">select</option>
                          <?php
                     while($sql=mysqli_fetch_array($query))
