@@ -235,7 +235,7 @@ if(!isset($_SESSION['id'])){
                                                                         <label>  Contract Date <span class="text-danger">*</span></label>
                                                                         <div class="input-group date" id="reservationdateAllowances" data-target-input="nearest">
                                                                             <input type="text" class="form-control datetimepicker-input" data-target="#reservationdateAllowances"/>
-                                                                            <div class="input-group-append" data-target="#reservationdateAllowances" data-toggle="datetimepicker">
+                                                                            <div class="input-group-append" data-target="#reservationdateAllowances" data-toggle="datetimepicker" required>
                                                                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                                             </div>
                                                                         </div>
@@ -246,7 +246,7 @@ if(!isset($_SESSION['id'])){
                                                                 <div class="col-sm-6">
                                                                     <div class="form-group">
                                                                         <label for="department"> Department <span class="text-danger">*</span></label>
-                                                                        <select class="form-control select2" style="width: 100%;">
+                                                                        <select class="form-control select2" style="width: 100%;" required>
                                                                             <option value="" selected="selected"> Department </option>
                                                                             <option value="5" data-select2-id="63"> DEVELOPER </option>
                                                                             <option value="6"> SALES </option>
@@ -258,7 +258,7 @@ if(!isset($_SESSION['id'])){
                                                                     <div class="form-group">
                                                                         <label for="designation"> Designation </label>
                                                                         <span class="text-danger">*</span>
-                                                                        <select class="form-control select2" style="width: 100%;">
+                                                                        <select class="form-control select2" style="width: 100%;" required>
                                                                             <option value="" selected="selected"> MANAGER </option>
                                                                             <option value="5" data-select2-id="63"> TRAINEE </option>
                                                                         </select>
@@ -269,7 +269,7 @@ if(!isset($_SESSION['id'])){
                                                                         <label>Basic Salary <span class="text-danger">*</span></label>
                                                                         <div class="input-group">
                                                                             <div class="input-group-prepend"><span class="input-group-text"> INR </span></div>
-                                                                            <input type="text" class="form-control" name="basic_salary" placeholder="Gross Salary" value="10000.00">
+                                                                            <input type="text" class="form-control" name="basic_salary" placeholder="Gross Salary" value="10000.00" required>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -278,14 +278,14 @@ if(!isset($_SESSION['id'])){
                                                                         <label>Hourly Rate <span class="text-danger">*</span></label>
                                                                         <div class="input-group">
                                                                             <div class="input-group-prepend"><span class="input-group-text"> INR </span></div>
-                                                                            <input type="text" class="form-control" name="hourly_rate" placeholder="Hourly Rate" value="0.00">
+                                                                            <input type="text" class="form-control" name="hourly_rate" placeholder="Hourly Rate" value="0.00" required>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-sm-4">
                                                                     <div class="form-group">
                                                                         <label for="salay_type">Payslip Type <i class="text-danger">*</i></label>
-                                                                        <select class="form-control select2" style="width: 100%;">
+                                                                        <select class="form-control select2" style="width: 100%;" required>
                                                                             <option value="" selected="selected"> PER MONTH </option>
                                                                         </select>                                                                  
                                                                     </div>
@@ -294,7 +294,7 @@ if(!isset($_SESSION['id'])){
                                                                     <div class="form-group">
                                                                         <label for="office_shift_id" class="control-label">Office Shift </label>
                                                                         <span class="text-danger">*</span>
-                                                                        <select class="form-control select2" style="width: 100%;">
+                                                                        <select class="form-control select2" style="width: 100%;" required>
                                                                             <option value="" selected="selected"> morning</option>
                                                                             <option value="">Office Shift </option>
                                                                         </select>  
@@ -654,8 +654,10 @@ if(!isset($_SESSION['id'])){
                                                                     <div class="input-group">
                                                                         <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user"></i></span>
                                                                         </div>
-                                                                        <input class="form-control" placeholder="First Name" name="first_name" type="text" value="VEDANT">
+                                                                        <input class="form-control" placeholder="First Name" name="first_name" type="text" id="fsname" value="VEDANT">
                                                                     </div>
+                                                                    <span id="fstname"></span>
+
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
@@ -1494,14 +1496,16 @@ if(!isset($_SESSION['id'])){
                                                                         <div class="input-group">
                                                                             <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user"></i></span>
                                                                             </div>
-                                                                            <input type="text" class="form-control"  placeholder="Full Name" name="contact_full_name" value="">
+                                                                            <input type="text" class="form-control" id="lstname" placeholder="Full Name" name="contact_full_name" value="" required>
                                                                         </div>
+                                                                        <span id="lname"></span>
+
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-sm-6">
                                                                     <div class="form-group">
                                                                         <label> Contact Number <span class="text-danger">*</span></label>
-                                                                        <input type="text" class="form-control" placeholder="Contact Number" value="" name="contact_phone_no">
+                                                                        <input type="text" class="form-control" mainlength="10" maxlength="10" placeholder="Contact Number" value="" name="contact_phone_no" required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-sm-6">
@@ -1510,14 +1514,14 @@ if(!isset($_SESSION['id'])){
                                                                         <div class="input-group">
                                                                             <div class="input-group-prepend"><span  class="input-group-text"><i class="fas fa-envelope"></i></span>
                                                                             </div>
-                                                                            <input type="email" class="form-control" placeholder="Email" value="" name="contact_email">
+                                                                            <input type="email" class="form-control" placeholder="Email" value="" name="contact_email" required>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-sm-12">
                                                                     <div class="form-group">
                                                                         <label>  Address <span class="text-danger">*</span> </label>
-                                                                        <textarea class="form-control"  placeholder="Address" name="contact_address"></textarea>
+                                                                        <textarea class="form-control"  placeholder="Address" name="contact_address" required></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1525,7 +1529,7 @@ if(!isset($_SESSION['id'])){
                                                         <div class="card-footer text-right">
                                                             <button type="submit" class="btn btn-primary ladda-button" data-style="expand-right"><span class="ladda-label">  Update Contact </span><span class="ladda-spinner"></span></button>
                                                         </div>
-                                                        <div style="display:none"><label>Bot Will Fill This Field</label><input type="text" name="ciapp_check" value=""></div>
+                                                        <div style="display:none"><label>Bot Will Fill This Field</label><input type="text" name="ciapp_check" value="" required></div>
                                                     </form>
                                                 </div>
                                             </div>
@@ -2211,7 +2215,37 @@ if(!isset($_SESSION['id'])){
     <script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-   
+    <script>
+
+//TEXT VALIDATION
+$("#lname").hide();
+  $("#lstname").keyup(function(){
+   txt_check1();
+ });
+ function txt_check1(){
+   let txt=$("#lstname").val();
+   let vali =/^[A-Za-z ]+$/;
+   if(!vali.test(txt)){
+    $("#lname").show().html("Enter Alphabets only").css("color","red").focus();
+    txt_err=false;
+    return false;
+   }
+   else{
+       $("#lname").hide();
+
+   }
+ }
+
+ $("#sub").click(function(){
+   txt_err = true;
+         txt_check1();
+
+     if((txt_err==true)){
+        return true;
+     }
+     else{return false;}
+  });
+</script>
    
    <script>
 

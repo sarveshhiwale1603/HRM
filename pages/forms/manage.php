@@ -242,7 +242,7 @@ $all_extension = array(".jpg","jpeg",".png",".gif");
                     <div class="card-footer">
                       <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" class="collapsed btn  btn-default "> <i data-feather="minus"></i>
                        Reset       </a>        
-                                  <button type="submit" name="submit" class="btn btn-primary">Save</button>
+                                  <button type="submit" name="submit"  id="sub" class="btn btn-primary">Save</button>
                                           
 
                     </div>

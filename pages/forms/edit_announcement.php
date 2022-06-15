@@ -163,7 +163,7 @@ include("../include/header.php");
                 <label for="title">
                   Title <span class="text-danger">*</span>
                 </label>
-                <input class="form-control" placeholder="Title" name="title" type="text" value="<?php echo $title; ?>">
+                <input class="form-control" placeholder="Title" name="title" type="text" value="<?php echo $title; ?>"required>
               </div>
               </div>
                 <div class="col-md-3">
@@ -172,7 +172,7 @@ include("../include/header.php");
                       Start Date <span class="text-danger">*</span>
                     </label>
                     <div class="input-group">
-                      <input class="form-control date" placeholder="Start Date" name="start_date" type="date" value="<?php echo $start_date; ?>">
+                      <input class="form-control date" placeholder="Start Date" name="start_date" type="date" value="<?php echo $start_date; ?>" required>
                     </div>
                   </div>
                 </div>
@@ -182,7 +182,7 @@ include("../include/header.php");
                       End Date <span class="text-danger">*</span>
                     </label>
                     <div class="input-group">
-                      <input class="form-control date" placeholder="End Date" name="end_date" type="date" value="<?php echo $end_date; ?>">
+                      <input class="form-control date" placeholder="End Date" name="end_date" type="date" value="<?php echo $end_date; ?>" required>
                       <!-- <div class="input-group-append"><span class="input-group-text"><i class="fas fa-calendar-alt"></i></span></div> -->
                     </div>
                   </div>
@@ -192,7 +192,7 @@ include("../include/header.php");
               <div class="form-group" id="department_ajax">
                 <label for="department" class="control-label">
                   Department                </label>
-                  <select id="choices-multiple-remove-button" name="department_id[]" multiple>
+                  <select id="choices-multiple-remove-button" name="department_id[]" multiple required>
                   <option value="<?php echo $name; ?>" selected='selected' style="font-size:24px"><?php echo $name; ?></option>
                   <?php 
                 //    if(isset($_GET['eid'])){ 

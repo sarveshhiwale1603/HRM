@@ -196,19 +196,23 @@ $row=mysqli_fetch_array($sql);
                                                 <div class="form-group">
                                                 <input type="hidden" id="user_id" name="user_id" value="<?php echo $row['id']; ?>">
                                                     <label for="first_name">First Name <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="first_name" name="first_name" value="<?php echo $row['first_name']; ?>" placeholder="First Name" >
+                                        <input type="text" class="form-control" id="fstname" name="first_name" value="<?php echo $row['first_name']; ?>" placeholder="First Name" required>
                                                 </div>
+                                                <span id="fname"></span>
+
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="last_name">Last Name  <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control" id="last_name" value="<?php echo $row['last_name']; ?>" name="last_name" placeholder="Last Name"  >
+                                                    <input type="text" class="form-control" id="lstname" value="<?php echo $row['last_name']; ?>" name="last_name" placeholder="Last Name" required  >
                                                 </div>
+                                                <span id="lname"></span>
+
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="email">Email  <span class="text-danger">*</span></label>
-                                                    <input type="email" class="form-control" id="email" value="<?php echo $row['email']; ?>" name="email" placeholder="Email " >
+                                                    <input type="email" class="form-control" id="email" value="<?php echo $row['email']; ?>" name="email" placeholder="Email "  required>
                                                 </div>
                                             </div>
                                  </div>  
@@ -216,14 +220,14 @@ $row=mysqli_fetch_array($sql);
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="Username">Username  <span class="text-danger">*</span> </label>
-                                            <input type="text" class="form-control" id="Username" value="<?php echo $row['username']; ?>" name="Username" placeholder="username">
+                                            <input type="text" class="form-control" id="Username" value="<?php echo $row['username']; ?>" name="Username" placeholder="username" required>
                                         </div>
                                     </div>
                                    
                                       <div class="col-md-4">
                                         <div class="form-group">
                                         <label for="status" class="control-label"> Status   <span class="text-danger">*</span></label>
-                                        <select class="form-control" id="status" name="status" style="width: 100%;">
+                                        <select class="form-control" id="status" name="status" style="width: 100%;" required>
                                         <option value="<?php echo $row['status']; ?>" selected ><?php echo $row['status']; ?> </option>
                                         <option value="Active"> Active </option>
                                         <option value="Banned"> Banned </option>
@@ -233,7 +237,7 @@ $row=mysqli_fetch_array($sql);
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="last_name">Contact Number <span class="text-danger">*</span></label>
-                                            <input type="number" value="<?php echo $row['contact']; ?>" class="form-control" id="contact" name="contact" placeholder="Contact Number">
+                                            <input type="number" value="<?php echo $row['contact']; ?>" class="form-control" id="contact" name="contact" placeholder="Contact Number" required>
                                         </div>
                                     </div>
                          </div>  
@@ -241,7 +245,7 @@ $row=mysqli_fetch_array($sql);
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="gender" class="control-label"> Gender  </label>
-                                    <select class="form-control select2" id="gender" name="gender" style="width: 100%;">
+                                    <select class="form-control select2" id="gender" name="gender" style="width: 100%;" required>
                                         <option  selected="selected" value="<?php echo $row['gender']; ?>"> <?php echo $row['gender']; ?> </option>
                                         <option value="Female"> Female </option>
                                         <option value="Male">Male</option>
@@ -252,7 +256,7 @@ $row=mysqli_fetch_array($sql);
                               <div class="col-md-4">
                                  <div class="form-group">
                                    <label for="country" class="control-label"> Country  <span class="text-danger">*</span> </label>
-                                    <select class="form-control select2" id="country" name="country" style="width: 100%;">
+                                    <select class="form-control select2" id="country" name="country" style="width: 100%;" required>
                                     <option  selected="selected" value="<?php echo $row['country']; ?>"> <?php echo $row['country']; ?> </option>
                                     <option value="India">India</option>
                                                                                       </select> 
@@ -263,14 +267,14 @@ $row=mysqli_fetch_array($sql);
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="first_name">Address</label>
-                            <input type="text" class="form-control" value="<?php echo $row['address']; ?>" id="Address" name="Address" placeholder="Address" >
+                            <input type="text" class="form-control" value="<?php echo $row['address']; ?>" id="Address" name="Address" placeholder="Address"required >
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="Address2"> &nbsp; </label>
                             
-                            <input type="text" class="form-control" value="<?php echo $row['address2']; ?>" id="Address2" name="Address2" placeholder="Address line 2" >
+                            <input type="text" class="form-control" value="<?php echo $row['address2']; ?>" id="Address2" name="Address2" placeholder="Address line 2" required>
                         </div>
                     </div>
                     
@@ -279,19 +283,19 @@ $row=mysqli_fetch_array($sql);
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="first_name">City</label>
-                    <input type="text" class="form-control" id="City" value="<?php echo $row['city']; ?>" name="City" placeholder="City">
+                    <input type="text" class="form-control" id="City" value="<?php echo $row['city']; ?>" name="City" placeholder="City" required>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="last_name">State / Province</label>
-                    <input type="text" class="form-control" id="state" value="<?php echo $row['state']; ?>" name="state" placeholder="State / Province" >
+                    <input type="text" class="form-control" id="state" value="<?php echo $row['state']; ?>" name="state" placeholder="State / Province" required >
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="last_name">Zip Code / Postal Code</label>
-                    <input type="text" class="form-control" value="<?php echo $row['zip_code']; ?>" id="zip" name="zip" placeholder="Zip Code / Postal Code">
+                    <input type="text" class="form-control" value="<?php echo $row['zip_code']; ?>" id="zip" name="zip" placeholder="Zip Code / Postal Code" required>
                 </div>
             </div>
  </div>   
@@ -319,7 +323,7 @@ $row=mysqli_fetch_array($sql);
                                             <div class="box-body">
                                                 <form action="api.php"  id="edit_user_photo" autocomplete="off" method="post"enctype="multipart/form-data">
                                                     <input type="hidden" name="csrf_token" value="53a234476ba3b824da743d5aeaa31e04">
-                                                    <input type="hidden" name="token" value="vx26WfVlb_M1fWrFzCPYekQi1KECygUtBMb5BV7fnAw"style="display:none;">
+                                                    <input type="hidden" name="token" value="vx26WfVlb_M1fWrFzCPYekQi1KECygUtBMb5BV7fnAw"style="display:none;" required>
                                                     <div class="form-body">
                                                         <div class="row">
                                                             <div class="col-md-12">
@@ -671,6 +675,69 @@ $row=mysqli_fetch_array($sql);
 
 
     </script>
+    <script>
+
+//TEXT VALIDATION
+$("#fname").hide();
+  $("#fstname").keyup(function(){
+   txt_check();
+ });
+ function txt_check(){
+   let txt=$("#fstname").val();
+   let vali =/^[A-Za-z ]+$/;
+   if(!vali.test(txt)){
+    $("#fname").show().html("Enter Alphabets only").css("color","red").focus();
+    txt_err=false;
+    return false;
+   }
+   else{
+       $("#fname").hide();
+
+   }
+ }
+
+ $("#sub").click(function(){
+   txt_err = true;
+         txt_check();
+
+     if((txt_err==true)){
+        return true;
+     }
+     else{return false;}
+  });
+
+</script>
+<script>
+
+//TEXT VALIDATION
+$("#lname").hide();
+  $("#lstname").keyup(function(){
+   txt_check1();
+ });
+ function txt_check1(){
+   let txt=$("#lstname").val();
+   let vali =/^[A-Za-z ]+$/;
+   if(!vali.test(txt)){
+    $("#lname").show().html("Enter Alphabets only").css("color","red").focus();
+    txt_err=false;
+    return false;
+   }
+   else{
+       $("#lname").hide();
+
+   }
+ }
+
+ $("#sub").click(function(){
+   txt_err = true;
+         txt_check1();
+
+     if((txt_err==true)){
+        return true;
+     }
+     else{return false;}
+  });
+</script>
 
     <!-- Bootstrap 4 -->
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

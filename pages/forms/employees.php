@@ -228,7 +228,7 @@ $id=$_SESSION['id']; ?>
                           <div class="col-lg-4">
                             <label>Contact Number<sup><b style="color:red;">*</b></sup></label>
                             <div class="input-group">
-                              <input type="text" class="form-control" mainlength="10" maxlength="10" name="contact" placeholder="Contact Number" required>
+                              <input type="number" class="form-control" minlength="10" maxlength="10" name="contact" placeholder="Contact Number" required>
                             </div>
                             <!-- /input-group -->
                           </div>
@@ -376,8 +376,10 @@ $id=$_SESSION['id']; ?>
                           <div class="input-group-prepend">
                             <span class="input-group-text"> <i class="far fa-credit-card"></i></span>
                           </div>
-                          <input type="text" class="form-control" name="Pancard" placeholder="Pan No" required>
+                          <input type="text" class="form-control"  id="txtPANCard" name="Pancard" placeholder="Pan No" required>
                         </div>
+                        <span id="spanCard"></span>
+
                       </div>
                     </div>
 
@@ -646,8 +648,39 @@ $("#lname").hide();
      }
      else{return false;}
   });
+  
+    //PAN card validation
+    $(document).ready(function(){
+     $("#spanCard").hide();
+      $("#txtPANCard").keyup(function(){
+       pan_check();
+     });
+     function pan_check(){
+       let pancard=$("#txtPANCard").val();
+       let vali =/([A-Z]){5}([0-9]){4}([A-Z]){1}$/;
+       if(!vali.test(pancard)){
+          $("#spanCard").show().html("*Invalid Pan No").css("color","red").focus();
+       pan_err=false;
+       return false;
+       }
+       else{
+           $("#spanCard").hide();
+       }
+     }
+
+     $("#sub").click(function(){
+             pan_err = true;
+           pan_check();
+
+         if((pan_err==true)){
+            return true;
+         }
+         else{return false;}
+      });
+    });
 
 </script>
+
 <script>
   $(function () {
     //Initialize Select2 Elements
