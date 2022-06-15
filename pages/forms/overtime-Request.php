@@ -285,9 +285,9 @@ if(!isset($_SESSION['id'])){
                       <div class="form-group col-6">
                         <label>Out Time<sup><b style="color:red;">*</b></sup></label>
     
-                        <div class="input-group date" id="timepicker" data-target-input="nearest">
-                          <input type="text" class="form-control datetimepicker-input" placeholder="Out Time" name="out_time" data-target="#timepicker"/>
-                          <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+                        <div class="input-group date" id="timepicker1" data-target-input="nearest">
+                          <input type="text" class="form-control datetimepicker-input" placeholder="Out Time" name="out_time" data-target="#timepicker1"/>
+                          <div class="input-group-append" data-target="#timepicker1" data-toggle="datetimepicker">
                               <div class="input-group-text"><i class="far fa-clock"></i></div>
                           </div>
                           </div>
@@ -462,6 +462,12 @@ if(!isset($_SESSION['id'])){
   
       //Timepicker
       $('#timepicker').datetimepicker({
+        format: 'LT'
+      })
+      $('#timepicker1').datetimepicker({
+        format: 'LT'
+      })
+      $('#timepicker2').datetimepicker({
         format: 'LT'
       })
   

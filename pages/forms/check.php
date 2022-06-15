@@ -182,7 +182,7 @@ if(isset($_POST['overtimeeditid'])){
                
                <div class="input-group">
                <input type="hidden" name="overtimeeditid" value="'.$row['id'].'">
-                     <input class="form-control "placeholder="Date" readonly="true" name="attendance_date_m" id="datepicker" type="text" value="'.$row['date'].'" data-dtp="dtp_oiUDD">
+                     <input class="form-control "placeholder="Date" name="attendance_date_m" id="datepicker" type="text" value="'.$row['date'].'" readonly>
                      <div class="input-group-append"><span class="input-group-text"><i class="fas fa-calendar-alt"></i></span></div>
                  </div>
              </div>
@@ -202,10 +202,10 @@ if(isset($_POST['overtimeeditid'])){
              <div class="row">
                       <div class="col-md-6">
                  <div class="form-group">
-                   <label for="clock_in">Out Time <span class="text-danger">*</span></label>
-                   <div class="input-group">
-                    <input class="form-control timepicker" placeholder="In Time" readonly="true" name="clock_in_m" type="text" value="'.$row['in_time'].'" data-dtp="dtp_0Kjpk">
-                     <div class="input-group-append"><span class="input-group-text"><i class="fas fa-clock"></i></span></div>
+                   <label for="clock_in">In Time <span class="text-danger">*</span></label>
+                   <div class="input-group" id="timepicker2">
+                    <input class="form-control datetimepicker-input" placeholder="In Time"  name="clock_in_m" type="text" value="'.$row['in_time'].'" data-target="#timepicker2" readonly>
+                     <div class="input-group-append" data-target="#timepicker2" data-toggle="datetimepicker"><span class="input-group-text"><i class="fas fa-clock"></i></span></div>
                  </div>
                  </div>
                </div>
@@ -213,7 +213,7 @@ if(isset($_POST['overtimeeditid'])){
                  <div class="form-group">
                    <label for="clock_out">Out Time <span class="text-danger">*</span></label>
                    <div class="input-group">
-                    <input class="form-control timepicker" placeholder="Out Time" readonly="true" name="clock_out_m" type="text" value="'.$row['out_time'].'" data-dtp="dtp_lbLY4">
+                    <input class="form-control timepicker" placeholder="Out Time" name="clock_out_m" type="text" value="'.$row['out_time'].'" data-dtp="dtp_lbLY4" readonly>
                      <div class="input-group-append"><span class="input-group-text"><i class="fas fa-clock"></i></span></div>
                  </div>
                  </div>
