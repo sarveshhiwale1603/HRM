@@ -228,14 +228,15 @@ $id=$_SESSION['id']; ?>
                           <div class="col-lg-4">
                             <label>Contact Number<sup><b style="color:red;">*</b></sup></label>
                             <div class="input-group">
-                              <input type="number" class="form-control" minlength="10" maxlength="10" name="contact" placeholder="Contact Number" required>
+                              <input type="number" class="form-control"onKeyDown="if(this.value.length==10 && event.keyCode>47 && event.keyCode < 58)return false;"
+ maxlength="10" name="contact" placeholder="Contact Number" id="number"  required>
                             </div>
                             <!-- /input-group -->
                           </div>
                           <div class="col-lg-4">
                             <label>Gender<sup><b style="color:red;">*</b></sup></label>
                             <div class="input-group">
-                              <select class="form-control select2" name="gender" style="width: 100%;" required>
+                              <select class="form-control select2" name="gender"  id="gndr" style="width: 100%;" required>
                                 <option selected="selected">Male</option>
                                 <option>Female</option>
                               </select>
@@ -256,7 +257,7 @@ $id=$_SESSION['id']; ?>
                                   <i class="fas fa-envelope"></i>
                                 </span>
                               </div>
-                              <input type="email" class="form-control" placeholder="Email" name="email" required>
+                              <input type="email" class="form-control" placeholder="Email" name="email"  id="email" required>
                             </div>
                             <!-- /input-group -->
                           </div>
@@ -267,7 +268,7 @@ $id=$_SESSION['id']; ?>
                               <div class="input-group-prepend">
                                 <span class="input-group-text"> <i class="fas fa-user-alt"></i></span>
                               </div>
-                              <input type="text" class="form-control" placeholder="Username" name="uname" required>
+                              <input type="text" class="form-control" placeholder="Username" name="uname" id="usname" required>
                             </div>
                             <!-- /input-group -->
                           </div>
@@ -283,14 +284,14 @@ $id=$_SESSION['id']; ?>
                               <div class="input-group-prepend">
                                 <span class="input-group-text"> <i class="fas fa-eye-slash"></i></span>
                               </div>
-                              <input type="text" class="form-control" placeholder="password" name="password" required>
+                              <input type="text" class="form-control" placeholder="password" name="password" id="pass" required>
                             </div>
                             <!-- /input-group -->
                           </div>
                           <!-- /.col-lg-4 -->
                           <div class="col-lg-4">
                             <label>Office Shift<sup><b style="color:red;">*</b></sup></label>
-                            <select class="form-control select2" name="shift" style="width: 100%;" placeholder="Office Shift" required>
+                            <select class="form-control select2" name="shift" style="width: 100%;" placeholder="Office Shift" id="ofc" required>
                               <option selected="selected" disabled>Office Shift</option>
                               <?php $sql=mysqli_query($conn,"select * from shift_time order by shift asc");
                             while($row=mysqli_fetch_array($sql)){ ?>
@@ -301,7 +302,7 @@ $id=$_SESSION['id']; ?>
                           <div class="col-lg-4">
                             <label>Role<sup><b style="color:red;">*</b></sup></label>
                             <div class="input-group">
-                              <select class="form-control select2" name="role" style="width: 100%;" required>
+                              <select class="form-control select2" name="role" style="width: 100%;" id="role" required>
                                 <option selected="selected" disabled>Role</option>
                                 <option>Web Developer</option>
                                 <option>Android Developer</option>
@@ -333,7 +334,7 @@ $id=$_SESSION['id']; ?>
                               <!-- <div class="input-group-prepend">
                                 <span class="input-group-text"> <i class="fas fa-eye-slash"></i></span>
                               </div> -->
-                              <input type="text" class="form-control" placeholder="password" name="city" required>
+                              <input type="text" class="form-control" placeholder="password" name="city" id="city" required>
                             </div>
                             <!-- /input-group -->
                           </div>
@@ -346,13 +347,13 @@ $id=$_SESSION['id']; ?>
                           <div class="input-group-prepend">
                             <span class="input-group-text"> <i class="fas fa-rupee-sign"></i></span>
                           </div>
-                          <input type="number" class="form-control" name="salary" value="30000" required>
+                          <input type="number" class="form-control" name="salary" id="sal" value="30000" required>
                         </div>
                       </div>
                         <div class="col-lg-6">
                           <label>Payslip Type<sup><b style="color:red;">*</b></sup></label>
                           <div class="input-group">
-                            <select class="form-control select2" name="slip" style="width: 100%;"required >
+                            <select class="form-control select2" name="slip" id="slip" style="width: 100%;"required >
                               <option selected="selected" >Per Month</option>
                             </select>
                           </div>
@@ -363,7 +364,7 @@ $id=$_SESSION['id']; ?>
                      <div class="col-lg-6">
                           <label>Employement Type<sup><b style="color:red;">*</b></sup></label>
                           <div class="input-group">
-                            <select class="form-control select2" name="slip" style="width: 100%;" required>
+                            <select class="form-control select2" name="slip" id="emp_type" style="width: 100%;" required>
                               <option selected="selected" disabled >Employement Type</option>
                               <option>Internship</option>
                               <option>Payroll</option>
@@ -386,7 +387,7 @@ $id=$_SESSION['id']; ?>
                         <div class="card-footer">
                           <button type="button" id="reset" class="btn btn-default" name="reset" data-bs-toggle="collapse"
                           href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Reset</button>
-                          <button type="submit" id="submit" class="btn btn-primary" name="Save">Save</button>
+                          <button type="submit" onclick="function()" id="submit" class="btn btn-primary" name="Save">Save</button>
                         </div>
                       </div>
                     </div>
@@ -501,6 +502,9 @@ $id=$_SESSION['id']; ?>
     <?php include("../include/footer.php") ?>
 
   </div>
+  <!-- sweetaleart -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
   <!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
@@ -814,6 +818,37 @@ $("#lname").hide();
     myDropzone.removeAllFiles(true)
   }
   // DropzoneJS Demo Code End
+</script>
+<script>
+let submitaminities = document.getElementById("submit");
+submitaminities.addEventListener("click", function(){
+ let txtname = document.getElementById("txtname").value;
+ let lstname = document.getElementById("lstname").value;
+ let number = document.getElementById("number").value;
+ let gndr = document.getElementById("gndr").value;
+ let email = document.getElementById("email").value;
+ let usname = document.getElementById("usname").value;
+ let pass = document.getElementById("pass").value;
+ let ofc = document.getElementById("ofc").value;
+let role = document.getElementById("role").value;
+ let department = document.getElementById("department").value;
+let designation = document.getElementById("designation").value;
+ let city = document.getElementById("city").value;
+let sal = document.getElementById("sal").value;
+ let slip = document.getElementById("slip").value;
+ let emp_type = document.getElementById("emp_type").value;
+
+let txtPANCard = document.getElementById("txtPANCard")
+
+
+if(txtname == "" || lstname == "" || number == "" || gndr == "" || email == "" || usname == "" || pass == "" || ofc == "" || role == "" || department == ""  || designation == "" || city == "" || sal == "" || slip == "" || emp_type == "" || txtPANCard == "" ){
+    swal("Oops...", "Please fill all the fields", "error");
+}
+    else{
+        swal("Saved!", "HRM Save", "success");
+    }
+});
+
 </script>
 <script>
  

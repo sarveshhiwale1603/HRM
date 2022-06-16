@@ -249,7 +249,7 @@ if(!isset($_SESSION['id'])){
             <div class="modal-body">
                 <div class="form-group">
                     <label>Employee<sup><b style="color:red;">*</b></sup></label>
-                    <select class="form-control" style="width: 100%;" name="emp_name">
+                    <select class="form-control" style="width: 100%;" name="emp_name" required>
                     <option selected="selected">choose employee name</option>
                     <?php
                     $sql=mysqli_query($conn,"SELECT * FROM employee");
@@ -264,7 +264,7 @@ if(!isset($_SESSION['id'])){
                   <div class="form-group">
                     <label>Date<sup><b style="color:red;">*</b></sup></label>
                     <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                      <input type="text" class="form-control datetimepicker-input" placeholder="Date" name="date" data-target="#reservationdate"/>
+                      <input type="text" class="form-control datetimepicker-input" placeholder="Date" name="date" data-target="#reservationdate" required/>
                       <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                       </div>
@@ -275,7 +275,7 @@ if(!isset($_SESSION['id'])){
                         <label>In Time<sup><b style="color:red;">*</b></sup></label>
     
                         <div class="input-group date" id="timepicker" data-target-input="nearest">
-                          <input type="text" class="form-control datetimepicker-input" placeholder="In Time" name="in_time" data-target="#timepicker"/>
+                          <input type="text" class="form-control datetimepicker-input" placeholder="In Time" name="in_time" data-target="#timepicker" required/>
                           <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
                               <div class="input-group-text"><i class="far fa-clock"></i></div>
                           </div>
@@ -286,7 +286,7 @@ if(!isset($_SESSION['id'])){
                         <label>Out Time<sup><b style="color:red;">*</b></sup></label>
     
                         <div class="input-group date" id="timepicker1" data-target-input="nearest">
-                          <input type="text" class="form-control datetimepicker-input" placeholder="Out Time" name="out_time" data-target="#timepicker1"/>
+                          <input type="text" class="form-control datetimepicker-input" placeholder="Out Time" name="out_time" data-target="#timepicker1" required/>
                           <div class="input-group-append" data-target="#timepicker1" data-toggle="datetimepicker">
                               <div class="input-group-text"><i class="far fa-clock"></i></div>
                           </div>

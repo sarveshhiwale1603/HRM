@@ -307,8 +307,7 @@ if(isset($_POST['submit']))
                                         <div class="col-lg-4">
                                             <label>Gender<sup><b style="color:red;">*</b></sup></label>
                                             <div class="input-group">
-                                                <select class="form-control select2" data-placeholder="Select a State" 
-                                                name="gender" style="width: 100%;"required>
+                                                <select class="form-control select2" data-placeholder="Select a State" id="gndr" name="gender" style="width: 100%;"required>
                                                     <option selected="selected" disabled >Gender</option>
                                                     <option>Male</option>
                                                     <option>Female</option>
@@ -322,7 +321,8 @@ if(isset($_POST['submit']))
                                             <label>Contact Number<sup><b style="color:red;" >*</b></sup></label>
                                             <div class="input-group">
                                                 <input type="number" class="form-control"
-                                                    placeholder="Contact Number" name="contact" required>
+                                                    placeholder="Contact Number" id="contact" onKeyDown="if(this.value.length==10 && event.keyCode>47 && event.keyCode < 58)return false;"
+ maxlength="10" maxlength="10" name="contact" required>
                                             </div>
                                         </div>
                                         <div class="col-lg-6">
@@ -333,7 +333,7 @@ if(isset($_POST['submit']))
                                                         <i class="fas fa-envelope"></i>
                                                     </span>
                                                 </div>
-                                                <input type="email" class="form-control" name="email"
+                                                <input type="email" class="form-control" name="email" id="email"
                                                 placeholder="Email" required>
                                             </div>
                                         </div>
@@ -344,7 +344,7 @@ if(isset($_POST['submit']))
                                             name="reset" data-bs-toggle="collapse" href="#collapseExample"
                                             role="button" aria-expanded="false"
                                             aria-controls="collapseExample">Reset</buttton>
-                                            <button type="submit" name="submit" class="btn btn-primary">Save</button>
+                                            <button type="submit" onclick="function()" name="submit" id="submit" class="btn btn-primary">Save</button>
 
                                     </div>
                                 </div>
@@ -362,7 +362,7 @@ if(isset($_POST['submit']))
                                     <div class="form-group">
                                       <label for="logo"> Attachment  <span class="text-danger">*</span> </label>
                                       <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="image">
+                                        <input type="file" class="custom-file-input" name="image" required>
                                         <label class="custom-file-label">
                                           Choose file...  </label>
                                         <small> Upload files only: gif,png,jpg,jpeg </small> </div>
@@ -570,7 +570,7 @@ $("#fname").hide();
    }
  }
 
- $("#sub").click(function(){
+ $("#submit").click(function(){
    txt_err = true;
          txt_check();
 
@@ -602,7 +602,7 @@ $("#lname").hide();
    }
  }
 
- $("#sub").click(function(){
+ $("#submit").click(function(){
    txt_err = true;
          txt_check1();
 
@@ -613,6 +613,29 @@ $("#lname").hide();
   });
 
 </script>
+
+<script>
+let submitaminities = document.getElementById("submit");
+submitaminities.addEventListener("click", function(){
+ let fstname = document.getElementById("fstname").value;
+ let lstname = document.getElementById("lstname").value;
+ let gndr = document.getElementById("gndr").value;
+ let contact = document.getElementById("contact").value;
+ let email = document.getElementById("email")
+ 
+
+
+if(fstname == "" || lstname == "" || gndr == "" || contact == "" || email == "" || email == "" ){
+    swal("Oops...", "Please fill all the fields", "error");
+}
+    else{
+        swal("Saved!", "HRM Save", "success");
+    }
+});
+
+</script>
+
+
     <!-- Page specific script -->
     <script>
       $(function () {

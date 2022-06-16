@@ -673,7 +673,8 @@ if(!isset($_SESSION['id'])){
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label for="contact_number">Contact Number <span  class="text-danger">*</span></label>
-                                                                    <input class="form-control"  placeholder="Contact Number" name="contact_number" type="text" value="7845125623">
+                                                                    <input class="form-control" onKeyDown="if(this.value.length==10 && event.keyCode>47 && event.keyCode < 58)return false;"
+ maxlength="10" maxlength="10" placeholder="Contact Number" name="contact_number" type="number" value="7845125623">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
@@ -1505,7 +1506,8 @@ if(!isset($_SESSION['id'])){
                                                                 <div class="col-sm-6">
                                                                     <div class="form-group">
                                                                         <label> Contact Number <span class="text-danger">*</span></label>
-                                                                        <input type="text" class="form-control" mainlength="10" maxlength="10" placeholder="Contact Number" value="" name="contact_phone_no" required>
+                                                                        <input type="number" class="form-control" onKeyDown="if(this.value.length==10 && event.keyCode>47 && event.keyCode < 58)return false;"
+ maxlength="10" maxlength="10" placeholder="Contact Number" value="" name="contact_phone_no" required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-sm-6">

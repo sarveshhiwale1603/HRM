@@ -537,7 +537,7 @@ if(!isset($_SESSION['id'])){
                                             <div class="form-group">
                                                 <div class="custom-control custom-switch">
                                                     <input type="checkbox" class="custom-control-input input-primary"
-                                                        name="leave_half_day" id="leave_half_day" value="1" required >
+                                                        name="leave_half_day" id="leave_half_day" value="1"  >
                                                     <label class="custom-control-label" for="leave_half_day">
                                                         Half Day </label>
                                                 </div>
