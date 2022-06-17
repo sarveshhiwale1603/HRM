@@ -175,15 +175,15 @@ $("#bugssubmit").click(function(){
 });
 
 
-$('.delbugsid').click(function(){
-  let dnkbugsid = $(this).data('id');
+$('.dnkbugsid').click(function(){
+  let dnkbugid = $(this).data('id');
 
   $.ajax({
    url: 'check.php',
    type: 'post',
-   data: {dnkbugsid: dnkbugsid},
+   data: {dnkbugid: dnkbugid,},
    success: function(response2){ 
-     alert(respnse2); 
+     alert(response2); 
    }
  });
 });
