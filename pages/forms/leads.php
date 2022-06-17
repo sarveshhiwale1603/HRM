@@ -441,9 +441,7 @@ if(isset($_POST['submit']))
 
         <!-- /.content -->
       </div>
-      <!-- /.content-wrapper -->
-
-      <!-- Control Sidebar -->
+      
       <aside>
         <!-- Control sidebar content goes here -->
       </aside>
