@@ -650,7 +650,8 @@ if(isset($_POST['bugssubmit'])){
 }
 
 if(isset($_POST['dnkbugsid'])){
-	$sql=mysqli_query($conn,"delete from Bugs where id='$_POST['dnkbugsid']'");
+  $bid=$_POST['dnkbugsid'];
+	$sql=mysqli_query($conn,"delete from Bugs where id='$bid'");
 	if($sql==1){
 		echo "Message deleted";
 	}else{
