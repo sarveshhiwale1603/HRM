@@ -125,7 +125,7 @@ if(isset($_POST['submit'])){
                           <div class="card-body card-body1">
                             <form method="POST">
                                 <label>Exit Type<sup><b style="color:red;">*</b></sup></label>
-                                    <input type="text" class="form-control" name="type" placeholder="Exit Type">
+                                    <input type="text" class="form-control" name="type" placeholder="Exit Type" required>
                              <div class="card-footer mt-3">
                                 <button type="submit" id="submit" class="btn btn-primary" name="submit">Save</button>
                               </div>

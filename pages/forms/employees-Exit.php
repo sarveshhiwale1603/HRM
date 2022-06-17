@@ -167,7 +167,7 @@ if(!isset($_SESSION['id'])){
                       <div class="card-body">
                         <div class="row my-3">
                           <div class="col-lg-6">
-                            <label>Employee to Exit <sup><b style="color:red;">*</b></sup></label>
+                            <label>Employee to Exit <sup><b style="color:red;" required>*</b></sup></label>
                             <div class="input-group">
                               <select class="form-control select2" name="emp_name" style="width: 100%;">
                               <option>select employee name</option>
@@ -183,7 +183,7 @@ if(!isset($_SESSION['id'])){
                           <div class="col-lg-6">
                             <label>Exit Date <sup><b style="color:red;">*</b></sup></label>
                             <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                              <input type="date" class="form-control " name="exit_date" placeholder="Exit Date"/>
+                              <input type="date" class="form-control " name="exit_date" placeholder="Exit Date" required/>
                               <!-- <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                                   <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                               </div> -->
@@ -195,7 +195,7 @@ if(!isset($_SESSION['id'])){
                         <div class="row my-3">
                           <div class="col-lg-4">
                             <label>Exit Type<sup><b style="color:red;">*</b></sup></label>
-                            <select class="form-control select2" name="exit_type" style="width: 100%;" placeholder="Office Shift">
+                            <select class="form-control select2" name="exit_type" style="width: 100%;" placeholder="Office Shift" required>
                               <option selected="selected" disabled>Type Of Exit</option>
                               <?php $sql=mysqli_query($conn,"select * from exit_type");
                               while($dnk=mysqli_fetch_array($sql)){
@@ -208,7 +208,7 @@ if(!isset($_SESSION['id'])){
                           <!-- /.col-lg-4 -->
                           <div class="col-lg-4">
                             <label>Exit Interview<sup><b style="color:red;">*</b></sup></label>
-                            <select class="form-control select2" name="exit_int" style="width: 100%;" placeholder="Office Shift">
+                            <select class="form-control select2" name="exit_int" style="width: 100%;" placeholder="Office Shift" required>
                               <option selected="selected">Yes</option>
                               <option>No</option>
                             </select>
@@ -217,7 +217,7 @@ if(!isset($_SESSION['id'])){
                           <div class="col-lg-4">
                             <label>Disable Account<sup><b style="color:red;">*</b></sup></label>
                             <div class="input-group">
-                              <select class="form-control select2" name="disable_acc" style="width: 100%;">
+                              <select class="form-control select2" name="disable_acc" style="width: 100%;"required>
                                 <option selected="selected">Yes</option>
                                 <option>No</option>
                               </select>
@@ -230,7 +230,7 @@ if(!isset($_SESSION['id'])){
                       <div class="col-lg-12">
                           <label>Description<sup><b style="color:red;">*</b></sup></label>
                           <div class="form-group">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description" name="desc"></textarea>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description" name="desc" required></textarea>
                           </div>
                       </div>
                       

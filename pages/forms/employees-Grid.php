@@ -188,8 +188,10 @@ if(!isset($_SESSION['id'])){
                                                                 </span>
                                                             </div>
                                                             <input type="text" class="form-control"
-                                                                placeholder="First Name">
+                                                                placeholder="First Name" id="txtname" required>
                                                         </div>
+                                                        <span id="spanname"></span>
+
                                                         <!-- /input-group -->
                                                     </div>
                                                     <!-- /.col-lg-6 -->
@@ -201,8 +203,10 @@ if(!isset($_SESSION['id'])){
                                                                         class="fas fa-user-alt"></i></span>
                                                             </div>
                                                             <input type="text" class="form-control"
-                                                                placeholder="Last Name">
+                                                                placeholder="Last Name" id="lstname" required>
                                                         </div>
+                                                        <span id="lname"></span>
+
                                                         <!-- /input-group -->
                                                     </div>
                                                     <!-- /.col-lg-6 -->
@@ -214,7 +218,7 @@ if(!isset($_SESSION['id'])){
                                                     <div class="col-lg-4">
                                                         <label>Employee ID<sup><b style="color:red;">*</b></sup></label>
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control" value="123456">
+                                                            <input type="text" class="form-control" readonly value="123456" required>
                                                         </div>
                                                         <!-- /input-group -->
                                                     </div>
@@ -223,15 +227,15 @@ if(!isset($_SESSION['id'])){
                                                         <label>Contact Number<sup><b
                                                                     style="color:red;">*</b></sup></label>
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control"
-                                                                placeholder="Contact Number">
+                                                            <input type="number" class="form-control"onKeyDown="if(this.value.length==10 && event.keyCode>47 && event.keyCode < 58)return false;"
+ maxlength="10" placeholder="Contact Number" required>
                                                         </div>
                                                         <!-- /input-group -->
                                                     </div>
                                                     <div class="col-lg-4">
                                                         <label>Gender<sup><b style="color:red;">*</b></sup></label>
                                                         <div class="input-group">
-                                                            <select class="form-control select2" style="width: 100%;">
+                                                            <select class="form-control select2" style="width: 100%;" required>
                                                                 <option selected="selected">Male</option>
                                                                 <option>Female</option>
                                                             </select>
@@ -253,7 +257,7 @@ if(!isset($_SESSION['id'])){
                                                                 </span>
                                                             </div>
                                                             <input type="email" class="form-control"
-                                                                placeholder="Email">
+                                                                placeholder="Email" required>
                                                         </div>
                                                         <!-- /input-group -->
                                                     </div>
@@ -266,7 +270,7 @@ if(!isset($_SESSION['id'])){
                                                                         class="fas fa-user-alt"></i></span>
                                                             </div>
                                                             <input type="text" class="form-control"
-                                                                placeholder="Username">
+                                                                placeholder="Username" required>
                                                         </div>
                                                         <!-- /input-group -->
                                                     </div>
@@ -284,7 +288,7 @@ if(!isset($_SESSION['id'])){
                                                                         class="fas fa-eye-slash"></i></span>
                                                             </div>
                                                             <input type="password" class="form-control"
-                                                                placeholder="password">
+                                                                placeholder="password" required>
                                                         </div>
                                                         <!-- /input-group -->
                                                     </div>
@@ -293,7 +297,7 @@ if(!isset($_SESSION['id'])){
                                                         <label>Office Shift<sup><b
                                                                     style="color:red;">*</b></sup></label>
                                                         <select class="form-control select2" style="width: 100%;"
-                                                            placeholder="Office Shift">
+                                                            placeholder="Office Shift" required>
                                                             <option selected="selected" disabled>Office Shift</option>
                                                             <option>Morning</option>
                                                         </select>
@@ -302,7 +306,7 @@ if(!isset($_SESSION['id'])){
                                                     <div class="col-lg-4">
                                                         <label>Role<sup><b style="color:red;">*</b></sup></label>
                                                         <div class="input-group">
-                                                            <select class="form-control select2" style="width: 100%;">
+                                                            <select class="form-control select2" style="width: 100%;" required>
                                                                 <option selected="selected" disabled>Role</option>
                                                                 <option>Web Developer</option>
                                                                 <option>Android Developer</option>
@@ -314,7 +318,7 @@ if(!isset($_SESSION['id'])){
                                                     <div class="col-lg-6">
                                                         <label>Department<sup><b style="color:red;">*</b></sup></label>
                                                         <select class="form-control select2" style="width: 100%;"
-                                                            placeholder="Office Shift">
+                                                            placeholder="Office Shift" required>
                                                             <option selected="selected" disabled>Departments</option>
                                                             <option>Developer</option>
                                                             <option>Sales</option>
@@ -324,7 +328,7 @@ if(!isset($_SESSION['id'])){
                                                     <div class="col-lg-6">
                                                         <label>Designation<sup><b style="color:red;">*</b></sup></label>
                                                         <div class="input-group">
-                                                            <select class="form-control select2" style="width: 100%;">
+                                                            <select class="form-control select2" style="width: 100%;" required>
                                                                 <option selected="selected" disabled>Designation
                                                                 </option>
                                                             </select>
@@ -341,14 +345,14 @@ if(!isset($_SESSION['id'])){
                                                                 <span class="input-group-text"> <i
                                                                         class="fas fa-rupee-sign"></i></span>
                                                             </div>
-                                                            <input type="number" class="form-control" value="456132">
+                                                            <input type="number" class="form-control" value="456132" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <label>Payslip Type<sup><b
                                                                     style="color:red;">*</b></sup></label>
                                                         <div class="input-group">
-                                                            <select class="form-control select2" style="width: 100%;">
+                                                            <select class="form-control select2" style="width: 100%;" required>
                                                                 <option selected="selected">Per Month</option>
                                                             </select>
                                                         </div>
@@ -357,9 +361,23 @@ if(!isset($_SESSION['id'])){
                                                 <div class="card-footer">
                                                     <buttton type="button" id="reset" class="btn btn-default"
                                                         name="reset" data-bs-toggle="collapse" href="#collapseExample"
-                                                        role="button" aria-expanded="false"
+                                                        role="button" ari00
+                                                        0
+                                                        Tickets
+                                                        0
+                                                        Open
+                                                        0
+                                                        Open
+                                                        0
+                                                        Closed
+                                                        Payroll monthly report
+                                                        ₹0.00
+                                                        Total
+                                                        ₹0.00
+                                                        This Month
+                                                        Teca-expanded="false"
                                                         aria-controls="collapseExample">Reset</buttton>
-                                                    <buttton type="button" id="submit" class="btn btn-primary"
+                                                    <buttton type="button" onclick="function()" id="submit" class="btn btn-primary"
                                                         name="Save">Save</buttton>
                                                 </div>
                                             </div>
@@ -516,6 +534,8 @@ if(!isset($_SESSION['id'])){
   <?php include("../include/footer.php") ?>
 
     </div>
+
+   
     <!-- ./wrapper -->
 
     <!-- REQUIRED SCRIPTS -->
@@ -575,6 +595,71 @@ if(!isset($_SESSION['id'])){
             });
         });
     </script>
+
+<script>
+
+//TEXT VALIDATION
+$("#spanname").hide();
+  $("#txtname").keyup(function(){
+   txt_check();
+ });
+ function txt_check(){
+   let txt=$("#txtname").val();
+   let vali =/^[A-Za-z ]+$/;
+   if(!vali.test(txt)){
+    $("#spanname").show().html("Enter Alphabets only").css("color","red").focus();
+    txt_err=false;
+    return false;
+   }
+   else{
+       $("#spanname").hide();
+
+   }
+ }
+
+ $("#submit").click(function(){
+   txt_err = true;
+         txt_check();
+
+     if((txt_err==true)){
+        return true;
+     }
+     else{return false;}
+  });
+
+</script>
+<script>
+
+//TEXT VALIDATION
+$("#lname").hide();
+  $("#lstname").keyup(function(){
+   txt_check1();
+ });
+ function txt_check1(){
+   let txt=$("#lstname").val();
+   let vali =/^[A-Za-z ]+$/;
+   if(!vali.test(txt)){
+    $("#lname").show().html("Enter Alphabets only").css("color","red").focus();
+    txt_err=false;
+    return false;
+   }
+   else{
+       $("#lname").hide();
+
+   }
+ }
+
+ $("#submit").click(function(){
+   txt_err = true;
+         txt_check1();
+
+     if((txt_err==true)){
+        return true;
+     }
+     else{return false;}
+  });
+  </script>
+
 </body>
 
 </html>

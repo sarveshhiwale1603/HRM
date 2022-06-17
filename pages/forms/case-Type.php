@@ -278,7 +278,7 @@ if(!isset($_SESSION['id'])){
                                         <label>Case Type<sup><b style="color:red;">*</b></sup></label>
                                         <div class="input-group">
                                             <input type="text" class="form-control"
-                                                placeholder="Case Type">
+                                                placeholder="Case Type" required>
                                         </div>
                                         <!-- /input-group -->
                                     </div>

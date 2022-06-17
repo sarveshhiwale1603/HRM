@@ -182,7 +182,7 @@ $all_extension = array(".jpg","jpeg",".png",".gif");
                               Password                    <span class="text-danger">*</span></label>
                             <div class="input-group">
                               <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-eye-slash"></i></span></div>
-                              <input class="form-control" placeholder="Password" name="password" type="text" required>
+                              <input class="form-control" placeholder="Password" id="pass" name="password" type="text" required>
                             </div>
                           </div>
                         </div>
@@ -190,13 +190,14 @@ $all_extension = array(".jpg","jpeg",".png",".gif");
                           <div class="form-group">
                             <label for="contact_number">
                               Contact Number                    <span class="text-danger">*</span></label>
-<input type="text" class="form-control" mainlength="10" maxlength="10" name="contact" placeholder="Contact Number" required>                          </div>
+<input type="number" class="form-control" onKeyDown="if(this.value.length==10 && event.keyCode>47 && event.keyCode < 58)return false;"
+ maxlength="10" maxlength="10" name="contact" placeholder="Contact Number" required>                          </div>
                         </div>
                         <div class="col-md-4">
                           <div class="form-group">
                             <label for="gender" class="control-label">
                               Gender                  </label>
-                            <select class="form-control" name="gender" data-plugin="select_hrm" data-placeholder="Gender" required>
+                            <select class="form-control" name="gender" id="gndr" data-plugin="select_hrm" data-placeholder="Gender" required>
                               <option value="Male">
                               Male                    </option>
                               <option value="Female">
@@ -210,7 +211,7 @@ $all_extension = array(".jpg","jpeg",".png",".gif");
                               Email                    <span class="text-danger">*</span> </label>
                             <div class="input-group">
                               <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-envelope"></i></span></div>
-                              <input class="form-control" placeholder="Email" name="email" type="email" required>
+                              <input class="form-control" placeholder="Email" id="email" name="email" type="email" required>
                             </div>
                           </div>
                         </div>
@@ -220,7 +221,7 @@ $all_extension = array(".jpg","jpeg",".png",".gif");
                               Username                    <span class="text-danger">*</span></label>
                             <div class="input-group">
                               <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user"></i></span></div>
-                              <input class="form-control" placeholder="Username" name="username" type="text" required>
+                              <input class="form-control" placeholder="Username" id="usname" name="username" type="text" required>
                             </div>
                           </div>
                         </div>
@@ -242,7 +243,7 @@ $all_extension = array(".jpg","jpeg",".png",".gif");
                     <div class="card-footer">
                       <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" class="collapsed btn  btn-default "> <i data-feather="minus"></i>
                        Reset       </a>        
-                                  <button type="submit" name="submit" class="btn btn-primary">Save</button>
+                                  <button type="submit" onclick="function()" name="submit"  id="sub" class="btn btn-primary">Save</button>
                                           
 
                     </div>
@@ -258,7 +259,7 @@ $all_extension = array(".jpg","jpeg",".png",".gif");
                   <div class="card-body">
                 <label>Attachment<sup><b style="color:red;">*</b></sup></label>
                     <div class="custom-file">
-                      <input type="file" class="form-control" name="profile">
+                      <input type="file" class="form-control" name="profile" required>
                       <!-- <label class="custom-file-label">Choose file...</label>
                       <small class="text-muted">Upload files only: pdf,gif,png,jpg,jpeg
                       </small> -->
@@ -383,6 +384,7 @@ $all_extension = array(".jpg","jpeg",".png",".gif");
 <script src="../../dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../../dist/js/pages/dashboard2.js"></script>
+
 <script>
 
 //TEXT VALIDATION
@@ -445,6 +447,26 @@ $("#lname").hide();
      }
      else{return false;}
   });
+</script>
+
+<script>
+let submitaminities = document.getElementById("sub");
+submitaminities.addEventListener("click", function(){
+ let fstname = document.getElementById("fstname").value;
+ let lstname = document.getElementById("lstname").value;
+ let pass = document.getElementById("pass").value;
+ let contact = document.getElementById("contact").value;
+ let gndr = document.getElementById("gndr").value;
+ let usname = document.getElementById("usname").value;
+  let email = document.getElementById("email")
+if(fstname == "" || lstname == "" || pass == "" || contact == "" || gndr == "" || usname == "" || email == ""){
+    swal("Oops...", "Please fill all the fields", "error");
+}
+    else{
+        swal("Saved!", "HRM Save", "success");
+    }
+});
+
 </script>
 <script>
     $(function () {
