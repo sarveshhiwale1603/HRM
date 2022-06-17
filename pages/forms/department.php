@@ -159,19 +159,19 @@ include("../include/header.php");
                   <form method="post">
                   <div class="form-group">
                     <label>Department Name <span style="color:red">*</span></label>
-                      <input type="text" name="name" id="" value="<?php echo $name; ?>" class="form-control" placeholder="Name" required>
+                      <input type="text" name="name" id="dept" value="<?php echo $name; ?>" class="form-control" placeholder="Name" required>
                     <!-- /.input group -->
                   </div>
                   <div class="form-group" >
                     <label>Department Head <span style="color:red">*</span></label>
-                      <input type="text" name="department_head" value="<?php echo $department_head; ?>" class="form-control" placeholder="Department Head" required>
+                      <input type="text" name="department_head" id="head" value="<?php echo $department_head; ?>" class="form-control" placeholder="Department Head" required>
                     <!-- /.input group -->
                   </div>
                 
 
                 </div>
                 <div class="card-footer card-footer1" >
-                  <button type="submit" id="submit" class="btn btn-primary btn-md" name="submit">Save</button>
+                  <button type="submit"  onclick="function()" id="submit" class="btn btn-primary btn-md" name="submit">Save</button>
                 </div>
                 </form>
                 <!-- /.card-body -->
@@ -279,6 +279,22 @@ include("../include/header.php");
 <script>$(document).ready( function () {
     $('#myTable').DataTable();
 } );</script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+
+<script>
+  
+let submitaminities = document.getElementById("submit");
+submitaminities.addEventListener("click", function(){
+ let dept = document.getElementById("dept").value;
+ let head = document.getElementById("head")
+if(dept == "" || head == "" ){
+    swal("Oops...", "Please fill all the fields", "error");
+}
+    else{
+        swal("Saved!", "HRM Save", "success");
+    }
+});
+  </script>
 </body>
 </html>

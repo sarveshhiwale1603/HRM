@@ -168,7 +168,7 @@ include("../include/header.php");
                   <form method="post">
                   <div class="form-group">
                     <label>Department *</label>
-                      <select name="department" class="form-control" required>
+                      <select name="department" class="form-control" id="department" required>
                         <option value="">Select Department</option>
                         <?php if(isset($_GET['eid'])){ ?>
                         <option value="<?php echo $did;?>" selected ><?php echo $name; ?></option>
@@ -185,17 +185,17 @@ include("../include/header.php");
                   </div>
                   <div class="form-group">
                     <label>Designation Name <span style="color:red">*</span></label>
-                      <input type="text" name="name" value="<?php echo $designation_name ?>" class="form-control" placeholder="Name" required>
+                      <input type="text" name="name" id="designation" value="<?php echo $designation_name ?>" class="form-control" placeholder="Name" required>
                     <!-- /.input group -->
                   </div>
                   <div class="form-group" >
                     <label>Description <span style="color:red">*</span></label>
-                      <input type="text" name="description" value="<?php echo $description ?>" class="form-control" placeholder="Department Head" required>
+                      <input type="text" name="description" id="description" value="<?php echo $description ?>" class="form-control" placeholder="Department Head" required>
                     <!-- /.input group -->
                   </div>
                 </div>
                 <div class="card-footer card-footer1" >
-                  <button type="submit" id="submit" class="btn btn-primary btn-md" name="submit">Save</button>
+                  <button type="submit" onclick="function()" id="submit" class="btn btn-primary btn-md" name="submit">Save</button>
                 </div>
                 </form>
                 <!-- /.card-body -->
@@ -303,5 +303,24 @@ include("../include/header.php");
 <script>$(document).ready( function () {
     $('#myTable').DataTable();
 } );</script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+<script>
+  
+let submitaminities = document.getElementById("submit");
+submitaminities.addEventListener("click", function(){
+let department = document.getElementById("department").value;
+ let designation = document.getElementById("designation").value;
+ let description = document.getElementById("description")
+if(department == "" || designation == "" description == "" ){
+    swal("Oops...", "Please fill all the fields", "error");
+}
+    else{
+        swal("Saved!", "HRM Save", "success");
+    }
+});
+  </script>
 </body>
 </html>
