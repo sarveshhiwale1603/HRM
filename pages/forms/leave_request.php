@@ -474,7 +474,7 @@ if(!isset($_SESSION['id'])){
                                                     <select class="form-control select2-hidden-accessible"
                                                         name="employee_name" data-plugin="select_hrm"
                                                         data-placeholder="Employee" tabindex="-1" aria-hidden="true"
-                                                        data-select2-id="44" required>
+                                                        data-select2-id="44" id="emp" required>
                                                         <option selected="selected">select</option>
                                                         <?php
                                                    $query=mysqli_query($conn,"select * from employee");
@@ -497,7 +497,7 @@ if(!isset($_SESSION['id'])){
                                                         <!-- <i class="fas fa-user-alt"></i> -->
                                                         </span>
                                                     </div>
-                                                    <input type="text" name="leave_type" class="form-control"
+                                                    <input type="text" name="leave_type"  id="leave" class="form-control"
                                                         placeholder="Leave Type" required>
                                                 </div>
                                                 <!-- /input-group -->
@@ -507,7 +507,7 @@ if(!isset($_SESSION['id'])){
                                         <div class="row my-3">
                                             <div class="col-lg-6">
                                                 <label>Start Date<sup><b style="color:red;">*</b></sup></label>
-                                                <input type="date" value="Date" name="start_date" class="form-control"
+                                                <input type="date" value="Date" name="start_date" id="start_date" class="form-control"
                                                     placeholder="Start Date" required>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
@@ -525,7 +525,7 @@ if(!isset($_SESSION['id'])){
                                                     </label>
                                                     <div class="input-group">
                                                         <input class="form-control date" type="date"
-                                                            placeholder="End Date" name="end_date" type="text"
+                                                            placeholder="End Date" name="end_date" id="end_date" type="text"
                                                             value="date" required>
                                                       
                                                     </div>
@@ -537,7 +537,7 @@ if(!isset($_SESSION['id'])){
                                             <div class="form-group">
                                                 <div class="custom-control custom-switch">
                                                     <input type="checkbox" class="custom-control-input input-primary"
-                                                        name="leave_half_day" id="leave_half_day" value="1"  >
+                                                        name="leave_half_day" id="leave_half_day" id="halfday" value="1"  >
                                                     <label class="custom-control-label" for="leave_half_day">
                                                         Half Day </label>
                                                 </div>
@@ -548,7 +548,7 @@ if(!isset($_SESSION['id'])){
                                                 <label for="description">
                                                     Remarks </label>
                                                 <textarea class="form-control textarea" placeholder="Remarks"
-                                                    name="remarks" rows="2" required></textarea>
+                                                    name="remarks" rows="2" id="remarks" required></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
@@ -556,7 +556,7 @@ if(!isset($_SESSION['id'])){
                                                 <label for="description">
                                                     Leave Reason </label>
                                                 <textarea class="form-control textarea" placeholder="Leave Reason "
-                                                    name="leave_reasons" rows="2"></textarea>
+                                                    name="leave_reasons" id="reasons" rows="2"></textarea>
                                             </div>
                                         </div>
 
@@ -564,7 +564,7 @@ if(!isset($_SESSION['id'])){
                                             <button type="button" id="reset" class="btn btn-default" name="reset"
                                                 data-bs-toggle="collapse" href="#collapseExample" role="button"
                                                 aria-expanded="false" aria-controls="collapseExample">Reset</button>
-                                            <button type="submit" class="btn btn-primary" name="submit">Save</button>
+                                            <button type="submit" class="btn btn-primary" nname=submit onclick="function()" id="submit">Save</button>
 
                                         </div>
 
@@ -868,6 +868,27 @@ $('.button1').click(function(){
 </script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../../dist/js/pages/dashboard2.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script>
+
+    
+let submitaminities = document.getElementById("submit");
+submitaminities.addEventListener("click", function(){
+ let leave = document.getElementById("leave").value;
+ //let start_date = document.getElementById("start_date").value;
+ //let end_date = document.getElementById("end_date").value;
+ let halfday = document.getElementById("halfday").value;
+ let remarks = document.getElementById("remarks").value;
+ let reasons = document.getElementById("reasons")
+if(leave == "" || halfday == "" || remarks == "" || reasons == "" ){
+    swal("Oops...", "Please fill all the fields", "error");
+}
+    else{
+        swal("Saved!", "HRM Save", "success");
+    }
+});
+    </script>
 
 </body>
 

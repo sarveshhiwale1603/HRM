@@ -191,7 +191,7 @@ $all_extension = array(".jpg","jpeg",".png",".gif");
                             <label for="contact_number">
                               Contact Number                    <span class="text-danger">*</span></label>
 <input type="number" class="form-control" onKeyDown="if(this.value.length==10 && event.keyCode>47 && event.keyCode < 58)return false;"
- maxlength="10" maxlength="10" name="contact" placeholder="Contact Number" required>                          </div>
+ maxlength="10" maxlength="10" name="contact" id="contact" placeholder="Contact Number" required>                          </div>
                         </div>
                         <div class="col-md-4">
                           <div class="form-group">
@@ -211,7 +211,7 @@ $all_extension = array(".jpg","jpeg",".png",".gif");
                               Email                    <span class="text-danger">*</span> </label>
                             <div class="input-group">
                               <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-envelope"></i></span></div>
-                              <input class="form-control" placeholder="Email" id="email" name="email" type="email" required>
+                              <input class="form-control" placeholder="Email" id="email" name="email" type="email" >
                             </div>
                           </div>
                         </div>
@@ -221,7 +221,7 @@ $all_extension = array(".jpg","jpeg",".png",".gif");
                               Username                    <span class="text-danger">*</span></label>
                             <div class="input-group">
                               <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user"></i></span></div>
-                              <input class="form-control" placeholder="Username" id="usname" name="username" type="text" required>
+                              <input class="form-control" placeholder="Username" id="usname" name="username" type="text" >
                             </div>
                           </div>
                         </div>
@@ -243,7 +243,7 @@ $all_extension = array(".jpg","jpeg",".png",".gif");
                     <div class="card-footer">
                       <a data-toggle="collapse" href="#collapseExample" aria-expanded="false" class="collapsed btn  btn-default "> <i data-feather="minus"></i>
                        Reset       </a>        
-                                  <button type="submit" onclick="function()" name="submit"  id="sub" class="btn btn-primary">Save</button>
+                                  <button type="submit" name="submit"  id="sub" class="btn btn-primary">Save</button>
                                           
 
                     </div>
@@ -384,6 +384,7 @@ $all_extension = array(".jpg","jpeg",".png",".gif");
 <script src="../../dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../../dist/js/pages/dashboard2.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script>
 
@@ -449,25 +450,7 @@ $("#lname").hide();
   });
 </script>
 
-<script>
-let submitaminities = document.getElementById("sub");
-submitaminities.addEventListener("click", function(){
- let fstname = document.getElementById("fstname").value;
- let lstname = document.getElementById("lstname").value;
- let pass = document.getElementById("pass").value;
- let contact = document.getElementById("contact").value;
- let gndr = document.getElementById("gndr").value;
- let usname = document.getElementById("usname").value;
-  let email = document.getElementById("email")
-if(fstname == "" || lstname == "" || pass == "" || contact == "" || gndr == "" || usname == "" || email == ""){
-    swal("Oops...", "Please fill all the fields", "error");
-}
-    else{
-        swal("Saved!", "HRM Save", "success");
-    }
-});
 
-</script>
 <script>
     $(function () {
       $("#example1").DataTable({
@@ -485,5 +468,25 @@ if(fstname == "" || lstname == "" || pass == "" || contact == "" || gndr == "" |
       });
     });
   </script>
+
+<script>
+let submitaminities = document.getElementById("sub");
+submitaminities.addEventListener("click", function(){
+ let fstname = document.getElementById("fstname").value;
+ let lstname = document.getElementById("lstname").value;
+ let pass = document.getElementById("pass").value;
+  //let contact = document.getElementById("contact").value;
+ let gndr = document.getElementById("gndr").value;
+ let usname = document.getElementById("usname").value;
+  let email = document.getElementById("email").value;
+if(fstname == "" || lstname == "" || pass == "" || gndr == "" || usname == "" || email == ""){
+    swal("Oops...", "Please fill all the fields", "error");
+}
+    else{
+        swal("Saved!", "HRM Save", "success");
+    }
+});
+
+</script>
 </body>
 </html>

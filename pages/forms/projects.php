@@ -371,7 +371,7 @@ element.style {
                                                         <label>Title<sup><b style="color:red;">*</b></sup></label>
                                                         <div class="input-group">
                                                             <input type="text" class="form-control" name="title"
-                                                                placeholder="Title" required>
+                                                                placeholder="Title" id="title" required>
                                                         </div>
                                                         <!-- /input-group -->
                                                     </div>
@@ -384,7 +384,7 @@ element.style {
                                                             ?>
 
 
-                                                                <select class="form-control select2" name="client" style="width: 100%;" required>
+                                                                <select class="form-control select2" id="client" name="client" style="width: 100%;" required>
                                                                   <option selected="selected">select</option>
                                                                   <?php
                                                             while($sql=mysqli_fetch_array($query))
@@ -400,7 +400,7 @@ element.style {
                                                     <div class="col-lg-2">
                                                         <label>Estimated Hour</label>
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control" name="estimated_hr"
+                                                            <input type="text" class="form-control" name="estimated_hr" id="estimated_hr"
                                                                 placeholder="Estimated Hour" required>
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text">
@@ -413,7 +413,7 @@ element.style {
                                                     <div class="col-lg-3">
                                                         <label>Priority</label>
                                                         <div class="input-group" >
-                                                            <select class="form-control select2" style="width: 100%;" name="priority" required>
+                                                            <select class="form-control select2" style="width: 100%;" id="priority" name="priority" required>
                                                                 <option selected="selected">Highest</option>
                                                                 <option>High</option>
                                                                 <option>Normal</option>
@@ -430,20 +430,20 @@ element.style {
                             <div class="col-lg-3">
                               <label>Start Date<sup><b style="color:red;">*</b></sup></label>
                               <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                <input type="date" name="start_date" class="form-control" placeholder="Date" required/>
+                                <input type="date" name="start_date" id="start_date" class="form-control" placeholder="Date" required/>
                               
                               </div>
                             </div>
                             <!-- /.col-lg-4 -->
                             <div class="col-lg-3">
                               <label>End Date<sup><b style="color:red;">*</b></sup></label>
-                                <input type="date" name="end_date" class="form-control" placeholder="Date" required/>
+                                <input type="date" name="end_date" id="end_date" class="form-control" placeholder="Date" required/>
                               
                             </div>
                                                     <div class="col-lg-6">
                                                         <label>Summary<sup><b style="color:red;">*</b></sup></label>
                                                         <div class="input-group">
-                                                            <textarea class="form-control" name="summary" id="exampleFormControlTextarea1" rows="1" placeholder="Summary" required></textarea>
+                                                            <textarea class="form-control" name="summary" id="summary" rows="1" placeholder="Summary" required></textarea>
                                                         </div>
                                                         <!-- /input-group -->
                                                     </div>
@@ -456,7 +456,7 @@ element.style {
                                                     <div class="col-lg-12">
                                                         <div class="form-group">
                                                           <label>Team</label>
-                                                          <select class="form-control select2" name="team" style="width: 100%;" required>
+                                                          <select class="form-control select2" name="team" id="team" style="width: 100%;" required>
                                                           <option selected="selected">select</option>
                                                         <?php
                                                    $query=mysqli_query($conn,"select * from employee");
@@ -492,7 +492,7 @@ element.style {
                                                         name="reset" data-bs-toggle="collapse" href="#collapseExample"
                                                         role="button" aria-expanded="false"
                                                         aria-controls="collapseExample">Reset</buttton>
-                                                    <button type="submit" name=submit id="submit" class="btn btn-primary"
+                                                    <button type="submit" name=submit onclick="function()" id="submit" id="submit" class="btn btn-primary"
                                                         name="Save">Save</button>
                                                       
 
@@ -627,7 +627,7 @@ element.style {
         <!-- /.control-sidebar -->
         <?php include("../include/footer.php") ?>
         <!-- Main Footer -->
-
+                    </div>
     </div>
     <!-- ./wrapper -->
 
@@ -879,7 +879,28 @@ element.style {
   }
   // DropzoneJS Demo Code End
 </script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+
+<script>
+let submitaminities = document.getElementById("submit");
+submitaminities.addEventListener("click", function(){
+ let title = document.getElementById("title").value;
+ let client = document.getElementById("client").value;
+ let estimated_hr = document.getElementById("estimated_hr").value;
+ let priority = document.getElementById("priority").value;
+ let start_date = document.getElementById("start_date").value;
+ let end_date = document.getElementById("end_date").value;
+ let summary = document.getElementById("summary").value;
+ let team = document.getElementById("team")
+if(title == "" || client == "" || estimated_hr == "" || priority == "" || start_date == "" || end_date == "" || summary == "" || team == ""){
+    swal("Oops...", "Please fill all the fields", "error");
+}
+    else{
+        swal("Saved!", "HRM Save", "success");
+    }
+});
+  <script>
 
 </body>
 </html>

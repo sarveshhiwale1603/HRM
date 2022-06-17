@@ -227,7 +227,7 @@ if(!isset($_SESSION['id'])){
                                                         <label>Contact Number<sup><b
                                                                     style="color:red;">*</b></sup></label>
                                                         <div class="input-group">
-                                                            <input type="number" class="form-control"onKeyDown="if(this.value.length==10 && event.keyCode>47 && event.keyCode < 58)return false;"
+                                                            <input type="number" id="number" class="form-control"onKeyDown="if(this.value.length==10 && event.keyCode>47 && event.keyCode < 58)return false;"
  maxlength="10" placeholder="Contact Number" required>
                                                         </div>
                                                         <!-- /input-group -->
@@ -235,7 +235,7 @@ if(!isset($_SESSION['id'])){
                                                     <div class="col-lg-4">
                                                         <label>Gender<sup><b style="color:red;">*</b></sup></label>
                                                         <div class="input-group">
-                                                            <select class="form-control select2" style="width: 100%;" required>
+                                                            <select class="form-control select2" style="width: 100%;" id="gndr" required>
                                                                 <option selected="selected">Male</option>
                                                                 <option>Female</option>
                                                             </select>
@@ -257,7 +257,7 @@ if(!isset($_SESSION['id'])){
                                                                 </span>
                                                             </div>
                                                             <input type="email" class="form-control"
-                                                                placeholder="Email" required>
+                                                                placeholder="Email" id="email" required>
                                                         </div>
                                                         <!-- /input-group -->
                                                     </div>
@@ -270,7 +270,7 @@ if(!isset($_SESSION['id'])){
                                                                         class="fas fa-user-alt"></i></span>
                                                             </div>
                                                             <input type="text" class="form-control"
-                                                                placeholder="Username" required>
+                                                                placeholder="Username" id="usname" required>
                                                         </div>
                                                         <!-- /input-group -->
                                                     </div>
@@ -288,7 +288,7 @@ if(!isset($_SESSION['id'])){
                                                                         class="fas fa-eye-slash"></i></span>
                                                             </div>
                                                             <input type="password" class="form-control"
-                                                                placeholder="password" required>
+                                                                placeholder="password" id="pass" required>
                                                         </div>
                                                         <!-- /input-group -->
                                                     </div>
@@ -297,7 +297,7 @@ if(!isset($_SESSION['id'])){
                                                         <label>Office Shift<sup><b
                                                                     style="color:red;">*</b></sup></label>
                                                         <select class="form-control select2" style="width: 100%;"
-                                                            placeholder="Office Shift" required>
+                                                            placeholder="Office Shift" id="ofc" required>
                                                             <option selected="selected" disabled>Office Shift</option>
                                                             <option>Morning</option>
                                                         </select>
@@ -306,7 +306,7 @@ if(!isset($_SESSION['id'])){
                                                     <div class="col-lg-4">
                                                         <label>Role<sup><b style="color:red;">*</b></sup></label>
                                                         <div class="input-group">
-                                                            <select class="form-control select2" style="width: 100%;" required>
+                                                            <select class="form-control select2" style="width: 100%;" id="role" required>
                                                                 <option selected="selected" disabled>Role</option>
                                                                 <option>Web Developer</option>
                                                                 <option>Android Developer</option>
@@ -318,7 +318,7 @@ if(!isset($_SESSION['id'])){
                                                     <div class="col-lg-6">
                                                         <label>Department<sup><b style="color:red;">*</b></sup></label>
                                                         <select class="form-control select2" style="width: 100%;"
-                                                            placeholder="Office Shift" required>
+                                                            placeholder="Office Shift" id="department" required>
                                                             <option selected="selected" disabled>Departments</option>
                                                             <option>Developer</option>
                                                             <option>Sales</option>
@@ -328,7 +328,7 @@ if(!isset($_SESSION['id'])){
                                                     <div class="col-lg-6">
                                                         <label>Designation<sup><b style="color:red;">*</b></sup></label>
                                                         <div class="input-group">
-                                                            <select class="form-control select2" style="width: 100%;" required>
+                                                            <select class="form-control select2" style="width: 100%;" id="designation" required>
                                                                 <option selected="selected" disabled>Designation
                                                                 </option>
                                                             </select>
@@ -345,14 +345,14 @@ if(!isset($_SESSION['id'])){
                                                                 <span class="input-group-text"> <i
                                                                         class="fas fa-rupee-sign"></i></span>
                                                             </div>
-                                                            <input type="number" class="form-control" value="456132" required>
+                                                            <input type="number" id="sal" class="form-control" value="456132" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <label>Payslip Type<sup><b
                                                                     style="color:red;">*</b></sup></label>
                                                         <div class="input-group">
-                                                            <select class="form-control select2" style="width: 100%;" required>
+                                                            <select class="form-control select2" style="width: 100%;" id="slip" required>
                                                                 <option selected="selected">Per Month</option>
                                                             </select>
                                                         </div>
@@ -361,19 +361,9 @@ if(!isset($_SESSION['id'])){
                                                 <div class="card-footer">
                                                     <buttton type="button" id="reset" class="btn btn-default"
                                                         name="reset" data-bs-toggle="collapse" href="#collapseExample"
-                                                        role="button" ari00
-                                                        0
-                                                        Tickets
-                                                        0
-                                                        Open
-                                                        0
-                                                        Open
-                                                        0
-                                                        Closed
-                                                        Payroll monthly report
-                                                        ₹0.00
-                                                        Total
-                                                        ₹0.00
+                                                        role="button" ari000
+                                                       
+                                                       
                                                         This Month
                                                         Teca-expanded="false"
                                                         aria-controls="collapseExample">Reset</buttton>
@@ -391,7 +381,7 @@ if(!isset($_SESSION['id'])){
                                             <div class="card-body">
                                                 <label>Profile Picture<sup><b style="color:red;">*</b></sup></label>
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" name="file">
+                                                    <input type="file" class="custom-file-input" id="file" name="file">
                                                     <label class="custom-file-label">Choose file...</label>
                                                     <small class="text-muted">Upload files only:
                                                         gif,png,jpg,jpeg</small>
@@ -659,6 +649,38 @@ $("#lname").hide();
      else{return false;}
   });
   </script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+<script>
+
+
+let submitaminities = document.getElementById("submit");
+submitaminities.addEventListener("click", function(){
+ let txtname = document.getElementById("txtname").value;
+ let lstname = document.getElementById("lstname").value;
+ let number = document.getElementById("number").value;
+ let gndr = document.getElementById("gndr").value;
+ let email = document.getElementById("email").value;
+ let usname = document.getElementById("usname").value;
+ let pass = document.getElementById("pass").value;
+ let ofc = document.getElementById("ofc").value;
+let role = document.getElementById("role").value;
+ let department = document.getElementById("department").value;
+let designation = document.getElementById("designation").value;
+let sal = document.getElementById("sal").value;
+ let slip = document.getElementById("slip")
+
+
+
+if(txtname == "" || lstname == "" || number == "" || gndr == "" || email == "" || usname == "" || pass == "" || ofc == "" || role == "" || department == ""  || designation == ""  || sal == "" || slip == ""  ){
+    swal("Oops...", "Please fill all the fields", "error");
+}
+    else{
+        swal("Saved!", "HRM Save", "success");
+    }
+});
+    </script>
 
 </body>
 

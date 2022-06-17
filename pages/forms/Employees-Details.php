@@ -320,7 +320,7 @@ if(!isset($_SESSION['id'])){
                                                             </div>
                                                         </div>
                                                         <div class="card-footer text-right">
-                                                            <button type="submit" class="btn btn-primary ladda-button" data-style="expand-right"><span class="ladda-label"> Update Contract </span><span class="ladda-spinner"></span></button>
+                                                            <button type="submit" class="btn btn-primary ladda-button" id="submit" onclick="function()" data-style="expand-right"><span class="ladda-label"> Update Contract </span><span class="ladda-spinner"></span></button>
                                                         </div>
                                                         <div style="display:none"><label>Bot Will Fill This Field</label><input type="text" name="ciapp_check" value=""></div>
                                                     </form>
@@ -1324,6 +1324,8 @@ if(!isset($_SESSION['id'])){
 
                                 <!-- Personal Information -->
 
+
+
                                 <div class="tab-pane fade active show" id="user-set-information" role="tabpanel" aria-labelledby="user-set-information-tab">
                                     <div class="card">
                                         <div class="card-header">
@@ -1506,7 +1508,7 @@ if(!isset($_SESSION['id'])){
                                                                 <div class="col-sm-6">
                                                                     <div class="form-group">
                                                                         <label> Contact Number <span class="text-danger">*</span></label>
-                                                                        <input type="number" class="form-control" onKeyDown="if(this.value.length==10 && event.keyCode>47 && event.keyCode < 58)return false;"
+                                                                        <input type="number" id="number" class="form-control" onKeyDown="if(this.value.length==10 && event.keyCode>47 && event.keyCode < 58)return false;"
  maxlength="10" maxlength="10" placeholder="Contact Number" value="" name="contact_phone_no" required>
                                                                     </div>
                                                                 </div>
@@ -1516,20 +1518,20 @@ if(!isset($_SESSION['id'])){
                                                                         <div class="input-group">
                                                                             <div class="input-group-prepend"><span  class="input-group-text"><i class="fas fa-envelope"></i></span>
                                                                             </div>
-                                                                            <input type="email" class="form-control" placeholder="Email" value="" name="contact_email" required>
+                                                                            <input type="email" id="email" class="form-control" placeholder="Email" value="" name="contact_email" required>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-sm-12">
                                                                     <div class="form-group">
                                                                         <label>  Address <span class="text-danger">*</span> </label>
-                                                                        <textarea class="form-control"  placeholder="Address" name="contact_address" required></textarea>
+                                                                        <textarea class="form-control" id="add" placeholder="Address" name="contact_address" required></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="card-footer text-right">
-                                                            <button type="submit" class="btn btn-primary ladda-button" data-style="expand-right"><span class="ladda-label">  Update Contact </span><span class="ladda-spinner"></span></button>
+                                                            <button type="submit" onclick="function()" id="submit" class="btn btn-primary ladda-button" data-style="expand-right"><span class="ladda-label">  Update Contact </span><span class="ladda-spinner"></span></button>
                                                         </div>
                                                         <div style="display:none"><label>Bot Will Fill This Field</label><input type="text" name="ciapp_check" value="" required></div>
                                                     </form>
@@ -1581,6 +1583,7 @@ if(!isset($_SESSION['id'])){
                                     </div>
                                 </div>
 
+                                
 
 
 
@@ -2217,6 +2220,8 @@ if(!isset($_SESSION['id'])){
     <script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     <script>
 
 //TEXT VALIDATION
@@ -2248,6 +2253,27 @@ $("#lname").hide();
      else{return false;}
   });
 </script>
+
+<script>
+let submit = document.getElementById("submit");
+submit.addEventListener("click", function(){
+ let contact_full_name = document.getElementById("lstname").value;
+ let contact_phone_no = document.getElementById("number").value;
+ let contact_email = document.getElementById("email").value;
+ let contact_address = document.getElementById("add").value;
+ 
+
+
+if(contact_full_name == "" || contact_phone_no == "" || contact_email == "" || contact_address == "" ){
+    swal("Oops...", "Please fill all the fields", "error");
+}
+    else{
+        swal("Saved!", "HRM Save", "success");
+    }
+});
+
+    </script>
+
    
    <script>
 
@@ -2524,6 +2550,8 @@ $("#lname").hide();
         });
 
     </script>
+
+
 
     <!-- Bootstrap 4 -->
     <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -350,18 +350,18 @@ include('../include/config.php');
                   <label for="name">
                     Leave Type          
                       <span class="text-danger">*</span> </label>
-                  <input type="text" class="form-control" name="leave_type" placeholder="Leave Type" required>
+                  <input type="text" class="form-control" name="leave_type" id="leave" placeholder="Leave Type" required>
                 </div>
                 <div class="form-group">
                   <label for="name">
                     Days per year       
                          <span class="text-danger">*</span></label>
-                  <input type="text" class="form-control" name="days_per_year" placeholder="Days per year" required>
+                  <input type="text" class="form-control" name="days_per_year" id="dpy" placeholder="Days per year" required>
                 </div>
                 <div class="form-group">
                   <label for="gender" class="control-label">
                     Requires Approval          </label>
-                  <select class="form-control" name="requires_approval"  data-placeholder="Requires Approval">
+                  <select class="form-control" name="requires_approval" id="requires"  data-placeholder="Requires Approval">
                     <option value="YES">
                     Yes            </option>
                     <option value="NO">
@@ -370,7 +370,7 @@ include('../include/config.php');
                   <small class="form-text text-muted">
                   If select No, the leave will be automatically approved for this leave type.          </small> </div>
                   <div class="card-footer text-right">
-                    <button type="submit" name="submit" class="btn btn-primary">
+                    <button type="submit" onclick="function()" id="submit" name="submit" class="btn btn-primary">
                     Save        </button>
                   </div>
               </div>
@@ -580,5 +580,26 @@ $('.button2').click(function(){
 
 });
 </script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+
+let submitaminities = document.getElementById("submit");
+submitaminities.addEventListener("click", function(){
+ let leave = document.getElementById("leave").value;
+ let dpy = document.getElementById("dpy").value;
+ let requires = document.getElementById("requires")
+ 
+
+
+if(leave == "" || dpy == "" || requires == "" ){
+    swal("Oops...", "Please fill all the fields", "error");
+}
+    else{
+        swal("Saved!", "HRM Save", "success");
+    }
+});
+
+
+  </script>
 </body>
 </html>

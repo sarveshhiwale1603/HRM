@@ -27,7 +27,7 @@ if(isset($_POST['submit']))
           }else{
               $upload=md5($image).$extension;
               $dnk=$_FILES['image']['tmp_name'];
-              $loc="leads_image/".$upload;
+              $loc="image/leads_image/".$upload;
               move_uploaded_file($dnk,$loc);
 
 
@@ -362,7 +362,7 @@ if(isset($_POST['submit']))
                                     <div class="form-group">
                                       <label for="logo"> Attachment  <span class="text-danger">*</span> </label>
                                       <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="image" required>
+                                        <input type="file" class="custom-file-input" name="image" id="attach" required>
                                         <label class="custom-file-label">
                                           Choose file...  </label>
                                         <small> Upload files only: gif,png,jpg,jpeg </small> </div>
@@ -411,7 +411,7 @@ if(isset($_POST['submit']))
                         ?>
                           <tr>
                             
-                          <td><img src="leads_image/<?php echo $arr['image'] ?>" width="50px" height="50px" border-radius="30%"> <?php echo $arr['first_name'];?> <?php echo $arr['last_name'];?></td>
+                          <td><img src="image /leads_image/<?php echo $arr['image'] ?>" width="50px" height="50px" border-radius="30%"> <?php echo $arr['first_name'];?> <?php echo $arr['last_name'];?></td>
                           </td>
                             <td> <?php echo $arr['contact'];?></td>
                             <td> <?php echo $arr['gender'];?> </td>
@@ -613,6 +613,7 @@ $("#lname").hide();
   });
 
 </script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <script>
 let submitaminities = document.getElementById("submit");
@@ -620,12 +621,12 @@ submitaminities.addEventListener("click", function(){
  let fstname = document.getElementById("fstname").value;
  let lstname = document.getElementById("lstname").value;
  let gndr = document.getElementById("gndr").value;
- let contact = document.getElementById("contact").value;
+ //let attach = document.getElementById("attach").value;
  let email = document.getElementById("email")
  
 
 
-if(fstname == "" || lstname == "" || gndr == "" || contact == "" || email == "" || email == "" ){
+if(fstname == "" || lstname == "" || gndr == "" || attach == "" || email == "" || email == "" ){
     swal("Oops...", "Please fill all the fields", "error");
 }
     else{
