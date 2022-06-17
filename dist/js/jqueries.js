@@ -156,4 +156,37 @@ $("#time_log_id").click(function(){
         }
         });
 });
+
+$("#bugssubmit").click(function(){
+	let bugsdesc=$(".bugsdesc").val();
+	let bugssubmit=$("#bugssubmit").val();
+	let bugid=$("#bugid").val();
+	$.ajax({
+		url:'check.php',
+		type:'POST',
+		data:{bugsdesc:bugsdesc,
+		bugssubmit:bugssubmit,
+		bugid:bugid},
+		cache:false,
+		success:function(data1){
+			alert(data1);
+		}
+	});
+});
+
+
+$('.delbugsid').click(function(){
+  let dnkbugsid = $(this).data('id');
+
+  $.ajax({
+   url: 'check.php',
+   type: 'post',
+   data: {dnkbugsid: dnkbugsid},
+   success: function(response2){ 
+     alert(respnse2); 
+   }
+ });
+});
+
+
 });

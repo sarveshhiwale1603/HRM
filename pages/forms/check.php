@@ -634,5 +634,29 @@ while($res=mysqli_fetch_array($query)){
   </tfoot>
 </table>';
 }
+
+
+if(isset($_POST['bugssubmit'])){
+	$bugsdesc=mysqli_real_escape_string($conn,$_POST['bugsdesc']);
+	$bugid=$_POST['bugid'];
+	date_default_timezone_set("Asia/Kolkata");
+	$date=date("Y-m-d h:i:sa");
+	$sql=mysqli_query($conn,"INSERT INTO `Bugs`(`bugs`, `date`,`client_id`) VALUES ('$bugsdesc','$date','$bugid')");
+	if($sql==1){
+		echo "record inserted";
+	}else{
+		echo "not inserted";
+	}
+}
+
+if(isset($_POST['dnkbugsid'])){
+  $bid=$_POST['dnkbugsid'];
+	$sql=mysqli_query($conn,"delete from Bugs where id='$bid'");
+	if($sql==1){
+		echo "Message deleted";
+	}else{
+		echo "Not deleted";
+	}
+}
 ?>
   

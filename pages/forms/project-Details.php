@@ -3,7 +3,8 @@ include("../include/config.php");
 session_start();
 if(!isset($_SESSION['id'])){
     header("location:index.php");
-} 
+}
+$logname=$_SESSION['name']; 
 $id=$_GET['projectListId'];
 $sql=mysqli_query($conn,"select * from project  where id='$id'");
 $row=mysqli_fetch_array($sql);
@@ -644,18 +645,73 @@ $row=mysqli_fetch_array($sql);
 
 
                                     <div class="tab-pane fade" id="pills-bugs" role="tabpanel"  aria-labelledby="pills-bugs-tab">
+									<!--msg-->
+									<?php $query2=mysqli_query($conn,"select * from Bugs");
+while($arra=mysqli_fetch_array($query2)){ ?>
+									<ul class="media-list" id="bugsclientmessage pt-2">
+                                                        <li class="media" id="discussion_option_id_1">
+										<div class="media-left mr-3"> <a href="#!"> <img class="img-fluid media-object img-radius comment-img" src="http://hrm.tectignis.in/public/uploads/users/thumb/a-sm.jpg" alt=""> </a> </div>
+										<div class="media-body">
+										  <h6 class="media-heading txt-primary">
+											<?php echo $logname; ?>                    <span class="f-12 text-muted ml-1">
+											<?php  
+date_default_timezone_set('Asia/Kolkata');
+$time_go=strtotime($arra['date']);
+$time= strtotime(date( 'd-m-Y h:i:s', time ()));
+							$current_time=$time;
+							$time_diiference=$current_time - $time_go;
+							$seconds=$time_diiference;
+							$minutes=round($seconds/60); //value 60 is sec.
+							$hours=round($seconds/3600); //value 3600=60min*60sec
+							$days=round($seconds/86400);//value 86400 is 24*60*60
+							$weeks=round($seconds/604800);//value 604800=7*24*60*60
+							$months=round($seconds/2629440);//((365+365+365+365+366)/5/12)*24*60*60
+							$years=round($seconds/31553280);//(365+365+365+365+366)/5*24*60*60
+							if($seconds<=60){
+								$msg="just Now";
+							}else if($minutes<=60){
+								if($minutes==1){ $msg="one minute ago";}
+								else{ $msg="$minutes minutes ago";}
+							}else if($hours<=24){
+								if($hours==1){ $msg= "an hour ago";}
+								else{ $msg= "$hours hrs ago";}
+							}else if($days<=7){
+								if($days==1){ $msg="yesterday";}
+								else{ $msg= "$days days ago";}
+							}else if($weeks<=4.3){//4.3=52/12
+								if($weeks==1){ $msg="a week ago";}
+								else{ $msg="$weeks weeks ago";}
+							}else if($months<=12){//4.3=52/12
+								if($months==1){ $msg= "a month ago";}
+								else{ $msg="$months months ago";}
+							}else{
+								if($years==1){ $msg="one year ago";}
+								else{ $msg= "$years yrs ago";}
+							} 
+ ?> 
+											<?php echo $msg; ?>                    </span></h6>
+										  <?php echo $arra['bugs']; ?>                  <div class="mt-2">
+											<button class="btn btn-sm btn-primary dnkbugsid" data-id='<?php echo $arra['id']; ?>'><i class="fas fa-trash-alt text-danger mr-2"></i>Delete</button></div>
+										</div>
+									  </li>
+									  <hr class="discussion_option_id_1">
+												  </ul>
+<?php } ?>
+									<!--msg-->
                                         <div class="card-body task-comment">
                                             <ul class="media-list p-0">
                                             </ul>
-                                            <form action="" name="add_discussion" id="add_discussion" autocomplete="off"  method="post" accept-charset="utf-8">
+                                            <form name="add_discussion" id="add_discussion" autocomplete="off"  method="post" accept-charset="utf-8">
                                                 <div class="input-group mb-3">
-                                                    <textarea id="summernote2">
+												<input type="hidden" value="<?php echo $id; ?>" id="editid">
+
+                                                    <textarea class="bugsdesc" id="summernote2">
                                                         Place <em>some</em> <u>text</u> <strong>here</strong>
                                                       </textarea>
                                                 </div>
                                                 <div class="card-footer text-right">
-                                                    <button type="submit" class="btn btn-primary ladda-button"
-                                                        data-style="expand-right"><span class="ladda-label">  Add </span><span class="ladda-spinner"></span></button>
+                                                    <button type="button" class="btn btn-primary ladda-button" id="bugssubmit"
+                                                        data-style="expand-right">Add </button>
                                                 </div>
                                                 <div style="display:none"><label>Bot Will Fill This Field</label><input type="text" name="ciapp_check" value=""></div>
                                             </form>
