@@ -189,4 +189,33 @@ $('.dnkbugsid').click(function(){
 });
 
 
+$('#savetask').click(function(){
+    let taskid=$("#taskid").val();
+	let tasktitle=$("#tasktitle").val();
+	let taskstartdate=$("#taskstartdate").val();
+    let taskEndDate=$("#taskEndDate").val();
+	let in_time=$("#in_time").val();
+    let taskproject=$("#taskproject").val();
+    let tasksummary=$("#tasksummary").val();
+    let desc=$("#desc").val();
+	let savetask=$("#savetask").val();
+	$.ajax({
+		url:'check.php',
+		type:'POST',
+		data:{taskid:taskid,
+            tasktitle:tasktitle,
+            taskstartdate:taskstartdate,
+            taskEndDate:taskEndDate,
+            in_time:in_time,
+            taskproject:taskproject,
+            tasksummary:tasksummary,
+            savetask:savetask,
+            desc:desc},
+		cache:false,
+		success:function(taskdata){
+			alert(taskdata);
+		}
+	});
+});
+
 });
