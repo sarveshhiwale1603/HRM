@@ -798,10 +798,7 @@ Leave Type Status        </h6>
             <?php include("../include/footer.php") ?>
         </div>
         
-    <!-- ./wrapper -->
-
-    <!-- REQUIRED SCRIPTS --
-    <!-- jQuery -->
+    
     <script>
 function mouseOver() {
   document.getElementById("demo").style.color = "red";

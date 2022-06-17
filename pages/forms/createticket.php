@@ -1,4 +1,27 @@
+<?php 
+include('../include/config.php');
+session_start();
+if(!isset($_SESSION['id'])){
+    header("location:index.php");
+} 
 
+
+    if(isset($_POST['submit']))
+    {
+        $subject = $_POST['subject'];
+        $priority = $_POST['priority'];
+        $employee = $_POST['employee'];
+        $description = $_POST['description'];
+        $department=$_POST['department']; 
+        $sql="INSERT INTO `ticket`(`subject`,`department`, `priority`, `description`,`employee`) VALUES ('$subject','$department','$priority','$description','$employee')";
+        if (mysqli_query($conn, $sql)){
+          echo "<script> alert ('New record has been added successfully !');</script>";
+       } else {
+          echo "<script> alert ('connection failed !');</script>";
+       }
+      
+    }
+  ?>
 
 
 
@@ -357,7 +380,9 @@
           
           <!-- /.card-header -->
           <div class="card-body">
+          <form method="post">
             <div class="row">
+             
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Subject </label>
@@ -369,7 +394,7 @@
                 
                 <div class="form-group">
                   <label>Department</label>
-                  <select class="form-control select2" style="width: 100%;">
+                  <select class="form-control select2" name="department" style="width: 100%;">
                     <option selected="selected">select</option>
                     <option>Developer</option>
                     <option>Sales</option>
@@ -384,7 +409,7 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Priority</label>
-                  <select class="form-control select2" style="width: 100%;">
+                  <select class="form-control select2" name="priority" style="width: 100%;">
                     <option selected="selected"></option>
                     <option>Low</option>
                     <option>Medium</option>
@@ -414,14 +439,15 @@
                   border-radius: 4px;" name="description" placeholder="description"></textarea>
                 </div>
                 <!-- /.fo
-              <!-- /.col -->
+              
             </div>
             
             <!-- /.row -->
 </div>
-<button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
+<button type="submit" name="submit" class="btn btn-primary" style="margin-right: 5px;float-right;">
   Add
 </button>
+</form>
 </div>
 
           </div>

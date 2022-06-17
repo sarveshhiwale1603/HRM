@@ -1,6 +1,41 @@
 <?php 
-include('configure.php');
-?>
+include('../include/config.php');
+session_start();
+if(!isset($_SESSION['id'])){
+    header("location:index.php");
+} 
+
+
+    if(isset($_POST['submit']))
+    {
+        $title = $_POST['title'];
+        $start_date = $_POST['start_date'];
+        $end_date = $_POST['end_date'];
+        $estimated_hrs = $_POST['estimated_hrs'];
+        $summary = $_POST['summary'];
+        $description = $_POST['description'];
+        $category=$_POST['category']; 
+        $status= "Active";
+        $sql="INSERT INTO `task`(`title`,`start_date`,`end_date`,`estimated_hours`,`summary`,`description`,`project`,`status`) VALUES ('$title','$start_date','$end_date','$estimated_hrs','$summary','$description','$category','$status')";
+        if (mysqli_query($conn, $sql)){
+          echo "<script> alert ('New record has been added successfully !');</script>";
+       } else {
+          echo "<script> alert ('connection failed !');</script>";
+       }
+      
+    }
+
+    if(isset($_GET['delid'])){
+      $id=mysqli_real_escape_string($conn,$_GET['delid']);
+      $sql=mysqli_query($conn,"delete from task where id='$id'");
+      if($sql=1){
+          header("location:tasks-lists.php");
+      }
+      }
+
+
+  ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,6 +67,7 @@ include('configure.php');
        .a1{
         float:right;
        }
+       
   </style>
 
 </head>
@@ -39,217 +75,18 @@ include('configure.php');
 <div class="wrapper">
 
   <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__wobble" src="../../dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
-
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Home</a>
-      </li>
-    </ul>
-
-    <!-- Right navbar links -->
-  </nav>
+ 
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="#" class="brand-link">
-      <span class="brand-text font-weight-light">AdminLTE 4</span>
-    </a>
-
+ 
     <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user (optional) -->
-     
+    <?php 
+include("../include/header.php");
+?>
 
-      <!-- SidebarSearch Form -->
-      
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="tectignis.html" class="nav-link">
-              <i class="nav-icon fas fa-home"></i>
-              <p>
-                Home
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-users"></i>
-              <p>
-                Employee
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-star"></i>
-              <p>
-                Core HR
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ol class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="Department.html" class="nav-link">
-                  <i class="nav-icon fa fa-ellipsis"></i>
-                  <p>Department</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="designation.html" class="nav-link">
-                  <i class="nav-icon fa fa-ellipsis"></i>
-                  <p>Designation</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="policies.html" class="nav-link">
-                  <i class="nav-icon fa fa-ellipsis"></i>
-                  <p>policies</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="announcement.html" class="nav-link">
-                  <i class="nav-icon fa fa-astrick"></i>
-                  <p>Make Announcement</p>
-                </a>
-              </li>
-            </ol>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-clock"></i>
-              <p>
-                Attendance
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <ol class="nav-item">
-                <a href="#" class="nav-link">
-                  
-                  <p>Attendance</p>
-                </a>
-              </ol>
-              <ol class="nav-item">
-                <a href="#" class="nav-link">
-                
-                  <p>manul Attendance</p>
-                </a>
-              </ol>
-              <ol class="nav-item">
-                <a href="#" class="nav-link">
-                  
-                  <p>monthly Report</p>
-                </a>
-              </ol>
-              <ol class="nav-item">
-                <a href="#" class="nav-link">
-                  <p>Overtime Request</p>
-                </a>
-              </ol>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-rupee-sign"></i>
-              <p>
-                Payroll
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-edit"></i>
-              <p>
-                Task
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-                Project
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-handshake"></i>
-              <p>
-                Manage Clients
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon 	fa fa-user-plus"></i>
-              <p>
-                Leads
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-question-circle"></i>
-              <p>
-                Helpdesk
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class='nav-icon fas fa-chart-pie'></i>
-              <p>
-                 Estimates
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class='nav-icon fas fa-plus-square'></i>
-              <p>
-                Leave Request
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon 	fa fa-laptop"></i>
-              <p>
-                Training Session
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-gavel"></i>
-              <p>
-                Disiplinary
-              </p>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-    </div>
     <!-- /.sidebar -->
-  </aside>
+ 
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -289,7 +126,7 @@ include('configure.php');
                 <div class="d-flex flex-row align-items-start">
                     <i class="nav-link fa fa-calendar"></i>
                     <div class="ms-3">
-                      <h6><a href="calendar3.html" target="_self" > Calendar</a></h6>
+                      <h6><a href="calendar3.php" target="_self" > Calendar</a></h6>
                       <p>Tasks Calendar</p>
                     </div>
                 </div>
@@ -305,7 +142,7 @@ include('configure.php');
                 <div class="d-flex flex-row align-items-start">
                     <i class="nav-link	fa fa-tasks"></i>
                     <div class="ms-3">
-                      <h6 ><a href=kanban.html target="_self" style="text-decoration:none">Kanban Board</a></h6>
+                      <h6 ><a href=kanban.php target="_self" style="text-decoration:none">Kanban Board</a></h6>
                       <p>View Task Kanban Board</p>
                     </div>
                 </div>
@@ -413,8 +250,8 @@ include('configure.php');
                   <h5 class="card-title">List All Tasks
                 </h5>
                 <div class="nav-item nav-grid f-view snehal"> <span class="m-r-15">
-                    View Mode     :</span> 
-                     <a href="tasks-grid.php" class="btn btn-sm waves-effect waves-light btn-primary btn-icon m-0" data-toggle="tooltip" data-placement="top" title="" data-original-title="Grid View"> <i class="fas fa-th-large"></i> </a>
+                    View Mode :</span> 
+                     
                      <a data-toggle="collapse" href="#add_form" aria-expanded="false" class="collapsed btn waves-effect waves-light btn-primary btn-sm m-0"> <i data-feather="plus"></i>
                       Add Task        </a>
                           </div>
@@ -429,80 +266,104 @@ include('configure.php');
                       <div class="card-header-right pg a1" > <a  data-toggle="collapse" href="#add_form" aria-expanded="false" class="collapsed btn btn-sm waves-effect waves-light btn-primary m-0"> <i data-feather="minus"></i>
                         Hide              </a> </div>
                     </div>
-                                        <form name="add_task" id="xin-form" autocomplete="off" method="post" accept-charset="utf-8">
-          <input type="hidden" name="csrf_token" value="f44c7a5804deeeb53aa87bc0e6c27d26" />
-          <input type="hidden" name="user_id" value="0" style="display:none;" />
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-md-3">
-                          <div class="form-group">
-                            <label for="task_name">Title <span class="text-danger">*</span></label>
-                            <input class="form-control" placeholder="Title" name="task_name" type="text" value="">
-                          </div>
-                        </div>
-                        <div class="col-md-3">
-                          <div class="form-group">
-                            <label for="start_date">Start Date <span class="text-danger">*</span></label>
-                            <div class="input-group">
-                              <input type="date" class="form-control date"  placeholder="Start Date" name="start_date" type="text" value="">
-                             
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-3">
-                          <div class="form-group">
-                            <label for="end_date">End Date <span class="text-danger">*</span></label>
-                            <div class="input-group">
-                              <input type="date" class="form-control date" placeholder="End Date" name="end_date" type="text" value="">
-                             
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-3">
-                          <div class="form-group">
-                            <label for="task_hour" class="control-label">Estimated Hour</label>
-                            <div class="input-group">
-                            <input type="time" class="form-control timepicker_m"  name="estamited_hrs" type="text" data-dtp="dtp_l90xi">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group" id="project_ajax">
-                            <label for="project_ajax" class="control-label">Project <span class="text-danger">*</span></label>
-                            <select class="form-control" name="project_id" data-plugin="select_hrm" data-placeholder="Project">
-                              <option value=""></option>
-                                                </select>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label for="summary">Summary <span class="text-danger">*</span></label>
-                            <textarea class="form-control" placeholder="Summary" name="summary" cols="30" rows="1" id="summary"></textarea>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label for="description">Description</label>
-                            <textarea class="form-control editor" placeholder="Description" name="description" id="description"></textarea>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-      <div>
-                    <div class="card-footer text-right">
-                      <button type="reset" class="btn btn-light" href="#add_form" data-toggle="collapse" aria-expanded="false">
-                      Reset            </button>
-                      &nbsp;
-                      <button type="submit" class="btn btn-primary">
-                      Save            </button>
-                    </div>
-      
-                    <div style="display:none"><label>Bot Will Fill This Field</label><input type="text" name="ciapp_check" value=""/></div></form>        </div>
+                    <form name="add_task" id="xin-form" autocomplete="off" method="post" accept-charset="utf-8">
+                      <input type="hidden" name="csrf_token" value="f44c7a5804deeeb53aa87bc0e6c27d26" />
+                      <input type="hidden" name="user_id" value="0" style="display:none;" />
+                                <div class="card-body">
+                                  <div class="row">
+                                    <div class="col-md-3">
+                                      <div class="form-group">
+                                        <label for="task_name">Title <span class="text-danger">*</span></label>
+                                        <input class="form-control" placeholder="Title" name="title" type="text" value="">
+                                      </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                      <div class="form-group">
+                                        <label for="start_date">Start Date <span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                          <input type="date" class="form-control date"  placeholder="Start Date" name="start_date" type="text" value="">
+                                         
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                      <div class="form-group">
+                                        <label for="end_date">End Date <span class="text-danger">*</span></label>
+                                        <div class="input-group">
+                                          <input type="date" class="form-control date" placeholder="End Date" name="end_date" type="text" value="">
+                                          
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                      <div class="form-group">
+                                        <label for="task_hour" class="control-label">Estimated Hour</label>
+                                        <div class="input-group">
+                                          <input type="time"  class="form-control" placeholder="Estimated Hour" name="estimated_hrs" value="">
+                                         
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <div class="form-group" id="project_ajax">
+                                        <label for="project_ajax" class="control-label">Project <span class="text-danger">*</span></label>
+
+
+                                        <?php 
+                  $query=mysqli_query($conn,"select * from project");
+                
+                  ?>
+
+
+                      <select class="form-control select2" name="category" style="width: 100%;">
+                        <option selected="selected" disabled>select</option>
+                        <?php
+                   while($sql=mysqli_fetch_array($query))
+                   {
+                     ?>
+
+
+                        ?>
+
+                        <option value="<?php echo $sql['title']; ?>"> <?php echo $sql['title']; ?></option>
+                        <?php } ?>
+                      </select>
+
+
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <div class="form-group">
+                                        <label for="summary">Summary <span class="text-danger">*</span></label>
+                                        <textarea class="form-control" placeholder="Summary" name="summary" cols="30" rows="1" id="summary"></textarea>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                      <div class="form-group">
+                                        <label for="description">Description</label>
+                                        <textarea class="form-control editor" placeholder="Description" name="description" id="description"></textarea>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="card-footer text-right">
+                                  <button type="reset" class="btn btn-light" href="#add_form" data-toggle="collapse" aria-expanded="false">
+                                  Reset            </button>
+                                  &nbsp;
+                                  <button type="submit" name="submit" class="btn btn-primary">
+                                  Save            </button>
+                                </div>
+                                <div style="display:none"><label>Bot Will Fill This Field</label><input type="text" name="ciapp_check" value=""/></div>
+                                </div>
+                                
+                                
+                                </form>           </div>
+                                
                 </div>
                 </div>
               </div>
           <!--/. container-fluid -->
         </div>
+        
         </div>
         <!-- /.row -->
         <div class="card">
@@ -520,12 +381,14 @@ include('configure.php');
                     <th>END DATE</th>
                     <th> STATUS  </th>
                     <th>PROGRESS</th>
+                    <th>Action</th>
                   </tr>
                   </thead>
                  
                   <tbody>
                       <?php     
-    $sql=mysqli_query($conn,"select * from task");
+    $sql=mysqli_query($conn,"select task.id, task.title,task.team,task.start_date,task.end_date, task.status, 
+    employee.lname,employee.fname from employee inner join task on employee.employee_id=task.employee_id");
     while($arr=mysqli_fetch_array($sql)){
     ?>
                       <tr>
@@ -533,7 +396,7 @@ include('configure.php');
                           <?php echo $arr['title'];?>
                         </td>
                         <td>
-                          
+                        <?php echo $arr['fname'].' '.$arr['lname'];?>
                         </td>
                         <td>
                           <?php echo $arr['start_date'];?>
@@ -542,11 +405,30 @@ include('configure.php');
                           <?php echo $arr['end_date'];?>
                         </td>
                         <td>
-                         
+                        <?php echo $arr['status'];?>
                         </td>
+                        <td><div class="progress">
+  <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">55%</div>
+</div> </td>                  
                         <td>
-                          
-                        </td>
+                       
+
+                        <a href="tasks-details.php">
+                                                <button
+                                                    class="btn waves-effect waves-light btn-primary btn-sm b-none txt-muted"
+                                                    type="button"><i data-toggle="tooltip" data-placement="top" title=""
+                                                        class="fas fa-eye m-0"
+                                                        data-original-title="View Project"></i></button>
+                                            </a> 
+                          <a  class="collapsed btn waves-effect waves-light btn-danger btn-sm m-0"  href="tasks-lists.php?delid=<?php echo $arr['id'];?>">
+                          <i class="fas fa-trash"></i></a>
+                        
+                         
+
+
+                      
+
+                          </td>
                       </tr>
 
 
@@ -561,16 +443,24 @@ include('configure.php');
     </section>
     <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
-
-  <!-- Control Sidebar -->
-  <aside>
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-
-  <!-- Main Footer -->
-
+  <div class="modal fade closemaual" id="dnkModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="post" action="check.php">
+      <div class="modal-body body3">
+      </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary" name="taskEdit">Save changes</button>
+    </div>
+  </div>
+  </div>
+</div>
 </div>
 <!-- ./wrapper -->
 
@@ -628,5 +518,24 @@ include('configure.php');
       });
     });
   </script>
+  <script>
+$(document).ready(function(){
+$('.taskid').click(function(){
+  let dnk3 = $(this).data('id');
+
+  $.ajax({
+   url: 'check.php',
+   type: 'post',
+   data: {dnk3: dnk3},
+   success: function(responsee){ 
+     $('.body3').html(responsee);
+     $('#dnkModal2').modal('show'); 
+   }
+ });
+});
+
+
+});
+</script>
 </body>
 </html>

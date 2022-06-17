@@ -408,7 +408,7 @@ if(!isset($_SESSION['id'])){
                                           <?php echo $arr['total'];?>
                                           </td>
                                           <td>
-              <a href="manual-attendance.php?delid=<?php echo $arr['id']; ?>"><button type="button" class="btn btn-danger btn-rounded btn-icon" onclick="ConfirmDelete()" style="color: aliceblue"> <i class="fas fa-trash"></i> </button></a>
+              <a href="manual-attendance.php?delid=<?php echo $arr['id']; ?>"><button type="button" class="btn btn-danger btn-rounded btn-icon"  style="color: aliceblue"> <i class="fas fa-trash"></i> </button></a>
               
              <button  type="button" class="btn btn-warning btn-rounded btn-icon usereditid" data-toggle="modal" data-id='<?php echo $arr['id']; ?>'
                                 style="color: aliceblue"> <i class="fas fa-pen"></i>
