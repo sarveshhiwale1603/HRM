@@ -1,3 +1,14 @@
+<?php
+include("../include/config.php");
+session_start();
+if(!isset($_SESSION['id'])){
+    header("location:index.php");
+}
+$logname=$_SESSION['name']; 
+$id=$_GET['taskListId'];
+$sql=mysqli_query($conn,"select * from task  where id='$id'");
+$row=mysqli_fetch_array($sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -328,35 +339,38 @@ include("../include/header.php");
                                             <div class="table-responsive">
                                                 <table class="table m-b-0 f-14 b-solid requid-table">
                                                     <tbody class="text-muted">
+                                                          <?php
+                        $sql=mysqli_query($conn,"select task.id,task.estimated_hours,task.project, task.title,task.team,task.start_date,task.end_date,task.team,employee.id,
+                        employee.lname,employee.fname from employee inner join task on employee.id=task.id where  employee.id='$id'");
+                         while($arr=mysqli_fetch_array($sql)){
+                        ?>
                                                         <tr>
                                                             <td>Title</td>
-                                                            <td>jhkjhkjhh</td>
+                                                            <td><?php echo $arr['title']; ?></td>
                                                         </tr>
                                                         <tr>
                                                             <td>Start Date</td>
-                                                            <td><i class="far fa-calendar-alt"></i>&nbsp;
-                                                                2022-06-04</td>
+                                                            <td><?php echo $arr['start_date'];?></td>
                                                         </tr>
                                                         <tr>
                                                             <td>End Date</td>
-                                                            <td><i class="far fa-calendar-alt"></i>&nbsp;
-                                                                2022-06-10</td>
+                                                            <td> <?php echo $arr['end_date'];?> </td>
                                                         </tr>
                                                         <tr>
                                                             <td>Estimated Hour</td>
-                                                            <td>10</td>
+                                                            <td> <?php echo $arr['estimated_hours'];?> </td>
                                                         </tr>
                                                         
                                                             <tr><td>Project</td>
-                                                            <td> Highest </td>
+                                                            <td> <?php echo $arr['project'];?></td>
                                                         </tr>
                                                         
                                                        
                                                         <tr>
                                                             <td>Team</td>
-                                                            <td><a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="VEDANT NAIDU"><span class="mb-1"><img src="http://hrm.tectignis.in/public/uploads/users/thumb/logo.jpg" class="img-fluid img-radius wid-30 mr-1" style="width:30px; border-radius: 50%;" alt=""></span></a></td>
+                                                            <td><?php echo $arr['fname'].' '.$arr['lname'];?></td>
                                                         </tr>
-                                                       
+                                                        <?php } ?>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -371,15 +385,20 @@ include("../include/header.php");
                                                 </div>
                                             </div>
                                             <div class="mb-3">
+                                                <?php
+                                            $sql=mysqli_query($conn,"select * from task where id='$id'");
+                         while($arr=mysqli_fetch_array($sql)){
+                        ?>
                                                 <h6 class="my-0">Summary</h6>
                                                 <hr>
-                                                mnkjnknkjn
+                                                <?php echo $arr['summary'];?>
                                             </div>
                                             <div class="mb-3">
                                                 <h6 class="my-0">Description</h6>
                                                 <hr>
-                                               
+                                                <?php echo $arr['description'];?>
                                             </div>
+                                            <?php } ?>
                                         </div>
                                            
                                             <div style="display:none"><label>Bot Will Fill This Field</label><input type="text" name="ciapp_check" value=""></div>
@@ -390,25 +409,24 @@ include("../include/header.php");
 
                                     <div class="tab-pane fade" id="pills-edit" role="tabpanel"
                                         aria-labelledby="pills-overview-tab">
-                                        <form action=""
+                                        <form action="check.php"
                                             name="update_project" id="update_project" autocomplete="off" method="post"  accept-charset="utf-8">
-                                            <input type="hidden" name="csrf_token"  value="151caa943adbea74b586dda6935a66a3">
-                                            <input type="hidden" name="token" value="Wq0jv-0vl4DUZItXe7Cq7Dn-N_uGlF0Y1syost3-QiU" style="display:none;">
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label for="title">Title <span class="text-danger">*</span></label>
-                                                            <input class="form-control" placeholder="Title" name="title" type="text" value="jhkjhkjhh">
+                                                            <input name="editid" type="hidden" value="<?php echo $id; ?>" id="editid">
+                                                            <input class="form-control" placeholder="Title" id="title" name="title" type="text" value="<?php echo $row['title'] ?>">
                                                         </div>
                                                     </div>
-                                                    
+                                                 
                                                     <input type="hidden" value="0" name="assigned_to[]">
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label for="budget_hours">Estimated Hour</label>
                                                             <div class="input-group">
-                                                                <input class="form-control" placeholder="Estimated Hour" name="budget_hours" type="text" value="10">
+                                                                <input class="form-control" placeholder="Estimated Hour" name="budget_hours" id="budget_hours" type="text" value="<?php echo $row['estimated_hours'] ?>">
                                                                 <div class="input-group-append"><span  class="input-group-text"><i  class="fas fa-clock"></i></span></div>
                                                             </div>
                                                         </div>
@@ -416,21 +434,18 @@ include("../include/header.php");
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="start_date">Start Date <span class="text-danger">*</span></label>
-                                                            <div class="input-group date" id="editStartDate" data-target-input="nearest">
-                                                                <input type="text" class="form-control datetimepicker-input" placeholder="Date" data-target="#editStartDate"/>
-                                                                <div class="input-group-append" data-target="#editStartDate" data-toggle="datetimepicker">
-                                                                    <div class="input-group-text"><i class="fa fa-calendar-alt"></i></div>
-                                                                </div>
+                                                            <div class="input-group " >
+                                                            <input class="form-control applied_on" placeholder="Applied On " name="starteditdate" id="starteditdate" type="date" value="<?php echo $row['start_date']; ?>" data-dtp="dtp_dl6pL">
+                                                                
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="end_date">End Date <span class="text-danger">*</span></label>
-                                                                    <div class="input-group date" id="editEndDate" data-target-input="nearest">
-                                                                        <input type="text" class="form-control datetimepicker-input" placeholder="Date" data-target="#editEndDate"/>
-                                                                        <div class="input-group-append" data-target="#editEndDate" data-toggle="datetimepicker">
-                                                                            <div class="input-group-text"><i class="fa fa-calendar-alt"></i></div>
+                                                            <div class="input-group " >
+                                                            <input class="form-control applied_on" id="endeditDate" name="endDate" type="date" value="<?php echo $row['end_date']; ?>" data-dtp="dtp_dl6pL">
+                                                                        
                                                                         </div>
                                                                     </div>
                                                         </div>
@@ -438,47 +453,61 @@ include("../include/header.php");
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label for="summary">Summary <span  class="text-danger">*</span></label>
-                                                            <textarea class="form-control" placeholder="Summary" name="summary" cols="30" rows="3">mnkjnknkjn</textarea>
+                                                            <textarea class="form-control" placeholder="Summary" name="editsummary" id="editsummary" cols="30" rows="3"><?php echo $row['summary']; ?></textarea>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-12">
                                                         <div class="form-group" id="employee_ajax">
                                                             <label for="employee">Team</label>
-                                                            <select class="select2" multiple="multiple" data-placeholder="Team" style="width: 100%;">
-                                                                <option>Vedant</option>
-                                                                <option>Naidu</option>
+                                                            <select class="form-control" style="width: 100%;" id="editteam" name="editteam">
+                                                            <?php
+                                                              $emp_code=$row['team'];
+                                                              $result_project=mysqli_query($conn,"SELECT * FROM  project left join employee on employee.employee_code=project.team WHERE project.team='$emp_code';");
+                                                              while($row_project = mysqli_fetch_array($result_project)){
+                                                                  echo "<option value='".$row_project['employee_code']."' selected='true' >".$row_project['fname']." ".$row_project['lname']."</option>";
+                                                              }
+                                                              ?>
+                                                              <?php
+                                                               $query=mysqli_query($conn,"select * from employee");
+                                                               while($sql=mysqli_fetch_array($query))
+                                                               { echo "<option value='".$sql['employee_code']."'>".$sql['fname']." ".$sql['lname']."</option>";
+                                                                    }
+                                                              ?>
+                                                              
                                                               
                                                               </select>
                                                         </div>
                                                     </div>
-                                                    <input type="hidden" value="0" name="associated_goals[]">
+                                                    <!-- <input type="hidden" value="0" name="associated_goals[]">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label for="employee">Associated Goals</label>
                                                             <select class="select2" multiple="multiple" data-placeholder="" style="width: 100%;">
-                                                                <!-- <option>Vedant</option>
-                                                                <option>Naidu</option> -->
+                                                                 <option>Vedant</option>
+                                                                <option>Naidu</option> 
                                                               
                                                               </select>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label for="description">Description</label>
-                                                            <textarea id="summernote">
-                                                                Place <em>some</em> <u>text</u> <strong>here</strong>
+                                                            <textarea class="editdesc" 
+                                                            name="editdesc" id="summernote" >
+                                                               <?php echo $row['description']; ?>
                                                               </textarea>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            
                                             <div class="card-footer text-right">
-                                                <button type="submit" class="btn btn-primary ladda-button" data-style="expand-right"><span class="ladda-label">  Update Task </span><span class="ladda-spinner"></span></button>
+                                                <button type="submit" class="btn btn-primary ladda-button" name="updatetask" id="updatetask" > Update Task</button>
                                             </div>
-                                            <div style="display:none"><label>Bot Will Fill This Field</label><input type="text" name="ciapp_check" value=""></div>
+                                            <div style="display:none"><label>Bot Will Fill This Field</label><input type="text" name="ciapp_check" value=""/></div>  
+                                                           
                                         </form>
+                                        
                                     </div>
-
                                     <!-- DISCUSSION -->
 
 

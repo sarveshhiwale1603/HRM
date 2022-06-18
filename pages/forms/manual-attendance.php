@@ -425,6 +425,9 @@ if(!isset($_SESSION['id'])){
                   </table>
                 </div>
               
+
+
+
                 <div class="modal fade closemaual" id="dnkModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -618,25 +621,25 @@ if(!isset($_SESSION['id'])){
       });
     });</script>
 
-<script>
-$(document).ready(function(){
-$('.usereditid').click(function(){
-  let dnk = $(this).data('id');
+          <script>
+          $(document).ready(function(){
+          $('.usereditid').click(function(){
+            let dnk = $(this).data('id');
 
-  $.ajax({
-   url: 'check.php',
-   type: 'post',
-   data: {dnk: dnk},
-   success: function(response1){ 
-     $('.body1').html(response1);
-     $('#dnkModal').modal('show'); 
-   }
- });
-});
+            $.ajax({
+            url: 'check.php',
+            type: 'post',
+            data: {dnk: dnk},
+            success: function(response1){ 
+              $('.body1').html(response1);
+              $('#dnkModal').modal('show'); 
+            }
+          });
+          });
 
 
-});
-</script>
+          });
+          </script>
   
 </body>
 </html>

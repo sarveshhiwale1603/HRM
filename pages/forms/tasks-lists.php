@@ -387,8 +387,8 @@ include("../include/header.php");
                  
                   <tbody>
                       <?php     
-    $sql=mysqli_query($conn,"select task.id, task.title,task.team,task.start_date,task.end_date, task.status, 
-    employee.lname,employee.fname from employee inner join task on employee.employee_id=task.employee_id");
+    $sql=mysqli_query($conn,"select task.id,task.title,task.team,task.start_date,task.end_date, task.status, 
+    employee.lname,employee.fname, employee.id from employee inner join task on employee.id=task.id");
     while($arr=mysqli_fetch_array($sql)){
     ?>
                       <tr>
@@ -413,13 +413,10 @@ include("../include/header.php");
                         <td>
                        
 
-                        <a href="tasks-details.php">
-                                                <button
-                                                    class="btn waves-effect waves-light btn-primary btn-sm b-none txt-muted"
-                                                    type="button"><i data-toggle="tooltip" data-placement="top" title=""
-                                                        class="fas fa-eye m-0"
-                                                        data-original-title="View Project"></i></button>
-                                            </a> 
+                        <a href="tasks-details.php?taskListId=<?php echo $arr['id']; ?>" class="btn btn-success"><i class="fa fa-arrow-right"></i></a>
+
+
+
                           <a  class="collapsed btn waves-effect waves-light btn-danger btn-sm m-0"  href="tasks-lists.php?delid=<?php echo $arr['id'];?>">
                           <i class="fas fa-trash"></i></a>
                         
