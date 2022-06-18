@@ -806,138 +806,93 @@ $time= strtotime(date( 'd-m-Y h:i:s', time ()));
                                     <div class="tab-pane fade" id="pills-tasks" role="tabpanel"
                                         aria-labelledby="pills-tasks-tab">
                                         <div class="row m-b-1 animated fadeInRight">
-                                            <div class="col-md-12">
+                                        <div class="col-md-12">
 
-                                                <div class="collapse" id="collapseExample">
-                                                    <div class="card">
-                                                        <div id="accordion">
-                                                            <div class="card-header">
-                                                                <h5 class="card-title">Add New Task</h5>
-                                                                <div class="card-tools">
-                                                                    <button type="button"
-                                                                        class="btn btn-shadow btn-primary btn-sm"
-                                                                        data-bs-toggle="collapse"
-                                                                        href="#collapseExample" role="button"
-                                                                        aria-expanded="false"
-                                                                        aria-controls="collapseExample"><i
-                                                                            class="mr-2 fa fa-minus"></i>Hide</button>
-                                                                </div>
-                                                            </div>
-                                                            <form action="" autocomplete="off" method="post"
+                                        <div class="collapse" id="collapseExample">
+                                         <div class="card">
+                                         <div id="accordion">
+                                        <div class="card-header">
+                                         <h5 class="card-title">Add New Task</h5>
+                                         <div class="card-tools">
+                                        <button type="button"  class="btn btn-shadow btn-primary btn-sm" data-bs-toggle="collapse"   href="#collapseExample" role="button" aria-expanded="false"  aria-controls="collapseExample"><i class="mr-2 fa fa-minus"></i>Hide</button>
+                                         </div>
+                                        </div>
+                                        <form action="" autocomplete="off" method="post"
                                                                 accept-charset="utf-8">
 
-                                                                <div class="card-body">
-                                                                    <div class="row">
-                                                                        <input type="hidden" value="<?php echo $id; ?>"
+                                        <div class="card-body">
+                                         <div class="row">
+                                      <input type="hidden" value="<?php echo $id; ?>"
                                                                             id="taskid">
-                                                                        <div class="col-md-4">
-                                                                            <div class="form-group">
-                                                                                <label for="task_name">Title <span
-                                                                                        class="text-danger">*</span></label>
-                                                                                <input class="form-control"
-                                                                                    id="tasktitle" placeholder="Title"
-                                                                                    name="task_name" type="text"
-                                                                                    value="">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-4">
-                                                                            <div class="form-group">
-                                                                                <label for="start_date">Start Date <span
-                                                                                        class="text-danger">*</span></label>
-                                                                                <div class="input-group date"
-                                                                                    id="taskStartDate"
-                                                                                    data-target-input="nearest">
-                                                                                    <input type="date"
-                                                                                        class="form-control datetimepicker-input"
-                                                                                        id="taskstartdate"
-                                                                                        placeholder="Start Date"
-                                                                                         />
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-4">
-                                                                            <div class="form-group">
-                                                                                <label for="start_date">End Date <span
-                                                                                        class="text-danger">*</span></label>
-                                                                                <div class="input-group date"
-                                                                                    id="taskEndDate"
-                                                                                    data-target-input="nearest">
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        placeholder="End Date"
-                                                                                        id="taskEndDate" />
+                                         <div class="col-md-4">
+                                         <div class="form-group">
+                                         <label for="task_name">Title <span  class="text-danger">*</span></label>
+                                         <input class="form-control"  id="tasktitle" placeholder="Title"   name="task_name" type="text"  value="">
+                                          </div>
+                                         </div>
+                                        <div class="col-md-4">
+                                        <div class="form-group">
+                                        <label for="start_date">Start Date <span      class="text-danger">*</span></label>
+                                         <div class="input-group date" id="taskStartDate" data-target-input="nearest">
+                                        <input type="date"  class="form-control datetimepicker-input" id="taskstartdate"       placeholder="Start Date" />
+                                        </div>
+                                     </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                        <div class="form-group">
+                                     <label for="start_date">End Date <span           class="text-danger">*</span></label>
+                                     <div class="input-group date"   id="taskEndDate"
+                                      data-target-input="nearest">
+                                       <input type="text" class="form-control"  placeholder="End Date" id="taskEndDate" />
                                         
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-3">
-                                                                            <div class="form-group">
-                                                                                <label for="task_hour"
-                                                                                    class="control-label">Estimated
-                                                                                    Hour</label>
-                                                                                    <div class="input-group date" id="timepicker" data-target-input="nearest">
-                          <input type="text" class="form-control datetimepicker-input" placeholder="In Time" id="in_time" data-target="#timepicker" required/>
-                          <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
-                              <div class="input-group-text"><i class="far fa-clock"></i></div>
-                          </div>
-                          </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="form-group" id="project_ajax">
-                                                                                <label for="project_ajax"
-                                                                                    class="control-label">Project <span
-                                                                                        class="text-danger">*</span></label>
-                                                                                <select class="select2 form-control"
-                                                                                    data-placeholder="Team"
-                                                                                    style="width: 100%;" id="taskproject" >
-                                                                                    <option selected="selected">
-                                                                                        <?php echo $row['title']; ?>
-                                                                                    </option>
-
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label for="summary">Summary <span
-                                                                                        class="text-danger">*</span></label>
-                                                                                <textarea class="form-control"
-                                                                                    placeholder="Summary" name="summary"
-                                                                                    cols="30" rows="2"
-                                                                                    id="tasksummary"></textarea>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-12">
-                                                                            <div class="form-group">
-                                                                                <label
-                                                                                    for="description">Description</label>
-                                                                                <textarea id="summernote3" class="desc">
-                                                                                        Place <em>some</em> <u>text</u> <strong>here</strong>
-                                                                                      </textarea>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="card-footer text-right">
-                                                                    <button type="reset" class="btn btn-light"
-                                                                        data-bs-toggle="collapse"
-                                                                        href="#collapseExample" role="button"
-                                                                        aria-expanded="false"
-                                                                        aria-controls="collapseExample"> Reset </button>
-                                                                    &nbsp;
-                                                                    <button type="button"
-                                                                        class="btn btn-primary ladda-button"
-                                                                        id="savetask" data-style="expand-right">
-                                                                        Save</button>
-                                                                </div>
-                                                                <div style="display:none"><label>Bot Will Fill This
-                                                                        Field</label><input type="text"
-                                                                        name="ciapp_check" value=""></div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                         </div>
+                                         </div>
+                                         </div>
+                                        <div class="col-md-3">
+                                        <div class="form-group">
+                                         <label for="task_hour"   class="control-label">Estimated Hour</label>
+                                         <div class="input-group date" id="timepicker" data-target-input="nearest">
+                                    <input type="text" class="form-control datetimepicker-input" placeholder="In Time" id="in_time" data-target="#timepicker" required/>
+                                    <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+                                        <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                    <div class="form-group" id="project_ajax">
+                                    <label for="project_ajax"  class="control-label">Project <span
+                                    class="text-danger">*</span></label>
+                                    <select class="select2 form-control" data-placeholder="Team" style="width: 100%;" id="taskproject" >
+                                    <option selected="selected"> <?php echo $row['title']; ?>  </option>  </select>
+                                    </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                    <div class="form-group">
+                                    <label for="summary">Summary <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" placeholder="Summary" name="summary"  cols="30" rows="2"  id="tasksummary"></textarea>
+                                    </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                    <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <textarea id="summernote3" class="desc">                      Place <em>some</em> <u>text</u> <strong>here</strong>
+                                    </textarea>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    <div class="card-footer text-right">
+                                    <button type="reset" class="btn btn-light"  data-bs-toggle="collapse"  href="#collapseExample" role="button"
+                                    aria-expanded="false"  aria-controls="collapseExample"> Reset </button>  &nbsp;
+                                    <button type="button"  class="btn btn-primary ladda-button"
+                                    id="savetask" data-style="expand-right">  Save</button>
+                                        </div>
+                                        <div style="display:none"><label>Bot Will Fill This Field</label><input type="text"  name="ciapp_check" value=""></div>
+                                        </form>
+                                        </div>
+                                        </div>
+                                        </div>
 
                                                 <div class="card user-profile-list">
                                                     <div class="card-header">
