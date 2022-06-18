@@ -1,7 +1,7 @@
 
 <?php
 session_start();
-include("../include/config.php");
+include("pages/include/config.php");
 if(isset($_POST['login'])){
 $email=$_POST['email'];
 $password1=$_POST['password'];
