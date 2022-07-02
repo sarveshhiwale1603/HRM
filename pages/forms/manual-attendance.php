@@ -367,7 +367,6 @@ if(!isset($_SESSION['id'])){
                         </td>
                       
                         <td>
-                        
                         <?php echo $arr['total'];?>
                         </td>
                         <td>
@@ -413,9 +412,7 @@ if(!isset($_SESSION['id'])){
              <button  type="button" class="btn btn-warning btn-rounded btn-icon usereditid" data-toggle="modal" data-id='<?php echo $arr['id']; ?>'
                                 style="color: aliceblue"> <i class="fas fa-pen"></i>
                                       </button>
-                                                                 
-                  
-                  
+                                        
                       </td>                 
                       </tr>                                  
     <?php
@@ -620,6 +617,8 @@ if(!isset($_SESSION['id'])){
         "responsive": true,
       });
     });</script>
+
+
 
           <script>
           $(document).ready(function(){

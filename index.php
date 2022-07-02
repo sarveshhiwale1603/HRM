@@ -18,7 +18,7 @@ if($row>0){
       $_SESSION['name']=$row['name'];
         $_SESSION['email']=$email;
         $_SESSION['password']=$password;
-        header("location:/pages/forms/dashboard-admin.php");
+        header("location:pages/forms/dashboard.php");
     }else{
         echo "<script>alert('Password is incorrect');</script>";
     }

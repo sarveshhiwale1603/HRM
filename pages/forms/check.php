@@ -261,7 +261,7 @@ if(isset($_POST['dnk'])){
                 <div class="row">
       <div class="col-md-12">
         <div class="form-group">
-          <label for="first_name">
+          <label for="first_name">            
             Employee <span class="text-danger">*</span>
           </label>
           <input type="hidden" name="manualid" value="'.$row['id'].'">

@@ -225,7 +225,7 @@ include("../include/header.php");
                                 <div class="card-header">
                                     <h5 class="card-title">Task Details</h5>
                                     <div class="card-tools">
-                                        <a href="" data-toggle="tab" aria-expanded="false" class="">
+                                        <a href="tasks-lists.php" data-toggle="tab" aria-expanded="false" class="">
                                             <button type="button" class="btn btn-shadow btn-secondary btn-sm"><i class="mr-2 fa fa-edit"></i>Add Task</button>
                                         </a>
                                     </div>
@@ -431,6 +431,7 @@ include("../include/header.php");
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="start_date">Start Date <span class="text-danger">*</span></label>
@@ -508,9 +509,9 @@ include("../include/header.php");
                                         </form>
                                         
                                     </div>
+
                                     <!-- DISCUSSION -->
-
-
+                                   
                                     <div class="tab-pane fade" id="pills-discussion" role="tabpanel"  aria-labelledby="pills-discussion-tab">
                                         <div class="card-body task-comment">
                                             <ul class="media-list p-0">
@@ -534,12 +535,7 @@ include("../include/header.php");
 
                                     <!-- TIME LOG -->
 
-
-                                  
-
-
                                     <!-- BUGs -->
-
 
                                     <div class="tab-pane fade" id="pills-bugs" role="tabpanel"  aria-labelledby="pills-bugs-tab">
                                         <div class="card-body task-comment">
@@ -563,9 +559,7 @@ include("../include/header.php");
                                     </div>
 
 
-
                                     <!-- TASKS -->
-
 
                                     <div class="tab-pane fade" id="pills-tasks" role="tabpanel"  aria-labelledby="pills-tasks-tab">
                                         <div class="row m-b-1 animated fadeInRight">
@@ -660,7 +654,7 @@ include("../include/header.php");
                                                         </div>
                                                     </div>
                                                   </div>
-                                                   
+
                                                 <div class="card user-profile-list">
                                                     <div class="card-header">
                                                         <h5 class="card-title">List All Tasks</h5>
@@ -1183,3 +1177,5 @@ $(function () {
 </body>
 
 </html>
+
+

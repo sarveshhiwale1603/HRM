@@ -17,7 +17,7 @@ if(!isset($_SESSION['id'])){
         $category=$_POST['category']; 
         $status= "Active";
         $sql="INSERT INTO `task`(`title`,`start_date`,`end_date`,`estimated_hours`,`summary`,`description`,`project`,`status`) VALUES ('$title','$start_date','$end_date','$estimated_hrs','$summary','$description','$category','$status')";
-        if (mysqli_query($conn, $sql)){
+        if(mysqli_query($conn,$sql)){
           echo "<script> alert ('New record has been added successfully !');</script>";
        } else {
           echo "<script> alert ('connection failed !');</script>";
@@ -147,10 +147,7 @@ include("../include/header.php");
                     </div>
                 </div>
             </div>
-        </div>
-          <!-- /.col -->
-          
-          <!-- /.col -->
+        
         </div>
         <!-- Info boxes -->
         <div class="row">
@@ -166,8 +163,7 @@ include("../include/header.php");
                       <div class="col-lg-8 py-4">
                         <p>0</p>
                         <a href="department.html" target="_self" class="Department mt-4"><h6>Total Completed</a></h6>
-                       
-                   
+                     
                 </div>
                 </div>
              </div>
@@ -262,11 +258,11 @@ include("../include/header.php");
                   <div id="accordion">
                     <div class="card-header">
                       <h5>
-                        Add New              Task            </h5>
+                        Add New  Task     </h5>
                       <div class="card-header-right pg a1" > <a  data-toggle="collapse" href="#add_form" aria-expanded="false" class="collapsed btn btn-sm waves-effect waves-light btn-primary m-0"> <i data-feather="minus"></i>
                         Hide              </a> </div>
                     </div>
-                    <form name="add_task" id="xin-form" autocomplete="off" method="post" accept-charset="utf-8">
+                    <form name="add_task" id="xin-form" autocomplete="off" method="POST" accept-charset="utf-8">
                       <input type="hidden" name="csrf_token" value="f44c7a5804deeeb53aa87bc0e6c27d26" />
                       <input type="hidden" name="user_id" value="0" style="display:none;" />
                                 <div class="card-body">
@@ -350,7 +346,7 @@ include("../include/header.php");
                                   Reset            </button>
                                   &nbsp;
                                   <button type="submit" name="submit" class="btn btn-primary">
-                                  Save            </button>
+                                  Save        </button>
                                 </div>
                                 <div style="display:none"><label>Bot Will Fill This Field</label><input type="text" name="ciapp_check" value=""/></div>
                                 </div>
@@ -384,11 +380,10 @@ include("../include/header.php");
                     <th>Action</th>
                   </tr>
                   </thead>
-                 
                   <tbody>
                       <?php     
-    $sql=mysqli_query($conn,"select task.id,task.title,task.team,task.start_date,task.end_date, task.status, 
-    employee.lname,employee.fname, employee.id from employee inner join task on employee.id=task.id");
+    $sql=mysqli_query($conn,"select task.id,task.title,task.team,task.start_date,task.end_date,task.status, 
+    employee.lname,employee.fname,employee.id from employee inner join task on employee.id=task.id");
     while($arr=mysqli_fetch_array($sql)){
     ?>
                       <tr>
@@ -413,18 +408,13 @@ include("../include/header.php");
                         <td>
                        
 
-                        <a href="tasks-details.php?taskListId=<?php echo $arr['id']; ?>" class="btn btn-success"><i class="fa fa-arrow-right"></i></a>
-
+                        <a href="tasks-details.php?taskListId=<?php echo $arr['id']; ?>" class=" btn-sm btn btn-success"><i class="fa fa-arrow-right"></i></a>
 
 
                           <a  class="collapsed btn waves-effect waves-light btn-danger btn-sm m-0"  href="tasks-lists.php?delid=<?php echo $arr['id'];?>">
                           <i class="fas fa-trash"></i></a>
                         
                          
-
-
-                      
-
                           </td>
                       </tr>
 
@@ -436,7 +426,8 @@ include("../include/header.php");
               </div>
               <!-- /.card-body -->
             </div>
-        <!--  row end -->
+
+
     </section>
     <!-- /.content -->
   </div>
