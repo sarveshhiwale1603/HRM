@@ -9,9 +9,22 @@ $id=$_GET['taskListId'];
 $sql=mysqli_query($conn,"select * from task  where id='$id'");
 $row=mysqli_fetch_array($sql);
 ?>
+
+<?php
+if(isset($_POST['submit1']))
+    {
+        $discussion = $_POST['discussion'];
+        $sql="INSERT INTO `task`(`discussion`) VALUES ('$discussion')";
+        if (mysqli_query($conn, $sql)){
+          echo "<script> alert ('New record has been added successfully !');</script>";
+       } else {
+          echo "<script> alert ('connection failed !');</script>";
+       }
+    }
+  ?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -223,11 +236,19 @@ include("../include/header.php");
                         <div class="col-lg-4">
                             <div class="card hdd-right-inner">
                                 <div class="card-header">
-                                    <h5 class="card-title">Task Details</h5>
+
+
+                                <?php
+                        $sql=mysqli_query($conn,"select * from task where id='$id'"); 
+                         while($arr=mysqli_fetch_array($sql)){
+                        ?>
+                                    <h5 class="card-title"><?php echo $arr['title']; ?></h5>
+                                    <?php } ?>
+
                                     <div class="card-tools">
-                                        <a href="tasks-lists.php" data-toggle="tab" aria-expanded="false" class="">
-                                            <button type="button" class="btn btn-shadow btn-secondary btn-sm"><i class="mr-2 fa fa-edit"></i>Add Task</button>
-                                        </a>
+                                    <a href="tasks-lists.php">
+                                            <button type="submit" class="btn btn-shadow btn-secondary btn-sm"><i class="mr-2 fa fa-edit"></i>Add Task</button></a>
+                                       
                                     </div>
                                 </div>
                                 <input type="hidden" value="Wq0jv-0vl4DUZItXe7Cq7Dn-N_uGlF0Y1syost3-QiU"
@@ -325,8 +346,13 @@ include("../include/header.php");
                             </div>
                             <div class="card">
                                 <div class="card-header">
-                                    <h5><i class="feather icon-lock mr-1"></i>Task :
+                                <?php
+                        $sql=mysqli_query($conn,"select * from task where id='$id'"); 
+                         while($arr=mysqli_fetch_array($sql)){
+                        ?>
+                                    <h5><i class="feather icon-lock mr-1"></i>Task : <?php echo $arr['title']; ?>
                                        </h5>
+                                       <?php } ?>
                                 </div>
                                 <div class="tab-content" id="pills-tabContent">
 
@@ -409,7 +435,7 @@ include("../include/header.php");
 
                                     <div class="tab-pane fade" id="pills-edit" role="tabpanel"
                                         aria-labelledby="pills-overview-tab">
-                                        <form action="check.php"
+                                        <form action="check.php" 
                                             name="update_project" id="update_project" autocomplete="off" method="post"  accept-charset="utf-8">
                                             <div class="card-body">
                                                 <div class="row">
@@ -502,7 +528,8 @@ include("../include/header.php");
                                                 </div>
                                             
                                             <div class="card-footer text-right">
-                                                <button type="submit" class="btn btn-primary ladda-button" name="updatetask" id="updatetask" > Update Task</button>
+                                               
+                                                <button type="submit" class="btn btn-primary ladda-button" name="updatetask" id="updatetask"> Update Task</button>
                                             </div>
                                             <div style="display:none"><label>Bot Will Fill This Field</label><input type="text" name="ciapp_check" value=""/></div>  
                                                            
@@ -516,16 +543,16 @@ include("../include/header.php");
                                         <div class="card-body task-comment">
                                             <ul class="media-list p-0">
                                             </ul>
-                                            <form action="" name="add_discussion" id="add_discussion" autocomplete="off"  method="post" accept-charset="utf-8">
+                                            <form name="add_discussion" id="add_discussion" autocomplete="off"  method="post" accept-charset="utf-8">
                                                 <input type="hidden" name="csrf_token" value="151caa943adbea74b586dda6935a66a3">
                                                 <input type="hidden" name="token"  value="Wq0jv-0vl4DUZItXe7Cq7Dn-N_uGlF0Y1syost3-QiU" style="display:none;">
                                                 <div class="input-group mb-3">
-                                                    <textarea id="summernote1">
-                                                        Place <em>some</em> <u>text</u> <strong>here</strong>
+                                                    <textarea name="discussion" placeholder="Place some texthere" id="summernote1">
+                                                       
                                                       </textarea>
                                                 </div>
                                                 <div class="card-footer text-right">
-                                                    <button type="submit" class="btn btn-primary ladda-button"
+                                                    <button type="submit" name="submit1" class="btn btn-primary ladda-button"
                                                         data-style="expand-right"><span class="ladda-label">  Add </span><span class="ladda-spinner"></span></button>
                                                 </div>
                                                 <div style="display:none"><label>Bot Will Fill This Field</label><input type="text" name="ciapp_check" value=""></div>
@@ -541,16 +568,16 @@ include("../include/header.php");
                                         <div class="card-body task-comment">
                                             <ul class="media-list p-0">
                                             </ul>
-                                            <form action="" name="add_discussion" id="add_discussion" autocomplete="off"  method="post" accept-charset="utf-8">
+                                            <form name="add_discussion" id="add_discussion" autocomplete="off" method="post" accept-charset="utf-8">
                                                 <input type="hidden" name="csrf_token" value="151caa943adbea74b586dda6935a66a3">
                                                 <input type="hidden" name="token"  value="Wq0jv-0vl4DUZItXe7Cq7Dn-N_uGlF0Y1syost3-QiU" style="display:none;">
                                                 <div class="input-group mb-3">
                                                     <textarea id="summernote2">
-                                                        Place <em>some</em> <u>text</u> <strong>here</strong>
+                                                        Place <em>some</em><u>text</u><strong>here</strong>
                                                       </textarea>
                                                 </div>
                                                 <div class="card-footer text-right">
-                                                    <button type="submit" class="btn btn-primary ladda-button"
+                                                    <button type="submit" name="submit1" class="btn btn-primary ladda-button"
                                                         data-style="expand-right"><span class="ladda-label">  Add </span><span class="ladda-spinner"></span></button>
                                                 </div>
                                                 <div style="display:none"><label>Bot Will Fill This Field</label><input type="text" name="ciapp_check" value=""></div>
@@ -697,7 +724,7 @@ include("../include/header.php");
                                         <div class="card-body">
                                             <div class="list-group list-group-flush list-pills border-bottom">
                                             </div>
-                                            <form action="" name="add_attachment" id="add_attachment" autocomplete="off" method="post" accept-charset="utf-8">
+                                            <form name="add_attachment" id="add_attachment" autocomplete="off" method="post" accept-charset="utf-8">
                                                 <input type="hidden" name="csrf_token" value="151caa943adbea74b586dda6935a66a3">
                                                 <input type="hidden" name="token" value="Wq0jv-0vl4DUZItXe7Cq7Dn-N_uGlF0Y1syost3-QiU"  style="display:none;">
                                                 <div class="bg-white">
@@ -722,7 +749,7 @@ include("../include/header.php");
                                             </form>
                                         </div>
                                         <div class="card-footer text-right">
-                                            <button type="submit" class="btn btn-primary ladda-button" data-style="expand-right"><span class="ladda-label"> Add File </span><span class="ladda-spinner"></span></button>
+                                            <button type="submit" name="submit1" class="btn btn-primary ladda-button" data-style="expand-right"><span class="ladda-label"> Add File </span><span class="ladda-spinner"></span></button>
                                         </div>
                                         <div style="display:none"><label>Bot Will Fill This Field</label><input type="text" name="ciapp_check" value=""></div>
                                     </div>

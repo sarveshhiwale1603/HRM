@@ -404,7 +404,7 @@
               <div class="d-flex flex-row align-items-start">
                   <i class="nav-link	fa fa-tasks"></i>
                   <div class="ms-3">
-                    <h6 ><a href="kanban.html" target="_self" style="text-decoration:none">Kanban Board</a></h6>
+                    <h6 ><a href="kanban.php" target="_self" style="text-decoration:none">Kanban Board</a></h6>
                     <p>View Task Kanban Board</p>
                   </div>
               </div>
