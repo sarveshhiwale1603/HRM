@@ -370,7 +370,7 @@ if(!isset($_SESSION['id'])){
                         <?php echo $arr['total'];?>
                         </td>
                         <td>
-                                                <a href="manual-attendance.php?delid=<?php echo $arr['id']; ?>"><button type="button" class="btn btn-danger btn-rounded btn-icon"  style="color: aliceblue"> <i class="fas fa-trash"></i> </button></a>
+                                                <a href="manual-attendance.php?delid=<?php echo $arr['id']; ?>"><button type="button" class="btnbtn-danger btn-rounded btn-icon btn-sm"  style="color: aliceblue"> <i class="fas fa-trash"></i> </button></a>
 
                                <button type="button" class="btn btn-default btn-sm"
                                  data-toggle="modal" data-target="#modal-default">

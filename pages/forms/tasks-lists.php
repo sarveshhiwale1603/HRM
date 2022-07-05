@@ -147,7 +147,10 @@ include("../include/header.php");
                     </div>
                 </div>
             </div>
-        
+        </div>
+          <!-- /.col -->
+          
+          <!-- /.col -->
         </div>
         <!-- Info boxes -->
         <div class="row">
@@ -163,7 +166,8 @@ include("../include/header.php");
                       <div class="col-lg-8 py-4">
                         <p>0</p>
                         <a href="department.html" target="_self" class="Department mt-4"><h6>Total Completed</a></h6>
-                     
+                       
+                   
                 </div>
                 </div>
              </div>
@@ -380,6 +384,7 @@ include("../include/header.php");
                     <th>Action</th>
                   </tr>
                   </thead>
+
                   <tbody>
                       <?php     
     $sql=mysqli_query($conn,"select task.id,task.title,task.team,task.start_date,task.end_date,task.status, 
@@ -431,6 +436,7 @@ include("../include/header.php");
     </section>
     <!-- /.content -->
   </div>
+  <?php include("../include/footer.php") ?>
   <div class="modal fade closemaual" id="dnkModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
