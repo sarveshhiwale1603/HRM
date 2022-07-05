@@ -46,7 +46,7 @@ if(!isset($_SESSION['id'])){
         color: aliceblue;
       }
        .snehal{
-           margin-left:75%;
+           margin-left:80%;
            
        }
       .pg{
@@ -237,14 +237,13 @@ include("../include/header.php");
                 <div class="card-header">
                   <h5 class="card-title">List All Tasks
                 </h5>
-                <div class="nav-item nav-grid f-view snehal"> <span class="m-r-15">
+                <div class="nav-item nav-grid f-view snehal"><span class="m-r-15">
                     View Mode :</span> 
-                    <a href="tasks-lists.php" class="btn btn-sm waves-effect waves-light btn-primary btn-icon m-0" data-toggle="tooltip" data-placement="top" title="" data-original-title="List View"> <i class="fas fa-list-ul"></i>
+                    <a href="tasks-lists.php" class="btn btn-sm waves-effect waves-light btn-primary btn-icon m-0" data-toggle="tooltip" data-placement="top" title="" data-original-title="List View"><i class="fas fa-list-ul"></i>
                      </a>
-                     <a href="#" class="btn btn-sm waves-effect waves-light btn-primary btn-icon m-0" data-toggle="tooltip" data-placement="top" title="" data-original-title="Grid View"> <i class="fas fa-th-large"></i> </a>
-                            
+                     <a href="#" class="btn btn-sm waves-effect waves-light btn-primary btn-icon m-0" data-toggle="tooltip" data-placement="top" title="" data-original-title="Grid View"> <i class="fas fa-th-large"></i></a>
                      <a data-toggle="collapse" href="#add_form" aria-expanded="false" class="collapsed btn waves-effect waves-light a1 btn-primary btn-sm m-0"> <i data-feather="plus"></i>
-                      Add Task        </a>
+                      Add Task </a>
                           </div>
                         </div>
               </div>
@@ -297,8 +296,8 @@ include("../include/header.php");
                                       </div>
                                     </div>
                                     <div class="col-md-6">
-                                      <div class="form-group" id="project_ajax">
-                                        <label for="project_ajax" class="control-label">Project <span class="text-danger" required>*</span></label>
+                                      <div class="form-group" id="task_ajax">
+                                        <label for="task_ajax" class="control-label">project <span class="text-danger" required>*</span></label>
 
 
                                         <?php 
@@ -317,7 +316,7 @@ include("../include/header.php");
 
                         ?>
 
-                        <option value="<?php echo $sql['name']; ?>"> <?php echo $sql['name']; ?></option>
+                        <option value="<?php echo $sql['title']; ?>"> <?php echo $sql['title']; ?></option>
                         <?php } ?>
                       </select>
 
@@ -337,84 +336,117 @@ include("../include/header.php");
                                       </div>
                                     </div>
                                   </div>
-                                </div>
-                                <div>
-                                <div class="card-footer text-right">
+                              
+                                  <div class="card-footer text-right">
                                   <button type="reset" class="btn btn-light" href="#add_form" data-toggle="collapse" aria-expanded="false">
                                   Reset            </button>
                                   &nbsp;
                                   <button type="submit" name="submit" class="btn btn-primary">
                                   Save            </button>
+                               
+                                  </div>
+                                <div>
                                 </div>
-                                <div style="display:none"><label>Bot Will Fill This Field</label><input type="text" name="ciapp_check" value=""/></div></form>       </div> </div>
-                            </div>
-                            </div>
-                          </div>
-                          
-                              <div class="row">
+</form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  
                                 </div>
-                                
+                            </div>
                         </div>
-                        <!-- [ task-board-right ] end --> 
-                      </div>
+                    </div>
+                          
+                            
+                                
+                     
 
 
-                      <div class="row">
+ <div class="row">
 
 <?php
-$query=mysqli_query($conn,"select * from task");
+$query=mysqli_query($conn,"select task.title,task.start_date,task.end_date,task.start_date,task.summary from employee inner join task on task.id=employee.id");
  while($sql=mysqli_fetch_array($query))
 {
   ?>
 
-                      <div class="col-md-4 col-sm-12">
-                            <div class="card card-border-c-blue">
-                                <div class="card-header"> <a class="text-secondary"><?php echo $sql['title'] ?></a> <span class="label label-primary float-right">
-                                <?php echo $sql['start_date'] ?></span> </div>
-                                <div class="card-body card-task">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <p class="task-detail">
-                                            dhfsh</p>
-                                            <p class="task-due"><strong>
-                                                    Due : </strong><strong class="label label-primary">
-                                                    <?php echo $sql['start_date'] ?></strong></p>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <div class="progress" style="height: 10px;">
-                                                <div class="progress-bar bg-danger" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                                                    0 %</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    
-                                        <div class="task-list-table">
-                                          
-                                            <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="" data-original-title="VEDANT NAIDU"><span class="mb-1"><img src="employee_image/employee_image/avatar3.png" class="img-fluid img-radius mr-2" style=" border-radius: 50%; width: 50px; height: auto;" alt=""></span></a><a style="color:black;" href="#!"><i class="fas fa-plus"></i></a>
-                                        </div>
-                                    <div class="task-board d-flex flex-row bd-highlight my-3 m-0 p-0" style="float: inherit;">
-                                        <div class="dropdown-secondary dropdown mr-2 bd-highlight"> <a href="project-Details.html">
-                                                <button class="btn btn-sm p-1 alert alert-warning" type="button">Not Started</button> </a> </div>
-                                        <div class="dropdown-secondary dropdown mr-2 bd-highlight"> <a href="project-Details.html">
-                                                <button class="btn waves-effect waves-light btn-primary btn-sm b-none txt-muted" type="button"><i data-toggle="tooltip" data-placement="top" title="" class="fas fa-eye m-0" data-original-title="View Project"></i></button>
-                                            </a> </div>
-                                        <div class="dropdown-secondary dropdown mr-2 bd-highlight">
-                                            <button class="btn waves-effect waves-light btn-primary btn-sm dropdown-toggle b-none txt-muted" type="button" id="dropdown3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bars"></i></button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdown3" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                                                <a class="dropdown-item" href="project-Details.html"> <i class="feather icon-eye"></i> View
-                                                    Project </a>
-                                                <a class="dropdown-item" href="project-Details.html"> <i class="feather icon-edit"></i> Edit
-                                                    Project </a>
-                                                <div class="dropdown-divider"></div>
-                                                <a href="#!" class="dropdown-item delete" data-toggle="modal" data-target="#modal-default" data-record-id="tG8ojG-xuooWM25zk0dWhhSkyNvqEX2MB5osYN-NpvY"><i class="feather icon-trash-2"></i> Remove Project </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php } ?>
+    <div class="col-md-4 col-sm-12">
+        <div class="card card-border-c-blue">
+            <div class="card-header"> <a
+                    href="http://hrm.tectignis.in/erp/tasks-details/WTgSGCdTUsln6QFa0YRAZCK_AjAMCE-AqDB_MScIasQ"
+                    class="text-secondary">#
+                   <?php echo $sql['title'] ?></a> <span class="label label-primary float-right">
+                   <?php echo $sql['start_date'] ?></span> </div>
+            <div class="card-body card-task">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p class="task-detail">
+                        <?php echo $sql['summary']?></p>
+                        <p class="task-due"><strong>
+                                Due : </strong><strong class="label label-primary">
+                                <?php echo $sql['start_date'] ?></strong></p>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="progress" style="height: 10px;">
+                            <div class="progress-bar bg-danger" role="progressbar"
+                                style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100">
+                                0 %</div>
                         </div>
+                    </div>
+                </div>
+                <hr>
+                
+                    <div class="task-list-table">
+                      
+                        <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
+                            title="" data-original-title="VEDANT NAIDU"><span class="mb-1"><img
+                                    src="employee_image/employee_image/"
+                                    class="img-fluid img-radius mr-2"
+                                    style=" border-radius: 50%; width: 50px; height: auto;"
+                                    alt=""></span></a><a style="color:black;" href="#!"><i
+                                class="fas fa-plus"></i></a>
+                    </div>
+                <div class="task-board d-flex flex-row bd-highlight my-3 m-0 p-0" style="float: inherit;">
+                    <div class="dropdown-secondary dropdown mr-2 bd-highlight"> <a href="tasks-details.php">
+                            <button class="btn btn-sm p-1 alert alert-warning" 
+                                type="button">Not Started</button> </a> </div>
+                    <div class="dropdown-secondary dropdown mr-2 bd-highlight"> <a href="tasks-details.php">
+                            <button
+                                class="btn waves-effect waves-light btn-primary btn-sm b-none txt-muted"
+                                type="button"><i data-toggle="tooltip" data-placement="top" title=""
+                                    class="fas fa-eye m-0"
+                                    data-original-title="View task"></i></button>
+                        </a> </div>
+                    <div class="dropdown-secondary dropdown mr-2 bd-highlight">
+                        <button
+                            class="btn waves-effect waves-light btn-primary btn-sm dropdown-toggle b-none txt-muted"
+                            type="button" id="dropdown3" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false"><i class="fas fa-bars"></i></button>
+                        <div class="dropdown-menu" aria-labelledby="dropdown3"
+                            data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                            <a class="dropdown-item" href="tasks-details.php"> <i class="feather icon-eye"></i> View
+                                task </a>
+                            <a class="dropdown-item" href="tasks-details.php"> <i class="feather icon-edit"></i> Edit
+                                task </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#!" class="dropdown-item delete" data-toggle="modal"
+                                data-target="#modal-default"
+                                data-record-id="tG8ojG-xuooWM25zk0dWhhSkyNvqEX2MB5osYN-NpvY"><i
+                                    class="feather icon-trash-2"></i> Remove task </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+
+<?php } ?>
+ 
+   </div>
+   
         
 
 <div class="modal notification-modal fade" id="notification-modal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -440,6 +472,7 @@ $query=mysqli_query($conn,"select * from task");
     </div>
   </div>
 </div>
+
 <style type="text/css">
 #ui-datepicker-div {
 	z-index:1100 !important;
@@ -498,7 +531,7 @@ $query=mysqli_query($conn,"select * from task");
           
     </section>
    
-  </div>
+
   <?php include("../include/footer.php") ?>
 </div>
 <!-- ./wrapper -->

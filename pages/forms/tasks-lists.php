@@ -61,7 +61,7 @@ if(!isset($_SESSION['id'])){
         color: aliceblue;
       }
        .snehal{
-           margin-left:75%;
+           margin-left:80%;
        }
        .a1{
         float:right;
@@ -251,8 +251,11 @@ include("../include/header.php");
                 <div class="nav-item nav-grid f-view snehal"> <span class="m-r-15">
                     View Mode :</span> 
                      
-                     <a data-toggle="collapse" href="#add_form" aria-expanded="false" class="collapsed btn waves-effect waves-light btn-primary btn-sm m-0"> <i data-feather="plus"></i>
-                      Add Task        </a>
+                    <a href="tasks-lists.php" class="btn btn-sm waves-effect waves-light btn-primary btn-icon m-0" data-toggle="tooltip" data-placement="top" title="" data-original-title="List View"><i class="fas fa-list-ul"></i>
+                     </a>
+                     <a href="tasks-grid.php" class="btn btn-sm waves-effect waves-light btn-primary btn-icon m-0" data-toggle="tooltip" data-placement="top" title="" data-original-title="Grid View"> <i class="fas fa-th-large"></i></a>
+                     <a data-toggle="collapse" href="#add_form" aria-expanded="false" class="collapsed btn waves-effect waves-light a1 btn-primary btn-sm m-0"> <i data-feather="plus"></i>
+                      Add Task </a>
                           </div>
                         </div>
               </div>

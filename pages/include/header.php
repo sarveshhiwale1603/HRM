@@ -140,7 +140,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="tasks-lists.php" class="nav-link">
+            <a href="tasks-grid.php" class="nav-link">
               <i class="nav-icon fa fa-edit"></i>
               <p>
                 Task
