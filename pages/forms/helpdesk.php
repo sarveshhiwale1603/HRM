@@ -64,7 +64,7 @@ include("../include/header.php");
                   <a href="createticket.php" button type="button" class="btn btn-primary float-right my-3 " style="margin-right: 5px;">
                     +Create Ticket
                   </a>
-                  </button>
+                 
                 </div>
                
                 <!-- /.card-body -->

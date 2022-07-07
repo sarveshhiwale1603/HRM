@@ -196,7 +196,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="training-session.php" class="nav-link">
               <i class="nav-icon 	fa fa-laptop"></i>
               <p>
                 Training Session

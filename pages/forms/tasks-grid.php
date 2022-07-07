@@ -320,15 +320,15 @@ include("../include/header.php");
                         <?php } ?>
                       </select>
 
-
                                       </div>
                                     </div>
                                     <div class="col-md-6">
                                       <div class="form-group">
-                                        <label for="summary">Summary <span class="text-danger">*</span></label>
+                                        <label for="summary">Summary<span class="text-danger">*</span></label>
                                         <textarea class="form-control" placeholder="Summary" name="summary" cols="30" rows="1" id="summary" required></textarea>
                                       </div>
                                     </div>
+                                    
                                     <div class="col-md-12">
                                       <div class="form-group">
                                         <label for="description">Description</label>
@@ -409,9 +409,16 @@ $query=mysqli_query($conn,"select task.title,task.start_date,task.end_date,task.
                     </div>
                 <div class="task-board d-flex flex-row bd-highlight my-3 m-0 p-0" style="float: inherit;">
                     <div class="dropdown-secondary dropdown mr-2 bd-highlight"> <a href="tasks-details.php">
+
+
+                    <!-- <a href="tasks-details.php?taskListId=<?php echo $arr['id']; ?>" class=" btn-sm btn btn-success"><i class="fa fa-arrow-right"></i> -->
+
                             <button class="btn btn-sm p-1 alert alert-warning" 
                                 type="button">Not Started</button> </a> </div>
-                    <div class="dropdown-secondary dropdown mr-2 bd-highlight"> <a href="tasks-details.php">
+                    <div class="dropdown-secondary dropdown mr-2 bd-highlight"> <a href="tasks-details.php?taskListId=<?php echo $sql['id'];?>">
+
+
+
                             <button
                                 class="btn waves-effect waves-light btn-primary btn-sm b-none txt-muted"
                                 type="button"><i data-toggle="tooltip" data-placement="top" title=""

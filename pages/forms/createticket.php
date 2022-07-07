@@ -31,7 +31,7 @@ if(!isset($_SESSION['id'])){
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>HRM | ATTENDANCE</title>
+  <title>HRM | TICKET</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="../../https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -40,6 +40,8 @@ if(!isset($_SESSION['id'])){
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="../../plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Theme style -->
+  <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="../../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
   <link rel="stylesheet" href="../../dist/css/adminlte.css">
   <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
@@ -53,93 +55,7 @@ if(!isset($_SESSION['id'])){
     .a1{
         float:right;
     }
-   .select2-container {
-  box-sizing: border-box;
-  display: inline-block;
-
-  position: relative;
-  vertical-align: middle; 
-}
-  .select2-container .select2-selection--single {
-    box-sizing: border-box;
-    cursor: pointer;
-    display: block;
-    height: 28px;
-    user-select: none;
-    -webkit-user-select: none; 
-
-  }
-
-
-
-
-.select2-dropdown {
-  background-color: white;
-  border: 1px solid #aaa;
-  border-radius: 4px;
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  left: -100000px;
-  width: 100%;
-  z-index: 1051; }
-
-.select2-results {
-  display: block; }
-
-.select2-results__options {
-  list-style: none;
-  margin: 0;
-  padding: 0; }
-
-.select2-results__option {
-  padding: 6px;
-  user-select: none;
-  -webkit-user-select: none; }
-  .select2-results__option[aria-selected] {
-    cursor: pointer; }
-
-.select2-container--open .select2-dropdown {
-  left: 0; }
-
-.select2-container--open .select2-dropdown--above {
-  border-bottom: none;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0; }
-
-
-
-.select2-search--dropdown {
-  display: block;
-  padding: 4px; }
-  .select2-search--dropdown .select2-search__field {
-    padding: 4px;
-    width: 100%;
-    box-sizing: border-box; }
-    .select2-search--dropdown .select2-search__field::-webkit-search-cancel-button {
-      -webkit-appearance: none; }
-  .select2-search--dropdown.select2-search--hide {
-    display: none; }
-
-
-.select2-hidden-accessible {
-  border: 0 !important;
-  clip: rect(0 0 0 0) !important;
-  -webkit-clip-path: inset(50%) !important;
-  clip-path: inset(50%) !important;
-  height: 1px !important;
-  overflow: hidden !important;
-  padding: 0 !important;
-  position: absolute !important;
-  width: 1px !important;
-  white-space: nowrap !important; }
-
-
-
-
-
-
-</style>
+    </style>
 </head>
 <body>
 <div class="wrapper">
@@ -189,14 +105,15 @@ include("../include/header.php");
                 <!-- /.form-group -->
                 
                 <div class="form-group">
-                  <label>Department</label>
-                  <select class="form-control select2" name="department" style="width: 100%;">
-                    <option selected="selected">select</option>
-                    <option>Developer</option>
-                    <option>Sales</option>
-                    <option>Marketing</option>
-                   
-                  </select>
+               
+                          <label>Department<sup><b style="color:red;">*</b></sup></label>
+                          <select class="form-control select2" id="department" name="department" style="width: 100%;" onChange="gett(this.value)" required>
+                          <option selected="selected" disabled>select</option>
+                          <?php $sql=mysqli_query($conn,"select * from department order by name asc");
+                            while($row=mysqli_fetch_array($sql)){ ?>
+                            <option value="<?php echo $row['name']; ?>"><?php echo $row['name']; ?></option><?php } ?>
+                          </select>
+                        
                 </div>
                 
                 <!-- /.form-group -->
@@ -205,8 +122,8 @@ include("../include/header.php");
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Priority</label>
-                  <select class="form-control select2" name="priority" style="width: 100%;">
-                    <option selected="selected"></option>
+                  <select class="form-control select2" name="priority" style="width: 100%;" required>
+                    <option selected="selected" disabled>select</option>
                     <option>Low</option>
                     <option>Medium</option>
                     <option>High</option>
@@ -224,29 +141,23 @@ include("../include/header.php");
               </div>
             
               <div class="col-md-12">
-                <div class="form-group">
-                  <h6 class="col-sm-2.5 col-form-label"><b>Description</b></h6>
-                </div>
-                <div class="Discription">
-                  <textarea  class="form-control"  rows="4" cols="150" style="border: 1px solid #dee2e6;
-                  font-weight: 400;
-                  font-size: 0.875rem;
-                 
-                  border-radius: 4px;" name="description" placeholder="description"></textarea>
-                </div>
-                <!-- /.fo
-              
-            </div>
-            
-            <!-- /.row -->
-</div>
-<button type="submit" name="submit" class="btn btn-primary" style="margin-right: 5px;float-right;">
-  Add
-</button>
+                                      <div class="form-group">
+                                        <label for="description">Description</label>
+                                        <textarea class="form-control editor" placeholder="Description" name="description" id="description" required></textarea>
+                                      </div>
+                                    </div>
+                                  </div>
+                              
+                                  <div class="text-right">
+                                  
+                                  <button type="submit" name="submit" class="btn btn-primary">
+                                  Save            </button>
+                               
+                                  </div>
+                                <div>
+                                </div>
 </form>
-</div>
 
-          </div>
          
     </section>
     <!-- /.content -->
@@ -427,6 +338,19 @@ include("../include/header.php");
     myDropzone.removeAllFiles(true)
   }
   // DropzoneJS Demo Code End
+</script>
+
+<script>
+  function gett(val){
+$.ajax({
+  type:'POST',
+  url:'api.php',
+  data:'department='+val,
+  success:function(html){
+    $('#designation').html(html);
+  }
+});
+  }
 </script>
 </body>
 </html>

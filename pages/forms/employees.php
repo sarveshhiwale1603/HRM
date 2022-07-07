@@ -229,7 +229,7 @@ $id=$_SESSION['id']; ?>
                             <label>Contact Number<sup><b style="color:red;">*</b></sup></label>
                             <div class="input-group">
                               <input type="number" class="form-control"onKeyDown="if(this.value.length==10 && event.keyCode>47 && event.keyCode < 58)return false;"
- maxlength="10" name="contact" placeholder="Contact Number" id="number"  required>
+                       maxlength="10" name="contact" placeholder="Contact Number" id="number"  required>
                             </div>
                             <!-- /input-group -->
                           </div>
@@ -314,7 +314,7 @@ $id=$_SESSION['id']; ?>
                       <div class="col-lg-4">
                           <label>Department<sup><b style="color:red;">*</b></sup></label>
                           <select class="form-control select2" id="department" name="department" style="width: 100%;" onChange="get(this.value)" required>
-                          <option >Choose Department</option>
+                          <option disabled>Choose Department</option>
                           <?php $sql=mysqli_query($conn,"select * from department order by name asc");
                             while($row=mysqli_fetch_array($sql)){ ?>
                             <option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option><?php } ?>
@@ -423,7 +423,7 @@ $id=$_SESSION['id']; ?>
                 <div class="card-header">
                   <h5 class="card-title">List All Employees</h5>
                   <div class="card-tools">
-                  <a href="employees-Grid.html"> <button type="button" title="Grid view" class="btn btn-primary btn-sm">
+                  <a href="employees-Grid.php"> <button type="button" title="Grid view" class="btn btn-primary btn-sm">
                       <i class="fas fa-th-large"></i></button></a> 
                     <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="collapse"
                       href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
@@ -851,7 +851,6 @@ if(txtname == "" || lstname == "" || number == "" || gndr == "" || email == "" |
 
 </script>
 <script>
- 
   function get(val){
 $.ajax({
   type:'POST',

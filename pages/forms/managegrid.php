@@ -3,7 +3,8 @@ include("../include/config.php");
 session_start();
 if(!isset($_SESSION['id'])){
     header("location:index.php");
-} ?>
+} 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,27 +38,35 @@ if(!isset($_SESSION['id'])){
 
 
     <style>
-    .hoverTitles{
-      color: black;
-      cursor: pointer;
-      font-weight: 500;
-      /* font-size: small; */
+        .hoverTitles {
+            color: black;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: small;
+        }
 
-    }
-    .active1{
-      cursor: pointer;
-      font-weight: 500;
-    }
-      .hoverTitles:hover{
-      color: #007bff !important;
-    }
-  </style>
+        .hoverTitles:hover {
+            color: blueviolet !important;
+        }
+    </style>
 </head>
 
 <body>
     <div class="wrapper">
-    <?php include("../include/header.php"); ?>
+       
 
+        <!-- Preloader -->
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__wobble" src="../../dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+  </div>
+
+
+
+ 
+  <?php 
+include("../include/header.php");
+?>
+      
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -82,79 +91,7 @@ if(!isset($_SESSION['id'])){
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
-                    <!-- Info boxes -->
-                    <div class="row">
-                        <div class="col-md-3 grid-margin">
-                            <div class="card-body">
-                                <a href="employees.php">
-                                    <div class="d-flex flex-row align-items-start hoverTitles">
-                                        <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fas fa-user-friends"></i>
-                                        <div class="ms-3">
-                                            <p class="pb-0 mb-0" style="line-height: 1">
-                                                Employees
-                                            </p>
-                                            <small class="text-muted small pt-0 mt-0">Set Up Employees</small>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- <p style="line-height:1;"><a href="department.html" target="_self" class="Department titles" style="font-weight:medium;">Department</a> <br> -->
-
-                        <!-- /.col -->
-                        <div class="col-md-3 grid-margin">
-                            <div class="card-body">
-                                <a href="roles&privilages.php">
-                                    <div class="d-flex flex-row align-items-start hoverTitles">
-                                        <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fas fa-user-lock"></i>
-                                        <div class="ms-3">
-                                            <p class="pb-0 mb-0" style="line-height: 1">
-                                                Roles & Privilages
-                                            </p>
-                                            <small class="text-muted small pt-0 mt-0">Set Roles</small>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- /.col -->
-
-                        <!-- fix for small devices only -->
-                        <div class="clearfix hidden-md-up"></div>
-
-                        <div class="col-md-3 grid-margin">
-                            <div class="card-body">
-                                <a href="shift&scheduling.php">
-                                    <div class="d-flex flex-row align-items-start hoverTitles">
-                                        <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg far fa-clock"></i>
-                                        <div class="ms-3">
-                                            <p class="pb-0 mb-0" style="line-height: 1">
-                                                Shift & Scheduling
-                                            </p>
-                                            <small class="text-muted small pt-0 mt-0">Manage Shifts</small>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-md-3 grid-margin">
-                            <div class="card-body">
-                                <a href="employees-Exit.php">
-                                    <div class="d-flex flex-row align-items-start hoverTitles">
-                                        <i class="nav-link pt-1 mt-1 pr-2 mr-2 fa-lg fas fa-sign-out-alt"></i>
-                                        <div class="ms-3">
-                                            <p class="pb-0 mb-0" style="line-height: 1">
-                                                Employees Exit
-                                            </p>
-                                            <small class="text-muted small pt-0 mt-0">Set up Employees Exit</small>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- /.col -->
-                    </div>
+                  
 
                     <!-- /.row -->
                     <div class="row justify-content-center">
@@ -166,7 +103,8 @@ if(!isset($_SESSION['id'])){
                                     <div class="col-md-8">
                                         <div class="card">
                                             <div class="card-header">
-                                                <h5 class="card-title">Add New Employee</h5>
+                                                <h5 class="card-title">Clients Management
+                                                </h5>
                                                 <div class="card-tools">
                                                     <button type="button" class="btn btn-primary btn-sm"
                                                         data-bs-toggle="collapse" href="#collapseExample" role="button"
@@ -188,10 +126,8 @@ if(!isset($_SESSION['id'])){
                                                                 </span>
                                                             </div>
                                                             <input type="text" class="form-control"
-                                                                placeholder="First Name" id="txtname" required>
+                                                                placeholder="First Name">
                                                         </div>
-                                                        <span id="spanname"></span>
-
                                                         <!-- /input-group -->
                                                     </div>
                                                     <!-- /.col-lg-6 -->
@@ -203,10 +139,8 @@ if(!isset($_SESSION['id'])){
                                                                         class="fas fa-user-alt"></i></span>
                                                             </div>
                                                             <input type="text" class="form-control"
-                                                                placeholder="Last Name" id="lstname" required>
+                                                                placeholder="Last Name">
                                                         </div>
-                                                        <span id="lname"></span>
-
                                                         <!-- /input-group -->
                                                     </div>
                                                     <!-- /.col-lg-6 -->
@@ -218,7 +152,7 @@ if(!isset($_SESSION['id'])){
                                                     <div class="col-lg-4">
                                                         <label>Employee ID<sup><b style="color:red;">*</b></sup></label>
                                                         <div class="input-group">
-                                                            <input type="text" class="form-control" readonly value="123456" required>
+                                                            <input type="text" class="form-control" value="123456">
                                                         </div>
                                                         <!-- /input-group -->
                                                     </div>
@@ -227,15 +161,15 @@ if(!isset($_SESSION['id'])){
                                                         <label>Contact Number<sup><b
                                                                     style="color:red;">*</b></sup></label>
                                                         <div class="input-group">
-                                                            <input type="number" id="number" class="form-control"onKeyDown="if(this.value.length==10 && event.keyCode>47 && event.keyCode < 58)return false;"
- maxlength="10" placeholder="Contact Number" required>
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Contact Number">
                                                         </div>
                                                         <!-- /input-group -->
                                                     </div>
                                                     <div class="col-lg-4">
                                                         <label>Gender<sup><b style="color:red;">*</b></sup></label>
                                                         <div class="input-group">
-                                                            <select class="form-control select2" style="width: 100%;" id="gndr" required>
+                                                            <select class="form-control select2" style="width: 100%;">
                                                                 <option selected="selected">Male</option>
                                                                 <option>Female</option>
                                                             </select>
@@ -257,7 +191,7 @@ if(!isset($_SESSION['id'])){
                                                                 </span>
                                                             </div>
                                                             <input type="email" class="form-control"
-                                                                placeholder="Email" id="email" required>
+                                                                placeholder="Email">
                                                         </div>
                                                         <!-- /input-group -->
                                                     </div>
@@ -270,7 +204,7 @@ if(!isset($_SESSION['id'])){
                                                                         class="fas fa-user-alt"></i></span>
                                                             </div>
                                                             <input type="text" class="form-control"
-                                                                placeholder="Username" id="usname" required>
+                                                                placeholder="Username">
                                                         </div>
                                                         <!-- /input-group -->
                                                     </div>
@@ -288,7 +222,7 @@ if(!isset($_SESSION['id'])){
                                                                         class="fas fa-eye-slash"></i></span>
                                                             </div>
                                                             <input type="password" class="form-control"
-                                                                placeholder="password" id="pass" required>
+                                                                placeholder="password">
                                                         </div>
                                                         <!-- /input-group -->
                                                     </div>
@@ -297,7 +231,7 @@ if(!isset($_SESSION['id'])){
                                                         <label>Office Shift<sup><b
                                                                     style="color:red;">*</b></sup></label>
                                                         <select class="form-control select2" style="width: 100%;"
-                                                            placeholder="Office Shift" id="ofc" required>
+                                                            placeholder="Office Shift">
                                                             <option selected="selected" disabled>Office Shift</option>
                                                             <option>Morning</option>
                                                         </select>
@@ -306,7 +240,7 @@ if(!isset($_SESSION['id'])){
                                                     <div class="col-lg-4">
                                                         <label>Role<sup><b style="color:red;">*</b></sup></label>
                                                         <div class="input-group">
-                                                            <select class="form-control select2" style="width: 100%;" id="role" required>
+                                                            <select class="form-control select2" style="width: 100%;">
                                                                 <option selected="selected" disabled>Role</option>
                                                                 <option>Web Developer</option>
                                                                 <option>Android Developer</option>
@@ -318,7 +252,7 @@ if(!isset($_SESSION['id'])){
                                                     <div class="col-lg-6">
                                                         <label>Department<sup><b style="color:red;">*</b></sup></label>
                                                         <select class="form-control select2" style="width: 100%;"
-                                                            placeholder="Office Shift" id="department" required>
+                                                            placeholder="Office Shift">
                                                             <option selected="selected" disabled>Departments</option>
                                                             <option>Developer</option>
                                                             <option>Sales</option>
@@ -328,7 +262,7 @@ if(!isset($_SESSION['id'])){
                                                     <div class="col-lg-6">
                                                         <label>Designation<sup><b style="color:red;">*</b></sup></label>
                                                         <div class="input-group">
-                                                            <select class="form-control select2" style="width: 100%;" id="designation" required>
+                                                            <select class="form-control select2" style="width: 100%;">
                                                                 <option selected="selected" disabled>Designation
                                                                 </option>
                                                             </select>
@@ -345,14 +279,14 @@ if(!isset($_SESSION['id'])){
                                                                 <span class="input-group-text"> <i
                                                                         class="fas fa-rupee-sign"></i></span>
                                                             </div>
-                                                            <input type="number" id="sal" class="form-control" value="456132" required>
+                                                            <input type="number" class="form-control" value="456132">
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <label>Payslip Type<sup><b
                                                                     style="color:red;">*</b></sup></label>
                                                         <div class="input-group">
-                                                            <select class="form-control select2" style="width: 100%;" id="slip" required>
+                                                            <select class="form-control select2" style="width: 100%;">
                                                                 <option selected="selected">Per Month</option>
                                                             </select>
                                                         </div>
@@ -361,13 +295,9 @@ if(!isset($_SESSION['id'])){
                                                 <div class="card-footer">
                                                     <buttton type="button" id="reset" class="btn btn-default"
                                                         name="reset" data-bs-toggle="collapse" href="#collapseExample"
-                                                        role="button" ari000
-                                                       
-                                                       
-                                                        This Month
-                                                        Teca-expanded="false"
+                                                        role="button" aria-expanded="false"
                                                         aria-controls="collapseExample">Reset</buttton>
-                                                    <buttton type="button" onclick="function()" id="submit" class="btn btn-primary"
+                                                    <buttton type="button" id="submit" class="btn btn-primary"
                                                         name="Save">Save</buttton>
                                                 </div>
                                             </div>
@@ -381,7 +311,7 @@ if(!isset($_SESSION['id'])){
                                             <div class="card-body">
                                                 <label>Profile Picture<sup><b style="color:red;">*</b></sup></label>
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="file" name="file">
+                                                    <input type="file" class="custom-file-input" name="file">
                                                     <label class="custom-file-label">Choose file...</label>
                                                     <small class="text-muted">Upload files only:
                                                         gif,png,jpg,jpeg</small>
@@ -405,10 +335,11 @@ if(!isset($_SESSION['id'])){
                                             <div class="col text-right py-4">
                                                 <div class="card-tools">
                                                     <span class="mr-2">View Mode : </span>
-                                                    <a href="employees.php"><button type="button"
+                                                    <a href="manage.html"><button type="button"
                                                             class="btn btn-primary btn-sm">
                                                             <i class="fas fa-list-ul"></i>
                                                         </button></a>
+                                                        <a href="managegrid.html" class="btn btn-sm waves-effect waves-light btn-primary btn-icon m-0" data-toggle="tooltip" data-placement="top" title="" data-original-title="Grid View"> <i class="fas fa-th-large"></i> </a>
                                                     <!-- <button type="button" class="btn btn-primary btn-sm">
                                                             <i class="fas fa-th-large"></i></button> -->
                                                     <button type="button" class="btn btn-primary btn-sm"
@@ -436,23 +367,17 @@ if(!isset($_SESSION['id'])){
                                                 <span class="badge badge-success">Active</span>
                                             </div>
                                             <div class="col">
-                                                <img class="img-radius img-fluid" style="
-                                                      border-radius: 50%;
-                                                      width: 80px;
-                                                      height: auto;
-                                                      margin-top: -35px;
-                                                    " src="http://hrm.tectignis.in/public/uploads/users/thumb/logo.jpg"
-                                                    alt="" />
+                                                <img class="img-radius img-fluid wid-80" src="http://hrm.tectignis.in/public/uploads/clients/thumb/tiger.jfif" alt="aniket nangare">
                                             </div>
                                             <div class="col text-right pb-3">
                                                 <div class="dropdown" style="cursor:pointer;">
-                                                    <a style="color:black;" class="drp-icon dropdown-toggle"
+                                                    <a style="color:rgba(0, 0, 0, 0.434);" class="drp-icon dropdown-toggle"
                                                         data-toggle="dropdown" aria-haspopup="true"
                                                         aria-expanded="false"><i style="color:black;"
                                                             class="feather icon-more-horizontal">...</i></a>
                                                     <div class="dropdown-menu dropdown-menu-right">
                                                         <a class="dropdown-item"
-                                                            href="Employees-Details.php"><i
+                                                            href="client-Details .html"><i
                                                                 class="fa fa-eye"></i> View
                                                         </a>
                                                         <a href="#!" class="dropdown-item delete" data-toggle="modal"
@@ -492,16 +417,19 @@ if(!isset($_SESSION['id'])){
                                         <!-- /.modal-dialog -->
                                     </div>
                                     <div class="text-center">
-                                        <h4 class="mb-1 mt-3">VEDANT NAIDU</h4>
-                                        <P class="text-muted mb-3">MANAGER</P>
+                                        <h4 class="mb-1 mt-3">ANIKAT NANGARE</h4>
+                                        <P class="text-muted mb-3">@aniketnangare
+
+                                        </P>
                                         <p class="mb-1 mt-2">
                                             <b>Email : </b>
-                                            <a href="mailto:vedantnaidu@tectignis.in">vedantnaidu@tectignis.in</a>
+                                            <a href="Email : aniket@gmail.com"> aniket@gmail.com
+
+                                            </a>
                                         </p>
                                         <p class="mb-2">
-                                            <b>Role : </b>
-                                            " Web Developer "
-                                            <span class="badge badge-primary">morning</span>
+                                            <b>Contact</b>
+                                            " 1234567890 "
                                         </p>
                                     </div>
                                 </div>
@@ -521,11 +449,7 @@ if(!isset($_SESSION['id'])){
         <!-- /.control-sidebar -->
 
         <!-- Main Footer -->
-  <?php include("../include/footer.php") ?>
-
     </div>
-
-   
     <!-- ./wrapper -->
 
     <!-- REQUIRED SCRIPTS -->
@@ -585,103 +509,6 @@ if(!isset($_SESSION['id'])){
             });
         });
     </script>
-
-<script>
-
-//TEXT VALIDATION
-$("#spanname").hide();
-  $("#txtname").keyup(function(){
-   txt_check();
- });
- function txt_check(){
-   let txt=$("#txtname").val();
-   let vali =/^[A-Za-z ]+$/;
-   if(!vali.test(txt)){
-    $("#spanname").show().html("Enter Alphabets only").css("color","red").focus();
-    txt_err=false;
-    return false;
-   }
-   else{
-       $("#spanname").hide();
-
-   }
- }
-
- $("#submit").click(function(){
-   txt_err = true;
-         txt_check();
-
-     if((txt_err==true)){
-        return true;
-     }
-     else{return false;}
-  });
-
-</script>
-<script>
-
-//TEXT VALIDATION
-$("#lname").hide();
-  $("#lstname").keyup(function(){
-   txt_check1();
- });
- function txt_check1(){
-   let txt=$("#lstname").val();
-   let vali =/^[A-Za-z ]+$/;
-   if(!vali.test(txt)){
-    $("#lname").show().html("Enter Alphabets only").css("color","red").focus();
-    txt_err=false;
-    return false;
-   }
-   else{
-       $("#lname").hide();
-
-   }
- }
-
- $("#submit").click(function(){
-   txt_err = true;
-         txt_check1();
-
-     if((txt_err==true)){
-        return true;
-     }
-     else{return false;}
-  });
-  </script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-
-<script>
-
-
-let submitaminities = document.getElementById("submit");
-submitaminities.addEventListener("click", function(){
- let txtname = document.getElementById("txtname").value;
- let lstname = document.getElementById("lstname").value;
- let number = document.getElementById("number").value;
- let gndr = document.getElementById("gndr").value;
- let email = document.getElementById("email").value;
- let usname = document.getElementById("usname").value;
- let pass = document.getElementById("pass").value;
- let ofc = document.getElementById("ofc").value;
-let role = document.getElementById("role").value;
- let department = document.getElementById("department").value;
-let designation = document.getElementById("designation").value;
-let sal = document.getElementById("sal").value;
- let slip = document.getElementById("slip")
-
-
-
-if(txtname == "" || lstname == "" || number == "" || gndr == "" || email == "" || usname == "" || pass == "" || ofc == "" || role == "" || department == ""  || designation == ""  || sal == "" || slip == ""  ){
-    swal("Oops...", "Please fill all the fields", "error");
-}
-    else{
-        swal("Saved!", "HRM Save", "success");
-    }
-});
-    </script>
-
 </body>
 
 </html>
